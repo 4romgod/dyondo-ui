@@ -5,10 +5,10 @@ import { preSignup, signup, isAuth } from "../../actions/auth";
 
 function SignUpComponent() {
     const [values, setValues] = useState({
-        name: 'Ebenezer',
-        email: 'email@gmail.com',
-        password: '123456',
-        confirmPassword: '123456',
+        name: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
         error: '',
         loading: false,
         message: '',

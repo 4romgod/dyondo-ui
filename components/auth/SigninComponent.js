@@ -11,8 +11,8 @@ const remPad = { padding: "0", border: "0" };
 
 function SigninComponent() {
     const [values, setValues] = useState({
-        email: 'email@gmail.com',
-        password: '123456',
+        email: '',
+        password: '',
         error: '',
         loading: false,
         message: '',
