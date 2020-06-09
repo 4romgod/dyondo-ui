@@ -1,0 +1,36 @@
+/************************************* NAVIGATION ******************************/
+.navbar {
+    background-color: black;
+    padding: 0 20px 0 30px;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.5);
+    font-family: sans-serif;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+}
+
+.navbar-dark .navbar-nav .nav-item {
+   padding: 10px;
+   margin: 0 auto;      /*centers items on collapsed nav*/
+}
+
+.navbar-toggler{
+    margin: 10px 0;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    padding: 6px 15px;
+    color: white;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    background-color: #4a4e52;
+    border-radius: 5px;
+    color: #35b89e;
+}
+
+
+@media only screen and (min-width: 768px) {
+    .navbar-dark .navbar-nav .nav-item{
+
+    }
+}
