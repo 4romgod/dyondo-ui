@@ -5,6 +5,9 @@ import { getCookie, isAuth, updateUser } from "../../actions/auth";
 import { getProfile, updateProfile } from "../../actions/user";
 import { API } from "../../config";
 
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function ProfileUpdate() {
     const [values, setValues] = useState({
@@ -14,14 +17,17 @@ function ProfileUpdate() {
         email: '',
         about: '',
         password: '',
+        photo: '',
+        photoName: '',
+        userData: process.browser && new FormData(),
+
         error: false,
         success: false,
         loading: false,
-        photo: '',
-        userData: process.browser && new FormData()
+        btnDisable: false
     });
 
-    const { username, username_for_photo, name, email, about, password, error, success, loading, photo, userData } = values;
+    const { username, username_for_photo, name, email, about, password, photo, photoName, userData, error, success, loading, btnDisable } = values;
     const token = getCookie("token");
 
     function initUser() {
@@ -43,12 +49,18 @@ function ProfileUpdate() {
 
     function handleChange(name) {
         return (event) => {
+            let value;
             // if a photo is being uploaded, we take the first photo   
-            const value = (name === 'photo') ? event.target.files[0] : event.target.value;
+            if(name === 'photo'){
+                value = event.target.files[0];
+                setValues({ ...values, photoName: value?value.name:'' ,[name]: value, userData, error: false, success: false });
+            }
+            else{
+                value = event.target.value;
+                setValues({ ...values, [name]: value, userData, error: false, success: false });
+            }
 
             userData.set(name, value);
-
-            setValues({ ...values, [name]: value, userData, error: false, success: false });
         }
     }
 
@@ -61,6 +73,7 @@ function ProfileUpdate() {
         updateProfile(token, userData).then((data) => {
             if (data.error) {
                 setValues({ ...values, error: data.error, success: false, loading: false });
+                toast.error(error); 
             }
             else {
                 updateUser(data, () => {
@@ -72,53 +85,64 @@ function ProfileUpdate() {
                         about: data.about,
                         password: '',
                         success: true,
-                        loading: false
+                        loading: false,
+                        btnDisable: true
                     });
                 });
 
+                setTimeout(() => { 
+                    Router.push(`/profile/${username}`);
+                }, 2000);
             }
+
+
         });
     }
 
 
     const profileUpdateForm = () => (
         <form onSubmit={handleSubmit}>
+            <div>
+                {success && toast.success('Profile updated!')}
+                {error && toast.error(error)}
+                {showLoading()}
+            </div>
+
             <div className="form-group">
+                <small className="text-muted">Max size: 1MB</small><br />
                 <label className="btn btn-outline-info">
                     Profile photo
                     <input onChange={handleChange('photo')} type="file" accept="image/*" hidden />
                 </label>
+                <small className="text-muted ml-2">{photoName}</small><br />
             </div>
+
             <div className="form-group">
                 <label className="text-muted">Username</label>
-                <input onChange={handleChange('username')} type="text" value={username} className="form-control" />
+                <input onChange={handleChange('username')} type="text" value={username} className="form-control" required />
             </div>
+
             <div className="form-group">
                 <label className="text-muted">Name</label>
-                <input onChange={handleChange('name')} type="text" value={name} className="form-control" />
+                <input onChange={handleChange('name')} type="text" value={name} className="form-control" required />
             </div>
-            {/*<div className="form-group">
-                <label className="text-muted">Email</label>
-                <input onChange={handleChange('email')} type="text" value={email} className="form-control" />
-            </div>*/}
+
             <div className="form-group">
                 <label className="text-muted">About</label>
                 <textarea onChange={handleChange('about')} type="text" value={about} className="form-control" />
             </div>
+
             <div className="form-group">
                 <label className="text-muted">Password (Leave blank to ignore)</label>
                 <input onChange={handleChange('password')} type="password" value={password} className="form-control" />
             </div>
+
             <div>
-                {showSuccess()}
-                {showError()}
-                {showLoading()}
-            </div>
-            <div>
-                <button type="submit" className="btn btn-success btn-lg" disabled={!username || !name || !email}>
+                <button type="submit" className="btn btn-success btn-lg">
                     Update
                 </button>
             </div>
+
         </form>
     );
 
@@ -130,21 +154,19 @@ function ProfileUpdate() {
     );
 
     const showSuccess = () => {
-        return (
-            <div className="alert alert-info" style={{ display: success ? '' : 'none' }}>
-                Profile updated
-            </div>);
+        toast.success('Profile updated!');
     };
 
     const showLoading = () => {
         return (
-            <div className="alert alert-danger" style={{ display: error ? '' : 'none' }}>
+            <div className="alert alert-danger" style={{ display: loading ? '' : 'none' }}>
                 Loading...
             </div>);
     };
 
     return (
         <React.Fragment>
+            <ToastContainer />
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-md-4">
