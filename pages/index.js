@@ -4,28 +4,33 @@ import Link from 'next/link';
 const Index = () => {
     return (
         <Layout>
-            <article className="overflow-hidden pt-4 bg-white">
-                <div className="container">
-                    <div className="row">
-                        <div className="col-md-12 text-center">
-                            <h1 className="display-4 font-weight-bold">
-                                PROGRAMING BLOGS AND TUTORIALS
-                            </h1>
+            <article className="overflow-hidden pt-4 pb-5 bg-white">
+
+                <div className="container-fluid pl-0 pr-0 heading-container">
+
+                    <div className="row ml-0 mr-0">
+                        <div className="col-md-12 pl-0 pr-0 text-center">
+                            <img
+                                src={`/images/coding monkey.jpg`}
+                                alt="coding monkey"
+                                className="img img-fluid featured-image heading-img"
+                            />
+
+                            <div className="heading-text">
+                                <h1 className="font-weight-bold" style={{ color: 'white' }}>
+                                    PROGRAMING BLOGS AND TUTORIALS
+                                </h1>
+                                <p style={{ color: 'white' }}>
+                                    Best programming blogs and tutorials on React, Node, Java and
+                                    Much more
+                                </p>
+                            </div>
                         </div>
+
                     </div>
                 </div>
 
-                <div className="container">
-                    <div className="row">
-                        <div className="col-md-12 text-center pt-2 pb-3">
-                            <p className="lead">
-                                Best programming and web development blogs and tutorials on React, Node, Java and
-                                Much more
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div className="container-fluid">
+                <div className="container-fluid mt-5">
                     <div className="row">
                         <div className="col-md-4">
                             <div className="flip flip-horizontal">
@@ -42,7 +47,7 @@ const Index = () => {
                                 </div>
                                 <div className="back text-center">
                                     <Link href="/categories/react">
-                                        <a style={{color: "#29a48b"}}>
+                                        <a style={{ color: "#29a48b" }}>
                                             <h3 className="h1">React Js</h3>
                                         </a>
                                     </Link>
@@ -66,7 +71,7 @@ const Index = () => {
                                 </div>
                                 <div className="back text-center">
                                     <Link href="/categories/node">
-                                        <a style={{color: "#29a48b"}}>
+                                        <a style={{ color: "#29a48b" }}>
                                             <h3 className="h1">Node Js</h3>
                                         </a>
                                     </Link>
@@ -92,7 +97,7 @@ const Index = () => {
                                 </div>
                                 <div className="back text-center">
                                     <Link href="/categories/java">
-                                        <a style={{color: "#29a48b"}}>
+                                        <a style={{ color: "#29a48b" }}>
                                             <h3 className="h1">Java</h3>
                                         </a>
                                     </Link>
