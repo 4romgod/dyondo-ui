@@ -45,20 +45,6 @@ function Header(props) {
     }, [props.closeNav]);
 
 
-    function writeBlogEndpoint() {
-        let endpoint;
-        if (isAuth() && isAuth().role === 0) {
-            endpoint = `/user/crud/blog`;
-        }
-        else if (isAuth() && isAuth().role === 1) {
-            endpoint = `/admin/crud/blog`;
-        }
-        else if (!isAuth()) {
-            endpoint = "/signup";
-        }
-        return endpoint;
-    }
-
     return (
         <React.Fragment>
             <Navbar color="dark" dark expand="md" className="navbar fixed-top">
@@ -140,14 +126,34 @@ function Header(props) {
                                 </React.Fragment>
                             )}
 
-                            <NavItem>
-                                <a href={writeBlogEndpoint()}
-                                    style={{ cursor: 'pointer' }}
-                                    className="btn btn-success pl-4 pr-4"
-                                >
-                                    <strong>Write a blog</strong>
-                                </a>
-                            </NavItem>
+                            <React.Fragment>
+                                {isAuth() && isAuth().role === 0 && <NavItem>
+                                    <a href={`/user/crud/blog`}
+                                        style={{ cursor: 'pointer' }}
+                                        className="btn btn-success pl-4 pr-4"
+                                    >
+                                        <strong>Write a blog</strong>
+                                    </a>
+                                </NavItem>}
+
+                                {isAuth() && isAuth().role === 1 && <NavItem>
+                                    <a href={`/admin/crud/blog`}
+                                        style={{ cursor: 'pointer' }}
+                                        className="btn btn-success pl-4 pr-4"
+                                    >
+                                        <strong>Write a blog</strong>
+                                    </a>
+                                </NavItem>}
+
+                                {!isAuth() && <NavItem>
+                                    <a href={`/signup`}
+                                        style={{ cursor: 'pointer' }}
+                                        className="btn btn-success pl-4 pr-4"
+                                    >
+                                        <strong>Write a blog</strong>
+                                    </a>
+                                </NavItem>}
+                            </React.Fragment>
 
                         </React.Fragment>
                     </Nav>

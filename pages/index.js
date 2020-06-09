@@ -4,7 +4,7 @@ import Link from 'next/link';
 const Index = () => {
     return (
         <Layout>
-            <article className="overflow-hidden pt-4 pb-5 bg-white">
+            <article className="overflow-hidden pt-4 pb-0 bg-white">
 
                 <div className="container-fluid pl-0 pr-0 pb-4 heading-container">
                     <div className="row ml-0 mr-0">
@@ -29,7 +29,7 @@ const Index = () => {
                     </div>
                 </div>
 
-                <div className="container-fluid mt-5">
+                {/* <div className="container-fluid mt-5">
                     <div className="row">
                         <div className="col-md-4">
                             <div className="flip flip-horizontal">
@@ -105,7 +105,9 @@ const Index = () => {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
+
+
             </article>
         </Layout>
     );

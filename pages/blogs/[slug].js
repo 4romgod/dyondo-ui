@@ -175,7 +175,7 @@ function SingleBlog({ blog, query }) {
                     <div className="container pb-5 mt-5">
                         <h4 className="text-center pt-2 pb-3 h2">Comments</h4>
                         <hr />
-                        <div className="mt-4">
+                        <div className="mt-4 pl-3 pr-3">
                             {showComments()}
                         </div>
                     </div>
