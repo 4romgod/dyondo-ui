@@ -31,7 +31,7 @@ function Card({ blog }) {
 
     return (
 
-        <div className="pb-4 pl-3 pr-3 mb-4 bg-white shadow">
+        <div className="pb-4 pl-4 pr-3 mb-4 bg-white shadow">
 
             {/** holds categories and tags */}
             {/* <section>

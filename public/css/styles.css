@@ -55,9 +55,10 @@
 
 /*********************************** MEDIUM SCREENS ***************************/
 
-@media (max-width: 526px) {
+@media (max-width: 576px) {
     .container {
         max-width: 100%;
+        padding: 0;
     }
 
     .heading-container img{
@@ -67,7 +68,6 @@
     .heading-text {
         top: 10%;
         padding: 10px 20px;
-        width: 100%;
     }
 
     .heading-text h1 {
@@ -78,6 +78,11 @@
 @media only screen and (max-width: 768px) {
     .container-image {
         display: none;
+    }
+
+    .heading-text {
+        top: 20%;
+        padding: 10px 20px;
     }
 }
 

@@ -141,12 +141,12 @@ function Blogs({ blogs, categories, tags, totalBlogs, blogsLimit, blogsSkip, rou
 
             <Layout>
                 <main className="bg-white">
-                    <div className="container">
+                    <div className="pb-5">
 
                         <header className="bg-white">
 
                             <div className="col-md-12 text-center">
-                                <div className="bg-white pt-5 pb-5 pl-5 pr-5">
+                                <div className="bg-white pt-5 pb-5">
                                     <h1><strong>Coding Blogs and Tutorials</strong></h1>
                                 </div>
                             </div>
@@ -163,48 +163,51 @@ function Blogs({ blogs, categories, tags, totalBlogs, blogsLimit, blogsSkip, rou
 
                         </header>
 
-                        <div className="row mr-0 mt-3">
+                        <div className="row ml-0 mr-0 mt-3">
 
                             {/** holds the blogs */}
-                            <div className="col-md-8 pl-0 pr-0">
-                                <div className="container-fluid">{showAllBlogs()}</div>
+                            <div className="col-md-8 pl-3 pr-3">
+                                <div>
+                                    <div className="container-fluid pl-0 pr-0">{showAllBlogs()}</div>
 
-                                <div className="container-fluid">{showLoadedBlogs()}</div>
+                                    <div className="container-fluid pl-0 pr-0">{showLoadedBlogs()}</div>
 
-                                {loadMoreButton()}
+                                    {loadMoreButton()}
+                                </div>
                             </div>
 
                             {/** holds categories and tags */}
-                            <div className="col-md-4 pt-5 pb-5 bg-white shadow" style={{ height: '100%' }}>
-
-                                <div className="pb-3">
-                                    <h4
-                                        className="btn btn-info btn-block"
-                                        style={{
-                                            backgroundColor: '#343a40',
-                                            border: 'none'
-                                        }}
-                                    >
-                                        Popular Categories
+                            <div className="col-md-4" style={{ height: '100%' }}>
+                                <div className="pl-3 pr-3 pt-5 pb-5 bg-white shadow">
+                                    <div className="pb-3">
+                                        <h4
+                                            className="btn btn-info btn-block"
+                                            style={{
+                                                backgroundColor: '#343a40',
+                                                border: 'none'
+                                            }}
+                                        >
+                                            Popular Categories
                                     </h4>
 
-                                    {showAllCategories()}
-                                </div>
+                                        {showAllCategories()}
+                                    </div>
 
-                                <br />
+                                    <br />
 
-                                <div className="pt-5">
-                                    <h4
-                                        className="btn btn-info btn-block"
-                                        style={{
-                                            backgroundColor: '#343a40',
-                                            border: 'none'
-                                        }}
-                                    >
-                                        Popular Tags
+                                    <div className="pt-5">
+                                        <h4
+                                            className="btn btn-info btn-block"
+                                            style={{
+                                                backgroundColor: '#343a40',
+                                                border: 'none'
+                                            }}
+                                        >
+                                            Popular Tags
                                     </h4>
 
-                                    {showAllTags()}
+                                        {showAllTags()}
+                                    </div>
                                 </div>
                             </div>
                         </div>

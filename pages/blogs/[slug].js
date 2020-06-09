@@ -105,78 +105,68 @@ function SingleBlog({ blog, query }) {
         <Layout>
             <main>
                 <article>
-                    <div className="container-fluid mt-3">
 
-                        {/** holds the image */}
-                        <section>
-                            <div className="row">
-                                <img
-                                    src={`${API}/blog/photo/${blog.slug}`}
-                                    alt={blog.title}
-                                    className="img img-fluid featured-image"
-                                />
-                            </div>
-                        </section>
-
-                        {/** display categories and tags */}
-                        <section>
-                            <div className="container mt-3">
-                                <div className="row">
-                                    <div className="col-md-1"></div>
-                                    <div className="bg-white col-md-10 pb-5 pt-3 pl-5 pr-5 text-center">
-                                        {showBlogCategories(blog)}
-                                        {showBlogTags(blog)}
-                                        <br /><br />
-                                    </div>
-                                    <div className="col-md-1"></div>
-
-                                </div>
-                            </div>
-                        </section>
-
+                    {/** holds the image */}
+                    <div className="row ml-0 mr-0">
+                        <img
+                            src={`${API}/blog/photo/${blog.slug}`}
+                            alt={blog.title}
+                            className="img img-fluid featured-image"
+                        />
                     </div>
 
-                    {/** display main content*/}
-                    <div className="container">
-                        <section>
-                            <div className="row">
-
-                                <div className="col-md-2"></div>
-
-                                {/** display blog author and body  */}
-                                <div className="col-md-8 bg-white mt-5 pl-5 pr-5 bt-4 pb-5">
-
-                                    {/** holds the title */}
-                                    <h4 className="display-4 pb-5 pt-5 font-weight-bold">
-                                        {blog.title}
-                                    </h4>
-
-                                    {/** display blog author */}
-                                    <p className="lead mt-3 mark">
-                                        Written by {' '}
-                                        <Link href={`/profile/${blog.author.username}`}>
-                                            <a>{blog.author.username}</a>
-                                        </Link>
-                                        {' '}| Published {moment(blog.updatedAt).fromNow()}
-                                    </p>
-
-                                    {/** display blog body  */}
-                                    <div className="lead blog-body">
-                                        {renderHTML(blog.body)}
-                                    </div>
-                                </div>
-
-                                <div className="col-md-2"></div>
-
+                    {/** display categories and tags */}
+                    <div className="container mt-3">
+                        <div className="row ml-0 mr-0">
+                            <div className="col-md-1"></div>
+                            <div className="bg-white col-md-10 pb-5 pt-3 pl-5 pr-5 text-center">
+                                {showBlogCategories(blog)}
+                                {showBlogTags(blog)}
+                                <br /><br />
                             </div>
-                        </section>
+                            <div className="col-md-1"></div>
+
+                        </div>
+                    </div>
+
+
+                    {/** display main content*/}
+                    <div className="row ml-0 mr-0">
+
+                        <div className="col-md-2"></div>
+
+                        {/** display blog author and body  */}
+                        <div className="col-md-8 pl-0 pr-0">
+                            <div className=" bg-white mt-5 bt-4 pb-5 pl-3 pr-3">
+                                {/** holds the title */}
+                                <h4 className="display-4 pb-5 pt-5 font-weight-bold">
+                                    {blog.title}
+                                </h4>
+
+                                {/** display blog author */}
+                                <p className="lead mt-3 mark">
+                                    Written by {' '}
+                                    <Link href={`/profile/${blog.author.username}`}>
+                                        <a>{blog.author.username}</a>
+                                    </Link>
+                                    {' '}| Published {moment(blog.updatedAt).fromNow()}
+                                </p>
+
+                                {/** display blog body  */}
+                                <div className="lead blog-body">
+                                    {renderHTML(blog.body)}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="col-md-2"></div>
                     </div>
 
                     {/** display related blogs */}
                     <div className="container pb-3 mt-5">
                         <h4 className="text-center pt-5 pb-3 h2">Related Blogs</h4>
                         <hr />
-                        <div className="row mt-4">
+                        <div className="row ml-0 mr-0 mt-4">
                             {showRelatedBlogs()}
                         </div>
                     </div>
