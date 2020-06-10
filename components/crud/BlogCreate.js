@@ -12,6 +12,8 @@ import { QuillFormats, QuillModules } from '../../helpers/quill';
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 import '../../node_modules/react-quill/dist/quill.snow.css';
 
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function CreateBlog({ router }) {
@@ -44,11 +46,12 @@ function CreateBlog({ router }) {
         success: "",
         formData: "",
         title: "",
-        hidePublishButton: false
+        hidePublishButton: false,
+        photoName: ''
     });
 
 
-    const { error, sizeError, success, formData, title, hidePublishButton } = values;
+    const { error, sizeError, success, formData, title, hidePublishButton, photoName } = values;
     const token = getCookie('token');
 
     useEffect(() => {
@@ -159,11 +162,18 @@ function CreateBlog({ router }) {
 
     function handleChange(name) {
         return (event) => {
-            // if a photo is being uploaded, we take the first photo
-            const value = (name === 'photo') ? event.target.files[0] : event.target.value;
+            let value;
+            if(name === 'photo'){
+                value = event.target.files[0];
+                formData.set(name, value);
+                setValues({ ...values, photoName: value?value.name:'', [name]: value, formData, error: ''});
+            }
+            else{
+                value = event.target.value;
+                formData.set(name, value);
+                setValues({ ...values, [name]: value, formData, error: "" });
+            }
 
-            formData.set(name, value);
-            setValues({ ...values, [name]: value, formData, error: "" });
         }
     }
 
@@ -195,28 +205,21 @@ function CreateBlog({ router }) {
                 //setTags([]);
 
                 localStorage.removeItem('blog');
+                setTimeout(()=>Router.push(`/blogs/${router.query.slug}`), 2000);
+                
             }
         });
     }
-
-    const showSuccess = () => {
-        return (
-            <div className="alert alert-info" style={{ display: success ? '' : 'none' }}>
-                {success}
-            </div>);
-    };
-
-    const showError = () => {
-        return (
-            <div className="alert alert-danger" style={{ display: error ? '' : 'none' }}>
-                {error}
-            </div>);
-    };
 
 
     function createBlogForm() {
         return (
             <form onSubmit={publishBlog}>
+                <div>
+                    {success && toast.success(success)}
+                    {error && toast.error(error)}
+                </div>
+
                 <div className="form-group">
                     <label className="text-muted">Title</label>
                     <input type="text" className="form-control" value={title} onChange={handleChange("title")} />
@@ -240,9 +243,8 @@ function CreateBlog({ router }) {
 
 
     return (
-        success ?
-            <h1>success</h1>
-            :
+        <React.Fragment>
+            <ToastContainer />
             <div className="container-fluid pb-5">
 
                 <div className="row">
@@ -250,11 +252,6 @@ function CreateBlog({ router }) {
                     {/* show blog form */}
                     <div className="col-md-8">
                         {createBlogForm()}
-
-                        <div className="pt-3">
-                            {showSuccess()}
-                            {showError()}
-                        </div>
                     </div>
 
                     {/* show upload image, tags and categories */}
@@ -270,6 +267,9 @@ function CreateBlog({ router }) {
                                 Upload featured image
                                 <input type="file" accept="image/*" onChange={handleChange('photo')} hidden />
                             </label>
+                            <br />
+                            <small className="text-muted ml-2">{photoName}</small>
+
                         </div>
 
                         {/* shows the categories */}
@@ -298,6 +298,7 @@ function CreateBlog({ router }) {
                 </div>
 
             </div>
+        </React.Fragment>
 
     )
 

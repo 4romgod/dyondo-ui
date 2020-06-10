@@ -12,6 +12,9 @@ import { QuillFormats, QuillModules } from '../../helpers/quill';
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 import '../../node_modules/react-quill/dist/quill.snow.css';
 
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function BlogUpdate({ router }) {
 
@@ -31,10 +34,11 @@ function BlogUpdate({ router }) {
         success: "",
         formData: "",
         title: "",
-        body: ''
+        body: '',
+        photoName: ''
     });
 
-    const { error, success, formData, title, blog } = values;
+    const { error, success, formData, title, blog, photoName } = values;
     const token = getCookie('token');
 
 
@@ -219,12 +223,17 @@ function BlogUpdate({ router }) {
 
     function handleChange(name) {
         return (event) => {
-
-            // if a photo is being uploaded, we take the first photo            
-            const value = (name === 'photo') ? event.target.files[0] : event.target.value;
-
-            formData.set(name, value);
-            setValues({ ...values, [name]: value, formData, error: "" });
+            let value;
+            if (name === 'photo') {
+                value = event.target.files[0];
+                formData.set(name, value);
+                setValues({ ...values, photoName: value ? value.name : '', [name]: value, formData, error: '' });
+            }
+            else {
+                value = event.target.value;
+                formData.set(name, value);
+                setValues({ ...values, [name]: value, formData, error: "" });
+            }
         }
     }
 
@@ -248,36 +257,21 @@ function BlogUpdate({ router }) {
                     success: `Blog titled "${data.title}" is successfully updated`
                 });
 
-                if (isAuth() && isAuth().role === 1) {
-                    Router.replace(`/blogs/${router.query.slug}`);
-                }
-                else if (isAuth() && isAuth().role === 0) {
-                    Router.replace(`/blogs/${router.query.slug}`);
-                }
+                setTimeout(() => Router.push(`/blogs/${router.query.slug}`), 2000);
             }
 
         });
     }
 
 
-    const showSuccess = () => {
-        return (
-            <div className="alert alert-info" style={{ display: success ? '' : 'none' }}>
-                {success}
-            </div>);
-    };
-
-    const showError = () => {
-        return (
-            <div className="alert alert-danger" style={{ display: error ? '' : 'none' }}>
-                {error}
-            </div>);
-    };
-
-
     function updateBlogForm() {
         return (
             <form onSubmit={editBlog}>
+                <div>
+                    {success && toast.success(success)}
+                    {error && toast.error(error)}
+                </div>
+
                 <div className="form-group">
                     <label className="text-muted">Title</label>
                     <input type="text" className="form-control" value={title} onChange={handleChange("title")} />
@@ -301,60 +295,61 @@ function BlogUpdate({ router }) {
 
 
     return (
-        <div className="container-fluid pb-5">
-            <div className="row">
+        <React.Fragment>
+            <ToastContainer />
+            <div className="container-fluid pb-5">
+                <div className="row">
 
-                {/* show blog form */}
-                <div className="col-md-8">
-                    {updateBlogForm()}
-
-                    <div className="pt-3">
-                        {showSuccess()}
-                        {showError()}
+                    {/* show blog form */}
+                    <div className="col-md-8">
+                        {updateBlogForm()}
                     </div>
-                </div>
 
-                {/* show upload image, tags and categories */}
-                <div className="col-md-4 pt-4">
+                    {/* show upload image, tags and categories */}
+                    <div className="col-md-4 pt-4">
 
-                    {/* shows the featured image */}
-                    <div className="form-group pb-2">
-                        <h4>Featured Image</h4>
-                        <hr />
+                        {/* shows the featured image */}
+                        <div className="form-group pb-2">
+                            <h4>Featured Image</h4>
+                            <hr />
 
-                        <small className="text-muted ml-4">Max size: 1MB</small><br />
-                        <label className="btn btn-outline-info ml-4">
-                            Upload featured image
+                            <small className="text-muted ml-4">Max size: 1MB</small><br />
+                            <label className="btn btn-outline-info ml-4">
+                                Upload featured image
                             <input type="file" accept="image/*" onChange={handleChange('photo')} hidden />
-                        </label>
+                            </label>
+                            <br />
+                            <small className="text-muted ml-4">{photoName}</small>
+
+                        </div>
+
+                        {/* shows the categories */}
+                        <div>
+                            <h4 className="mt-3">Categories</h4>
+                            <hr />
+
+                            <ul style={{ maxHeight: '200px', overflowY: 'scroll' }}>
+                                {showCategories()}
+                            </ul>
+                        </div>
+
+                        {/* shows the tags */}
+                        <div>
+                            <h4 className="mt-5">Tags</h4>
+                            <hr />
+
+                            <ul style={{ maxHeight: '200px', overflowY: 'scroll' }}>
+                                {showTags()}
+                            </ul>
+                        </div>
+
                     </div>
 
-                    {/* shows the categories */}
-                    <div>
-                        <h4 className="mt-3">Categories</h4>
-                        <hr />
-
-                        <ul style={{ maxHeight: '200px', overflowY: 'scroll' }}>
-                            {showCategories()}
-                        </ul>
-                    </div>
-
-                    {/* shows the tags */}
-                    <div>
-                        <h4 className="mt-5">Tags</h4>
-                        <hr />
-
-                        <ul style={{ maxHeight: '200px', overflowY: 'scroll' }}>
-                            {showTags()}
-                        </ul>
-                    </div>
 
                 </div>
-
 
             </div>
-
-        </div>
+        </React.Fragment>
     )
 
 }

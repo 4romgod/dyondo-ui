@@ -50,7 +50,6 @@ function ProfileUpdate() {
     function handleChange(name) {
         return (event) => {
             let value;
-            // if a photo is being uploaded, we take the first photo   
             if(name === 'photo'){
                 value = event.target.files[0];
                 setValues({ ...values, photoName: value?value.name:'' ,[name]: value, userData, error: false, success: false });
@@ -105,7 +104,7 @@ function ProfileUpdate() {
             <div>
                 {success && toast.success('Profile updated!')}
                 {error && toast.error(error)}
-                {showLoading()}
+                {loading && toast.info("Loading...")}
             </div>
 
             <div className="form-group">
@@ -145,24 +144,6 @@ function ProfileUpdate() {
 
         </form>
     );
-
-    const showError = () => (
-        <div className="alert alert-danger" style={{ display: error ? '' : 'none' }}>
-            {error}
-        </div>
-
-    );
-
-    const showSuccess = () => {
-        toast.success('Profile updated!');
-    };
-
-    const showLoading = () => {
-        return (
-            <div className="alert alert-danger" style={{ display: loading ? '' : 'none' }}>
-                Loading...
-            </div>);
-    };
 
     return (
         <React.Fragment>

@@ -3,6 +3,10 @@ import Router from 'next/router';
 
 import { preSignup, signup, isAuth } from "../../actions/auth";
 
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
+toast.configure();
 function SignUpComponent() {
     const [values, setValues] = useState({
         name: '',
@@ -64,29 +68,6 @@ function SignUpComponent() {
 
     };
 
-
-    function showLoading() {
-        return (
-            <div className="alert alert-info" style={{ display: loading ? '' : 'none' }}>
-                loading...
-            </div>)
-    }
-
-    function showError() {
-        return (
-            <div className="alert alert-danger" style={{ display: error ? '' : 'none' }}>
-                {error}
-            </div>)
-    }
-
-    const showSuccess = () => {
-        return (
-            <div className="alert alert-info" style={{ display: message ? '' : 'none' }}>
-                {message}
-            </div>);
-    };
-
-
     const signupForm = () => {
         return (<form onSubmit={handleSubmit}>
 
@@ -98,6 +79,7 @@ function SignUpComponent() {
                     type="text"
                     className="form-control"
                     placeholder="Type your name"
+                    required
                 />
             </div>
 
@@ -109,6 +91,7 @@ function SignUpComponent() {
                     type="email"
                     className="form-control"
                     placeholder="Type your email"
+                    required
                 />
             </div>
 
@@ -120,6 +103,7 @@ function SignUpComponent() {
                     type="password"
                     className="form-control"
                     placeholder="Type your password"
+                    required
                 />
             </div>
 
@@ -131,6 +115,7 @@ function SignUpComponent() {
                     type="password"
                     className="form-control"
                     placeholder="Comfirm password"
+                    required
                 />
             </div>
 
@@ -144,9 +129,10 @@ function SignUpComponent() {
 
     return (
         <React.Fragment>
-            {showError()}
-            {showLoading()}
-            {showSuccess()}
+            <ToastContainer />
+            {message && toast.success(message)}
+            {error && toast.error(error)}
+
             {showForm && signupForm()}
         </React.Fragment>
     )
