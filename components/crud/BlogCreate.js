@@ -9,6 +9,8 @@ import { getTags } from "../../actions/tag";
 import { createBlog } from "../../actions/blog";
 import { QuillFormats, QuillModules } from '../../helpers/quill';
 
+import slugify from "slugify";
+
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 import '../../node_modules/react-quill/dist/quill.snow.css';
 
@@ -205,7 +207,8 @@ function CreateBlog({ router }) {
                 //setTags([]);
 
                 localStorage.removeItem('blog');
-                setTimeout(()=>Router.push(`/blogs/${router.query.slug}`), 2000);
+                let slug = slugify(title);
+                setTimeout(()=>Router.push(`/blogs/${slug}`), 2000);
                 
             }
         });
