@@ -45,7 +45,7 @@ function Category({ category, blogs, query }) {
                             <header>
                                 <div className="col-md-12 pb-5 text-center">
                                     <div className="card border-0 bg-white pt-3 pb-3 pl-5 pr-5">
-                                        <h1>{category.name}</h1>
+                                        <h1>Available Tutorials on {category.name}</h1>
                                     </div>
                                 </div>
 

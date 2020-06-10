@@ -43,7 +43,7 @@ function Tag({ tag, blogs, query }) {
                             <header>
                                 <div className="col-md-12 pb-5 text-center">
                                     <div className="card border-0 bg-white pt-3 pb-3 pl-5 pr-5">
-                                        <h1>{tag.name}</h1>
+                                        <h1>Available Tutorials on {tag.name}</h1>
                                     </div>
                                 </div>
                             </header>

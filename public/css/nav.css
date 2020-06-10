@@ -1,36 +1,95 @@
 /************************************* NAVIGATION ******************************/
 .navbar {
     background-color: black;
-    padding: 0 20px 0 30px;
+    padding: 0;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.5);
-    font-family: sans-serif;
+    font-family: "Poppins", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    ;
     font-size: 14px !important;
     font-weight: 700 !important;
 }
 
-.navbar-dark .navbar-nav .nav-item {
-   padding: 10px;
-   margin: 0 auto;      /*centers items on collapsed nav*/
+.navbar .navbar-collapse {
+    min-height: 65px;
 }
 
-.navbar-toggler{
-    margin: 10px 0;
+.navbar .navbar-collapse .navbar-nav {
+    min-height: 65px;
 }
+
 
 .navbar-dark .navbar-nav .nav-link {
-    padding: 6px 15px;
     color: white;
 }
 
 .navbar-dark .navbar-nav .nav-link:hover {
-    background-color: #4a4e52;
-    border-radius: 5px;
     color: #35b89e;
 }
 
 
-@media only screen and (min-width: 768px) {
-    .navbar-dark .navbar-nav .nav-item{
+.navbar-toggler {
+    display: flex;
+    align-items: center;
+    border: none !important;
+}
 
+.navbar-toggler .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255)' stroke-width='4' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+/* ditch the ugle blue outline */
+.navbar-toggler:focus,
+.navbar-toggler:active {
+    outline: 0;
+}
+
+
+.navbar-dark .navbar-nav .write-blog {
+    display: flex;
+    align-items: center;
+    margin: 0;
+}
+
+#write-blog-phone {
+    display: none
+}
+
+
+@media only screen and (max-width: 768px) {
+    .navbar-dark .navbar-nav .nav-item {
+        margin: 0 !important;
+    }
+
+    .navbar-dark .navbar-nav .nav-item .nav-link {
+        font-weight: 700 !important;
+        font-size: 1.2rem;
+        padding: 15px 26px  !important;
+    }
+
+    .navbar-dark .navbar-nav .nav-item .nav-link:hover {
+        background-color: #606b76;
+    }
+
+    .navbar-dark .navbar-nav .write-blog {
+        display: none !important;
+    }
+
+    #write-blog-phone {
+        display: block;
+    }
+
+    #write-blog-phone .nav-item {
+        margin: 0 !important;
+    }
+
+    #write-blog-phone .nav-item a {
+        color: #29a48b;
+        font-weight: 700 !important;
+        font-size: 1.2rem;
+        padding: 15px 26px !important;
+    }
+    
+    #write-blog-phone .nav-item a:hover {
+        background-color: #606b76;
     }
 }

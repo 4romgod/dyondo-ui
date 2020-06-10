@@ -25,14 +25,13 @@ class MyDocument extends Document {
           <meta charSet="UTF-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-          {/* <link
+          <link
             rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"
-          /> */}
+            href="/bootstrap/bootstrap.min.css"
+          />
 
-          <link rel="stylesheet" href="/bootstrap/bootstrap.min.css" />
 
-          <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@500&family=Merriweather&family=Montserrat&family=Sacramento&display=swap" rel="stylesheet" />
+          <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
 
           <link rel="stylesheet" href="/css/nav.css" />
           <link rel="stylesheet" href="/css/styles.css" />
@@ -45,6 +44,9 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
+          <script src="/bootstrap/bootstrap.min.js"></script>
+          <script src="/bootstrap/jquery-3.2.1.slim.min.js"></script>
+          <script src="/bootstrap/popper.min.js"></script>
         </body>
 
       </Html>
