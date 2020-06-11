@@ -55,7 +55,7 @@ function Header(props) {
         <React.Fragment>
             <Navbar color="dark" dark expand="md" className="navbar fixed-top">
                 <Link href="/">
-                    <NavLink className="font-weight-bold" style={{ cursor: 'pointer', color: 'white', fontSize: '1.5rem' }}>{APP_NAME}</NavLink>
+                    <NavLink className="font-weight-bold" style={{ cursor: 'pointer', color: 'black', fontSize: '1.5rem' }}>{APP_NAME}</NavLink>
                 </Link>
 
                 <NavbarToggler className="collapsed position-relative" onClick={toggle} />
@@ -97,6 +97,26 @@ function Header(props) {
                                 </Link>
                             </NavItem>
 
+                            {isAuth() && (isAuth().role === 0) && (
+                                <NavItem style={{ padding: '0', margin: '0 13px' }}>
+                                    <Link href="/user">
+                                        <NavLink style={navLinkStyle}>
+                                            {`${isAuth().name}'s Dashboard`}
+                                        </NavLink>
+                                    </Link>
+                                </NavItem>
+                            )}
+
+                            {isAuth() && (isAuth().role === 1) && (
+                                <NavItem style={{ padding: '0', margin: '0 13px' }}>
+                                    <Link href="/admin">
+                                        <NavLink style={navLinkStyle}>
+                                            {isAuth().name}'s Dashboard
+                                    </NavLink>
+                                    </Link>
+                                </NavItem>
+                            )}
+
                             <NavItem style={{ padding: '0', margin: '0 13px' }}>
                                 <Link href="/contact">
                                     <NavLink style={navLinkStyle}>
@@ -125,26 +145,6 @@ function Header(props) {
 
                             </React.Fragment>}
 
-
-                            {isAuth() && (isAuth().role === 0) && (
-                                <NavItem style={{ padding: '0', margin: '0 13px' }}>
-                                    <Link href="/user">
-                                        <NavLink style={navLinkStyle}>
-                                            {`${isAuth().name}'s Dashboard`}
-                                        </NavLink>
-                                    </Link>
-                                </NavItem>
-                            )}
-
-                            {isAuth() && (isAuth().role === 1) && (
-                                <NavItem style={{ padding: '0', margin: '0 13px' }}>
-                                    <Link href="/admin">
-                                        <NavLink style={navLinkStyle}>
-                                            {isAuth().name}'s Dashboard
-                                    </NavLink>
-                                    </Link>
-                                </NavItem>
-                            )}
 
                             {isAuth() && (
                                 <React.Fragment>

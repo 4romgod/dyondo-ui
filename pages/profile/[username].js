@@ -44,6 +44,23 @@ function UserProfile({ user, blogs, query }) {
     }
 
 
+    function fetchAndShowImage() {
+        let URL = `${API}/user/photo/${user.username}`;
+        return (
+            <img
+                className="img img-fluid img-thumbnail mb-3"
+                src={`${API}/user/photo/${user.username}`}
+                alt="User profile photo"
+                style={{
+                    maxWidth: '100%',
+                    maxHeight: '150px'
+                }}
+                onError={(e)=>{e.target.src="/images/user.png"}}
+            />
+        )
+    }
+
+
     return (
         <React.Fragment>
             {head()}
@@ -61,15 +78,7 @@ function UserProfile({ user, blogs, query }) {
 
                                             {/* holds the profile photo */}
                                             <div className="col-md-4">
-                                                <img
-                                                    className="img img-fluid img-thumbnail mb-3"
-                                                    src={`${API}/user/photo/${user.username}`}
-                                                    alt="User profile photo"
-                                                    style={{
-                                                        maxWidth: '100%',
-                                                        maxHeight: '150px'
-                                                    }}
-                                                />
+                                                {fetchAndShowImage()}
                                             </div>
 
                                             {/* holds the name and time */}

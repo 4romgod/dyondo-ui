@@ -1,6 +1,6 @@
 /************************************* NAVIGATION ******************************/
 .navbar {
-    background-color: black;
+    background-color: white !important;
     padding: 0;
     box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.5);
     font-family: "Poppins", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
@@ -19,7 +19,7 @@
 
 
 .navbar-dark .navbar-nav .nav-link {
-    color: white;
+    color: black;
 }
 
 .navbar-dark .navbar-nav .nav-link:hover {
@@ -34,7 +34,7 @@
 }
 
 .navbar-toggler .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255, 255, 255)' stroke-width='4' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 0, 0)' stroke-width='4' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
 }
 
 /* ditch the ugle blue outline */
@@ -67,7 +67,7 @@
     }
 
     .navbar-dark .navbar-nav .nav-item .nav-link:hover {
-        background-color: #606b76;
+        background-color: #ebe7e7;
     }
 
     .navbar-dark .navbar-nav .write-blog {
@@ -90,6 +90,6 @@
     }
     
     #write-blog-phone .nav-item a:hover {
-        background-color: #606b76;
+        background-color: #ebe7e7;
     }
 }

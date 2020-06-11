@@ -271,7 +271,7 @@ function CreateBlog({ router }) {
                                 <input type="file" accept="image/*" onChange={handleChange('photo')} hidden />
                             </label>
                             <br />
-                            <small className="text-muted ml-2">{photoName}</small>
+                            <small className="text-muted ml-4">{photoName}</small>
 
                         </div>
 

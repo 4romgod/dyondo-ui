@@ -22,9 +22,8 @@ function UserIndex() {
                                         <li className="list-group-item btn btn-outline-success"
                                             style={{
                                                 color: 'black',
-                                                border: '1px solid #eee'
                                             }}>
-                                            <b>Create Blog</b>
+                                            Create Blog
                                         </li>
                                     </a>
 
@@ -32,11 +31,10 @@ function UserIndex() {
                                         <li className="list-group-item btn btn-outline-success"
                                             style={{
                                                 color: 'black',
-                                                border: '1px solid #eee',
                                                 borderTop: '0',
                                                 borderBottom: '0'
                                             }}>
-                                            <b>Update/Delete Blogs</b>
+                                            Update/Delete Blogs
                                         </li>
                                     </a>
 
@@ -44,9 +42,8 @@ function UserIndex() {
                                         <li className="list-group-item btn btn-outline-success"
                                             style={{
                                                 color: 'black',
-                                                border: '1px solid #eee'
                                             }}>
-                                            <b>Update Profile</b>
+                                            Update Profile
                                         </li>
                                     </a>
 

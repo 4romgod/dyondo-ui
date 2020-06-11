@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch';
 import { API } from '../config';
-import {handleResponse} from './auth';
+import { handleResponse } from './auth';
 
 
 // TO GET A USER PUBLIC PROFILE

@@ -57,7 +57,7 @@ function Search() {
                     <div className="col-md-10 pb-2">
                         <input
                             type="search"
-                            className="form-control bg-light border-0"
+                            className="form-control bg-light"
                             placeholder="Search blogs"
                             onChange={handleChange}
                         />

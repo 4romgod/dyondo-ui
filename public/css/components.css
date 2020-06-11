@@ -13,7 +13,6 @@
   --col-warning: #3f474e;
 }
 
-
 /*********************************** BUTTONS ***************************/
 .btn-sq {
   border-radius: 0;
@@ -39,7 +38,6 @@
   border-color: var(--col-primary-dk);
 }
 
-
 .btn-success {
   background-color: var(--col-success-lt);
   border-color: var(--col-success-lt);
@@ -57,18 +55,15 @@
 }
 
 .btn-outline-success:hover {
-  background-color: var(--col-success-dk);
-  border-color: var(--col-success-dk);
+  background-color: var(--col-success-lt);
+  border-color: var(--col-success-lt);
   color: white;
 }
-
-
 
 /*********************************** BACKGROUDS ***************************/
 .bg-pr {
   background-color: var(--col-primary-lt);
 }
-
 
 
 /*********************************** CHECKBOX ***************************/
@@ -152,7 +147,7 @@ a:hover {
 }
 
 .form-control:focus {
-  border-color: var(--col-success);
+  border-color: var(--col-success) !important;
 }
 
 #nprogress .bar {
@@ -164,6 +159,17 @@ a:hover {
   border-top-color: var(--col-success) !important;
   border-left-color: var(--col-success) !important;
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
