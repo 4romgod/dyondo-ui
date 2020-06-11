@@ -25,35 +25,35 @@ function AdminIndex() {
                                     <div className="col-md-4 pl-0">
                                         <ul className="list-group">
                                             <Link href="/admin/crud/category-tag">
-                                                <li className="list-group-item btn btn-info">
+                                                <li className="list-group-item btn btn-outline-success">
                                                     <a style={{ color: 'black', borderBottom: '0' }}>
-                                                        <b>Create Category</b>
+                                                        Create Category
                                                     </a>
                                                 </li>
                                             </Link>
                                             <Link href="/admin/crud/category-tag">
-                                                <li className="list-group-item btn btn-info">
+                                                <li className="list-group-item btn btn-outline-success">
                                                     <a style={{ color: 'black', borderBottom: '0' }}>
-                                                        <b>Create Tag</b>
+                                                    Create Tag
                                                     </a>
                                                 </li>
                                             </Link>
                                             <a href="/admin/crud/blog">
-                                                <li className="list-group-item btn btn-info" style={{ color: 'black', borderBottom: '0' }}>
-                                                    <b>Create Blog</b>
+                                                <li className="list-group-item btn btn-outline-success" style={{ color: 'black', borderBottom: '0' }}>
+                                                    Create Blog
                                                 </li>
                                             </a>
                                             <Link href="/admin/crud/blogs">
-                                                <li className="list-group-item btn btn-info">
+                                                <li className="list-group-item btn btn-outline-success">
                                                     <a style={{ color: 'black', borderBottom: '0' }}>
-                                                        <b>Update/Delete Blogs</b>
+                                                        Update/Delete Blogs
                                                     </a>
                                                 </li>
                                             </Link>
                                             <Link href="/user/update">
-                                                <li className="list-group-item btn btn-info">
+                                                <li className="list-group-item btn btn-outline-success">
                                                     <a style={{ color: 'black' }}>
-                                                        <b>Update Profile</b>
+                                                        Update Profile
                                                     </a>
                                                 </li>
                                             </Link>
