@@ -58,6 +58,7 @@ function Card({ blog }) {
                                     borderRadius: '3px'
                                 }}
                             />
+
                         </a>
                     </Link>
                 </div>
@@ -80,7 +81,7 @@ function Card({ blog }) {
                                     src={`${API}/user/photo/${blog.author.username}`}
                                     alt={blog.title}
                                     className="img img-fluid featured"
-                                    style={{ width: '50px', height: '50px', borderRadius: '50%'}}
+                                    style={{ width: '50px', height: '50px', borderRadius: '50%', border: '1px solid #eee'}}
                                 />
                             </div>
 

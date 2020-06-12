@@ -55,7 +55,6 @@ function UserProfile({ user, blogs, query }) {
                     maxWidth: '100%',
                     maxHeight: '150px'
                 }}
-                onError={(e)=>{e.target.src="/images/user.png"}}
             />
         )
     }
