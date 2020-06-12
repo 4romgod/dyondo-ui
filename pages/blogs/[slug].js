@@ -106,31 +106,41 @@ function SingleBlog({ blog, query }) {
             <main className="bg-white">
                 <article>
 
-                    <div className="row ml-0 mr-0">
-
+                    <div className="row ml-0 mr-0 mb-4">
                         <div className="col-md-2"></div>
 
-                        {/** display blog author and body  */}
-                        <div className="col-md-8 pl-0 pr-0">
-                            <div className=" bg-white pb-3 pl-3 pr-3">
-                                {/** holds the title */}
+                        <div className="col-md-8 pl-0 pr-0 mt-3">
+                            <div className="bg-white pb-3 pl-3 pr-3">
+
                                 <h4 className="display-4 pb-3 pt-3 font-weight-bold">
                                     {blog.title}
                                 </h4>
 
-                                {/** display blog author */}
-                                <p className="lead mt-3 mark">
-                                    Written by {' '}
-                                    <Link href={`/profile/${blog.author.username}`}>
-                                        <a>{blog.author.username}</a>
-                                    </Link>
-                                    {' '}| Published {moment(blog.updatedAt).fromNow()}
-                                </p>
+                                <div style={{display: 'flex'}}>
+                                    <div>
+                                        <img
+                                            src={`${API}/user/photo/${blog.author.username}`}
+                                            alt={blog.title}
+                                            className="img img-fluid featured"
+                                            style={{borderRadius: '100%', width: '50px'}}
+                                        />
+                                    </div>
+
+                                    <div className="ml-3">
+                                        <p>
+                                            <Link href={`/profile/${blog.author.username}`}>
+                                                <a>{blog.author.username}</a>
+                                            </Link>
+                                            {' | '}
+                                            {moment(blog.updatedAt).fromNow()}
+                                        </p>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
 
                         <div className="col-md-2"></div>
-
                     </div>
 
                     {/** holds the image */}
@@ -150,7 +160,7 @@ function SingleBlog({ blog, query }) {
 
                         {/** display blog author and body  */}
                         <div className="col-md-8 pl-0 pr-0">
-                            <div className=" bg-white mt-4 pb-5 pl-3 pr-3">
+                            <div className=" bg-white mt-5 pb-5 pl-3 pr-3">
 
                                 {/** display blog body  */}
                                 <div className="lead blog-body">
