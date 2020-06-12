@@ -110,7 +110,7 @@ function Header(props) {
                             {isAuth() && (isAuth().role === 1) && (
                                 <NavItem style={{ padding: '0', margin: '0 13px'}}>
                                     <Link href="/admin">
-                                        <NavLink  style={navLinkStyle} className="text-success">
+                                        <NavLink  style={navLinkStyle}>
                                             Dashboard
                                     </NavLink>
                                     </Link>

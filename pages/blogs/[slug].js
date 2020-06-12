@@ -103,43 +103,18 @@ function SingleBlog({ blog, query }) {
     return <React.Fragment>
         {head()}
         <Layout>
-            <main>
+            <main className="bg-white">
                 <article>
 
-                    {/** holds the image */}
-                    <div className="row ml-0 mr-0">
-                        <img
-                            src={`${API}/blog/photo/${blog.slug}`}
-                            alt={blog.title}
-                            className="img img-fluid featured-image"
-                        />
-                    </div>
-
-                    {/** display categories and tags */}
-                    <div className="container mt-3">
-                        <div className="row ml-0 mr-0">
-                            <div className="col-md-1"></div>
-                            <div className="bg-white col-md-10 pb-5 pt-3 pl-5 pr-5 text-center">
-                                {showBlogCategories(blog)}
-                                {showBlogTags(blog)}
-                                <br /><br />
-                            </div>
-                            <div className="col-md-1"></div>
-
-                        </div>
-                    </div>
-
-
-                    {/** display main content*/}
                     <div className="row ml-0 mr-0">
 
                         <div className="col-md-2"></div>
 
                         {/** display blog author and body  */}
                         <div className="col-md-8 pl-0 pr-0">
-                            <div className=" bg-white mt-5 bt-4 pb-5 pl-3 pr-3">
+                            <div className=" bg-white pb-3 pl-3 pr-3">
                                 {/** holds the title */}
-                                <h4 className="display-4 pb-5 pt-5 font-weight-bold">
+                                <h4 className="display-4 pb-3 pt-3 font-weight-bold">
                                     {blog.title}
                                 </h4>
 
@@ -151,12 +126,44 @@ function SingleBlog({ blog, query }) {
                                     </Link>
                                     {' '}| Published {moment(blog.updatedAt).fromNow()}
                                 </p>
+                            </div>
+                        </div>
+
+                        <div className="col-md-2"></div>
+
+                    </div>
+
+                    {/** holds the image */}
+                    <div className="row ml-0 mr-0">
+                        <img
+                            src={`${API}/blog/photo/${blog.slug}`}
+                            alt={blog.title}
+                            className="img img-fluid featured-image"
+                        />
+                    </div>
+
+
+                    {/** display main content*/}
+                    <div className="row ml-0 mr-0">
+
+                        <div className="col-md-2"></div>
+
+                        {/** display blog author and body  */}
+                        <div className="col-md-8 pl-0 pr-0">
+                            <div className=" bg-white mt-4 pb-5 pl-3 pr-3">
 
                                 {/** display blog body  */}
                                 <div className="lead blog-body">
                                     {renderHTML(blog.body)}
                                 </div>
                             </div>
+
+                            {/** display categories and tags */}
+                            <div className="mt-3 pb-3">
+                                {showBlogCategories(blog)}
+                                {showBlogTags(blog)}
+                            </div>
+
                         </div>
 
                         <div className="col-md-2"></div>
