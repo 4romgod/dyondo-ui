@@ -75,12 +75,12 @@ function Card({ blog }) {
                     {/** holds the author and date */}
                     <section className="mt-3 mb-3">
                         <div style={{ display: 'flex' }}>
-                            <div>
+                            <div style={{ width: '50px'}}>
                                 <img
                                     src={`${API}/user/photo/${blog.author.username}`}
                                     alt={blog.title}
                                     className="img img-fluid featured"
-                                    style={{ borderRadius: '100%', width: '50px' }}
+                                    style={{ width: '50px', height: '50px', borderRadius: '50%'}}
                                 />
                             </div>
 

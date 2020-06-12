@@ -50,11 +50,11 @@ function ProfileUpdate() {
     function handleChange(name) {
         return (event) => {
             let value;
-            if(name === 'photo'){
+            if (name === 'photo') {
                 value = event.target.files[0];
-                setValues({ ...values, photoName: value?value.name:'' ,[name]: value, userData, error: false, success: false });
+                setValues({ ...values, photoName: value ? value.name : '', [name]: value, userData, error: false, success: false });
             }
-            else{
+            else {
                 value = event.target.value;
                 setValues({ ...values, [name]: value, userData, error: false, success: false });
             }
@@ -67,12 +67,13 @@ function ProfileUpdate() {
     function handleSubmit(event) {
         event.preventDefault();
 
+        toast.info("Loading...");
         setValues({ ...values, loading: true });
+
 
         updateProfile(token, userData).then((data) => {
             if (data.error) {
                 setValues({ ...values, error: data.error, success: false, loading: false });
-                toast.error(error); 
             }
             else {
                 updateUser(data, () => {
@@ -101,11 +102,9 @@ function ProfileUpdate() {
 
     const profileUpdateForm = () => (
         <form onSubmit={handleSubmit}>
-            <div>
-                {success && toast.success('Profile updated!')}
-                {error && toast.error(error)}
-                {loading && toast.info("Loading...")}
-            </div>
+            {toast.dismiss()}
+            {success && toast.success('Profile updated!')}
+            {error && toast.error(error)}
 
             <div className="form-group">
                 <small className="text-muted">Max size: 1MB</small><br />

@@ -11,6 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const remPad = { padding: "0", border: "0" };
 
+toast.configure();
 function SigninComponent() {
     const [values, setValues] = useState({
         email: '',
@@ -68,6 +69,7 @@ function SigninComponent() {
     const signinForm = () => {
         return (
             <form onSubmit={handleSubmit}>
+                {toast.dismiss()}
                 {message && toast.success(message)}
                 {error && toast.error(error)}
 

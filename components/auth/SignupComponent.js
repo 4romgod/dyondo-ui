@@ -130,6 +130,7 @@ function SignUpComponent() {
     return (
         <React.Fragment>
             <ToastContainer />
+            {toast.dismiss()}
             {message && toast.success(message)}
             {error && toast.error(error)}
 
