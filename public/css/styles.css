@@ -53,7 +53,7 @@
 }
 
 
-/*********************************** MEDIUM SCREENS ***************************/
+/*********************************** SMALL SCREENS ***************************/
 
 @media (max-width: 576px) {
     .container {
@@ -61,20 +61,27 @@
         padding: 0;
     }
 
+    .container-blog-component{
+        padding: 0 !important;
+    }
+
+    /**************** HOME ****************/
     .heading-container img{
         height: 90vh;
     }
-
     .heading-text {
         top: 10%;
         padding: 10px 20px;
     }
-
     .heading-text h1 {
         font-size: 1.5rem;
     }
+
 }
 
+
+
+/*********************************** MEDIUM SCREENS ***************************/
 @media only screen and (max-width: 768px) {
     .container-image {
         display: none;
@@ -84,7 +91,12 @@
         top: 20%;
         padding: 10px 20px;
     }
+
+    /**************** ADMIN HOME ****************/
+    .container-admin{ padding: 0;}
+    .container-admin .left, .right{padding: 0 15px !important;}
 }
+
 
 @media (min-width: 992px) {
     .container {

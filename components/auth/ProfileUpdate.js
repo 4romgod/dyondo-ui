@@ -34,6 +34,7 @@ function ProfileUpdate() {
 
     function initUser() {
         setValues({ ...values, loading: true });
+        
         getProfile(token).then(data => {
             if (data.error) {
                 setValues({ ...values, error: data.error, loading: false });

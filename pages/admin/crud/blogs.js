@@ -20,7 +20,7 @@ function Blog() {
                             </div>
 
                             <div className="col-md-12 mt-3">
-                                <div className="card border-0 bg-white pt-3 pb-3 pl-5 pr-5">
+                                <div className="card border-0 bg-white pt-3 pb-3">
                                     <BlogRead />
                                 </div>
                             </div>

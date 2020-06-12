@@ -11,7 +11,7 @@ function AdminIndex() {
 
                     <div className="container pb-5">
 
-                        <div className="row">
+                        <div className="row ml-0 mr-0">
 
                             <div className="col-md-12 text-center mt-2 mb-3">
                                 <div className="card border-0 bg-white pt-5 pb-5 pl-5 pr-5">
@@ -19,10 +19,10 @@ function AdminIndex() {
                                 </div>
                             </div>
 
-                            <div className="col-md-12">
+                            <div className="col-md-12 container-admin">
                                 <div className="row ml-0 mr-0">
 
-                                    <div className="col-md-4 pl-0">
+                                    <div className="col-md-4 pl-0 left">
                                         <ul className="list-group">
                                             <Link href="/admin/crud/category-tag">
                                                 <li className="list-group-item btn btn-outline-success">
@@ -34,7 +34,7 @@ function AdminIndex() {
                                             <Link href="/admin/crud/category-tag">
                                                 <li className="list-group-item btn btn-outline-success">
                                                     <a style={{ color: 'black', borderBottom: '0' }}>
-                                                    Create Tag
+                                                        Create Tag
                                                     </a>
                                                 </li>
                                             </Link>
@@ -60,9 +60,9 @@ function AdminIndex() {
                                         </ul>
                                     </div>
 
-                                    <div className="col-md-8 shadow bg-white">
+                                    <div className="col-md-8 shadow bg-white right">
                                         right
-                                </div>
+                                    </div>
 
                                 </div>
                             </div>

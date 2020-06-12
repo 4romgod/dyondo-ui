@@ -85,7 +85,9 @@ function BlogRead({ username }) {
                     </button>
 
                     {showUpdateBtn(blog)}
+                    
                 </div>
+                
             )
         }
 

@@ -9,7 +9,8 @@ function Blog() {
         <Layout>
             <Admin>
                 <div className="bg-white">
-                    <div className="container-fluid">
+
+                    <div className="container">
 
                         <div className="row ml-0 mr-0">
 
@@ -19,7 +20,7 @@ function Blog() {
                                 </div>
                             </div>
 
-                            <div className="col-md-12 mt-3 pb-5">
+                            <div className="col-md-12 mt-3 pb-5 container-blog-component">
                                 <div className="card border-0 bg-white pt-3 pb-3">
                                     <BlogCreate />
                                 </div>

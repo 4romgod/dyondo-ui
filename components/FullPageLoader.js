@@ -8,6 +8,7 @@ function FullPageLoader(){
             <div className="loader">
                 <img 
                     src="/images/loading.gif"
+                    style={{zIndex: '1000'}}
                 />
             </div>
         </div>
