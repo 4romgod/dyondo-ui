@@ -101,7 +101,7 @@ function Header(props) {
                                 <NavItem style={{ padding: '0', margin: '0 13px' }}>
                                     <Link href="/user">
                                         <NavLink style={navLinkStyle}>
-                                            {`${isAuth().name}'s Dashboard`}
+                                            Dashboard
                                         </NavLink>
                                     </Link>
                                 </NavItem>

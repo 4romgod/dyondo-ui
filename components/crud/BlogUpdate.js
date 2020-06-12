@@ -15,6 +15,8 @@ import '../../node_modules/react-quill/dist/quill.snow.css';
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
+import FullPageLoader from "../FullPageLoader";
+
 
 function BlogUpdate({ router }) {
 
@@ -32,13 +34,14 @@ function BlogUpdate({ router }) {
         title: '',
         error: "",
         success: "",
+        loading: false,
         formData: "",
         title: "",
         body: '',
         photoName: ''
     });
 
-    const { error, success, formData, title, blog, photoName } = values;
+    const { error, success, loading, formData, title, blog, photoName } = values;
     const token = getCookie('token');
 
 
@@ -246,18 +249,22 @@ function BlogUpdate({ router }) {
 
     function editBlog(event) {
         event.preventDefault();
+
+        setValues({ ...values, loading: true });
+
         updateBlog(formData, token, router.query.slug).then(data => {
             if (data.error) {
-                setValues({ ...values, error: data.error });
+                setValues({ ...values, error: data.error, loading: false });
             }
             else {
                 setValues({
                     ...values,
                     title: '',
-                    success: `Blog titled "${data.title}" is successfully updated`
+                    success: `Blog titled "${data.title}" is successfully updated`,
+                    loading: false
                 });
 
-                setTimeout(() => Router.push(`/blogs/${router.query.slug}`), 2000);
+                setTimeout(() => Router.push(`/blogs/${router.query.slug}`), 1000);
             }
 
         });
@@ -267,10 +274,6 @@ function BlogUpdate({ router }) {
     function updateBlogForm() {
         return (
             <form onSubmit={editBlog}>
-                <div>
-                    {success && toast.success(success)}
-                    {error && toast.error(error)}
-                </div>
 
                 <div className="form-group">
                     <label className="text-muted">Title</label>
@@ -288,7 +291,7 @@ function BlogUpdate({ router }) {
                 </div>
 
                 {/* show publish button */}
-                <button type="submit" className="btn btn-success btn-lg">Update</button>
+                <button type="submit" className="btn btn-success btn-lg" disabled={success || loading}>Update</button>
             </form>
         )
     }
@@ -297,6 +300,14 @@ function BlogUpdate({ router }) {
     return (
         <React.Fragment>
             <ToastContainer />
+
+            <div>
+                {toast.dismiss()}
+                {success && toast.success(success)}
+                {error && toast.error(error)}
+                {loading && <FullPageLoader />}
+            </div>
+
             <div className="container-fluid pb-5">
                 <div className="row">
 

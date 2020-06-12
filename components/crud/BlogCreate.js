@@ -17,6 +17,8 @@ import '../../node_modules/react-quill/dist/quill.snow.css';
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
+import FullPageLoader from "../FullPageLoader";
+
 
 function CreateBlog({ router }) {
 
@@ -46,6 +48,7 @@ function CreateBlog({ router }) {
         error: "",
         sizeError: "",
         success: "",
+        loading: false,
         formData: "",
         title: "",
         hidePublishButton: false,
@@ -53,7 +56,7 @@ function CreateBlog({ router }) {
     });
 
 
-    const { error, sizeError, success, formData, title, hidePublishButton, photoName } = values;
+    const { error, sizeError, success, loading, formData, title, hidePublishButton, photoName } = values;
     const token = getCookie('token');
 
     useEffect(() => {
@@ -196,12 +199,14 @@ function CreateBlog({ router }) {
         event.preventDefault();
         //console.log("Ready to publish blog");
 
+        setValues({...values, loading: true});
+
         createBlog(formData, token).then((data) => {
             if (data.error) {
-                setValues({ ...values, error: data.error });
+                setValues({ ...values, error: data.error, loading: false });
             }
             else {
-                setValues({ ...values, title: "", error: "", success: `A new blog titled "${data.title}" is created` });
+                setValues({ ...values, title: "", error: "", loading: false, success: `A new blog titled "${data.title}" is created` });
                 setBody("");
                 //setCategories([]);
                 //setTags([]);
@@ -248,6 +253,14 @@ function CreateBlog({ router }) {
     return (
         <React.Fragment>
             <ToastContainer />
+
+            <div>
+                {toast.dismiss()}
+                {success && toast.success(success)}
+                {error && toast.error(error)}
+                {loading && <FullPageLoader />}
+            </div>
+
             <div className="container-fluid pb-5">
 
                 <div className="row">

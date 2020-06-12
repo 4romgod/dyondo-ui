@@ -6,11 +6,13 @@ import { getCookie, isAuth } from "../../actions/auth";
 import { list, removeBlog } from "../../actions/blog";
 import moment from "moment";
 
+import FullPageLoader from "../FullPageLoader";
 
 
-function BlogRead({username}) {
+function BlogRead({ username }) {
     const [blogs, setBlogs] = useState([]);
     const [message, setMessage] = useState('');
+    const [loading, setLoading] = useState(true);
     const token = getCookie('token');
 
     useEffect(() => {
@@ -22,9 +24,11 @@ function BlogRead({username}) {
         list(username).then((data) => {
             if (data.error) {
                 console.log(data.error);
+                setLoading(false);
             }
             else {
                 setBlogs(data);
+                setLoading(false);
             }
         });
     }
@@ -49,15 +53,15 @@ function BlogRead({username}) {
     }
 
 
-    function showUpdateBtn(blog){
-        if(isAuth() && isAuth().role===0){      // user is not admin
+    function showUpdateBtn(blog) {
+        if (isAuth() && isAuth().role === 0) {      // user is not admin
             return (
                 <Link href={`/user/crud/${blog.slug}`}>
                     <a className="btn btn-sm btn-warning ml-2">update</a>
                 </Link>
             )
         }
-        else if(isAuth() && isAuth().role===1){     // user is admin
+        else if (isAuth() && isAuth().role === 1) {     // user is admin
             return (
                 <Link href={`/admin/crud/${blog.slug}`}>
                     <a className="btn btn-sm btn-warning ml-2">update</a>
@@ -85,11 +89,14 @@ function BlogRead({username}) {
             )
         }
 
-        return (blogs.length > 0 ? blogs.map(showBlog) : <div>No blogs by this user</div>);
+        return !loading && ( (blogs.length > 0) ? blogs.map(showBlog) : <div>No blogs by this user</div>);
     }
 
     return (
         <React.Fragment>
+
+            {loading && <FullPageLoader />}
+
             <div className="row">
                 <div className="col-md-12">
                     {message && <div className="alert alert-warning">{message}</div>}

@@ -122,7 +122,7 @@ function SingleBlog({ blog, query }) {
                                             src={`${API}/user/photo/${blog.author.username}`}
                                             alt={blog.title}
                                             className="img img-fluid featured"
-                                            style={{borderRadius: '100%', width: '50px'}}
+                                            style={{borderRadius: '100%', width: '50px', height:'50px'}}
                                         />
                                     </div>
 

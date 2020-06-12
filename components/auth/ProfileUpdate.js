@@ -8,6 +8,8 @@ import { API } from "../../config";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
+import FullPageLoader from "../FullPageLoader";
+
 
 function ProfileUpdate() {
     const [values, setValues] = useState({
@@ -67,7 +69,7 @@ function ProfileUpdate() {
     function handleSubmit(event) {
         event.preventDefault();
 
-        toast.info("Loading...");
+        // toast.info("Loading...");
         setValues({ ...values, loading: true });
 
 
@@ -90,7 +92,7 @@ function ProfileUpdate() {
                     });
                 });
 
-                setTimeout(() => { 
+                setTimeout(() => {
                     Router.push(`/profile/${username}`);
                 }, 2000);
             }
@@ -102,9 +104,6 @@ function ProfileUpdate() {
 
     const profileUpdateForm = () => (
         <form onSubmit={handleSubmit}>
-            {toast.dismiss()}
-            {success && toast.success('Profile updated!')}
-            {error && toast.error(error)}
 
             <div className="form-group">
                 <small className="text-muted">Max size: 1MB</small><br />
@@ -136,7 +135,7 @@ function ProfileUpdate() {
             </div>
 
             <div>
-                <button type="submit" className="btn btn-success btn-lg">
+                <button type="submit" className="btn btn-success btn-lg" disabled={loading}>
                     Update
                 </button>
             </div>
@@ -147,6 +146,13 @@ function ProfileUpdate() {
     return (
         <React.Fragment>
             <ToastContainer />
+            <div>
+                {toast.dismiss()}
+                {success && toast.success('Profile updated!')}
+                {error && toast.error(error)}
+                {loading && <FullPageLoader />}
+            </div>
+            
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-md-4">
