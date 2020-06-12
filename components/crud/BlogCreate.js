@@ -256,7 +256,6 @@ function CreateBlog({ router }) {
 
             <div>
                 {toast.dismiss()}
-                {success && toast.success(success)}
                 {error && toast.error(error)}
                 {loading && <FullPageLoader />}
             </div>
