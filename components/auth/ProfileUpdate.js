@@ -33,12 +33,13 @@ function ProfileUpdate() {
     const token = getCookie("token");
 
     function initUser() {
+        setValues({ ...values, loading: true });
         getProfile(token).then(data => {
             if (data.error) {
-                setValues({ ...values, error: data.error });
+                setValues({ ...values, error: data.error, loading: false });
             }
             else {
-                setValues({ ...values, username: data.username, username_for_photo: data.username, name: data.name, email: data.email, about: data.about });
+                setValues({ ...values, username: data.username, username_for_photo: data.username, name: data.name, email: data.email, about: data.about, loading: false });
             }
         });
     }
@@ -54,14 +55,23 @@ function ProfileUpdate() {
             let value;
             if (name === 'photo') {
                 value = event.target.files[0];
-                setValues({ ...values, photoName: value ? value.name : '', [name]: value, userData, error: false, success: false });
+                const fileSize = value ? value.size/1024/1024 : 0;
+
+                if (fileSize > 1) {
+                    toast.dismiss();
+                    toast.error("Image size should be less than 1MB");
+                }
+                else {
+                    userData.set(name, value);
+                    setValues({ ...values, photoName: value ? value.name : '', [name]: value, userData, error: false, success: false });
+                }
             }
             else {
                 value = event.target.value;
+                userData.set(name, value);
                 setValues({ ...values, [name]: value, userData, error: false, success: false });
             }
 
-            userData.set(name, value);
         }
     }
 
@@ -69,9 +79,7 @@ function ProfileUpdate() {
     function handleSubmit(event) {
         event.preventDefault();
 
-        // toast.info("Loading...");
         setValues({ ...values, loading: true });
-
 
         updateProfile(token, userData).then((data) => {
             if (data.error) {
@@ -92,11 +100,8 @@ function ProfileUpdate() {
                     });
                 });
 
-                setTimeout(() => {
-                    Router.push(`/profile/${username}`);
-                }, 2000);
+                Router.push(`/profile/${username}`);
             }
-
 
         });
     }
@@ -148,11 +153,10 @@ function ProfileUpdate() {
             <ToastContainer />
             <div>
                 {toast.dismiss()}
-                {success && toast.success('Profile updated!')}
                 {error && toast.error(error)}
                 {loading && <FullPageLoader />}
             </div>
-            
+
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-md-4">

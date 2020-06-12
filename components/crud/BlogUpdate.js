@@ -76,13 +76,16 @@ function BlogUpdate({ router }) {
     function initBlog() {
         if (router.query.slug) {
 
+            setValues({...values, loading: true});
+
             // get the old blog
             singleBlog(router.query.slug).then((data) => {
                 if (data.error) {
-                    console.log(data.error);
+                    //console.log(data.error);
+                    setValues({...values, error: data.error, loading: false});
                 }
                 else {
-                    setValues({ ...values, title: data.title });
+                    setValues({ ...values, title: data.title});
                     setBody(data.body);
                     setOldCheckedCat(data.categories);
                     setOldCheckedTag(data.tags);
@@ -229,8 +232,18 @@ function BlogUpdate({ router }) {
             let value;
             if (name === 'photo') {
                 value = event.target.files[0];
-                formData.set(name, value);
-                setValues({ ...values, photoName: value ? value.name : '', [name]: value, formData, error: '' });
+
+                const fileSize = value.size / 1024 / 1024;
+
+                if (fileSize > 1) {
+                    toast.dismiss();
+                    toast.error("Image size should be less than 1MB");
+                }
+                else{
+                    formData.set(name, value);
+                    setValues({ ...values, photoName: value ? value.name : '', [name]: value, formData, error: '' });
+                }
+                
             }
             else {
                 value = event.target.value;
@@ -264,7 +277,7 @@ function BlogUpdate({ router }) {
                     loading: false
                 });
 
-                setTimeout(() => Router.push(`/blogs/${router.query.slug}`), 1000);
+                Router.push(`/blogs/${router.query.slug}`);
             }
 
         });

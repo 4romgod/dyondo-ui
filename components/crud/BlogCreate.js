@@ -170,8 +170,17 @@ function CreateBlog({ router }) {
             let value;
             if(name === 'photo'){
                 value = event.target.files[0];
-                formData.set(name, value);
-                setValues({ ...values, photoName: value?value.name:'', [name]: value, formData, error: ''});
+                const fileSize = value.size / 1024 / 1024;
+
+                if (fileSize > 1) {
+                    toast.dismiss();
+                    toast.error("Image size should be less than 1MB");
+                }
+                else{
+                    formData.set(name, value);
+                    setValues({ ...values, photoName: value?value.name:'', [name]: value, formData, error: ''});
+                }
+
             }
             else{
                 value = event.target.value;
