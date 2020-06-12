@@ -54,10 +54,13 @@
     display: none
 }
 
+.navbar .navbar-collapse{
+    border-top: 0.01rem solid black;
+}
 
 @media only screen and (max-width: 768px) {
     .navbar-dark .navbar-nav .nav-item {
-        margin: 0 !important;
+        margin: 0 auto !important;
     }
 
     .navbar-dark .navbar-nav .nav-item .nav-link {
@@ -78,12 +81,12 @@
         display: block;
     }
 
-    #write-blog-phone .nav-item {
-        margin: 0 !important;
+    #write-blog-phone{
+        margin: 0 auto !important;
     }
 
     #write-blog-phone .nav-item a {
-        color: #29a48b;
+        color: black;
         font-weight: 700 !important;
         font-size: 1.2rem;
         padding: 15px 26px !important;

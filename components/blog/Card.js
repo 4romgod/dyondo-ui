@@ -73,14 +73,27 @@ function Card({ blog }) {
                     </Link>
 
                     {/** holds the author and date */}
-                    <section>
-                        <p className="mark ml-1 pt-2 pb-2 pl-2">
-                            Written by {' '}
-                            <Link href={`/profile/${blog.author.username}`}>
-                                <a>{blog.author.username}</a>
-                            </Link>
-                            {' '}| Published {moment(blog.updatedAt).fromNow()}
-                        </p>
+                    <section className="mt-3 mb-3">
+                        <div style={{ display: 'flex' }}>
+                            <div>
+                                <img
+                                    src={`${API}/user/photo/${blog.author.username}`}
+                                    alt={blog.title}
+                                    className="img img-fluid featured"
+                                    style={{ borderRadius: '100%', width: '50px' }}
+                                />
+                            </div>
+
+                            <div className="ml-3">
+                                <p>
+                                    <Link href={`/profile/${blog.author.username}`}>
+                                        <a>{blog.author.username}</a>
+                                    </Link>
+                                    {' | '}
+                                    {moment(blog.updatedAt).fromNow()}
+                                </p>
+                            </div>
+                        </div>
                     </section>
 
                     {/** holds the excerpt */}
