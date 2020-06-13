@@ -25,3 +25,21 @@ export function sendMessage(message) {
         })
         .catch(err => console.log(err));
 };
+
+export function sendNodemailer(message) {
+    let emailEndpoint = `${API}/contact`;
+    
+    return fetch(`${emailEndpoint}`,
+        {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },               
+            body: JSON.stringify(message)      
+        })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));
+};

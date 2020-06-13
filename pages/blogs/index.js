@@ -11,7 +11,7 @@ import { API, DOMAIN, APP_NAME, FB_APP_ID } from '../../config';
 //getInitialProps, enables ssr on first load
 Blogs.getInitialProps = () => {
     let skip = 0;
-    let limit = 2;
+    let limit = 4;
 
     return listBlogCatTag(skip, limit).then(data => {
         if (data.error) {

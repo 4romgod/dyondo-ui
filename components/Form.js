@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
-import { sendMessage } from '../actions/contact';
+import { sendNodemailer } from '../actions/contact';
+
+import axios from "axios";
 
 
 function Form({ authorEmail }) {
@@ -7,14 +9,19 @@ function Form({ authorEmail }) {
         buttonText: 'Send Message',
         name: '',
         email: '',
+        message: ''
+    });
+
+    const [result, setResult] = useState({
         message: '',
-        error: false,
         success: false,
+        error: false,
         loading: false,
         showForm: true
     });
 
-    const { name, email, message, error, success, loading, showForm } = values;
+    const { name, email, message } = values;
+    const { error, success, loading, showForm} = result;
 
 
     function handleChange(name) {
@@ -30,6 +37,14 @@ function Form({ authorEmail }) {
 
         setValues({ ...values, loading: true, error: false, success: false });
 
+        sendNodemailer({email, name, message})
+            .then(response=>{
+                console.log(response);
+                
+            })
+
+
+        /** 
         sendMessage({ authorEmail, name, email, message })
             .then((data) => {
                 if (data.error) {
@@ -53,7 +68,7 @@ function Form({ authorEmail }) {
                     });
                 }
             });
-
+        */
     }
 
 

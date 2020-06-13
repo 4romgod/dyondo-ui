@@ -25,14 +25,14 @@ function CategoryTag() {
 
                             <div className="row ml-0 mr-0">
 
-                                <div className="col-md-6 pr-2">
+                                <div className="col-md-6 pr-2 mb-3 container-cat">
                                     <div className="container-fluid shadow bg-white pt-5 pb-5 pl-5 pr-5">
                                         <h4 className="text-center">Categories</h4>
                                         <Category />
                                     </div>
                                 </div>
 
-                                <div className="col-md-6  pl-2">
+                                <div className="col-md-6 pl-2 container-cat">
                                     <div className="container-fluid shadow bg-white pt-5 pb-5 pl-5 pr-5">
                                         <h4 className="text-center">Tags</h4>
                                         <Tag />

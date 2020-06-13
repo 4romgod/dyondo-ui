@@ -95,6 +95,10 @@
     /**************** ADMIN HOME ****************/
     .container-admin{ padding: 0;}
     .container-admin .left, .right{padding: 0 15px !important;}
+
+    .container-cat{
+        padding: 0 !important;
+    }
 }
 
 
