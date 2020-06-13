@@ -52,12 +52,12 @@
     font-size: 3rem;
 }
 
-
+.container{max-width: 100% !important;}
 /*********************************** SMALL SCREENS ***************************/
 
 @media (max-width: 576px) {
     .container {
-        max-width: 100%;
+        max-width: 567px !important;
         padding: 0;
     }
 
@@ -83,6 +83,11 @@
 
 /*********************************** MEDIUM SCREENS ***************************/
 @media only screen and (max-width: 768px) {
+    .container {
+        max-width: 768px !important;
+        padding: 0;
+    }
+
     .container-image {
         display: none;
     }
@@ -104,6 +109,6 @@
 
 @media (min-width: 992px) {
     .container {
-        max-width: 94%;
+        max-width: 992px !important;
     }
 }

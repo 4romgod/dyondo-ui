@@ -112,17 +112,19 @@ function SingleBlog({ blog, query }) {
                         <div className="col-md-8 pl-0 pr-0 mt-3">
                             <div className="bg-white pb-3 pl-3 pr-3">
 
-                                <h4 className="display-4 pb-3 pt-3 font-weight-bold">
-                                    {blog.title}
-                                </h4>
+                                <div style={{ width: '100%', overflow: 'auto' }}>
+                                    <h4 className="display-4 pb-3 pt-3 font-weight-bold">
+                                        {blog.title}
+                                    </h4>
+                                </div>
 
-                                <div style={{display: 'flex'}}>
+                                <div style={{ display: 'flex' }}>
                                     <div>
                                         <img
                                             src={`${API}/user/photo/${blog.author.username}`}
                                             alt={blog.title}
                                             className="img img-fluid featured"
-                                            style={{borderRadius: '100%', width: '50px', height:'50px'}}
+                                            style={{ borderRadius: '100%', width: '50px', height: '50px' }}
                                         />
                                     </div>
 
@@ -163,7 +165,7 @@ function SingleBlog({ blog, query }) {
                             <div className=" bg-white mt-5 pb-5 pl-3 pr-3">
 
                                 {/** display blog body  */}
-                                <div className="lead blog-body">
+                                <div className="lead blog-body" style={{ width: '100%', overflow: 'auto' }}>
                                     {renderHTML(blog.body)}
                                 </div>
                             </div>

@@ -9,6 +9,7 @@ import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
 import FullPageLoader from "../FullPageLoader";
+import { set } from 'nprogress';
 
 
 function ProfileUpdate() {
@@ -34,7 +35,7 @@ function ProfileUpdate() {
 
     function initUser() {
         setValues({ ...values, loading: true });
-        
+
         getProfile(token).then(data => {
             if (data.error) {
                 setValues({ ...values, error: data.error, loading: false });
@@ -54,9 +55,10 @@ function ProfileUpdate() {
     function handleChange(name) {
         return (event) => {
             let value;
+
             if (name === 'photo') {
                 value = event.target.files[0];
-                const fileSize = value ? value.size/1024/1024 : 0;
+                const fileSize = value ? value.size / 1024 / 1024 : 0;
 
                 if (fileSize > 1) {
                     toast.dismiss();
@@ -68,9 +70,18 @@ function ProfileUpdate() {
                 }
             }
             else {
-                value = event.target.value;
-                userData.set(name, value);
-                setValues({ ...values, [name]: value, userData, error: false, success: false });
+                if ((name === 'username') || (name === 'name')) {
+                    value = event.target.value;
+                    const textSize = value ? value.length : 0;
+                    
+                    if (textSize > 32) {
+                        setValues({ ...values, error: `${name} should be less than 32 characters` })
+                    }
+                    else {
+                        userData.set(name, value);
+                        setValues({ ...values, [name]: value, userData, error: false, success: false });
+                    }
+                }
             }
 
         }
@@ -122,12 +133,12 @@ function ProfileUpdate() {
 
             <div className="form-group">
                 <label className="text-muted">Username</label>
-                <input onChange={handleChange('username')} type="text" value={username} className="form-control" required />
+                <input onChange={handleChange('username')} type="text" value={username} className="form-control" required maxlength="32" />
             </div>
 
             <div className="form-group">
                 <label className="text-muted">Name</label>
-                <input onChange={handleChange('name')} type="text" value={name} className="form-control" required />
+                <input onChange={handleChange('name')} type="text" value={name} className="form-control" required maxlength="32" />
             </div>
 
             <div className="form-group">

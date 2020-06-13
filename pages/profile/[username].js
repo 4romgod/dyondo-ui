@@ -35,7 +35,9 @@ function UserProfile({ user, blogs, query }) {
             return (
                 <div className="mt-4 mb-4" key={index}>
                     <Link href={`/blogs/${blog.slug}`}>
-                        <a className="lead"><b>{blog.title}</b></a>
+                        <a className="lead">
+                            <b style={{width: '100%', overflowX: 'scroll'}}>{blog.title}</b>
+                        </a>
                     </Link>
                 </div>
             )

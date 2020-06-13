@@ -62,7 +62,7 @@ function Blogs({ blogs, categories, tags, totalBlogs, blogsLimit, blogsSkip, rou
         function showCat(cat, index) {
             return (
                 <Link href={`/categories/${cat.slug}`} key={index}>
-                    <a className="btn btn-outline-info btn-lg btn-sq mr-1 ml-1 mt-3">{cat.name}</a>
+                    <a className="btn btn-outline-info btn-lg btn-sq width-overflow mr-1 ml-1 mt-3">{cat.name}</a>
                 </Link>
             )
         }
@@ -73,7 +73,7 @@ function Blogs({ blogs, categories, tags, totalBlogs, blogsLimit, blogsSkip, rou
         function showTag(tag, index) {
             return (
                 <Link href={`/tags/${tag.slug}`} key={index}>
-                    <a className="btn btn-outline-info btn-lg btn-sq mr-1 ml-1 mt-3">{`#${tag.name}`}</a>
+                    <a className="btn btn-outline-info btn-lg btn-sq width-overflow mr-1 ml-1 mt-3">{`#${tag.name}`}</a>
                 </Link>
             )
 
@@ -145,7 +145,7 @@ function Blogs({ blogs, categories, tags, totalBlogs, blogsLimit, blogsSkip, rou
 
                         <header className="bg-white">
 
-                            <div className="col-md-12 text-center">
+                            <div className="col-md-12 text-center width-overflow">
                                 <div className="bg-white pt-5 pb-5">
                                     <h1><strong>Coding Blogs and Tutorials</strong></h1>
                                 </div>

@@ -66,8 +66,8 @@ function Card({ blog }) {
                 <div className="col-md-9">
                     {/** holds the title */}
                     <Link href={`/blogs/${blog.slug}`}>
-                        <a style={{ cursor: 'pointer' }}>
-                            <h2 className="pt-3 font-weight-bold">
+                        <a style={{ cursor: 'pointer'}}>
+                            <h2 className="pt-3 font-weight-bold width-overflow">
                                 {blog.title}
                             </h2>
                         </a>
@@ -85,7 +85,7 @@ function Card({ blog }) {
                                 />
                             </div>
 
-                            <div className="ml-3">
+                            <div className="ml-3 width-overflow">
                                 <p>
                                     <Link href={`/profile/${blog.author.username}`}>
                                         <a>{blog.author.username}</a>
@@ -98,7 +98,7 @@ function Card({ blog }) {
                     </section>
 
                     {/** holds the excerpt */}
-                    <section>
+                    <section className="width-overflow">
                         {renderHTML(blog.excerpt)}
                         {/* <Link href={`/blogs/${blog.slug}`}>
                                 <a className="btn btn-primary mt-2">Read more</a>
