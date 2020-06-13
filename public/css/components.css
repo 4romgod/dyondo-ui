@@ -136,27 +136,6 @@
 }
 
 
-/*********************************** TAGS ***************************/
-h1,
-h2,
-h3,
-h4 {
-  font-family: sans-serif;
-}
-
-strong,
-b {
-  font-weight: bold;
-}
-
-p {
-  color: #222;
-  font-family: "Open Sans";
-  font-weight: 100;
-  font-size: 17px;
-  line-height: 31px;
-}
-
 .width-overflow{
   width: 100%;
   overflow-x: auto;
