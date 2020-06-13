@@ -65,7 +65,7 @@ function Card({ blog }) {
 
                 <div className="col-md-9">
                     {/** holds the title */}
-                    <Link href={`/blogs/${blog.slug}`}>
+                    <Link href={`/blogs/[slug]`} as={`/blogs/${blog.slug}`}>
                         <a style={{ cursor: 'pointer'}}>
                             <h2 className="pt-3 font-weight-bold width-overflow">
                                 {blog.title}

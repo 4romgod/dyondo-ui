@@ -18,10 +18,15 @@ function Tag() {
     const { name, error, success, tags, removed, reload } = values;
     const token = getCookie('token');
 
+    //const controller = new AbortController();
 
     // load categories onStart
     useEffect(function () {
         loadTags();
+
+        // return function cleanup(){
+        //     controller.abort();
+        // }
     }, [reload]);
 
 

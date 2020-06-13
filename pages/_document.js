@@ -24,6 +24,8 @@ class MyDocument extends Document {
         <Head >
           <meta charSet="UTF-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <link rel="icon" type="image/png" href="/images/favicon.ico"/>
+
 
           <link
             rel="stylesheet"
@@ -44,8 +46,8 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
-          <script src="/bootstrap/bootstrap.min.js"></script>
           <script src="/bootstrap/jquery-3.2.1.slim.min.js"></script>
+          <script src="/bootstrap/bootstrap.min.js"></script>
           <script src="/bootstrap/popper.min.js"></script>
         </body>
 

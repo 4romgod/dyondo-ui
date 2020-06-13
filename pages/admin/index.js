@@ -1,9 +1,12 @@
 import Layout from "../../components/Layout";
 import Admin from "../../components/auth/Admin";
 
+import {useEffect} from "react";
+
 import Link from "next/link";
 
 function AdminIndex() {
+
     return (
         <Layout>
             <Admin>

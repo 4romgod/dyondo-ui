@@ -18,12 +18,17 @@ function Category() {
     const { name, error, success, categories, removed, reload } = values;
     const token = getCookie('token');
 
+    //const controller = new AbortController();
 
     // load categories onStart
     useEffect(function () {
         loadCategories();
-    }, [reload]);
 
+        // return function cleanup(){
+        //     controller.abort();
+        // }
+
+    }, [reload]);
 
     function loadCategories() {
         getCategories().then(function (data) {
