@@ -58,7 +58,7 @@ function SingleBlog({ blog, query }) {
     function showBlogCategories(blog) {
         function showCat(cat, index) {
             return (
-                <Link key={index} href={`/categories/${cat.slug}`}>
+                <Link key={index} href={`/categories/[slug]`} as={`/categories/${cat.slug}`}>
                     <a className="btn btn-outline-info btn-lg btn-sq ml-1 mr-1 mt-3">{cat.name}</a>
                 </Link>
             )
@@ -69,7 +69,7 @@ function SingleBlog({ blog, query }) {
     function showBlogTags(blog) {
         function showTag(tag, index) {
             return (
-                <Link key={index} href={`/tags/${tag.slug}`}>
+                <Link key={index} href={`/tags/[slug]`} as={`/tags/${tag.slug}`}>
                     <a className="btn btn-outline-info btn-lg btn-sq ml-1 mr-1 mt-3">{`#${tag.name}`}</a>
                 </Link>
             )
@@ -130,7 +130,7 @@ function SingleBlog({ blog, query }) {
 
                                     <div className="ml-3">
                                         <p>
-                                            <Link href={`/profile/${blog.author.username}`}>
+                                            <Link href={`/profile/[username]`} as={`/profile/${blog.author.username}`}>
                                                 <a>{blog.author.username}</a>
                                             </Link>
                                             {' | '}
