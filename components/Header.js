@@ -51,6 +51,35 @@ function Header(props) {
     }, [props.closeNav]);
 
 
+    function showDashboard() {
+        if (isAuth()) {
+            if (isAuth().role === 0) {
+                return (
+                    <NavItem style={{ padding: '0', margin: '0 13px' }}>
+                        <Link href="/user">
+                            <NavLink style={navLinkStyle}>
+                                Dashboard
+                            </NavLink>
+                        </Link>
+                    </NavItem>
+                )
+            }
+            else if (isAuth().role === 1) {
+                return (
+                    <NavItem style={{ padding: '0', margin: '0 13px' }}>
+                        <Link href="/admin">
+                            <NavLink style={navLinkStyle}>
+                                Dashboard
+                            </NavLink>
+                        </Link>
+                    </NavItem>
+                )
+            }
+        }
+
+        return;
+    }
+
     return (
         <React.Fragment>
             <Navbar color="dark" dark expand="md" className="navbar fixed-top">
@@ -67,24 +96,24 @@ function Header(props) {
                             {/* write blog on phone screen size */}
                             <React.Fragment>
                                 <div id="write-blog-phone">
-                                {isAuth() &&
-                                    (isAuth().role === 0) ?
-                                    <NavItem style={{ padding: '0', margin: '0 13px' }}>
-                                        <a href={`/user/crud/blog`}
-                                            style={navLinkStyle}
-                                        >
-                                            Write a blog
+                                    {isAuth() &&
+                                        (isAuth().role === 0) ?
+                                        <NavItem style={{ padding: '0', margin: '0 13px' }}>
+                                            <a href={`/user/crud/blog`}
+                                                style={navLinkStyle}
+                                            >
+                                                Write a blog
                                         </a>
-                                    </NavItem>
-                                    :
-                                    <NavItem style={{ padding: '0', margin: '0 13px' }}>
-                                        <a href={`/admin/crud/blog`}
-                                            style={navLinkStyle}
-                                        >
-                                            Write a blog
+                                        </NavItem>
+                                        :
+                                        <NavItem style={{ padding: '0', margin: '0 13px' }}>
+                                            <a href={`/admin/crud/blog`}
+                                                style={navLinkStyle}
+                                            >
+                                                Write a blog
                                         </a>
-                                    </NavItem>
-                                }
+                                        </NavItem>
+                                    }
                                 </div>
                             </React.Fragment>
 
@@ -97,25 +126,7 @@ function Header(props) {
                                 </Link>
                             </NavItem>
 
-                            {isAuth() && (isAuth().role === 0) && (
-                                <NavItem style={{ padding: '0', margin: '0 13px' }}>
-                                    <Link href="/user">
-                                        <NavLink style={navLinkStyle}>
-                                            Dashboard
-                                        </NavLink>
-                                    </Link>
-                                </NavItem>
-                            )}
-
-                            {isAuth() && (isAuth().role === 1) && (
-                                <NavItem style={{ padding: '0', margin: '0 13px'}}>
-                                    <Link href="/admin">
-                                        <NavLink  style={navLinkStyle}>
-                                            Dashboard
-                                    </NavLink>
-                                    </Link>
-                                </NavItem>
-                            )}
+                            {showDashboard()}
 
                             <NavItem style={{ padding: '0', margin: '0 13px' }}>
                                 <Link href="/contact">
@@ -126,7 +137,6 @@ function Header(props) {
                             </NavItem>
 
                             {!isAuth() && <React.Fragment>
-
                                 <NavItem style={{ padding: '0', margin: '0 13px' }}>
                                     <Link href="/signin">
                                         <NavLink style={navLinkStyle}>

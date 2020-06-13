@@ -222,7 +222,7 @@ function CreateBlog({ router }) {
 
                 localStorage.removeItem('blog');
                 let slug = slugify(title);
-                setTimeout(()=>Router.push(`/blogs/${slug}`), 2000);
+                setTimeout(()=>Router.push(`/blogs/[slug]`, `/blogs/${slug}`), 2000);
                 
             }
         });

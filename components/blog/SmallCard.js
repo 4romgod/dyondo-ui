@@ -10,7 +10,7 @@ function SmallCard({ blog }) {
         <div className="card mb-5 shadow">
 
             <section>
-                <Link href={`/blogs/${blog.slug}`}>
+                <Link href={`/blogs/[slug]`} as={`/blogs/${blog.slug}`}>
                     <a>
                         <img
                             className="img img-fluid"
@@ -29,7 +29,7 @@ function SmallCard({ blog }) {
 
             <div className="card-body">
                 <section>
-                    <Link href={`/blogs/${blog.slug}`}>
+                    <Link href={`/blogs/[slug]`} as={`/blogs/${blog.slug}`}>
                         <a><h4 className="card-title">{blog.title}</h4></a>
                     </Link>
                     {/* <div className="card-text">{renderHTML(blog.excerpt)}</div> */}
@@ -38,7 +38,7 @@ function SmallCard({ blog }) {
 
             <div className="card-body">
                 Posted {moment(blog.updatedAt).fromNow()} by{' '}
-                <Link href={`/profile/${blog.author.username}`}>
+                <Link href={`/profile/[username]`} as={`/profile/${blog.author.username}`}>
                     <a>{blog.author.username}</a>
                 </Link>
             </div>

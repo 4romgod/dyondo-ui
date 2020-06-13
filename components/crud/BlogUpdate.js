@@ -143,7 +143,7 @@ function BlogUpdate({ router }) {
         function createLi(cat, index) {
             return (
                 <li key={index} className="list-unstyled">
-                    <label for={cat.name} className="checkboxContainer">{cat.name}
+                    <label htmlFor={cat.name} className="checkboxContainer">{cat.name}
                         <input
                             onChange={handleToggleCat(cat._id)}
                             checked={findOutCheckedCat(cat._id)}
@@ -163,7 +163,7 @@ function BlogUpdate({ router }) {
         function createLi(tag, index) {
             return (
                 <li key={index} className="list-unstyled">
-                    <label for={tag.name} className="checkboxContainer">{tag.name}
+                    <label htmlFor={tag.name} className="checkboxContainer">{tag.name}
                         <input
                             onChange={handleToggleTag(tag._id)}
                             checked={findOutCheckedTag(tag._id)}
@@ -277,7 +277,7 @@ function BlogUpdate({ router }) {
                     loading: false
                 });
 
-                Router.push(`/blogs/${router.query.slug}`);
+                Router.push(`/blogs/[slug]`, `/blogs/${router.query.slug}`);
             }
 
         });

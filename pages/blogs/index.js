@@ -61,7 +61,7 @@ function Blogs({ blogs, categories, tags, totalBlogs, blogsLimit, blogsSkip, rou
     function showAllCategories() {
         function showCat(cat, index) {
             return (
-                <Link href={`/categories/${cat.slug}`} key={index}>
+                <Link href={`/categories/[slug]`} as={`/categories/${cat.slug}`} key={index}>
                     <a className="btn btn-outline-info btn-lg btn-sq mr-1 ml-1 mt-3"
                         style={{ maxWidth: '100%', overflowX: 'auto' }}
                     >
@@ -76,7 +76,7 @@ function Blogs({ blogs, categories, tags, totalBlogs, blogsLimit, blogsSkip, rou
     function showAllTags() {
         function showTag(tag, index) {
             return (
-                <Link href={`/tags/${tag.slug}`} key={index}>
+                <Link href={`/tags/[slug]`} as={`/tags/${tag.slug}`} key={index}>
                     <a className="btn btn-outline-info btn-lg btn-sq mr-1 ml-1 mt-3"
                         style={{ maxWidth: '100%', overflowX: 'auto' }}
                     >

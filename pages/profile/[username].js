@@ -34,7 +34,7 @@ function UserProfile({ user, blogs, query }) {
         function createBlog(blog, index) {
             return (
                 <div className="mt-4 mb-4" key={index}>
-                    <Link href={`/blogs/${blog.slug}`}>
+                    <Link href={`/blogs/[slug]`} as={`/blogs/${blog.slug}`}>
                         <a className="lead">
                             <b style={{width: '100%', overflowX: 'scroll'}}>{blog.title}</b>
                         </a>
