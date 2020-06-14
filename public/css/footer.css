@@ -46,3 +46,11 @@
     font-size: 0.9rem;
     padding: 0 15px;
 }
+
+.footer-one a{ font-size: 0.9rem !important;}
+
+.footer-two a{ font-size: 0.9rem !important;}
+
+footer a:hover{
+    color: rgb(196, 190, 190);
+}

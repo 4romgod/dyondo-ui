@@ -1,12 +1,11 @@
 import Layout from '../components/Layout';
-import Link from 'next/link';
 
 const Index = () => {
     return (
         <Layout>
             <article className="overflow-hidden pt-4 pb-0 bg-white">
 
-                <div className="container pl-0 pr-0 pb-4 heading-container">
+                <div className="container pl-0 pr-0 heading-container">
                     <div className="row ml-0 mr-0">
                         <div className="col-md-12 pl-0 pr-0 text-center">
                             <img
