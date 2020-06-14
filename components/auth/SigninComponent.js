@@ -8,7 +8,6 @@ import LoginGoogle from "./GoogleLogin";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
-
 const remPad = { padding: "0", border: "0" };
 
 toast.configure();
@@ -32,7 +31,7 @@ function SigninComponent() {
     function handleChange(event) {
         const { name, value } = event.target;
 
-        console.log(event.target.value);
+        //console.log(event.target.value);
 
         setValues((prevVal) => {
             return { ...prevVal, error: false, [name]: value };
@@ -43,35 +42,41 @@ function SigninComponent() {
     function handleSubmit(event) {
         event.preventDefault();
 
-        setValues({ ...values, loading: true, error: false });
+        setValues({ ...values, loading: true, error: false, message: '' });
 
         const user = { email, password };
 
-        signin(user).then(data => {
-            if (data.error) {       //server sends us an error
-                setValues({ ...values, error: data.error, loading: false });
-                console.log(values);
-            }
-            else {
-                authenticate(data, () => {
-                    if (isAuth() && (isAuth().role === 1)) {
-                        Router.push(`/admin`);
-                    }
-                    else {
-                        Router.push(`/user`);
-                    }
-                });
-            }
-        });
+        signin(user)
+            .then(data => {
+                if (data.error) {       //server sends us an error
+                    setValues({ ...values, error: data.error, loading: false, message: '' });
 
+                    toast.dismiss();
+                    toast.error(data.error);
+                }
+                else {
+                    authenticate(data, () => {
+                        if (isAuth() && (isAuth().role === 1)) {
+                            toast.dismiss();
+                            toast.success("Successfully signed in");
+
+                            setTimeout(()=>Router.push(`/admin`), 1000);
+                        }
+                        else {
+                            toast.dismiss();
+                            toast.success("Successfully signed in");
+
+                            setTimeout(()=>Router.push(`/user`), 1000);
+                        }
+                    });
+                }
+            });
+                        
     };
 
     const signinForm = () => {
         return (
             <form onSubmit={handleSubmit}>
-                {toast.dismiss()}
-                {message && toast.success(message)}
-                {error && toast.error(error)}
 
                 <div className="form-group">
                     <input

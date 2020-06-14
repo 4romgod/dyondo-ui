@@ -152,11 +152,18 @@ function SingleBlog({ blog, query }) {
 
                     {/** holds the image */}
                     <div className="row ml-0 mr-0">
-                        <img
-                            src={`${API}/blog/photo/${blog.slug}`}
-                            alt={blog.title}
-                            className="img img-fluid featured-image"
-                        />
+                        <div className="col-md-1"></div>
+
+                        <div className="col-md-10 pl-0 pr-0">
+                            <img
+                                src={`${API}/blog/photo/${blog.slug}`}
+                                alt={blog.title}
+                                className="img img-fluid featured-image"
+                            />
+                        </div>
+
+                        <div className="col-md-1"></div>
+
                     </div>
 
 
@@ -169,7 +176,7 @@ function SingleBlog({ blog, query }) {
                         <div className="col-md-8 pl-0 pr-0">
 
                             {/** display blog body  */}
-                            <div className=" bg-white pb-3 pl-3 pr-3">
+                            <div className=" bg-white mt-4 pb-3 pl-3 pr-3">
                                 <div className="lead blog-body" style={{ width: '100%', overflow: 'auto' }}>
                                     {renderHTML(blog.body)}
                                 </div>
@@ -188,16 +195,16 @@ function SingleBlog({ blog, query }) {
                                     quote={`${blog.mdesc}`}
                                     hashtag={`${blog.tags}`}
                                 >
-                                    <FacebookIcon size={32}/>
+                                    <FacebookIcon size={32} />
                                 </FacebookShareButton>
 
                                 <TwitterShareButton
                                     title={`${blog.title} by ${blog.author.name}\n`}
                                     url={`${DOMAIN}/${blog.slug}`}
                                     hashtag={`#hashtag`}
-                                    //via={`${APP_NAME}`}
+                                //via={`${APP_NAME}`}
                                 >
-                                    <TwitterIcon size={32}/>
+                                    <TwitterIcon size={32} />
                                 </TwitterShareButton>
                             </div>
 

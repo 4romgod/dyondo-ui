@@ -248,7 +248,7 @@ function BlogUpdate({ router }) {
             else {
                 value = event.target.value;
                 formData.set(name, value);
-                setValues({ ...values, [name]: value, formData, error: "" });
+                setValues({ ...values, [name]: value, formData, error: "", loading: false, success: false });
             }
         }
     }
@@ -263,7 +263,7 @@ function BlogUpdate({ router }) {
     function editBlog(event) {
         event.preventDefault();
 
-        setValues({ ...values, loading: true });
+        setValues({ ...values, loading: true, error: false, success: false });
 
         updateBlog(formData, token, router.query.slug).then(data => {
             if (data.error) {
@@ -274,7 +274,8 @@ function BlogUpdate({ router }) {
                     ...values,
                     title: '',
                     success: `Blog titled "${data.title}" is successfully updated`,
-                    loading: false
+                    loading: false,
+                    error: false
                 });
 
                 Router.push(`/blogs/[slug]`, `/blogs/${router.query.slug}`);

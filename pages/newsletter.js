@@ -1,9 +1,13 @@
 import { useState } from 'react';
 import { newsletter } from "../actions/contact";
 import Head from 'next/head';
-import {  DOMAIN, APP_NAME, FB_APP_ID } from '../config';
+import Router from 'next/router';
+import { DOMAIN, APP_NAME, FB_APP_ID } from '../config';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
+toast.configure();
 function Newsletter() {
     const [values, setValues] = useState({
         fullname: '',
@@ -46,25 +50,42 @@ function Newsletter() {
 
     function handleSubmit(event) {
         event.preventDefault();
+
+        { toast.dismiss() }
+
         setValues({ ...values, loading: true, success: false, error: false });
 
-        newsletter({ fullname, email }).then(data => {
-            if (response.error) {
-                setValues({ ...values, error: response.error, loading: false, success: false });
-            }
-            else {
-                setValues({ ...values, error: false, loading: false, success: response.success });
-            }
-        });
+        newsletter({ fullname, email })
+            .then(function (response) {
+                //console.log(response);
 
-        console.log(success);
-        console.log(error);
+                if (response.error) {
+                    toast.dismiss();
+                    toast.error(response.error);
+                    setValues({ ...values, error: response.error, loading: false, success: false });
+                }
+                else {
+                    toast.dismiss();
+                    toast.success(response.success);
+                    setValues({ ...values, error: false, loading: false, success: response.success });
+
+                    setTimeout(()=>Router.push(`/`), 3000)
+                }
+            })
+            .catch(err => {
+                //console.log(err);
+                toast.dismiss();
+                toast.error(err);
+            });
 
     }
 
     return (
         <React.Fragment>
             {head()}
+
+            <ToastContainer />
+
             <div className="newsletter-page">
 
                 <div className="container-newsletter">

@@ -7,9 +7,7 @@ import Nprogress from "nprogress";
 import { signout, isAuth } from "../actions/auth";
 
 import {
-    Collapse, Navbar, NavbarToggler, NavbarBrand, Nav,
-    NavItem, NavLink, UncontrolledDropdown, DropdownToggle,
-    DropdownMenu, DropdownItem, NavbarText
+    Collapse, Navbar, NavbarToggler, Nav, NavItem, NavLink
 } from 'reactstrap';
 
 import ".././node_modules/nprogress/nprogress.css";
@@ -80,11 +78,38 @@ function Header(props) {
         return;
     }
 
+
+    function showSigninAndUp(){
+        return (
+            !isAuth() && <React.Fragment>
+                <NavItem style={{ padding: '0', margin: '0 11px' }}>
+                    <Link href="/signin">
+                        <NavLink style={navLinkStyle}>
+                            Signin
+                    </NavLink>
+                    </Link>
+                </NavItem>
+
+                <NavItem style={{ padding: '0', margin: '0 11px' }}>
+                    <Link href="/signup">
+                        <NavLink style={navLinkStyle}>
+                            Signup
+                    </NavLink>
+                    </Link>
+                </NavItem>
+
+            </React.Fragment>
+        )
+    }
+
     return (
         <React.Fragment>
             <Navbar color="dark" dark expand="md" className="navbar fixed-top">
                 <Link href="/">
-                    <NavLink className="font-weight-bold" style={{ cursor: 'pointer', color: 'black', fontSize: '1.5rem' }}>{APP_NAME}</NavLink>
+                    <NavLink className="font-weight-bold" style={{ cursor: 'pointer', color: 'black', fontSize: '1.5rem' }}>
+                        <img src="/images/blog.png" style={{width: '30px', paddingRight: '5px'}}/>
+                        {APP_NAME}
+                    </NavLink>
                 </Link>
 
                 <NavbarToggler className="collapsed position-relative" onClick={toggle} />
@@ -126,6 +151,8 @@ function Header(props) {
                                 </Link>
                             </NavItem>
 
+                            {showDashboard()}
+
                             <NavItem style={{ padding: '0', margin: '0 11px' }}>
                                 <Link href="/newsletter">
                                     <NavLink style={navLinkStyle}>
@@ -133,8 +160,6 @@ function Header(props) {
                                     </NavLink>
                                 </Link>
                             </NavItem>
-
-                            {showDashboard()}
 
                             <NavItem style={{ padding: '0', margin: '0 11px' }}>
                                 <Link href="/contact">
@@ -144,24 +169,7 @@ function Header(props) {
                                 </Link>
                             </NavItem>
 
-                            {!isAuth() && <React.Fragment>
-                                <NavItem style={{ padding: '0', margin: '0 11px' }}>
-                                    <Link href="/signin">
-                                        <NavLink style={navLinkStyle}>
-                                            Signin
-                                    </NavLink>
-                                    </Link>
-                                </NavItem>
-
-                                <NavItem style={{ padding: '0', margin: '0 11px' }}>
-                                    <Link href="/signup">
-                                        <NavLink style={navLinkStyle}>
-                                            Signup
-                                    </NavLink>
-                                    </Link>
-                                </NavItem>
-
-                            </React.Fragment>}
+                            {showSigninAndUp()}
 
 
                             {isAuth() && (

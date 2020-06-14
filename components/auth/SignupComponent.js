@@ -51,7 +51,10 @@ function SignUpComponent() {
             // 3.1. Call signup from actions/auth go make request to the server
             preSignup(user).then(data => {
                 if (data.error) {
-                    setValues({ ...values, error: data.error, loading: false });
+                    setValues({ ...values, error: data.error, loading: false, message: '' });
+
+                    toast.dismiss();
+                    toast.error(data.error);
                 } else {
                     setValues({
                         ...values,
@@ -59,10 +62,17 @@ function SignUpComponent() {
                         error: '', loading: false,
                         message: data.message, showForm: false
                     });
+                    toast.dismiss();
+                    toast.success(data.message);
                 }
+
             });
         }
         else {
+            console.log("Passwords do not match");
+
+            toast.dismiss();
+            toast.error("Passwords do not match");
             setValues({ ...values, error: "Passwords do not match" });
         }
 
@@ -130,9 +140,6 @@ function SignUpComponent() {
     return (
         <React.Fragment>
             <ToastContainer />
-            {toast.dismiss()}
-            {message && toast.success(message)}
-            {error && toast.error(error)}
 
             {showForm && signupForm()}
         </React.Fragment>

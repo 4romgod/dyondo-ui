@@ -206,9 +206,8 @@ function CreateBlog({ router }) {
 
     function publishBlog(event) {
         event.preventDefault();
-        //console.log("Ready to publish blog");
 
-        setValues({...values, loading: true});
+        setValues({...values, loading: true, error: false, success: false});
 
         createBlog(formData, token).then((data) => {
             if (data.error) {

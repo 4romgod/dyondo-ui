@@ -46,7 +46,7 @@ export function sendNodemailer(message) {
 
 
 export function newsletter(userData){
-    fetch(`${API}/newsletter`, {
+    return fetch(`${API}/newsletter`, {
         method: "POST",
         headers: {
             Accept: 'application/json',
