@@ -26,12 +26,10 @@ class MyDocument extends Document {
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
           <link rel="icon" type="image/png" href="/images/favicon.ico"/>
 
-
           <link
             rel="stylesheet"
             href="/bootstrap/bootstrap.min.css"
           />
-
 
           <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
 
@@ -39,7 +37,6 @@ class MyDocument extends Document {
           <link rel="stylesheet" href="/css/footer.css" />
           <link rel="stylesheet" href="/css/styles.css" />
           <link rel="stylesheet" href="/css/components.css" />
-          <link rel="stylesheet" href="/css/newsletter.css" />
 
           <script async src="https://www.googletagmanager.com/gtag/js?id=UA-168907858-1"></script>
           <script dangerouslySetInnerHTML={this.setGoogleTags()} />

@@ -8,29 +8,6 @@ import Card from '../../components/blog/Card';
 import { API, DOMAIN, APP_NAME, FB_APP_ID } from '../../config';
 
 
-//getInitialProps, enables ssr on first load
-Blogs.getInitialProps = () => {
-    let skip = 0;
-    let limit = 4;
-
-    return listBlogCatTag(skip, limit).then(data => {
-        if (data.error) {
-            console.log(data.error);
-        }
-        else {
-            return {
-                blogs: data.blogs,
-                categories: data.categories,
-                tags: data.tags,
-                totalBlogs: data.size,
-                blogsLimit: limit,
-                blogsSkip: skip
-            }
-        }
-    });
-}
-
-
 function Blogs({ blogs, categories, tags, totalBlogs, blogsLimit, blogsSkip, router }) {
 
     function head() {
@@ -122,7 +99,7 @@ function Blogs({ blogs, categories, tags, totalBlogs, blogsLimit, blogsSkip, rou
         return (
             (size > 0) && (size >= limit) && (
                 <div className="text-center pt-5 pb-5">
-                    <button className="btn btn-primary btn-lg" onClick={loadMore}>
+                    <button className="btn btn-success btn-lg" onClick={loadMore}>
                         Load more
                     </button>
                 </div>
@@ -226,6 +203,28 @@ function Blogs({ blogs, categories, tags, totalBlogs, blogsLimit, blogsSkip, rou
             </Layout>
         </React.Fragment>
     )
+}
+
+//getInitialProps, enables ssr on first load
+Blogs.getInitialProps = () => {
+    let skip = 0;
+    let limit = 4;
+
+    return listBlogCatTag(skip, limit).then(data => {
+        if (data.error) {
+            console.log(data.error);
+        }
+        else {
+            return {
+                blogs: data.blogs,
+                categories: data.categories,
+                tags: data.tags,
+                totalBlogs: data.size,
+                blogsLimit: limit,
+                blogsSkip: skip
+            }
+        }
+    });
 }
 
 export default withRouter(Blogs); 

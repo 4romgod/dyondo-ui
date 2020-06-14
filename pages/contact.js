@@ -1,8 +1,8 @@
 import Layout from "../components/Layout";
-import Link from "next/link";
 import Form from "../components/Form";
 
 function Index() {
+    
     return (
         <Layout>
             <div className="bg-white pb-5">

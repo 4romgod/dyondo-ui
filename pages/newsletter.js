@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import { newsletter } from "../actions/contact";
+import Head from 'next/head';
+import {  DOMAIN, APP_NAME, FB_APP_ID } from '../config';
+
 
 function Newsletter() {
     const [values, setValues] = useState({
@@ -11,6 +14,29 @@ function Newsletter() {
     });
 
     const { fullname, email, success, error, loading } = values;
+
+    function head() {
+        return <Head>
+            <title>Newletter | {APP_NAME}</title>
+            <meta name="description" />
+            <link rel="canonical" />
+            <meta property="og:title" content={`Newsletter | ${APP_NAME}`} />
+            <meta
+                property="og:description"
+                content="Newsletter" />
+
+            <meta property="og:type" content="website" />
+            <meta property="og:url" content={`${DOMAIN}/newsletter`} />
+            <meta property="og:site_name" content={`${APP_NAME}`} />
+
+            <meta property="og:image" content={`/images/blog.png`} />
+            <meta property="og:image:secure_url" content={`/images/blog.png`} />
+            <meta property="og:image:type" content="image/jpg" />
+            <meta property="fb:app_id" content={`${FB_APP_ID}`} />
+
+            <link rel="stylesheet" href="/css/newsletter.css" />
+        </Head>
+    }
 
     function handleChange(name) {
         return (event) => {
@@ -38,6 +64,7 @@ function Newsletter() {
 
     return (
         <React.Fragment>
+            {head()}
             <div className="newsletter-page">
 
                 <div className="container-newsletter">

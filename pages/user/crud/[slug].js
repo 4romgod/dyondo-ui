@@ -4,6 +4,7 @@ import BlogUpdate from "../../../components/crud/BlogUpdate";
 
 
 function Blog() {
+    
     return (
         <Layout>
             <Private>

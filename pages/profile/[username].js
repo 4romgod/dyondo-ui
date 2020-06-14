@@ -2,7 +2,6 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Layout from "../../components/Layout";
 import Form from "../../components/Form";
-import { useState, useEffect } from 'react';
 import { userPublicProfile } from "../../actions/user";
 import { API, DOMAIN, APP_NAME, FB_APP_ID } from '../../config';
 import moment from 'moment';

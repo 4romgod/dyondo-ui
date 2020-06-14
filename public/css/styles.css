@@ -1,18 +1,13 @@
 /*********************************** TAGS ***************************/
-
 body{
     font-family: "Open Sans";
 }
 
-h1,
-h2,
-h3,
-h4 {
+h1, h2, h3, h4 {
   font-family: sans-serif !important;
 }
 
-strong,
-b {
+strong, b {
   font-weight: bold;
 }
 
@@ -42,6 +37,7 @@ p, li {
     max-height: 500px;
     object-fit: cover;
 }
+
 
 /*********************************** BLOG BODY ***************************/
 .blog-body img {
@@ -79,32 +75,22 @@ p, li {
 }
 
 .container{max-width: 100% !important;}
-/*********************************** SMALL SCREENS ***************************/
 
-@media (max-width: 576px) {
+
+/*********************************** LARGEST SCREENS ***************************/
+@media (min-width: 992px) {
     .container {
-        max-width: 567px !important;
-        padding: 0;
+        max-width: 100% !important;
     }
-
-    .container-blog-component{
-        padding: 0 !important;
-    }
-
-    /**************** HOME ****************/
-    .heading-container img{
-        height: 90vh;
-    }
-    .heading-text {
-        top: 10%;
-        padding: 10px 20px;
-    }
-    .heading-text h1 {
-        font-size: 1.5rem;
-    }
-
 }
 
+
+/*********************************** LARGE SCREENS ***************************/
+@media (max-width: 992px) {
+    .container {
+        max-width: 992px !important;
+    }
+}
 
 
 /*********************************** MEDIUM SCREENS ***************************/
@@ -133,8 +119,27 @@ p, li {
 }
 
 
-@media (min-width: 992px) {
+/*********************************** SMALL SCREENS ***************************/
+@media (max-width: 576px) {
     .container {
-        max-width: 100% !important;
+        max-width: 567px !important;
+        padding: 0;
     }
+
+    .container-blog-component{
+        padding: 0 !important;
+    }
+
+    /**************** HOME ****************/
+    .heading-container img{
+        height: 90vh;
+    }
+    .heading-text {
+        top: 10%;
+        padding: 10px 20px;
+    }
+    .heading-text h1 {
+        font-size: 1.5rem;
+    }
+
 }

@@ -4,6 +4,7 @@ import BlogCreate from "../../../components/crud/BlogCreate";
 
 
 function CreateBlog() {
+    
     return (
         <Layout>
             <Private>

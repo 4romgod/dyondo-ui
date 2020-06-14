@@ -15,7 +15,6 @@ import DisqusThread from "../../components/DisqusThread";
 function SingleBlog({ blog, query }) {
     const [related, setRelated] = useState([]);
 
-    // fetch related
     function loadRelated() {
         listRelated({ blog }).then((data) => {
             if (data.error) {

@@ -1,8 +1,34 @@
 import Layout from '../components/Layout';
+import Head from 'next/head';
+import { DOMAIN, APP_NAME, FB_APP_ID } from '../config';
+
 
 const Index = () => {
+
+    function head() {
+        return <Head>
+            <title>Home | {APP_NAME}</title>
+            <meta name="description" />
+            <link rel="canonical" />
+            <meta property="og:title" content={`Home | ${APP_NAME}`} />
+            <meta
+                property="og:description"
+                content="Home" />
+
+            <meta property="og:type" content="website" />
+            <meta property="og:url" content={`${DOMAIN}`} />
+            <meta property="og:site_name" content={`${APP_NAME}`} />
+
+            <meta property="og:image" content={`/images/blog.png`} />
+            <meta property="og:image:secure_url" content={`/images/blog.png`} />
+            <meta property="og:image:type" content="image/jpg" />
+            <meta property="fb:app_id" content={`${FB_APP_ID}`} />
+        </Head>
+    }
+
     return (
         <Layout>
+            {head()}
             <article className="overflow-hidden pt-4 pb-0 bg-white">
 
                 <div className="container pl-0 pr-0 heading-container">
