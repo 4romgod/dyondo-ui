@@ -1,8 +1,23 @@
 
 .footer-one{
     background-color: #29a48b;
+    color: white;
     padding: 0 5%;
     border-bottom: 0.01rem solid rgb(158, 157, 157);
+}
+
+.footer-contact-container{
+    padding: 15px 0;
+}
+
+.footer-contact-container a {
+    color: white !important;
+}
+
+.footer-icon{
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
 }
 
 .footer-links{
@@ -12,7 +27,6 @@
 }
 
 .footer-links li{
-    float: left;
     padding: 0 15px;
 }
 
