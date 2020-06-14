@@ -184,7 +184,7 @@ function SingleBlog({ blog, query }) {
                             {/* share through */}
                             <div className="pt-3 pb-3 pl-3 pr-3" style={{ display: 'flex' }}>
                                 <FacebookShareButton
-                                    url={`www.google.com`}
+                                    url={`${DOMAIN}/${blog.slug}`}
                                     quote={`${blog.mdesc}`}
                                     hashtag={`${blog.tags}`}
                                 >
@@ -194,13 +194,12 @@ function SingleBlog({ blog, query }) {
                                 <TwitterShareButton
                                     title={`${blog.title} by ${blog.author.name}\n`}
                                     url={`${DOMAIN}/${blog.slug}`}
-                                    hashtag={`${blog.tags}`}
+                                    hashtag={`#hashtag`}
                                     //via={`${APP_NAME}`}
                                 >
                                     <TwitterIcon size={32}/>
                                 </TwitterShareButton>
                             </div>
-
 
                         </div>
 
