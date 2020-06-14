@@ -9,7 +9,7 @@ function AdminIndex() {
             <Admin>
                 <div className="bg-white">
 
-                    <div className="container pb-5">
+                    <div className="container pb-5 mb-5">
 
                         <div className="row ml-0 mr-0">
 

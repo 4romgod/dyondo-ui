@@ -9,7 +9,7 @@ function CategoryTag() {
             <Admin>
                 <div className="bg-white">
 
-                    <div className="container-fluid pb-5">
+                    <div className="container-fluid pb-5 mb-5">
 
                         <div className="row ml-0 mr-0">
 
