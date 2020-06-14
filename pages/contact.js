@@ -11,9 +11,13 @@ function Index() {
 
                 <div className="container">
                     <div className="row ml-0 mr-0">
-                        <div className="col-md-8 bg-white offset-md-2 shadow mt-3 pt-3 pb-5 pl-3 pr-3">
+                        <div className="col-md-3"></div>
+
+                        <div className="col-md-6 bg-white shadow mt-3 pt-3 pb-5 pl-3 pr-3">
                             <Form />
                         </div>
+                        
+                        <div className="col-md-3"></div>
 
                     </div>
                 </div>

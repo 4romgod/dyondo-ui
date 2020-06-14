@@ -1,0 +1,34 @@
+
+.footer-one{
+    background-color: #29a48b;
+    padding: 0 5%;
+    border-bottom: 0.01rem solid rgb(158, 157, 157);
+}
+
+.footer-links{
+    padding: 15px 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+.footer-links li{
+    float: left;
+    padding: 0 15px;
+}
+
+.footer-links li a{
+    color: white;
+}
+
+
+.footer-two{
+    background-color: #29a48b;
+    padding: 10px 5%;
+    font-size: 0.9rem;
+}
+
+.footer-two p{
+    color: white;
+    font-size: 0.9rem;
+    padding: 0 15px;
+}

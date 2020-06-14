@@ -187,7 +187,7 @@ function Header(props) {
                                         <a href={`/admin/crud/blog`}
                                             style={navLinkStyle}
                                         >
-                                            <p className="btn btn-success pl-4 pr-4 write-blog">
+                                            <p className="btn btn-outline-success pl-4 pr-4 write-blog">
                                                 <strong>Write a blog</strong>
                                             </p>
                                         </a>
@@ -198,7 +198,7 @@ function Header(props) {
                                         <a href={`/signup`}
                                             style={navLinkStyle}
                                         >
-                                            <p className="btn btn-success pl-4 pr-4 write-blog">
+                                            <p className="btn btn-outline-success pl-4 pr-4 write-blog">
                                                 <strong>Write a blog</strong>
                                             </p>
                                         </a>

@@ -43,3 +43,20 @@ export function sendNodemailer(message) {
         })
         .catch(err => console.log(err));
 };
+
+
+export function newsletter(userData){
+    fetch(`${API}/newsletter`, {
+        method: "POST",
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(userData)
+    })
+    .then(response =>{
+        return response.json();
+    })
+    .catch(err => console.log(err));
+
+}

@@ -36,8 +36,10 @@ class MyDocument extends Document {
           <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
 
           <link rel="stylesheet" href="/css/nav.css" />
+          <link rel="stylesheet" href="/css/footer.css" />
           <link rel="stylesheet" href="/css/styles.css" />
           <link rel="stylesheet" href="/css/components.css" />
+          <link rel="stylesheet" href="/css/newsletter.css" />
 
           <script async src="https://www.googletagmanager.com/gtag/js?id=UA-168907858-1"></script>
           <script dangerouslySetInnerHTML={this.setGoogleTags()} />

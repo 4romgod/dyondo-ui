@@ -1,8 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { sendNodemailer } from '../actions/contact';
-
-import axios from "axios";
-
 
 function Form({ authorEmail }) {
     const [values, setValues] = useState({
@@ -40,7 +37,6 @@ function Form({ authorEmail }) {
         sendNodemailer({email, name, message})
             .then(response=>{
                 console.log(response);
-                
             })
 
 

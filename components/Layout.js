@@ -2,6 +2,7 @@ import Header from "./Header";
 
 import { useState } from "react";
 import Search from '../components/blog/Search';
+import Footer from "./Footer";
 
 
 const Layout = (props) => {
@@ -27,6 +28,10 @@ const Layout = (props) => {
                     {props.children}
                 </div>
 
+            </div>
+
+            <div>
+                <Footer />
             </div>
 
         </React.Fragment>

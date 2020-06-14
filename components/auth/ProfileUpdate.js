@@ -73,14 +73,18 @@ function ProfileUpdate() {
                 if ((name === 'username') || (name === 'name')) {
                     value = event.target.value;
                     const textSize = value ? value.length : 0;
-                    
+
                     if (textSize > 32) {
                         setValues({ ...values, error: `${name} should be less than 32 characters` })
                     }
                     else {
                         userData.set(name, value);
                         setValues({ ...values, [name]: value, userData, error: false, success: false });
+                        console.log(username_for_photo);
+                        console.log(username);
                     }
+
+
                 }
             }
 
@@ -112,7 +116,7 @@ function ProfileUpdate() {
                     });
                 });
 
-                Router.push(`/profile/${username}`);
+                Router.push(`/profile/[username]`, `/profile/${username}`);
             }
 
         });
@@ -133,12 +137,12 @@ function ProfileUpdate() {
 
             <div className="form-group">
                 <label className="text-muted">Username</label>
-                <input onChange={handleChange('username')} type="text" value={username} className="form-control" required maxlength="32" />
+                <input onChange={handleChange('username')} type="text" value={username} className="form-control" required maxLength="32" />
             </div>
 
             <div className="form-group">
                 <label className="text-muted">Name</label>
-                <input onChange={handleChange('name')} type="text" value={name} className="form-control" required maxlength="32" />
+                <input onChange={handleChange('name')} type="text" value={name} className="form-control" required maxLength="32" />
             </div>
 
             <div className="form-group">
