@@ -98,7 +98,7 @@ function Header(props) {
                                 <div id="write-blog-phone">
                                     {isAuth() &&
                                         (isAuth().role === 0) ?
-                                        <NavItem style={{ padding: '0', margin: '0 13px' }}>
+                                        <NavItem style={{ padding: '0', margin: '0 11px' }}>
                                             <a href={`/user/crud/blog`}
                                                 style={navLinkStyle}
                                             >
@@ -106,7 +106,7 @@ function Header(props) {
                                         </a>
                                         </NavItem>
                                         :
-                                        <NavItem style={{ padding: '0', margin: '0 13px' }}>
+                                        <NavItem style={{ padding: '0', margin: '0 11px' }}>
                                             <a href={`/admin/crud/blog`}
                                                 style={navLinkStyle}
                                             >
@@ -118,7 +118,7 @@ function Header(props) {
                             </React.Fragment>
 
 
-                            <NavItem style={{ padding: '0', margin: '0 13px' }}>
+                            <NavItem style={{ padding: '0', margin: '0 11px' }}>
                                 <Link href="/blogs">
                                     <NavLink style={navLinkStyle}>
                                         Tutorials
@@ -126,9 +126,17 @@ function Header(props) {
                                 </Link>
                             </NavItem>
 
+                            <NavItem style={{ padding: '0', margin: '0 11px' }}>
+                                <Link href="/newsletter">
+                                    <NavLink style={navLinkStyle}>
+                                        Newsletter
+                                    </NavLink>
+                                </Link>
+                            </NavItem>
+
                             {showDashboard()}
 
-                            <NavItem style={{ padding: '0', margin: '0 13px' }}>
+                            <NavItem style={{ padding: '0', margin: '0 11px' }}>
                                 <Link href="/contact">
                                     <NavLink style={navLinkStyle}>
                                         Contact
@@ -137,7 +145,7 @@ function Header(props) {
                             </NavItem>
 
                             {!isAuth() && <React.Fragment>
-                                <NavItem style={{ padding: '0', margin: '0 13px' }}>
+                                <NavItem style={{ padding: '0', margin: '0 11px' }}>
                                     <Link href="/signin">
                                         <NavLink style={navLinkStyle}>
                                             Signin
@@ -145,7 +153,7 @@ function Header(props) {
                                     </Link>
                                 </NavItem>
 
-                                <NavItem style={{ padding: '0', margin: '0 13px' }}>
+                                <NavItem style={{ padding: '0', margin: '0 11px' }}>
                                     <Link href="/signup">
                                         <NavLink style={navLinkStyle}>
                                             Signup
@@ -158,7 +166,7 @@ function Header(props) {
 
                             {isAuth() && (
                                 <React.Fragment>
-                                    <NavItem style={{ padding: '0', margin: '0 13px' }}>
+                                    <NavItem style={{ padding: '0', margin: '0 11px' }}>
                                         <NavLink
                                             onClick={handleSignout}
                                             style={navLinkStyle}
@@ -172,33 +180,33 @@ function Header(props) {
                             {/* write blog on big screen size */}
                             <React.Fragment>
                                 {isAuth() && isAuth().role === 0 &&
-                                    <NavItem style={{ padding: '0', margin: '0 13px' }}>
+                                    <NavItem style={{ padding: '0', margin: '0 11px' }}>
                                         <a href={`/user/crud/blog`}
                                             style={navLinkStyle}
                                         >
-                                            <p className="btn btn-success pl-4 pr-4 write-blog">
+                                            <p className="btn btn-success pl-3 pr-3 write-blog">
                                                 <strong>Write a blog</strong>
                                             </p>
                                         </a>
                                     </NavItem>}
 
                                 {isAuth() && isAuth().role === 1 &&
-                                    <NavItem style={{ padding: '0', margin: '0 13px' }}>
+                                    <NavItem style={{ padding: '0', margin: '0 11px' }}>
                                         <a href={`/admin/crud/blog`}
                                             style={navLinkStyle}
                                         >
-                                            <p className="btn btn-outline-success pl-4 pr-4 write-blog">
+                                            <p className="btn btn-outline-success pl-3 pr-3 write-blog">
                                                 <strong>Write a blog</strong>
                                             </p>
                                         </a>
                                     </NavItem>}
 
                                 {!isAuth() &&
-                                    <NavItem style={{ padding: '0', margin: '0 13px' }}>
+                                    <NavItem style={{ padding: '0', margin: '0 11px' }}>
                                         <a href={`/signup`}
                                             style={navLinkStyle}
                                         >
-                                            <p className="btn btn-outline-success pl-4 pr-4 write-blog">
+                                            <p className="btn btn-outline-success pl-3 pr-3 write-blog">
                                                 <strong>Write a blog</strong>
                                             </p>
                                         </a>

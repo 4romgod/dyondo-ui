@@ -39,12 +39,6 @@ function Footer() {
                         <div className="col-md-4">
                             <ul className="footer-links">
                                 <li>
-                                    <Link href={`/privacyPolicy`}>
-                                        <a>Privacy Policy</a>
-                                    </Link>
-                                </li>
-
-                                <li>
                                     <Link href={`/newsletter`}>
                                         <a>Newsletter</a>
                                     </Link>
@@ -52,7 +46,7 @@ function Footer() {
 
                                 <li>
                                     <Link href={`/contact`}>
-                                        <a>Contact</a>
+                                        <a>Contact Me</a>
                                     </Link>
                                 </li>
 
@@ -65,8 +59,16 @@ function Footer() {
                         </div>
 
                         <div className="col-md-4">
-                            
+                            <ul className="footer-links">
+                                <li>
+                                    <Link href={`/privacyPolicy`}>
+                                        <a>Privacy Policy</a>
+                                    </Link>
+                                </li>
+
+                            </ul>
                         </div>
+
                     </div>
                 </div>
 

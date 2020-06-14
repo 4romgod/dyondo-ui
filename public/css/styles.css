@@ -24,13 +24,16 @@ p, li {
 }
 
 .shadow {
-    box-shadow: 0 0 1px 1px rgba(20, 23, 28, .1), 0 3px 1px 0 rgba(20, 23, 28, .1);
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.shadow:hover{
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
 .ql-editor {
     min-height: 300px;
 }
-
 
 .featured-image {
     width: 100%;
@@ -76,11 +79,18 @@ p, li {
 
 .container{max-width: 100% !important;}
 
+.privacy-policy-page{
+    margin: 0 auto;
+}
 
 /*********************************** LARGEST SCREENS ***************************/
 @media (min-width: 992px) {
     .container {
         max-width: 100% !important;
+    }
+
+    .privacy-policy-page{
+        max-width: 68% !important;
     }
 }
 
@@ -89,6 +99,10 @@ p, li {
 @media (max-width: 992px) {
     .container {
         max-width: 992px !important;
+    }
+
+    .privacy-policy-page{
+        max-width: 70% !important;
     }
 }
 
@@ -116,6 +130,10 @@ p, li {
     .container-cat{
         padding: 0 !important;
     }
+
+    .privacy-policy-page{
+        max-width: 80% !important;
+    }
 }
 
 
@@ -142,4 +160,7 @@ p, li {
         font-size: 1.5rem;
     }
 
+    .privacy-policy-page{
+        max-width: 94% !important;
+    }
 }

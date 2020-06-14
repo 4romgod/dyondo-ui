@@ -135,12 +135,10 @@
   transform: scale(0);
 }
 
-
 .width-overflow{
   width: 100%;
   overflow-x: auto;
 }
-
 
 /*********************************** OTHERS ***************************/
 a:hover {
