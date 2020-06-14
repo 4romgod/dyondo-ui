@@ -5,7 +5,7 @@ import Router from 'next/router';
 import { DOMAIN, APP_NAME, FB_APP_ID } from '../config';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import Header from "../components/Header";
 
 toast.configure();
 function Newsletter() {
@@ -82,21 +82,25 @@ function Newsletter() {
 
     return (
         <React.Fragment>
+
+            <Header />
             {head()}
 
             <ToastContainer />
 
-            <div className="newsletter-page">
+            <div className="newsletter-page mt-5">
 
                 <div className="container-newsletter">
                     <div className="container-header text-center">
-                        <h3>AZBLOGS NEWSLETTER</h3>
-                        <p className="">Programming, Web Development, and Much more</p>
+                        <h4 style={{color: 'rgb(77,77,77)', fontWeight: 'bold'}}>Azblogs Newsletter</h4>
+                        <p className="pt-2">Programming, Web Development, and Much more</p>
                     </div>
 
                     <div className="container-form">
                         <div className="text-center">
-                            <p>Join the community and receive monthly newsletters as well as exclusive content that will help improve your skills as a developer!</p>
+                            <p style={{color: 'rgb(77,77,77)'}}>
+                            Join the community and receive monthly newsletters as well as exclusive content that will help improve your skills as a developer!
+                            </p>
                         </div>
 
                         <div>

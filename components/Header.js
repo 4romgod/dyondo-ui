@@ -112,10 +112,13 @@ function Header(props) {
                     </NavLink>
                 </Link>
 
-                <NavbarToggler className="collapsed position-relative" onClick={toggle} />
+                <NavbarToggler className="collapsed position-relative" onClick={toggle} >
+                    {isOpen && <img src="/images/close.svg" style={{width: '20px'}} />}
+                </NavbarToggler>
 
                 <Collapse isOpen={isOpen} navbar>
-                    <Nav className="ml-auto" navbar>
+                
+                    <Nav className="ml-auto" navbar onClick={()=>setIsOpen(false)}>
                         <React.Fragment>
 
                             {/* write blog on phone screen size */}
@@ -203,7 +206,7 @@ function Header(props) {
                                         <a href={`/admin/crud/blog`}
                                             style={navLinkStyle}
                                         >
-                                            <p className="btn btn-outline-success pl-3 pr-3 write-blog">
+                                            <p className="btn btn-outline-success pl-3 pr-3 write-blog" onClick={()=>setIsOpen(false)}>
                                                 <strong>Write a blog</strong>
                                             </p>
                                         </a>
