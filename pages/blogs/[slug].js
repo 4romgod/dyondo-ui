@@ -11,6 +11,12 @@ import moment from 'moment';
 import SmallCard from "../../components/blog/SmallCard";
 import DisqusThread from "../../components/DisqusThread";
 
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+// import { faCoffee } from '@fortawesome/free-solid-svg-icons'
+// import { faTwitter, faFacebookSquare, faLinkedin } from '@fortawesome/free-brands-svg-icons'
+
+import { FacebookIcon, TwitterIcon, FacebookShareButton, TwitterShareButton } from 'react-share';
+
 
 function SingleBlog({ blog, query }) {
     const [related, setRelated] = useState([]);
@@ -58,7 +64,7 @@ function SingleBlog({ blog, query }) {
         function showCat(cat, index) {
             return (
                 <Link key={index} href={`/categories/[slug]`} as={`/categories/${cat.slug}`}>
-                    <a className="btn btn-outline-info btn-lg btn-sq ml-1 mr-1 mt-3">{cat.name}</a>
+                    <a className="btn btn-outline-info btn-sm btn-sq ml-1 mr-1 mt-3">{cat.name}</a>
                 </Link>
             )
         }
@@ -69,7 +75,7 @@ function SingleBlog({ blog, query }) {
         function showTag(tag, index) {
             return (
                 <Link key={index} href={`/tags/[slug]`} as={`/tags/${tag.slug}`}>
-                    <a className="btn btn-outline-info btn-lg btn-sq ml-1 mr-1 mt-3">{`#${tag.name}`}</a>
+                    <a className="btn btn-outline-info btn-sm btn-sq ml-1 mr-1 mt-3">{`#${tag.name}`}</a>
                 </Link>
             )
         }
@@ -161,24 +167,48 @@ function SingleBlog({ blog, query }) {
 
                         {/** display blog author and body  */}
                         <div className="col-md-8 pl-0 pr-0">
-                            <div className=" bg-white mt-5 pb-5 pl-3 pr-3">
 
-                                {/** display blog body  */}
+                            {/** display blog body  */}
+                            <div className=" bg-white pb-3 pl-3 pr-3">
                                 <div className="lead blog-body" style={{ width: '100%', overflow: 'auto' }}>
                                     {renderHTML(blog.body)}
                                 </div>
                             </div>
 
                             {/** display categories and tags */}
-                            <div className="mt-3 pb-3">
+                            <div className="pb-3 pl-3 pr-3">
                                 {showBlogCategories(blog)}
                                 {showBlogTags(blog)}
                             </div>
+
+                            {/* share through */}
+                            <div className="pt-3 pb-3 pl-3 pr-3" style={{ display: 'flex' }}>
+                                <FacebookShareButton
+                                    url={`www.google.com`}
+                                    quote={`${blog.mdesc}`}
+                                    hashtag={`${blog.tags}`}
+                                >
+                                    <FacebookIcon size={32}/>
+                                </FacebookShareButton>
+
+                                <TwitterShareButton
+                                    title={`${blog.title} by ${blog.author.name}\n`}
+                                    url={`${DOMAIN}/${blog.slug}`}
+                                    hashtag={`${blog.tags}`}
+                                    //via={`${APP_NAME}`}
+                                >
+                                    <TwitterIcon size={32}/>
+                                </TwitterShareButton>
+                            </div>
+
 
                         </div>
 
                         <div className="col-md-2"></div>
                     </div>
+
+
+
 
                     {/** display related blogs */}
                     <div className="container pb-3 mt-5">
