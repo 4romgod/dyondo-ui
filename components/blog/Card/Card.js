@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import renderHTML from 'react-render-html';
 import moment from 'moment';
-import { API } from "../../config";
-
+import { API } from "../../../config";
+import "./card.css";
 
 function Card({ blog }) {
 
@@ -31,7 +31,7 @@ function Card({ blog }) {
 
     return (
 
-        <div className="pb-4 pl-4 pr-3 mb-4 bg-white shadow">
+        <div className="pb-4 pl-3 pr-3 mb-4 bg-white shadow container-card">
 
             {/** holds categories and tags */}
             {/* <section>
@@ -44,7 +44,7 @@ function Card({ blog }) {
             <div className="row">
 
                 {/** holds the image */}
-                <div className="col-md-3 pt-2 mt-3 container-image">
+                <div className="col-sm-4 pl-0 pr-0 mt-3 container-image">
                     <Link href={`/blogs/[slug]`} as={`/blogs/${blog.slug}`}>
                         <a>
                             <img
@@ -63,7 +63,7 @@ function Card({ blog }) {
                     </Link>
                 </div>
 
-                <div className="col-md-9">
+                <div className="col-sm-8">
                     {/** holds the title */}
                     <Link href={`/blogs/[slug]`} as={`/blogs/${blog.slug}`}>
                         <a style={{ cursor: 'pointer'}}>
@@ -76,12 +76,11 @@ function Card({ blog }) {
                     {/** holds the author and date */}
                     <section className="mt-3 mb-3">
                         <div style={{ display: 'flex' }}>
-                            <div style={{ width: '50px'}}>
+                            <div className="container-author-img">
                                 <img
                                     src={`${API}/user/photo/${blog.author.username}`}
                                     alt={blog.title}
                                     className="img img-fluid featured"
-                                    style={{ width: '50px', height: '50px', borderRadius: '50%', border: '1px solid #eee'}}
                                 />
                             </div>
 
@@ -98,7 +97,7 @@ function Card({ blog }) {
                     </section>
 
                     {/** holds the excerpt */}
-                    <section className="width-overflow">
+                    <section className="width-overflow container-excerpt">
                         {renderHTML(blog.excerpt)}
                         {/* <Link href={`/blogs/${blog.slug}`}>
                                 <a className="btn btn-primary mt-2">Read more</a>

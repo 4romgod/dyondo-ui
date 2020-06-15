@@ -85,7 +85,7 @@ function SingleBlog({ blog, query }) {
     function showRelatedBlogs() {
         function createRelated(blog, index) {
             return (
-                <div className="col-md-4" key={index}>
+                <div className="col-md-4 pl-3 pr-3" key={index}>
                     <article>
                         <SmallCard blog={blog} />
                     </article>

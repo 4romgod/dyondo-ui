@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Layout from "../../components/Layout";
 import { singleTag } from "../../actions/tag";
-import Card from "../../components/blog/Card";
+import SmallCard from "../../components/blog/SmallCard";
 import { API, DOMAIN, APP_NAME, FB_APP_ID } from '../../config';
 
 
@@ -36,19 +36,21 @@ function Tag({ tag, blogs, query }) {
                     <div className="bg-white">
                         <div className="container pt-3">
                             <header>
-                                <div className="col-md-12 pb-5 text-center">
-                                    <div className="card border-0 bg-white pt-3 pb-3 pl-5 pr-5">
-                                        <h1>Available Tutorials on {tag.name}</h1>
+                                <div className="row ml-0 mr-0">
+                                    <div className="col-md-12 pb-5 text-center">
+                                        <div className="card border-0 bg-white pt-3 pb-3 pl-5 pr-5">
+                                            <h1>Available Tutorials on {tag.name}</h1>
+                                        </div>
                                     </div>
                                 </div>
                             </header>
 
                             {/* blogs to match tag */}
-                            <div className="col-md-12">
+                            <div className="row ml-0 mr-0">
                                 {blogs.map((blog, index) => {
                                     return (
-                                        <div key={index}>
-                                            <Card blog={blog} />
+                                        <div className="col-md-4" key={index}>
+                                            <SmallCard blog={blog} />
                                         </div>)
                                 })}
                             </div>

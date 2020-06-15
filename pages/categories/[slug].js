@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Layout from "../../components/Layout";
 import { singleCategory } from "../../actions/category";
-import Card from "../../components/blog/Card";
+import SmallCard from "../../components/blog/SmallCard";
 import { API, DOMAIN, APP_NAME, FB_APP_ID } from '../../config';
 
 
@@ -47,11 +47,11 @@ function Category({ category, blogs, query }) {
                             </header>
 
                             {/* blogs to match category */}
-                            <div className="col-md-12">
+                            <div className="row ml-0 mr-0">
                                 {blogs.map((blog, index) => {
                                     return (
-                                        <div key={index}>
-                                            <Card blog={blog} />
+                                        <div className="col-md-4" key={index}>
+                                            <SmallCard blog={blog} />
                                         </div>)
                                 })}
                             </div>
