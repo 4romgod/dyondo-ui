@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Layout from "../../components/Layout";
 import { singleTag } from "../../actions/tag";
-import SmallCard from "../../components/blog/SmallCard";
+import SmallCard from "../../components/blog/SmallCard/SmallCard";
 import { API, DOMAIN, APP_NAME, FB_APP_ID } from '../../config';
 
 

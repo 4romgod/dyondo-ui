@@ -8,7 +8,7 @@ import { singleBlog, listRelated } from "../../actions/blog";
 import { API, DOMAIN, APP_NAME, FB_APP_ID } from '../../config';
 import renderHTML from 'react-render-html';
 import moment from 'moment';
-import SmallCard from "../../components/blog/SmallCard";
+import SmallCard from "../../components/blog/SmallCard/SmallCard";
 import DisqusThread from "../../components/DisqusThread";
 
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -212,8 +212,6 @@ function SingleBlog({ blog, query }) {
 
                         <div className="col-md-2"></div>
                     </div>
-
-
 
 
                     {/** display related blogs */}
