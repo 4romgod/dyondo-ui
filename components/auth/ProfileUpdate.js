@@ -85,6 +85,11 @@ function ProfileUpdate() {
 
 
                 }
+                else if (name === 'about') {
+                    value = event.target.value;
+                    userData.set(name, value);
+                    setValues({ ...values, [name]: value, userData, error: false, success: false });
+                }
             }
 
         }
@@ -115,7 +120,12 @@ function ProfileUpdate() {
                     });
                 });
 
-                Router.push(`/profile/[username]`, `/profile/${username}`);
+                if (isAuth().role === 0) {
+                    Router.push(`/user`);
+                }
+                else if (isAuth().role === 1) {
+                    Router.push(`/admin`);
+                }
             }
 
         });

@@ -1,27 +1,28 @@
 import Link from 'next/link';
 import renderHTML from 'react-render-html';
 import moment from 'moment';
+import Author from "../../Author/Author";
 import { API } from "../../../config";
 import "./card.css";
 
 function Card({ blog }) {
 
-    function showBlogCategories(blog) {
+    function showBlogCategories() {
         function showCat(cat, index) {
             return (
                 <Link key={index} href={`/categories/[slug]`} as={`/categories/${cat.slug}`}>
-                    <a className="btn btn-primary ml-1 mr-1 mt-3">{cat.name}</a>
+                    <a className="btn btn-outline-info btn-sm ml-1 mr-1 mt-3">{cat.name}</a>
                 </Link>
             )
         }
         return blog.categories.map(showCat);
     }
 
-    function showBlogTags(blog) {
+    function showBlogTags() {
         function showTag(tag, index) {
             return (
                 <Link key={index} href={`/tags/[slug]`} as={`/tags/${tag.slug}`}>
-                    <a className="btn btn-outline-primary ml-1 mr-1 mt-3">{tag.name}</a>
+                    <a className="btn btn-outline-info btn-sm ml-1 mr-1 mt-3">#{tag.name}</a>
                 </Link>
             )
         }
@@ -30,15 +31,7 @@ function Card({ blog }) {
 
 
     return (
-
         <div className="pb-4 pl-3 pr-3 mb-4 bg-white shadow container-card">
-
-            {/** holds categories and tags */}
-            {/* <section>
-                    {showBlogCategories(blog)}
-                    {showBlogTags(blog)}
-                    <br /><br />
-                </section> */}
 
             {/** holds all the content */}
             <div className="row">
@@ -75,34 +68,15 @@ function Card({ blog }) {
 
                     {/** holds the author and date */}
                     <section className="mt-3 mb-3">
-                        <div style={{ display: 'flex' }}>
-                            <div className="container-author-img">
-                                <img
-                                    src={`${API}/user/photo/${blog.author.username}`}
-                                    alt={blog.title}
-                                    className="img img-fluid featured"
-                                />
-                            </div>
-
-                            <div className="ml-3 width-overflow">
-                                <p>
-                                    <Link href={`/profile/[username]`} as={`/profile/${blog.author.username}`} >
-                                        <a>{blog.author.username}</a>
-                                    </Link>
-                                    {' | '}
-                                    {moment(blog.updatedAt).fromNow()}
-                                </p>
-                            </div>
-                        </div>
+                        <Author blog={blog} />
                     </section>
 
-                    {/** holds the excerpt */}
-                    <section className="width-overflow container-excerpt">
+                    {/* <section className="width-overflow container-excerpt">
                         {renderHTML(blog.excerpt)}
-                        {/* <Link href={`/blogs/${blog.slug}`}>
-                                <a className="btn btn-primary mt-2">Read more</a>
-                            </Link> */}
-                    </section>
+                    </section> */}
+
+                    {showBlogCategories()}
+                    {showBlogTags()}
 
                 </div>
 

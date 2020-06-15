@@ -1,7 +1,40 @@
 import Layout from "../../components/Layout";
-import Private from "../../components/auth/Private";
+import Private from "../../components/auth/Private";import Link from "next/link";
+import { getCookie } from "../../actions/auth";
+import { getProfile } from "../../actions/user";
+
+import {API} from "../../config";
+
+import {useEffect, useState } from "react";
 
 function UserIndex() {
+    const [values, setValues] = useState({
+        name: '',
+        username:'',
+        about: '',
+ 
+        error: '',
+        loading: ''
+     });
+ 
+     const {username, name, about, error, loading} = values;
+     const token = getCookie('token');
+ 
+     function initUser() {
+         getProfile(token).then(data => {
+             if (data.error) {
+                 setValues({ ...values, error: data.error, loading: false });
+             }
+             else {
+                 setValues({ ...values, username: data.username, name: data.name, about: data.about, loading: false });
+             }
+         });
+     }
+ 
+     useEffect(()=>{
+         initUser();
+     }, []);
+     
     return (
         <Layout>
             <Private>
@@ -50,9 +83,35 @@ function UserIndex() {
                                 </ul>
                             </div>
 
-                            <div className="col-md-8 shadow bg-white" >
-                                right
-                        </div>
+                            <div className="col-md-8">
+                                <div className="shadow pt-4 pb-5 pr-3">
+                                    <div className="row ml-0 mr-0">
+                                        <div className="col-md-3">
+                                            <img
+                                                src={`${API}/user/photo/${username}`}
+                                                alt="profile photo"
+                                                style={{ maxWidth: '100%', height: 'auto' }}
+                                            />
+                                        </div>
+
+                                        <div className="col-md-9">
+                                            <div className="pt-2">
+                                                <h4>{name}</h4>
+                                            </div>
+                                            <div>
+                                                <p>{about}</p>
+                                            </div>
+                                            <div>
+                                                <Link href={`/user/update`}>
+                                                    <a className="btn btn-outline-success btn-sm">update profile</a>
+                                                </Link>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
 
                         </div>
 

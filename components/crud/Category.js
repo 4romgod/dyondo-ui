@@ -1,6 +1,4 @@
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import Router from 'next/router';
 import { isAuth, getCookie } from '../../actions/auth';
 import { create, getCategories, removeCategory } from '../../actions/category';
 
@@ -49,7 +47,7 @@ function Category() {
                     key={index}
                     onDoubleClick={() => deleteConfirm(cat.slug)}    // arrow func for passing slug
                     title="Double click to delete"
-                    className="btn btn-outline-info btn-lg btn-sq mr-1 ml-1 mt-3"
+                    className="btn btn-outline-info btn-sq mr-1 ml-1 mt-3"
                 >
                     {cat.name}
                 </button>)
@@ -81,9 +79,7 @@ function Category() {
 
     function handleSubmit(event) {
         event.preventDefault();
-        //console.log('create category', name);
 
-        // POST request to the backend api
         create({ name }, token).then(function (data) {
             if (data.error) {
                 setValues({ ...values, error: data.error, success: false });

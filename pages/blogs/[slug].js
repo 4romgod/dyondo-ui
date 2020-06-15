@@ -7,8 +7,8 @@ import { singleBlog, listRelated } from "../../actions/blog";
 
 import { API, DOMAIN, APP_NAME, FB_APP_ID } from '../../config';
 import renderHTML from 'react-render-html';
-import moment from 'moment';
 import SmallCard from "../../components/blog/SmallCard/SmallCard";
+import Author from "../../components/Author/Author";
 import DisqusThread from "../../components/DisqusThread";
 
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -123,26 +123,7 @@ function SingleBlog({ blog, query }) {
                                     </h4>
                                 </div>
 
-                                <div style={{ display: 'flex' }}>
-                                    <div>
-                                        <img
-                                            src={`${API}/user/photo/${blog.author.username}`}
-                                            alt={blog.title}
-                                            className="img img-fluid featured"
-                                            style={{ borderRadius: '100%', width: '50px', height: '50px' }}
-                                        />
-                                    </div>
-
-                                    <div className="ml-3">
-                                        <p>
-                                            <Link href={`/profile/[username]`} as={`/profile/${blog.author.username}`}>
-                                                <a>{blog.author.username}</a>
-                                            </Link>
-                                            {' | '}
-                                            {moment(blog.updatedAt).fromNow()}
-                                        </p>
-                                    </div>
-                                </div>
+                                <Author blog={blog} />
 
                             </div>
                         </div>
@@ -150,10 +131,8 @@ function SingleBlog({ blog, query }) {
                         <div className="col-md-2"></div>
                     </div>
 
-                    {/** holds the image */}
                     <div className="row ml-0 mr-0">
                         <div className="col-md-1"></div>
-
                         <div className="col-md-10 pl-0 pr-0">
                             <img
                                 src={`${API}/blog/photo/${blog.slug}`}
@@ -161,34 +140,26 @@ function SingleBlog({ blog, query }) {
                                 className="img img-fluid featured-image"
                             />
                         </div>
-
                         <div className="col-md-1"></div>
-
                     </div>
 
 
-                    {/** display main content*/}
                     <div className="row ml-0 mr-0">
-
                         <div className="col-md-2"></div>
 
-                        {/** display blog author and body  */}
                         <div className="col-md-8 pl-0 pr-0">
 
-                            {/** display blog body  */}
                             <div className=" bg-white mt-4 pb-3 pl-3 pr-3">
                                 <div className="lead blog-body" style={{ width: '100%', overflow: 'auto' }}>
                                     {renderHTML(blog.body)}
                                 </div>
                             </div>
 
-                            {/** display categories and tags */}
                             <div className="pb-3 pl-3 pr-3">
                                 {showBlogCategories(blog)}
                                 {showBlogTags(blog)}
                             </div>
 
-                            {/* share through */}
                             <div className="pt-3 pb-3 pl-3 pr-3" style={{ display: 'flex' }}>
                                 <FacebookShareButton
                                     url={`${DOMAIN}/${blog.slug}`}
@@ -207,6 +178,8 @@ function SingleBlog({ blog, query }) {
                                     <TwitterIcon size={32} />
                                 </TwitterShareButton>
                             </div>
+
+                            <hr />
 
                         </div>
 

@@ -49,7 +49,7 @@ function Tag() {
                     key={index}
                     onDoubleClick={() => deleteConfirm(tag.slug)}    // arrow func for passing slug
                     title="Double click to delete"
-                    className="btn btn-outline-info btn-lg btn-sq mr-1 ml-1 mt-3"
+                    className="btn btn-outline-info btn-sq mr-1 ml-1 mt-3"
                 >
                     {tag.name}
                 </button>)
