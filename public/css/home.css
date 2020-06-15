@@ -1,0 +1,39 @@
+.home-featured-img {
+    background-color: #eee;
+    background-image: url('/images/coding monkey.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 90vh;
+    width: 100%;
+    margin: 0;
+}
+
+.heading-container {
+    position: relative;
+}
+
+.heading-text {
+    color: white;
+    position: absolute;
+    top: 35%;
+    padding: 10px 20px;
+    width: 100%;
+}
+
+.heading-text h1 {
+    font-size: 3rem;
+}
+
+
+@media only screen and (max-width: 576px) {
+
+    .heading-text {
+        top: 20%;
+        padding: 10px 20px;
+    }
+
+    .heading-text h1 {
+        font-size: 1.5rem;
+    }
+}

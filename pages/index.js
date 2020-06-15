@@ -23,6 +23,9 @@ const Index = () => {
             <meta property="og:image:secure_url" content={`/images/blog.png`} />
             <meta property="og:image:type" content="image/jpg" />
             <meta property="fb:app_id" content={`${FB_APP_ID}`} />
+
+            <link rel="stylesheet" href="/css/home.css" />
+
         </Head>
     }
 
@@ -34,11 +37,7 @@ const Index = () => {
                 <div className="container pl-0 pr-0 heading-container">
                     <div className="row ml-0 mr-0">
                         <div className="col-md-12 pl-0 pr-0 text-center">
-                            <img
-                                src={`/images/coding monkey.jpg`}
-                                alt="coding monkey"
-                                className="img img-fluid featured-image heading-img"
-                            />
+                            <p className="home-featured-img"></p>
 
                             <div className="heading-text">
                                 <h1 className="font-weight-bold" style={{ color: 'white' }}>

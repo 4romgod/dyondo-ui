@@ -57,6 +57,9 @@ function SingleBlog({ blog, query }) {
             <meta property="og:image:secure_url" content={`${API}/blog/photo/${blog.slug}`} />
             <meta property="og:image:type" content="image/jpg" />
             <meta property="fb:app_id" content={`${FB_APP_ID}`} />
+
+            <link rel="stylesheet" href="/css/blog.css" />
+
         </Head>
     }
 
@@ -134,10 +137,10 @@ function SingleBlog({ blog, query }) {
                     <div className="row ml-0 mr-0">
                         <div className="col-md-1"></div>
                         <div className="col-md-10 pl-0 pr-0">
-                            <img
-                                src={`${API}/blog/photo/${blog.slug}`}
-                                alt={blog.title}
-                                className="img img-fluid featured-image"
+                            <p className="blog-featured-img"
+                                style={{
+                                    backgroundImage: `url(${API}/blog/photo/${blog.slug})`
+                                }}
                             />
                         </div>
                         <div className="col-md-1"></div>

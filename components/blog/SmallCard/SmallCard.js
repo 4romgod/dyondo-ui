@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import renderHTML from 'react-render-html';
 import moment from 'moment';
 import { API } from "../../../config";
 
@@ -15,17 +14,18 @@ function SmallCard({ blog }) {
                 <section className="col-sm-5 col-md-12 pl-0 pr-0">
                     <Link href={`/blogs/[slug]`} as={`/blogs/${blog.slug}`}>
                         <a>
-                            <img
-                                className="img img-fluid"
-                                src={`${API}/blog/photo/${blog.slug}`}
-                                alt={`${blog.title}`}
+                            <p
                                 style={{
-                                    maxHeight: '300px',
+                                    backgroundImage: `url(${API}/blog/photo/${blog.slug})`,
+                                    backgroundPosition: 'center',
+                                    backgroundSize: 'cover',
+                                    backgroundRepeat: 'no-repeat',
+                                    height: '250px',
                                     width: '100%',
-                                    cursor: 'pointer',
-                                    borderRadius: '3px'
+                                    margin: '0'
                                 }}
-                            />
+                            >
+                            </p>
                         </a>
                     </Link>
                 </section>

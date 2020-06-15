@@ -1,4 +1,17 @@
-/**************** BLOG DISPLAY *****************/
+/**************** CONTENT DISPLAY *****************/
+.blog-featured-img {
+    background-color: #eee;
+    background-image: url(${API}/blog/photo/${blog.slug});
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 500px;
+    width: 100%;
+    margin: 0;
+}
+
+
+/**************** CONTENT DISPLAY *****************/
 .blog-body img {
     max-width: 100%;
     height: auto;
@@ -17,16 +30,17 @@
 
 
 /**************** BLOG CREATE/UPDATE *****************/
-@media only screen and (min-width: 992px) {
+@media only screen and (min-width: 992px) {}
 
-}
-
-@media only screen and (max-width: 992px) {
-
-}
+@media only screen and (max-width: 992px) {}
 
 @media only screen and (max-width: 768px) {
-    .blog-create-page{
+
+    .blog-featured-img {
+        height: 350px;
+    }
+
+    .blog-create-page {
         position: relative;
     }
 
@@ -42,5 +56,7 @@
 }
 
 @media only screen and (max-width: 576px) {
-    
+    .blog-featured-img {
+        height: 250px;
+    }
 }
