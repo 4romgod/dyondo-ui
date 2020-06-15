@@ -1,4 +1,5 @@
 import Link from "next/link";
+import "./footer.css";
 
 function Footer() {
 

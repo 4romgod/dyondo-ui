@@ -1,17 +1,18 @@
 import { useState, useEffect } from 'react';
-import { APP_NAME } from "../config";
+import { APP_NAME } from "../../config";
 import Link from "next/link";
 import Router from "next/router";
 import Nprogress from "nprogress";
 
-import { signout, isAuth } from "../actions/auth";
+import { signout, isAuth } from "../../actions/auth";
 
 import {
     Collapse, Navbar, NavbarToggler, Nav, NavItem, NavLink
 } from 'reactstrap';
 
-import ".././node_modules/nprogress/nprogress.css";
+import "../.././node_modules/nprogress/nprogress.css";
 
+import "./nav.css";
 
 Router.onRouteChangeStart = function (url) { Nprogress.start() }
 Router.onRouteChangeComplete = function (url) { Nprogress.done() }

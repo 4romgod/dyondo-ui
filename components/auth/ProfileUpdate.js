@@ -8,7 +8,7 @@ import { API } from "../../config";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
-import FullPageLoader from "../FullPageLoader";
+import FullPageLoader from "../Loader/FullPageLoader";
 
 
 function ProfileUpdate() {

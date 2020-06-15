@@ -5,7 +5,7 @@ import Router from 'next/router';
 import { DOMAIN, APP_NAME, FB_APP_ID } from '../config';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Header from "../components/Header";
+import Header from "../components/Header/Header";
 
 toast.configure();
 function Newsletter() {

@@ -6,7 +6,7 @@ import { getCookie, isAuth } from "../../actions/auth";
 import { list, removeBlog } from "../../actions/blog";
 import moment from "moment";
 
-import FullPageLoader from "../FullPageLoader";
+import FullPageLoader from "../Loader/FullPageLoader";
 
 
 function BlogRead({ username }) {

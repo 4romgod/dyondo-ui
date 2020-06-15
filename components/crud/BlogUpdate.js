@@ -15,7 +15,8 @@ import '../../node_modules/react-quill/dist/quill.snow.css';
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
-import FullPageLoader from "../FullPageLoader";
+import FullPageLoader from "../Loader/FullPageLoader";
+import Checkbox from "../Checkbox/Checkbox";
 
 
 function BlogUpdate({ router }) {
@@ -56,9 +57,11 @@ function BlogUpdate({ router }) {
     // sets all the categories that were checked before
     function setOldCheckedCat(oldCats) {
         let catList = [];
+
         oldCats.map((cat, index) => {
             catList.push(cat._id);
         });
+        
         setCheckedCat(catList);
     }
 
@@ -76,16 +79,16 @@ function BlogUpdate({ router }) {
     function initBlog() {
         if (router.query.slug) {
 
-            setValues({...values, loading: true});
+            setValues({ ...values, loading: true });
 
             // get the old blog
             singleBlog(router.query.slug).then((data) => {
                 if (data.error) {
                     //console.log(data.error);
-                    setValues({...values, error: data.error, loading: false});
+                    setValues({ ...values, error: data.error, loading: false });
                 }
                 else {
-                    setValues({ ...values, title: data.title});
+                    setValues({ ...values, title: data.title });
                     setBody(data.body);
                     setOldCheckedCat(data.categories);
                     setOldCheckedTag(data.tags);
@@ -143,16 +146,11 @@ function BlogUpdate({ router }) {
         function createLi(cat, index) {
             return (
                 <li key={index} className="list-unstyled">
-                    <label htmlFor={cat.name} className="checkboxContainer">{cat.name}
-                        <input
-                            onChange={handleToggleCat(cat._id)}
-                            checked={findOutCheckedCat(cat._id)}
-                            type="checkbox"
-                            id={cat.name}
-                            name={cat.name}
-                        />
-                        <span className="checkmark"></span>
-                    </label>
+                    <Checkbox 
+                        entity={cat}
+                        handleChange={handleToggleCat}
+                        handleChecked={findOutCheckedCat}
+                    />
                 </li>
             )
         }
@@ -163,16 +161,11 @@ function BlogUpdate({ router }) {
         function createLi(tag, index) {
             return (
                 <li key={index} className="list-unstyled">
-                    <label htmlFor={tag.name} className="checkboxContainer">{tag.name}
-                        <input
-                            onChange={handleToggleTag(tag._id)}
-                            checked={findOutCheckedTag(tag._id)}
-                            type="checkbox"
-                            id={tag.name}
-                            name={tag.name}
-                        />
-                        <span className="checkmark"></span>
-                    </label>
+                    <Checkbox 
+                        entity={tag}
+                        handleChange={handleToggleTag}
+                        handleChecked={findOutCheckedTag}
+                    />
                 </li>
             )
         }
@@ -239,11 +232,11 @@ function BlogUpdate({ router }) {
                     toast.dismiss();
                     toast.error("Image size should be less than 1MB");
                 }
-                else{
+                else {
                     formData.set(name, value);
                     setValues({ ...values, photoName: value ? value.name : '', [name]: value, formData, error: '' });
                 }
-                
+
             }
             else {
                 value = event.target.value;

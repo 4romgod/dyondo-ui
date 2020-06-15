@@ -1,8 +1,8 @@
-import Header from "./Header";
+import Header from "./Header/Header";
 
 import { useState } from "react";
 import Search from '../components/blog/Search';
-import Footer from "./Footer";
+import Footer from "./Footer/Footer";
 
 
 const Layout = (props) => {

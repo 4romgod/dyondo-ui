@@ -17,7 +17,8 @@ import '../../node_modules/react-quill/dist/quill.snow.css';
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
-import FullPageLoader from "../FullPageLoader";
+import FullPageLoader from "../Loader/FullPageLoader";
+import Checkbox from "../Checkbox/Checkbox";
 
 
 function CreateBlog({ router }) {
@@ -93,10 +94,10 @@ function CreateBlog({ router }) {
         function createLi(cat, index) {
             return (
                 <li key={index} className="list-unstyled">
-                    <label className="checkboxContainer">{cat.name}
-                        <input onChange={handleToggleCat(cat._id)} type="checkbox" />
-                        <span className="checkmark"></span>
-                    </label>
+                    <Checkbox 
+                        entity={cat}
+                        handleChange={handleToggleCat}
+                    />
                 </li>
             )
         }
@@ -211,13 +212,17 @@ function CreateBlog({ router }) {
 
         createBlog(formData, token).then((data) => {
             if (data.error) {
+                toast.dismiss();
+                toast.error(data.error);
+
                 setValues({ ...values, error: data.error, loading: false });
             }
             else {
+                toast.dismiss();
+                toast.success(`A new blog titled "${data.title}" is created`);
+
                 setValues({ ...values, title: "", error: "", loading: false, success: `A new blog titled "${data.title}" is created` });
                 setBody("");
-                //setCategories([]);
-                //setTags([]);
 
                 localStorage.removeItem('blog');
                 let slug = slugify(title);
@@ -231,10 +236,6 @@ function CreateBlog({ router }) {
     function createBlogForm() {
         return (
             <form onSubmit={publishBlog}>
-                <div>
-                    {success && toast.success(success)}
-                    {error && toast.error(error)}
-                </div>
 
                 <div className="form-group">
                     <label className="text-muted">Title</label>
@@ -262,11 +263,7 @@ function CreateBlog({ router }) {
         <React.Fragment>
             <ToastContainer />
 
-            <div>
-                {toast.dismiss()}
-                {error && toast.error(error)}
-                {loading && <FullPageLoader />}
-            </div>
+            {loading && <FullPageLoader />}
 
             <div className="container-fluid pb-5">
 
