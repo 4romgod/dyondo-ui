@@ -42,25 +42,7 @@ p, li {
 }
 
 
-/*********************************** BLOG BODY ***************************/
-.blog-body img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: auto;
-}
-
-.blog-body .ql-syntax {
-    background-color: #343a40;
-    color: white;
-    border: 1px solid grey;
-    border-radius: 5px;
-    padding: 10px;
-    font-size: small;
-}
-
-
-/****************************** HOMEPAGE HEADING ********************************/
+/******* HOMEPAGE HEADING ******************/
 .heading-container {
     position: relative;
 }
@@ -83,7 +65,8 @@ p, li {
     margin: 0 auto;
 }
 
-/*********************************** LARGEST SCREENS ***************************/
+
+/*************** LARGEST SCREENS ***************/
 @media (min-width: 992px) {
     .container {
         max-width: 100% !important;
@@ -95,7 +78,7 @@ p, li {
 }
 
 
-/*********************************** LARGE SCREENS ***************************/
+/************ LARGE SCREENS ******************/
 @media (max-width: 992px) {
     .container {
         max-width: 992px !important;
@@ -107,7 +90,7 @@ p, li {
 }
 
 
-/*********************************** MEDIUM SCREENS ***************************/
+/************* MEDIUM SCREENS ****************/
 @media only screen and (max-width: 768px) {
     .container {
         max-width: 768px !important;
@@ -119,7 +102,7 @@ p, li {
         padding: 10px 20px;
     }
 
-    /**************** ADMIN HOME ****************/
+    /*********** ADMIN HOME *************/
     .container-admin{ padding: 0;}
     .container-admin .left, .right{padding: 0 15px !important;}
 
@@ -133,7 +116,7 @@ p, li {
 }
 
 
-/*********************************** SMALL SCREENS ***************************/
+/*************** SMALL SCREENS *****************/
 @media only screen and (max-width: 576px) {
     .container {
         max-width: 567px !important;

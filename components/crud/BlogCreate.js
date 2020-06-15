@@ -235,7 +235,7 @@ function CreateBlog({ router }) {
 
     function createBlogForm() {
         return (
-            <form onSubmit={publishBlog}>
+            <form onSubmit={publishBlog} className='form-blog'>
 
                 <div className="form-group">
                     <label className="text-muted">Title</label>
@@ -253,7 +253,7 @@ function CreateBlog({ router }) {
                 </div>
 
                 {/* show publish button */}
-                <button type="submit" className="btn btn-success btn-lg">Publish</button>
+                <button type="submit" className="btn btn-success btn-lg" id='submit-btn'>Publish</button>
             </form>
         )
     }
@@ -267,10 +267,10 @@ function CreateBlog({ router }) {
 
             <div className="container-fluid pb-5">
 
-                <div className="row">
+                <div className="row blog-create-page">
 
                     {/* show blog form */}
-                    <div className="col-md-8">
+                    <div className="col-md-8" style={{position: 'static'}}>
                         {createBlogForm()}
                     </div>
 
@@ -307,7 +307,7 @@ function CreateBlog({ router }) {
                             <h4 className="mt-5">Tags</h4>
                             <hr />
 
-                            <ul style={{ maxHeight: '200px', overflowY: 'scroll' }}>
+                            <ul style={{ maxHeight: '200px', overflowY: 'scroll', marginBottom: '100px' }}>
                                 {showTags()}
                             </ul>
                         </div>

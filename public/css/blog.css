@@ -1,0 +1,46 @@
+/**************** BLOG DISPLAY *****************/
+.blog-body img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: auto;
+}
+
+.blog-body .ql-syntax {
+    background-color: #343a40;
+    color: white;
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: small;
+}
+
+
+/**************** BLOG CREATE/UPDATE *****************/
+@media only screen and (min-width: 992px) {
+
+}
+
+@media only screen and (max-width: 992px) {
+
+}
+
+@media only screen and (max-width: 768px) {
+    .blog-create-page{
+        position: relative;
+    }
+
+    /* #submit-btn{
+        position: absolute;
+        bottom: 0;
+        pointer-events: all;
+    }
+
+    #submit-btn:hover{
+        background-color: red;
+    } */
+}
+
+@media only screen and (max-width: 576px) {
+    
+}

@@ -32,6 +32,7 @@ class MyDocument extends Document {
 
           <link rel="stylesheet" href="/css/styles.css" />
           <link rel="stylesheet" href="/css/components.css" />
+          <link rel="stylesheet" href="/css/blog.css" />
 
           <script async src="https://www.googletagmanager.com/gtag/js?id=UA-168907858-1"></script>
           <script dangerouslySetInnerHTML={this.setGoogleTags()} />
