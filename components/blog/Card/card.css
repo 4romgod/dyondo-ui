@@ -13,6 +13,11 @@
     border: 1px solid #eee;
 }
 
+.width-overflow{
+    overflow-x: hidden !important;
+}
+
+  
 @media only screen and (max-width: 576px) {
     .container-image {
         padding: 0 !important;

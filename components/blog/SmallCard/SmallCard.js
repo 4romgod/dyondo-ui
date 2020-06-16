@@ -34,8 +34,8 @@ function SmallCard({ blog }) {
                 <section className="col-sm-7 col-md-12 pl-0 pr-0">
                     <div className="pl-3 pr-2 pt-3">
                         <Link href={`/blogs/[slug]`} as={`/blogs/${blog.slug}`}>
-                            <a>
-                                <h4 className="card-title">
+                            <a style={{color: 'rgb(41,41,41)'}}>
+                                <h4 className="card-title width-overflow">
                                     {blog.title}
                                 </h4>
                             </a>

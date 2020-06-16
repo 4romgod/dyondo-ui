@@ -32,10 +32,24 @@ function UserProfile({ user, blogs, query }) {
 
         function createBlog(blog, index) {
             return (
-                <div className="mt-4 mb-4" key={index}>
+                <div className="" key={index}>
                     <Link href={`/blogs/[slug]`} as={`/blogs/${blog.slug}`}>
-                        <a className="lead">
-                            <b style={{width: '100%', overflowX: 'scroll'}}>{blog.title}</b>
+                        <a
+                            className="btn btn-outline-secondary btn-block text-left pt-3 pb-3"
+                            style={{
+                                color: 'rgb(41,41,41)',
+                                overflow: 'hidden',
+                                borderBottom: index !== blogs.length - 1 ? '0' : 'null'
+                            }}
+                        >
+                            <div>
+                                <b style={{ width: '100%', overflowX: 'scroll' }}>
+                                    {blog.title}
+                                </b>
+                            </div>
+                            <div>
+                                <small>Created {moment(blog.createdAt).fromNow()}</small>
+                            </div>
                         </a>
                     </Link>
                 </div>
