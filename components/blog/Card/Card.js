@@ -54,7 +54,6 @@ function Card({ blog }) {
                                 }}
                             >
                             </p>
-
                         </a>
                     </Link>
                 </div>

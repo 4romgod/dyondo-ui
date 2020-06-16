@@ -1,22 +1,27 @@
 /*********************************** TAGS ***************************/
-body{
+body {
     font-family: "Open Sans";
 }
 
-h1, h2, h3, h4 {
-  font-family: sans-serif !important;
+h1,
+h2,
+h3,
+h4 {
+    font-family: sans-serif !important;
 }
 
-strong, b {
-  font-weight: bold;
+strong,
+b {
+    font-weight: bold;
 }
 
-p, li {
-  color: #222;
-  font-family: "Open Sans";
-  font-weight: 100;
-  font-size: 17px;
-  line-height: 31px;
+p,
+li {
+    color: #222;
+    font-family: "Open Sans";
+    font-weight: 100;
+    font-size: 17px;
+    line-height: 31px;
 }
 
 .shadow-bottom {
@@ -24,20 +29,22 @@ p, li {
 }
 
 .shadow {
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
-.shadow:hover{
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+.shadow:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
 .ql-editor {
     min-height: 300px;
 }
 
-.container{max-width: 100% !important;}
+.container {
+    max-width: 100% !important;
+}
 
-.privacy-policy-page{
+.privacy-policy-page {
     margin: 0 auto;
 }
 
@@ -48,7 +55,7 @@ p, li {
         max-width: 100% !important;
     }
 
-    .privacy-policy-page{
+    .privacy-policy-page {
         max-width: 68% !important;
     }
 }
@@ -60,7 +67,7 @@ p, li {
         max-width: 992px !important;
     }
 
-    .privacy-policy-page{
+    .privacy-policy-page {
         max-width: 70% !important;
     }
 }
@@ -68,6 +75,12 @@ p, li {
 
 /************* MEDIUM SCREENS ****************/
 @media only screen and (max-width: 768px) {
+
+    h1{font-size: 2rem !important;}
+    h2{font-size: 1.8rem !important;}
+    h3{font-size: 1.6rem !important;}
+    h4{font-size: 1.4rem !important;}
+
     .container {
         max-width: 768px !important;
         padding: 0;
@@ -79,14 +92,20 @@ p, li {
     }
 
     /*********** ADMIN HOME *************/
-    .container-admin{ padding: 0;}
-    .container-admin .left, .right{padding: 0 15px !important;}
+    .container-admin {
+        padding: 0;
+    }
 
-    .container-cat{
+    .container-admin .left,
+    .right {
+        padding: 0 15px !important;
+    }
+
+    .container-cat {
         padding: 0 !important;
     }
 
-    .privacy-policy-page{
+    .privacy-policy-page {
         max-width: 80% !important;
     }
 }
@@ -99,11 +118,11 @@ p, li {
         padding: 0;
     }
 
-    .container-blog-component{
+    .container-blog-component {
         padding: 0 !important;
     }
 
-    .privacy-policy-page{
+    .privacy-policy-page {
         max-width: 94% !important;
     }
 }
