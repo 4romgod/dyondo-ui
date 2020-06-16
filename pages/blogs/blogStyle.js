@@ -1,4 +1,6 @@
-/**************** CONTENT DISPLAY *****************/
+import css from "styled-jsx/css";
+
+export default css.global`
 body {
     color: rgb(41, 41, 41);
 }
@@ -8,6 +10,7 @@ h2,
 h3,
 h4 {
     font-family: sans-serif !important;
+    font-weight: 500 !important;
 }
 
 strong,
@@ -30,7 +33,6 @@ li {
 
 .blog-featured-img {
     background-color: #eee;
-    background-image: url(${API}/blog/photo/${blog.slug});
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -82,16 +84,6 @@ li {
         font-size: 18px;
         line-height: 2rem;
     }
-
-    /* #submit-btn{
-        position: absolute;
-        bottom: 0;
-        pointer-events: all;
-    }
-
-    #submit-btn:hover{
-        background-color: red;
-    } */
 }
 
 @media only screen and (max-width: 576px) {
@@ -99,3 +91,4 @@ li {
         height: 250px;
     }
 }
+`

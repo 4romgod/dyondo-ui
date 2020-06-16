@@ -80,6 +80,10 @@ a:hover {
   word-break: break-all;
 }
 
+.ww{
+  word-wrap: break-word;
+}
+
 .form-control:focus {
   border-color: var(--col-success) !important;
 }

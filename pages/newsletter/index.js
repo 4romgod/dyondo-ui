@@ -6,7 +6,9 @@ import { DOMAIN, APP_NAME, FB_APP_ID } from '../../config';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Header from "../../components/Header/Header";
-import "./newsletter.css";
+
+import newsletterStyle from "./newsletterStyle.js";
+
 
 toast.configure();
 function Newsletter() {
@@ -88,6 +90,10 @@ function Newsletter() {
             {head()}
 
             <ToastContainer />
+
+            <style jsx global>
+                {newsletterStyle}
+            </style>
 
             <div className="newsletter-page mt-5">
 

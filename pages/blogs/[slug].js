@@ -17,7 +17,8 @@ import DisqusThread from "../../components/DisqusThread";
 
 import { FacebookIcon, TwitterIcon, FacebookShareButton, TwitterShareButton } from 'react-share';
 
-import "./blog.css";
+import blogStyle from './blogStyle.js';
+
 
 function SingleBlog({ blog, query }) {
     const [related, setRelated] = useState([]);
@@ -109,7 +110,12 @@ function SingleBlog({ blog, query }) {
     return <React.Fragment>
         {head()}
         <Layout>
-            <main className="bg-white wb">
+
+            <style jsx global>
+                {blogStyle}
+            </style>
+
+            <main className="bg-white">
                 <article>
 
                     <div className="row ml-0 mr-0 mb-4">
@@ -119,9 +125,9 @@ function SingleBlog({ blog, query }) {
                             <div className="bg-white pb-3 pl-3 pr-3">
 
                                 <div style={{ width: '100%', overflow: 'auto' }}>
-                                    <h4 className="display-4 pb-3 pt-3 font-weight-bold">
+                                    <h1 className="pb-3 pt-3">
                                         {blog.title}
-                                    </h4>
+                                    </h1>
                                 </div>
 
                                 <Author blog={blog} />

@@ -1,3 +1,7 @@
+import css from "styled-jsx/css";
+
+export default css.global`
+
 .newsletter-page{
     background-color: #36b39a;
     min-height: 100vh;
@@ -82,3 +86,4 @@
     }
     
 }
+`

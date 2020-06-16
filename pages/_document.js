@@ -40,6 +40,7 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
+          
           <script src="/bootstrap/jquery-3.2.1.slim.min.js"></script>
           <script src="/bootstrap/bootstrap.min.js"></script>
           <script src="/bootstrap/popper.min.js"></script>

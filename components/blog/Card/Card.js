@@ -3,7 +3,8 @@ import renderHTML from 'react-render-html';
 import moment from 'moment';
 import Author from "../../Author/Author";
 import { API } from "../../../config";
-import "./card.css";
+
+import cardStyle from "./cardStyle.js";
 
 function Card({ blog }) {
 
@@ -32,25 +33,20 @@ function Card({ blog }) {
 
     return (
         <div className="pb-3 pl-3 pr-3 mb-4 bg-white shadow container-card">
+            <style jsx global>
+                {cardStyle}
+            </style>
 
             {/** holds all the content */}
             <div className="row">
 
                 {/** holds the image */}
-                <div className="col-sm-3 pl-0 pr-0 mt-3 container-image">
+                <div className="col-sm-3 mt-3" id="container-featured-img">
                     <Link href={`/blogs/[slug]`} as={`/blogs/${blog.slug}`}>
                         <a>
                             <p
                                 style={{
-                                    backgroundImage: `url(${API}/blog/photo/${blog.slug})`,
-                                    backgroundPosition: 'center',
-                                    backgroundSize: 'cover',
-                                    backgroundRepeat: 'no-repeat',
-                                    height: '200px',
-                                    width: '100%',
-                                    margin: '0',
-                                    borderRadius: '3px',
-                                    border: '0.03rem solid rgb(241, 241, 241)'
+                                    backgroundImage: `url(${API}/blog/photo/${blog.slug})`
                                 }}
                             >
                             </p>
@@ -58,11 +54,11 @@ function Card({ blog }) {
                     </Link>
                 </div>
 
-                <div className="col-sm-9 wb" id="container-blog-meta">
+                <div className="col-sm-9" id="container-blog-meta">
                     {/** holds the title */}
                     <Link href={`/blogs/[slug]`} as={`/blogs/${blog.slug}`}>
                         <a style={{ cursor: 'pointer', color: 'rgb(41,41,41)' }}>
-                            <h3 className="pt-3 font-weight-bold width-overflow">
+                            <h3 className="pt-3 font-weight-bold">
                                 {blog.title}
                             </h3>
                         </a>

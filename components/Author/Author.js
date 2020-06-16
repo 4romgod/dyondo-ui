@@ -2,29 +2,35 @@ import { API } from '../../config';
 import Link from "next/link";
 import moment from 'moment';
 
+import authorStyle from './authorStyle.js';
+
+
 function Author({ blog }) {
 
     return (
         <div style={{ display: 'flex', alignItems: 'center' }}>
-            <div>
+
+            <style jsx global>
+                {authorStyle}
+            </style>
+
+            <div id="container-featured-img">
                 <img
                     src={`${API}/user/photo/${blog.author.username}`}
                     alt={blog.title}
-                    className="img img-fluid featured"
-                    style={{ borderRadius: '100%', width: '50px', height: '50px' }}
                 />
             </div>
 
             <div className="ml-3">
                 <small>
-                    <div>
-                        <b>{blog.author.name}</b> {" | "}
+                    <div id="container-user-name">
                         <Link href={`/profile/[username]`} as={`/profile/${blog.author.username}`}>
-                            <a><b>{blog.author.username}</b></a>
+                            <b>{blog.author.name}</b>
                         </Link>
                     </div>
                 </small>
-                <small className="text-muted"><b>{moment(blog.updatedAt).fromNow()}</b></small>
+
+                <small className="text-muted"><b>Written {moment(blog.updatedAt).fromNow()}</b></small>
             </div>
         </div>
     )
