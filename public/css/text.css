@@ -9,6 +9,23 @@ h4 {
     font-family: sans-serif !important;
 }
 
+h1 {
+    font-size: 2.2rem !important;
+}
+
+h2 {
+    font-size: 1.8rem !important;
+}
+
+h3 {
+    font-size: 1.6rem !important;
+}
+
+h4 {
+    font-size: 1.4rem !important;
+}
+
+
 strong,
 b {
     font-weight: bold;
@@ -24,8 +41,19 @@ li {
 }
 
 @media only screen and (max-width: 768px) {
-    h1{font-size: 2.2rem !important;}
-    h2{font-size: 1.8rem !important;}
-    h3{font-size: 1.6rem !important;}
-    h4{font-size: 1.4rem !important;}
+    h1 {
+        font-size: 1.7rem !important;
+    }
+    
+    h2 {
+        font-size: 1.5rem !important;
+    }
+    
+    h3 {
+        font-size: 1.4rem !important;
+    }
+    
+    h4 {
+        font-size: 1.2rem !important;
+    }
 }

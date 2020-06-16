@@ -96,6 +96,7 @@ function AdminIndex() {
                                     <div className="col-md-8">
                                         <div className="shadow pt-4 pb-5">
                                             <div className="row ml-0 mr-0">
+                                                
                                                 <div className="col-md-3">
                                                     <img
                                                         src={`${API}/user/photo/${username}`}

@@ -256,6 +256,17 @@ function BlogUpdate({ router }) {
     function editBlog(event) {
         event.preventDefault();
 
+        if(checkedCat.length > 4 ){
+            toast.dismiss();
+            toast.error("Maximum Categories exceeded!");
+            return;
+        }
+        else if(checkedTag.length > 4 ){
+            toast.dismiss();
+            toast.error("Maximum Tags exceeded!");
+            return;
+        }
+
         setValues({ ...values, loading: true, error: false, success: false });
 
         updateBlog(formData, token, router.query.slug).then(data => {

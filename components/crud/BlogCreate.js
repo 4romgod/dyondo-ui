@@ -207,6 +207,17 @@ function CreateBlog({ router }) {
     function publishBlog(event) {
         event.preventDefault();
 
+        if(checkedCat.length > 4 ){
+            toast.dismiss();
+            toast.error("Maximum Categories exceeded!");
+            return;
+        }
+        else if(checkedTag.length > 4 ){
+            toast.dismiss();
+            toast.error("Maximum Tags exceeded!");
+            return;
+        }
+
         setValues({...values, loading: true, error: false, success: false});
 
         createBlog(formData, token).then((data) => {
