@@ -17,7 +17,7 @@ import DisqusThread from "../../components/DisqusThread";
 
 import { FacebookIcon, TwitterIcon, FacebookShareButton, TwitterShareButton } from 'react-share';
 
-import blogStyle from './blogStyle.js';
+import blogStyle from "../../STYLES/blogStyle";
 
 
 function SingleBlog({ blog, query }) {

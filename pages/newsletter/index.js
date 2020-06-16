@@ -7,7 +7,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Header from "../../components/Header/Header";
 
-import newsletterStyle from "./newsletterStyle.js";
+import newsletterStyle from "../../STYLES/newsletterStyle";
 
 
 toast.configure();
