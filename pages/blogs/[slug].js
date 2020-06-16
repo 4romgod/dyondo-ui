@@ -153,7 +153,7 @@ function SingleBlog({ blog, query }) {
                         <div className="col-md-8 pl-0 pr-0">
 
                             <div className=" bg-white mt-5 pt-3 pb-3 pl-3 pr-3">
-                                <div className="lead blog-body" style={{ width: '100%', overflow: 'auto' }}>
+                                <div className="lead" id="blog-body" style={{ width: '100%', overflow: 'auto' }}>
                                     {renderHTML(blog.body)}
                                 </div>
                             </div>

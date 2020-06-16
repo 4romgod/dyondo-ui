@@ -18,13 +18,13 @@ function Author({ blog }) {
             <div className="ml-3">
                 <small>
                     <div>
-                        {blog.author.name} {" | "}
+                        <b>{blog.author.name}</b> {" | "}
                         <Link href={`/profile/[username]`} as={`/profile/${blog.author.username}`}>
-                            <a>{blog.author.username}</a>
+                            <a><b>{blog.author.username}</b></a>
                         </Link>
                     </div>
                 </small>
-                <small className="text-muted">{moment(blog.updatedAt).fromNow()}</small>
+                <small className="text-muted"><b>{moment(blog.updatedAt).fromNow()}</b></small>
             </div>
         </div>
     )

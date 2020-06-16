@@ -20,7 +20,7 @@ const Layout = (props) => {
             <div className="bg-light" onClick={handleClick}>
 
                 <div className="shadow-bottom bg-white">
-                    <Search />
+                    <Search closeSearch={isClicked} />
                 </div>
 
                 {/**Main content of each page */}

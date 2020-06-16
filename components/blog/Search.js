@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import { listSearch } from '../../actions/blog';
 
 
-function Search() {
+function Search(props) {
     const [values, setValues] = useState({
         search: undefined,
         results: [],
@@ -16,6 +16,11 @@ function Search() {
 
     const { search, results, searched, message } = values;
 
+    useEffect(()=>{
+        if(searched){
+            setValues({...values, searched: props.closeSearch});
+        }
+    }, [props.closeSearch]);
 
     function searchedBlog(results = []) {
         return (
@@ -48,7 +53,7 @@ function Search() {
             setValues({ ...values, results: data, searched: true, message: `${data.length} blogs found` });
         })
     }
-
+    
     function searchForm() {
         return (
             <form onSubmit={searchSubmit} className="container">

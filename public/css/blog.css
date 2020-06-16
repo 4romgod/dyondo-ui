@@ -1,7 +1,8 @@
 /**************** CONTENT DISPLAY *****************/
-body{
-    color: rgb(41,41,41);
+body {
+    color: rgb(41, 41, 41);
 }
+
 h1,
 h2,
 h3,
@@ -19,8 +20,12 @@ li {
     color: #222;
     font-family: "Open Sans";
     font-weight: 100;
-    font-size: 1.2rem;
+    font-size: 21px;
     line-height: 2rem;
+}
+
+#blog-body * {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 .blog-featured-img {
@@ -35,16 +40,19 @@ li {
 }
 
 
-
 /**************** CONTENT DISPLAY *****************/
-.blog-body img {
+#blog-body img {
     max-width: 100%;
     height: auto;
     display: block;
     margin: auto;
 }
 
-.blog-body .ql-syntax {
+#blog-body {
+    letter-spacing: -0.003em;
+}
+
+#blog-body .ql-syntax {
     background-color: #343a40;
     color: white;
     border: 1px solid grey;
@@ -67,6 +75,12 @@ li {
 
     .blog-create-page {
         position: relative;
+    }
+
+    p,
+    li {
+        font-size: 18px;
+        line-height: 2rem;
     }
 
     /* #submit-btn{

@@ -7,7 +7,7 @@ function CategoryTag() {
     return (
         <Layout>
             <Admin>
-                <div className="bg-white">
+                <div className="bg-white wb">
 
                     <div className="container-fluid pb-5 mb-5">
 

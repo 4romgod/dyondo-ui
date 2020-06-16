@@ -76,6 +76,10 @@ a:hover {
   text-decoration: none;
 }
 
+div{
+  word-break: break-all;
+}
+
 .form-control:focus {
   border-color: var(--col-success) !important;
 }
