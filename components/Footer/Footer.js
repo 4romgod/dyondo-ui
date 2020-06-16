@@ -8,33 +8,47 @@ function Footer() {
             <footer>
                 <div className="footer-one">
                     <div className="row ml-0 mr-0">
-                    
+
                         <div className="col-md-4 footer-contact-container">
-                            <div style={{display: 'flex'}}>
-                                <img
-                                    className="footer-icon"
-                                    src="/images/blog.png"
-                                    alt="azblogs logo"
-                                />
-                                <p className="pl-2"><a>AZBLOGS</a></p>
+                            <div className="item one" style={{ display: 'flex', alignItems: 'center' }}>
+                                <div>
+                                    <img
+                                        className="footer-icon"
+                                        src="/images/blog.png"
+                                        alt="azblogs logo"
+                                    />
+                                </div>
+                                <div>
+                                    <p className="pl-2"><a>Azblogs</a></p>
+                                </div>
                             </div>
 
-                            <div style={{display: 'flex'}}>
-                                <img
-                                    className="footer-icon"
-                                    src="/images/email.png"
-                                    alt="email icon"
-                                />
-                                <p className="pl-2"><a>azblogs365@gmail.com</a></p>
+                            <div className="item two" style={{ display: 'flex' }}>
+                                <div>
+                                    <img
+                                        className="footer-icon"
+                                        src="/images/email.png"
+                                        alt="email icon"
+                                    />
+                                </div>
+                                <div>
+                                    <p className="pl-2"><a>azblogs365@gmail.com</a></p>
+                                </div>
                             </div>
-                            <div style={{display: 'flex'}}>
-                                <img
-                                    className="footer-icon"
-                                    src="/images/saflag.jpg"
-                                    alt="phone icon"
-                                />
-                                <p className="pl-2"><a>+27(0) 63 289 9004</a></p>
+
+                            <div className="item three" style={{ display: 'flex' }}>
+                                <div>
+                                    <img
+                                        className="footer-icon"
+                                        src="/images/saflag.jpg"
+                                        alt="phone icon"
+                                    />
+                                </div>
+                                <div>
+                                    <p className="pl-2"><a>+27(0) 63 289 9004</a></p>
+                                </div>
                             </div>
+
                         </div>
 
                         <div className="col-md-4">

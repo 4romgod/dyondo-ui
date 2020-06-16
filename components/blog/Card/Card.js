@@ -31,35 +31,37 @@ function Card({ blog }) {
 
 
     return (
-        <div className="pb-4 pl-3 pr-3 mb-4 bg-white shadow container-card">
+        <div className="pb-3 pl-3 pr-3 mb-4 bg-white shadow container-card">
 
             {/** holds all the content */}
             <div className="row">
 
                 {/** holds the image */}
-                <div className="col-sm-4 pl-0 pr-0 mt-3 container-image">
+                <div className="col-sm-3 pl-0 pr-0 mt-3 container-image">
                     <Link href={`/blogs/[slug]`} as={`/blogs/${blog.slug}`}>
                         <a>
-                            <img
-                                className="img img-fluid"
-                                src={`${API}/blog/photo/${blog.slug}`}
-                                alt={`${blog.title}`}
+                            <p
                                 style={{
-                                    maxHeight: 'auto',
+                                    backgroundImage: `url(${API}/blog/photo/${blog.slug})`,
+                                    backgroundPosition: 'center',
+                                    backgroundSize: 'cover',
+                                    backgroundRepeat: 'no-repeat',
+                                    height: '200px',
                                     width: '100%',
-                                    cursor: 'pointer',
+                                    margin: '0',
                                     borderRadius: '3px'
                                 }}
-                            />
+                            >
+                            </p>
 
                         </a>
                     </Link>
                 </div>
 
-                <div className="col-sm-8">
+                <div className="col-sm-9">
                     {/** holds the title */}
                     <Link href={`/blogs/[slug]`} as={`/blogs/${blog.slug}`}>
-                        <a style={{ cursor: 'pointer'}}>
+                        <a style={{ cursor: 'pointer' }}>
                             <h2 className="pt-3 font-weight-bold width-overflow">
                                 {blog.title}
                             </h2>

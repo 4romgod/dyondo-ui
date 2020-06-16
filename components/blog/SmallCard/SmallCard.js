@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import moment from 'moment';
 import { API } from "../../../config";
+import Author from "../../Author/Author";
 
 import "./smallcard.css";
 
@@ -41,13 +42,8 @@ function SmallCard({ blog }) {
                         </Link>
                     </div>
 
-                    <div className="card-body pl-3 pr-2 pt-0 pb-4" style={{ display: 'flex' }}>
-                        <small>
-                            Posted {moment(blog.updatedAt).fromNow()} by{' '}
-                            <Link href={`/profile/[username]`} as={`/profile/${blog.author.username}`}>
-                                <a>{blog.author.username}</a>
-                            </Link>
-                        </small>
+                    <div className="card-body pl-3 pr-2 pt-0 pb-4">
+                        <Author blog={blog} />
                     </div>
 
                 </section>

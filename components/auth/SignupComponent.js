@@ -49,21 +49,21 @@ function SignUpComponent() {
             const user = { name, email, password };
 
             // 3.1. Call signup from actions/auth go make request to the server
-            preSignup(user).then(data => {
-                if (data.error) {
-                    setValues({ ...values, error: data.error, loading: false, message: '' });
+            preSignup(user).then(response => {
+                if (response.error) {
+                    setValues({ ...values, error: response.error, loading: false, message: '' });
 
                     toast.dismiss();
-                    toast.error(data.error);
+                    toast.error(response.error);
                 } else {
                     setValues({
                         ...values,
                         name: '', email: '', password: '',
                         error: '', loading: false,
-                        message: data.message, showForm: false
+                        message: response.message, showForm: false
                     });
                     toast.dismiss();
-                    toast.success(data.message);
+                    toast.success(response.message);
                 }
 
             });

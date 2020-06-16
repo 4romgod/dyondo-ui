@@ -136,16 +136,6 @@ function Blogs({ blogs, categories, tags, totalBlogs, blogsLimit, blogsSkip, rou
                                 </div>
                             </div>
 
-                            {/* <section>
-                                <div className="col-md-12">
-                                    <div className="pb-5 text-center">
-                                        {showAllCategories()}
-                                        <br />
-                                        {showAllTags()}
-                                    </div>
-                                </div>
-                            </section> */}
-
                         </header>
 
                         <div className="row ml-0 mr-0 mt-3">

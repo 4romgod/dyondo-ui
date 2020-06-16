@@ -30,4 +30,8 @@
     .container-card .row {
         padding-left: 10px !important;
     }
+
+    .container-image{
+        margin-top: 0;
+    }
 }

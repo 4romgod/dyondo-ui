@@ -1,4 +1,28 @@
 /**************** CONTENT DISPLAY *****************/
+body{
+    color: rgb(41,41,41);
+}
+h1,
+h2,
+h3,
+h4 {
+    font-family: sans-serif !important;
+}
+
+strong,
+b {
+    font-weight: bold;
+}
+
+p,
+li {
+    color: #222;
+    font-family: "Open Sans";
+    font-weight: 100;
+    font-size: 1.2rem;
+    line-height: 2rem;
+}
+
 .blog-featured-img {
     background-color: #eee;
     background-image: url(${API}/blog/photo/${blog.slug});
@@ -9,6 +33,7 @@
     width: 100%;
     margin: 0;
 }
+
 
 
 /**************** CONTENT DISPLAY *****************/
