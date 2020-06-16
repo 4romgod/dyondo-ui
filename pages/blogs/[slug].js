@@ -17,6 +17,7 @@ import DisqusThread from "../../components/DisqusThread";
 
 import { FacebookIcon, TwitterIcon, FacebookShareButton, TwitterShareButton } from 'react-share';
 
+import "./blog.css";
 
 function SingleBlog({ blog, query }) {
     const [related, setRelated] = useState([]);
@@ -57,9 +58,6 @@ function SingleBlog({ blog, query }) {
             <meta property="og:image:secure_url" content={`${API}/blog/photo/${blog.slug}`} />
             <meta property="og:image:type" content="image/jpg" />
             <meta property="fb:app_id" content={`${FB_APP_ID}`} />
-
-            <link rel="stylesheet" href="/css/blog.css" />
-
         </Head>
     }
 
@@ -111,7 +109,7 @@ function SingleBlog({ blog, query }) {
     return <React.Fragment>
         {head()}
         <Layout>
-            <main className="bg-white">
+            <main className="bg-white wb">
                 <article>
 
                     <div className="row ml-0 mr-0 mb-4">

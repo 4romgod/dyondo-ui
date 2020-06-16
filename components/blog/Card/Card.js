@@ -49,7 +49,8 @@ function Card({ blog }) {
                                     height: '200px',
                                     width: '100%',
                                     margin: '0',
-                                    borderRadius: '3px'
+                                    borderRadius: '3px',
+                                    border: '0.03rem solid rgb(241, 241, 241)'
                                 }}
                             >
                             </p>
@@ -58,7 +59,7 @@ function Card({ blog }) {
                     </Link>
                 </div>
 
-                <div className="col-sm-9">
+                <div className="col-sm-9 wb" id="container-blog-meta">
                     {/** holds the title */}
                     <Link href={`/blogs/[slug]`} as={`/blogs/${blog.slug}`}>
                         <a style={{ cursor: 'pointer', color: 'rgb(41,41,41)' }}>
@@ -77,9 +78,10 @@ function Card({ blog }) {
                         {renderHTML(blog.excerpt)}
                     </section> */}
 
-                    {showBlogCategories()}
-                    {showBlogTags()}
-
+                    <div id="container-cat-tag">
+                        {showBlogCategories()}
+                        {showBlogTags()}
+                    </div>
                 </div>
 
             </div>

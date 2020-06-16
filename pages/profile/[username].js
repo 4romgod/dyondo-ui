@@ -35,7 +35,7 @@ function UserProfile({ user, blogs, query }) {
                 <div className="" key={index}>
                     <Link href={`/blogs/[slug]`} as={`/blogs/${blog.slug}`}>
                         <a
-                            className="btn btn-outline-secondary btn-block text-left pt-3 pb-3"
+                            className="btn btn-outline-secondary btn-block text-left pt-3 pb-3 pr-2"
                             style={{
                                 color: 'rgb(41,41,41)',
                                 overflow: 'hidden',

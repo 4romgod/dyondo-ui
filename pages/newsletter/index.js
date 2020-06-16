@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { newsletter } from "../actions/contact";
+import { newsletter } from "../../actions/contact";
 import Head from 'next/head';
 import Router from 'next/router';
-import { DOMAIN, APP_NAME, FB_APP_ID } from '../config';
+import { DOMAIN, APP_NAME, FB_APP_ID } from '../../config';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Header from "../components/Header/Header";
+import Header from "../../components/Header/Header";
+import "./newsletter.css";
 
 toast.configure();
 function Newsletter() {
