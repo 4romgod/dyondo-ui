@@ -73,8 +73,12 @@ function Tag() {
     }
 
     function deleteTag(slug) {
-        //console.log(`Delete ${slug}`);
+        console.log(`Calling API for DeleteTag ${slug}`);
         removeTag(slug, token).then(function (data) {
+
+            console.log("API response: ");
+            console.log(data);
+            
             if (data.error) {
                 console.log("ERROR");
                 console.log(data.error);
