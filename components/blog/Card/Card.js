@@ -30,7 +30,6 @@ function Card({ blog }) {
         return blog.tags.map(showTag);
     }
 
-
     return (
         <div className="pb-3 pl-3 pr-3 mb-4 bg-white shadow container-card">
             <style jsx global>

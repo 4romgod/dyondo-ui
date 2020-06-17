@@ -1,4 +1,6 @@
-/************************************* NAVIGATION ******************************/
+import css from "styled-jsx/css";
+
+export default css.global`
 .navbar {
     background-color: white !important;
     padding: 0;
@@ -7,7 +9,6 @@
     font-size: 14px !important;
     font-weight: 700 !important;
 }
-
 
 #container-logo{
     display: inline-block;
@@ -46,9 +47,6 @@
     border: none !important;
 }
 
-.navbar-toggler .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 0, 0)' stroke-width='4' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
-}
 
 /* ditch the ugle blue outline */
 .navbar-toggler:focus,
@@ -121,3 +119,4 @@
     }
     
 }
+`

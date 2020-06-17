@@ -299,7 +299,6 @@ function CreateBlog({ router }) {
                             </label>
                             <br />
                             <small className="text-muted ml-4">{photoName}</small>
-
                         </div>
 
                         {/* shows the categories */}
@@ -307,7 +306,7 @@ function CreateBlog({ router }) {
                             <h4 className="mt-3">Categories <small>(4 Max)</small></h4>
                             <hr />
 
-                            <ul style={{ maxHeight: '200px', overflowY: 'scroll' }}>
+                            <ul style={{ maxHeight: '250px', overflowY: 'scroll' }}>
                                 {showCategories()}
                             </ul>
                         </div>
@@ -317,13 +316,12 @@ function CreateBlog({ router }) {
                             <h4 className="mt-5">Tags <small>(4 Max)</small></h4>
                             <hr />
 
-                            <ul style={{ maxHeight: '200px', overflowY: 'scroll', marginBottom: '100px' }}>
+                            <ul style={{ maxHeight: '250px', overflowY: 'scroll', marginBottom: '100px' }}>
                                 {showTags()}
                             </ul>
                         </div>
 
                     </div>
-
 
                 </div>
 
