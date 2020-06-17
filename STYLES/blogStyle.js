@@ -27,6 +27,11 @@ li {
     line-height: 2rem;
 }
 
+#blog-body a{
+    color: rgb(41, 41, 41);
+    text-decoration: underline;
+}
+
 #blog-body * {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }

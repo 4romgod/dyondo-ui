@@ -1,5 +1,5 @@
 body{
-    word-wrap: break-word;
+    word-wrap: break-word !important;
 }
 
 /*********************************** TAGS ***************************/
