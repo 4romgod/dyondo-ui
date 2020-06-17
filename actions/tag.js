@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch';
 import { API } from '../config';
-import {handleResponse} from "../actions/auth";
+import { handleResponse } from "../actions/auth";
 
 
 export function create(tag, token) {
@@ -14,8 +14,8 @@ export function create(tag, token) {
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${token}`
 
-            },               
-            body: JSON.stringify(tag)      
+            },
+            body: JSON.stringify(tag)
         })
         .then(response => {
             handleResponse(response);
@@ -30,7 +30,7 @@ export function getTags() {
     // 1. go to the backend, call tags api
     return fetch(`${API}/tags`,
         {
-            method: 'GET',     
+            method: 'GET',
         })
         .then(response => {
             return response.json();
@@ -44,7 +44,7 @@ export function singleTag(slug) {
     // 1. go to the backend, call tag api
     return fetch(`${API}/tag/${slug}`,
         {
-            method: 'GET',     
+            method: 'GET',
         })
         .then(response => {
             return response.json();
@@ -62,10 +62,10 @@ export function removeTag(slug, token) {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${token}`
-            }     
+            }
         })
         .then(response => {
-            handleResponse(response);
+            //handleResponse(response);
             return response.json();
         })
         .catch(err => console.log(err));
