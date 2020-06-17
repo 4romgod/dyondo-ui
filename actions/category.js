@@ -2,6 +2,7 @@ import fetch from 'isomorphic-fetch';
 import { API } from '../config';
 import {handleResponse} from "../actions/auth";
 
+
 export function create(category, token) {
 
     // 1. go to the backend, call category api
@@ -50,7 +51,6 @@ export function singleCategory(slug) {
         })
         .catch(err => console.log(err));
 };
-
 
 export function removeCategory(slug, token) {
 

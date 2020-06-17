@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch';
 import { API } from '../config';
-import {handleResponse} from './auth';
+import {handleResponse} from "../actions/auth";
 
 
 export function create(tag, token) {
