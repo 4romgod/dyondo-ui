@@ -26,11 +26,35 @@ export default css.global`
 }
 
   
+@media only screen and (max-width: 1200px) {
+    #container-featured-img p{
+        height: 150px;
+        max-width: 150px;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    #container-featured-img p{
+        max-height: 100px;
+        max-width: 100px;
+    }
+}
+
 @media only screen and (max-width: 768px) {
+    #container-featured-img p{
+        max-height: 130px;
+        max-width: 130px;
+    }
 }
 
 @media only screen and (max-width: 576px) {
-    .container-featured-img {
+    #container-featured-img p{
+        max-height: 300px;
+        max-width: 576px;
+        height: 250px;
+        width: 100%;
+    }
+    #container-featured-img {
         padding: 0 !important;
         margin: 0 !important;
     }
