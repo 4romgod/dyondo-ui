@@ -52,7 +52,6 @@ export function singleTag(slug) {
         .catch(err => console.log(err));
 };
 
-
 export function removeTag(slug, token) {
 
     // 1. go to the backend, call tag api

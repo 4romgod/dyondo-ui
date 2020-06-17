@@ -80,7 +80,7 @@ function Category() {
                 toast.success(`${slug} successfully deleted!`);
                 setValues({ ...values, error: false, success: false, name: '', removed: true, reload: !reload });
             }
-        })
+        });
     }
 
 

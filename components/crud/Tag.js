@@ -71,6 +71,7 @@ function Tag() {
         //console.log(`Delete ${slug}`);
         removeTag(slug, token).then(function (data) {
             if (data.error) {
+                console.log("ERROR");
                 console.log(data.error);
 
                 toast.dismiss();
@@ -81,7 +82,7 @@ function Tag() {
                 toast.success(`${slug} successfully deleted!`);
                 setValues({ ...values, error: false, success: false, name: '', removed: true, reload: !reload });
             }
-        })
+        });
     }
 
 
@@ -94,7 +95,7 @@ function Tag() {
             if (data.error) {
                 toast.dismiss();
                 toast.error("Something went wrong while creating!");
-                
+
                 setValues({ ...values, error: data.error, success: false });
             }
             else {
