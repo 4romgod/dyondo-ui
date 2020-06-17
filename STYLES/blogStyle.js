@@ -20,9 +20,8 @@ b {
 
 p,
 li {
-    color: #222;
     font-family: "Open Sans";
-    font-weight: 100;
+    font-weight: 400;
     font-size: 21px;
     line-height: 2rem;
 }
@@ -33,6 +32,7 @@ li {
 }
 
 #blog-body * {
+    color: rgb(41, 41, 41);
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
@@ -86,7 +86,7 @@ li {
 
     p,
     li {
-        font-size: 18px !important;
+        font-size: 19px !important;
         line-height: 1.7rem !important;
     }
 }
