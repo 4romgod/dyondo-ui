@@ -12,18 +12,18 @@ import {
 
 import "../.././node_modules/nprogress/nprogress.css";
 
-import navStyle from "./nav.js";
+import "./nav.css";
 
 Router.onRouteChangeStart = function (url) { Nprogress.start() }
 Router.onRouteChangeComplete = function (url) { Nprogress.done() }
 Router.onRouteChangeError = function (url) { Nprogress.done() }
 
 const navLinkStyle = {
-    cursor: 'pointer !important',
-    height: '100% !important',
-    padding: '0 !important',
-    display: 'flex !important',
-    alignItems: 'center !important'
+    cursor: 'pointer',
+    height: '100%',
+    padding: '0',
+    display: 'flex',
+    alignItems: 'center'
 };
 
 function Header(props) {
@@ -105,10 +105,6 @@ function Header(props) {
 
     return (
         <React.Fragment>
-                        <style jsx global>
-                {navStyle}
-            </style>
-
             <Navbar color="dark" dark expand="md" className="navbar fixed-top">
                 <Link href="/">
                     <NavLink className="font-weight-bold" id="container-logo" style={{ cursor: 'pointer', color: 'black', fontSize: '1.5rem' }}>
@@ -143,7 +139,7 @@ function Header(props) {
                                                 style={navLinkStyle}
                                             >
                                                 Write a blog
-                                            </a>
+                                        </a>
                                         </NavItem>
                                     }
                                 </div>
