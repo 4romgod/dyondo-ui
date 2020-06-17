@@ -6,11 +6,14 @@ import moment from "moment";
 
 import FullPageLoader from "../Loader/FullPageLoader";
 
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function BlogRead({ username }) {
     const [blogs, setBlogs] = useState([]);
     const [message, setMessage] = useState('');
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const token = getCookie('token');
 
     useEffect(() => {
@@ -19,6 +22,8 @@ function BlogRead({ username }) {
 
 
     function loadBlogs() {
+        setLoading(true);
+
         list(username).then((data) => {
             if (data.error) {
                 console.log(data.error);
@@ -39,13 +44,24 @@ function BlogRead({ username }) {
 
 
     function deleteBlog(slug) {
+        setLoading(true);
+
         removeBlog(slug, token).then((data) => {
             if (data.error) {
                 console.log(data.error);
+                setLoading(false);
+
+                toast.dismiss();
+                toast.error("Something went wrong. Try again later");
             }
             else {
                 setMessage(data.message);
                 loadBlogs();
+
+                setLoading(false);
+
+                toast.dismiss();
+                toast.success("Successfully deleted!");
             }
         })
     }
@@ -83,23 +99,24 @@ function BlogRead({ username }) {
                     </button>
 
                     {showUpdateBtn(blog)}
-                    
+
                 </div>
-                
+
             )
         }
 
-        return !loading && ( (blogs.length > 0) ? blogs.map(showBlog) : <div>No blogs by this user</div>);
+        return !loading && ((blogs.length > 0) ? blogs.map(showBlog) : <div>No blogs by this user</div>);
     }
 
     return (
         <React.Fragment>
 
+            <ToastContainer />
+
             {loading && <FullPageLoader />}
 
             <div className="row">
                 <div className="col-md-12">
-                    {message && <div className="alert alert-warning">{message}</div>}
                     {showAllBlogs()}
                 </div>
             </div>
