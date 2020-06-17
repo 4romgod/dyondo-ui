@@ -90,7 +90,7 @@ function Category() {
         create({ name }, token).then(function (data) {
             if (data.error) {
                 toast.dismiss();
-                toast.error("Something went wrong while creating!");
+                toast.error(`${name} already exists!`);
 
                 setValues({ ...values, error: data.error, success: false });
             }

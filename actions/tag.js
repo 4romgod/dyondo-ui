@@ -54,7 +54,7 @@ export function singleTag(slug) {
 
 export function removeTag(slug, token) {
 
-    // 1. go to the backend, call tag api
+    // 1. go to the backend, call category api
     return fetch(`${API}/tag/${slug}`,
         {
             method: 'DELETE',
@@ -62,10 +62,10 @@ export function removeTag(slug, token) {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${token}`
-            }
+            }     
         })
         .then(response => {
-            //handleResponse(response);
+            handleResponse(response);
             return response.json();
         })
         .catch(err => console.log(err));
