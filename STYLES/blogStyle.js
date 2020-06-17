@@ -86,8 +86,8 @@ li {
 
     p,
     li {
-        font-size: 18px;
-        line-height: 2rem;
+        font-size: 18px !important;
+        line-height: 1.7rem !important;
     }
 }
 

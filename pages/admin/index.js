@@ -106,7 +106,7 @@ function AdminIndex() {
                                                             backgroundSize: 'cover',
                                                             backgroundRepeat: 'no-repeat',
                                                             height: '100px',
-                                                            width: '110px',
+                                                            width: '100px',
                                                             margin: '0',
                                                             borderRadius: '50%',
                                                             border: '0.03rem solid rgb(241, 241, 241)',
