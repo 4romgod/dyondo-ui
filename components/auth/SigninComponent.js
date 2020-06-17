@@ -3,7 +3,8 @@ import Router from 'next/router';
 import Link from "next/link";
 
 import { signin, authenticate, isAuth } from "../../actions/auth";
-import LoginGoogle from "./GoogleLogin";
+
+import GoogleLogin from "./GoogleLogin";
 
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
@@ -113,7 +114,7 @@ function SigninComponent() {
         <React.Fragment>
             <ToastContainer />
 
-            {/* <LoginGoogle /> */}
+            <GoogleLogin btnText="Signin with Google" />
 
             {showForm && signinForm()}
 

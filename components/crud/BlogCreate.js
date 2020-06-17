@@ -304,7 +304,7 @@ function CreateBlog({ router }) {
 
                         {/* shows the categories */}
                         <div>
-                            <h4 className="mt-3">Categories</h4>
+                            <h4 className="mt-3">Categories <small>(4 Max)</small></h4>
                             <hr />
 
                             <ul style={{ maxHeight: '200px', overflowY: 'scroll' }}>
@@ -314,7 +314,7 @@ function CreateBlog({ router }) {
 
                         {/* shows the tags */}
                         <div>
-                            <h4 className="mt-5">Tags</h4>
+                            <h4 className="mt-5">Tags <small>(4 Max)</small></h4>
                             <hr />
 
                             <ul style={{ maxHeight: '200px', overflowY: 'scroll', marginBottom: '100px' }}>

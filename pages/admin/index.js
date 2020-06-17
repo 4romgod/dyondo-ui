@@ -4,21 +4,21 @@ import Link from "next/link";
 import { getCookie } from "../../actions/auth";
 import { getProfile } from "../../actions/user";
 
-import {API} from "../../config";
+import { API } from "../../config";
 
-import {useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 function AdminIndex() {
     const [values, setValues] = useState({
-       name: '',
-       username:'',
-       about: '',
+        name: '',
+        username: '',
+        about: '',
 
-       error: '',
-       loading: ''
+        error: '',
+        loading: ''
     });
 
-    const {username, name, about, error, loading} = values;
+    const { username, name, about, error, loading } = values;
     const token = getCookie('token');
 
     function initUser() {
@@ -32,7 +32,7 @@ function AdminIndex() {
         });
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         initUser();
     }, []);
 
@@ -96,12 +96,21 @@ function AdminIndex() {
                                     <div className="col-md-8">
                                         <div className="shadow pt-4 pb-5">
                                             <div className="row ml-0 mr-0">
-                                                
+
                                                 <div className="col-md-3">
-                                                    <img
-                                                        src={`${API}/user/photo/${username}`}
-                                                        alt="profile photo"
-                                                        style={{ maxWidth: '100%', height: 'auto' }}
+                                                    <p
+                                                        style={{
+                                                            backgroundColor: '#eee',
+                                                            backgroundImage: `url(${API}/user/photo/${username})`,
+                                                            backgroundPosition: 'center',
+                                                            backgroundSize: 'cover',
+                                                            backgroundRepeat: 'no-repeat',
+                                                            height: '100px',
+                                                            width: '110px',
+                                                            margin: '0',
+                                                            borderRadius: '50%',
+                                                            border: '0.03rem solid rgb(241, 241, 241)',
+                                                        }}
                                                     />
                                                 </div>
 
@@ -109,8 +118,19 @@ function AdminIndex() {
                                                     <div className="pt-2">
                                                         <h4>{name}</h4>
                                                     </div>
-                                                    <div>
-                                                        <p>{about}</p>
+                                                    <div className="mb-4">
+                                                        {about ?
+                                                            <p>{about}</p>
+                                                            :
+                                                            <Link href={`/user/update`}>
+                                                                <a style={{
+                                                                    color: 'grey'
+                                                                }}
+                                                                >
+                                                                    Edit about me
+                                                                </a>
+                                                            </Link>
+                                                        }
                                                     </div>
                                                     <div>
                                                         <Link href={`/user/update`}>

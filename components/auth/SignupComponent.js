@@ -6,6 +6,9 @@ import { preSignup, signup, isAuth } from "../../actions/auth";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
+import GoogleLogin from "./GoogleLogin";
+
+
 toast.configure();
 function SignUpComponent() {
     const [values, setValues] = useState({
@@ -140,6 +143,8 @@ function SignUpComponent() {
     return (
         <React.Fragment>
             <ToastContainer />
+
+            <GoogleLogin btnText="Signup with Google" />
 
             {showForm && signupForm()}
         </React.Fragment>

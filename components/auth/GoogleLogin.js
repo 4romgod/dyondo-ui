@@ -3,7 +3,7 @@ import { loginWithGoogle, authenticate, isAuth } from "../../actions/auth";
 import { GOOGLE_CLIENT_ID } from '../../config';
 import GoogleLogin from "react-google-login";
 
-function LoginGoogle() {
+function LoginGoogle(props) {
 
     function responseGoogle(response) {
         console.log(response);
@@ -34,7 +34,7 @@ function LoginGoogle() {
         <div className="pb-3">
             <GoogleLogin
                 clientId={`${GOOGLE_CLIENT_ID}`}
-                buttonText="Login with Google"
+                buttonText={props.btnText}
                 onSuccess={responseGoogle}
                 onFailure={responseGoogle}
                 theme={'dark'}

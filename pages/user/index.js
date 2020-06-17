@@ -1,40 +1,41 @@
 import Layout from "../../components/Layout";
-import Private from "../../components/auth/Private";import Link from "next/link";
+import Private from "../../components/auth/Private"; 
+import Link from "next/link";
 import { getCookie } from "../../actions/auth";
 import { getProfile } from "../../actions/user";
 
-import {API} from "../../config";
+import { API } from "../../config";
 
-import {useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 function UserIndex() {
     const [values, setValues] = useState({
         name: '',
-        username:'',
+        username: '',
         about: '',
- 
+
         error: '',
         loading: ''
-     });
- 
-     const {username, name, about, error, loading} = values;
-     const token = getCookie('token');
- 
-     function initUser() {
-         getProfile(token).then(data => {
-             if (data.error) {
-                 setValues({ ...values, error: data.error, loading: false });
-             }
-             else {
-                 setValues({ ...values, username: data.username, name: data.name, about: data.about, loading: false });
-             }
-         });
-     }
- 
-     useEffect(()=>{
-         initUser();
-     }, []);
-     
+    });
+
+    const { username, name, about, error, loading } = values;
+    const token = getCookie('token');
+
+    function initUser() {
+        getProfile(token).then(data => {
+            if (data.error) {
+                setValues({ ...values, error: data.error, loading: false });
+            }
+            else {
+                setValues({ ...values, username: data.username, name: data.name, about: data.about, loading: false });
+            }
+        });
+    }
+
+    useEffect(() => {
+        initUser();
+    }, []);
+
     return (
         <Layout>
             <Private>
@@ -98,8 +99,19 @@ function UserIndex() {
                                             <div className="pt-2">
                                                 <h4>{name}</h4>
                                             </div>
-                                            <div>
-                                                <p>{about}</p>
+                                            <div className="mb-4">
+                                                {about ?
+                                                    <p>{about}</p>
+                                                    :
+                                                    <Link href={`/user/update`}>
+                                                        <a style={{
+                                                            color: 'grey'
+                                                        }}
+                                                        >
+                                                            Edit about me
+                                                                </a>
+                                                    </Link>
+                                                }
                                             </div>
                                             <div>
                                                 <Link href={`/user/update`}>
