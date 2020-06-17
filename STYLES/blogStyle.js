@@ -68,6 +68,11 @@ li {
     font-size: small;
 }
 
+#blog-body iframe {
+    width: 100%;
+    height: 400px
+}
+
 
 /**************** BLOG CREATE/UPDATE *****************/
 @media only screen and (min-width: 992px) {}
@@ -78,6 +83,10 @@ li {
 
     .blog-featured-img {
         height: 350px;
+    }
+
+    #blog-body iframe {
+        height: 350px
     }
 
     .blog-create-page {
@@ -94,6 +103,10 @@ li {
 @media only screen and (max-width: 576px) {
     .blog-featured-img {
         height: 250px;
+    }
+
+    #blog-body iframe {
+        height: 200px
     }
 }
 `
