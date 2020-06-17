@@ -61,8 +61,13 @@ function Tag() {
 
 
     function deleteConfirm(slug) {
+        console.log("You want to delete?");
         let answer = window.confirm("Are you sure you want to delete this tag?");
+        console.log("Yes i want to delete");
+        
         if (answer) {
+            console.log("Deleting the tag...");
+            
             deleteTag(slug);
         }
     }
