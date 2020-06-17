@@ -4,6 +4,9 @@ import Router from 'next/router';
 import { isAuth, getCookie } from '../../actions/auth';
 import { create, getTags, removeTag } from '../../actions/tag';
 
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function Tag() {
     const [values, setValues] = useState({
@@ -69,8 +72,13 @@ function Tag() {
         removeTag(slug, token).then(function (data) {
             if (data.error) {
                 console.log(data.error);
+
+                toast.dismiss();
+                toast.error("Something went wrong while deleting!");
             }
             else {
+                toast.dismiss();
+                toast.success(`${slug} successfully deleted!`);
                 setValues({ ...values, error: false, success: false, name: '', removed: true, reload: !reload });
             }
         })
@@ -84,37 +92,24 @@ function Tag() {
         // post requst to the backend api
         create({ name }, token).then(function (data) {
             if (data.error) {
+                toast.dismiss();
+                toast.error("Something went wrong while creating!");
+                
                 setValues({ ...values, error: data.error, success: false });
             }
             else {
+                toast.dismiss();
+                toast.success(`${name} successfully created!`);
                 setValues({ ...values, error: false, success: true, name: "", removed: false, reload: !reload });
             }
         });
 
     }
 
+
     function handleChange(event) {
         setValues({ ...values, name: event.target.value, error: false, success: false, removed: '' });
     }
-
-
-    const showSuccess = () => {
-        if (success) {
-            return <p className="text-success">Tag is created</p>;
-        }
-    };
-
-    const showError = () => {
-        if (error) {
-            return <p className="text-danger">Tag already exist</p>;
-        }
-    };
-
-    const showRemoved = () => {
-        if (removed) {
-            return <p className="text-danger">Tag is removed</p>;
-        }
-    };
 
 
     const mouseMoveHandler = e => {
@@ -140,9 +135,8 @@ function Tag() {
 
     return (
         <React.Fragment>
-            {showSuccess()}
-            {showError()}
-            {showRemoved()}
+
+            <ToastContainer />
 
             <div onMouseMove={mouseMoveHandler}>
                 {newTagForm()}

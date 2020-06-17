@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react';
 import { isAuth, getCookie } from '../../actions/auth';
 import { create, getCategories, removeCategory } from '../../actions/category';
 
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function Category() {
     const [values, setValues] = useState({
@@ -62,15 +65,19 @@ function Category() {
         }
     }
 
-    
+
     function deleteCategory(slug) {
         //console.log(`Delete ${slug}`);
 
         removeCategory(slug, token).then(function (data) {
             if (data.error) {
-                console.log(data.error);
+                //console.log(data.error);
+                toast.dismiss();
+                toast.error("Something went wrong while deleting!");
             }
             else {
+                toast.dismiss();
+                toast.success(`${slug} successfully deleted!`);
                 setValues({ ...values, error: false, success: false, name: '', removed: true, reload: !reload });
             }
         })
@@ -82,9 +89,14 @@ function Category() {
 
         create({ name }, token).then(function (data) {
             if (data.error) {
+                toast.dismiss();
+                toast.error("Something went wrong while creating!");
+
                 setValues({ ...values, error: data.error, success: false });
             }
             else {
+                toast.dismiss();
+                toast.success(`${name} successfully created!`);
                 setValues({ ...values, error: false, success: true, name: "", removed: false, reload: !reload });
 
             }
@@ -95,25 +107,6 @@ function Category() {
     function handleChange(event) {
         setValues({ ...values, name: event.target.value, error: false, success: false, removed: '' });
     }
-
-
-    const showSuccess = () => {
-        if (success) {
-            return <p className="text-success">Category is created</p>;
-        }
-    };
-
-    const showError = () => {
-        if (error) {
-            return <p className="text-danger">Category already exist</p>;
-        }
-    };
-
-    const showRemoved = () => {
-        if (removed) {
-            return <p className="text-danger">Category is removed</p>;
-        }
-    };
 
 
     const mouseMoveHandler = e => {
@@ -140,9 +133,8 @@ function Category() {
 
     return (
         <React.Fragment>
-            {showSuccess()}
-            {showError()}
-            {showRemoved()}
+
+            <ToastContainer />
 
             <div onMouseMove={mouseMoveHandler}>
                 {newCategoryForm()}
