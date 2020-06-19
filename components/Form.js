@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { sendNodemailer } from '../actions/contact';
 
+import {isAuth} from "../actions/auth";
+
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -10,8 +12,8 @@ import FullPageLoader from "../components/Loader/FullPageLoader";
 function Form({ authorEmail }) {
     const [values, setValues] = useState({
         buttonText: 'Send Message',
-        name: '',
-        email: '',
+        name: isAuth() ? isAuth().name : '',
+        email: isAuth() ? isAuth().email : '',
         message: ''
     });
 
@@ -24,7 +26,6 @@ function Form({ authorEmail }) {
 
     const { name, email, message } = values;
     const { error, success, loading, showForm } = result;
-
 
     function handleChange(name) {
         return (event) => {
@@ -40,48 +41,26 @@ function Form({ authorEmail }) {
 
         setResult({ ...result, loading: true, error: false, success: false });
 
-        sendNodemailer({ email, name, message })
+        sendNodemailer({ authorEmail, email, name, message })
             .then(response => {
                 // console.log("Send Nodemailer Results: ");
                 // console.log(response);
 
-                if(response.error){
+                if(!response.success){
                     toast.dismiss();
-                    toast.error(response.error);
+                    toast.error(response.message);
                     setResult({...result, loading: false, success: false, error: true});
                 }
+                else{
+                    toast.dismiss();
+                    toast.success(response.message);
+    
+                    setValues({...values, name: '', email: '', message: ''});
+                    setResult({...result, loading: false, success: response.message, error: false, showForm: true});
+                }
                 
-                toast.dismiss();
-                toast.success(response.message);
-                setResult({...result, loading: false, success: response.message, error: false, showForm: false});
             });
 
-
-        /** 
-        sendMessage({ authorEmail, name, email, message })
-            .then((data) => {
-                if (data.error) {
-                    setValues({
-                        ...values,
-                        error: data.error,
-                        success: false,
-                        loading: false
-                    });
-                }
-                else {
-                    setValues({
-                        ...values,
-                        success: "Message sent successfully!",
-                        error: false,
-                        loading: false,
-                        message: '',
-                        name: '',
-                        email: '',
-                        showForm: false
-                    });
-                }
-            });
-        */
     }
 
     function showContactForm() {
@@ -99,6 +78,7 @@ function Form({ authorEmail }) {
                     />
                 </div>
 
+                {!isAuth() &&
                 <div className="form-group">
                     <label className="text-muted">Your Name</label>
                     <input
@@ -109,7 +89,9 @@ function Form({ authorEmail }) {
                         value={name}
                     />
                 </div>
+                }
 
+                {!isAuth() &&
                 <div className="form-group">
                     <label className="text-muted">Your Email</label>
                     <input
@@ -120,6 +102,7 @@ function Form({ authorEmail }) {
                         value={email}
                     />
                 </div>
+                }
 
                 <div>
                     <button className="btn btn-success">Send Message</button>

@@ -27,7 +27,14 @@ export function sendMessage(message) {
 };
 
 export function sendNodemailer(message) {
-    let emailEndpoint = `${API}/contact`;
+    let emailEndpoint = '';
+
+    if(message.authorEmail){
+        emailEndpoint = `${API}/contact-blog-author`;
+    }
+    else{
+        emailEndpoint = `${API}/contact`;
+    }
     
     return fetch(`${emailEndpoint}`,
         {
