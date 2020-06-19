@@ -1,6 +1,12 @@
 import { useState } from 'react';
 import { sendNodemailer } from '../actions/contact';
 
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
+import FullPageLoader from "../components/Loader/FullPageLoader";
+
+
 function Form({ authorEmail }) {
     const [values, setValues] = useState({
         buttonText: 'Send Message',
@@ -10,7 +16,6 @@ function Form({ authorEmail }) {
     });
 
     const [result, setResult] = useState({
-        message: '',
         success: false,
         error: false,
         loading: false,
@@ -18,13 +23,14 @@ function Form({ authorEmail }) {
     });
 
     const { name, email, message } = values;
-    const { error, success, loading, showForm} = result;
+    const { error, success, loading, showForm } = result;
 
 
     function handleChange(name) {
         return (event) => {
             // console.log(name + ": " + event.target.value);
-            setValues({ ...values, [name]: event.target.value, error: false, success: false, loading: false });
+            setValues({ ...values, [name]: event.target.value});
+            setResult({...result, error: false, success: false, loading: false });
         }
     }
 
@@ -32,12 +38,23 @@ function Form({ authorEmail }) {
         event.preventDefault();
         //console.log(values);
 
-        setValues({ ...values, loading: true, error: false, success: false });
+        setResult({ ...result, loading: true, error: false, success: false });
 
-        sendNodemailer({email, name, message})
-            .then(response=>{
-                console.log(response);
-            })
+        sendNodemailer({ email, name, message })
+            .then(response => {
+                // console.log("Send Nodemailer Results: ");
+                // console.log(response);
+
+                if(response.error){
+                    toast.dismiss();
+                    toast.error(response.error);
+                    setResult({...result, loading: false, success: false, error: true});
+                }
+                
+                toast.dismiss();
+                toast.success(response.message);
+                setResult({...result, loading: false, success: response.message, error: false, showForm: false});
+            });
 
 
         /** 
@@ -66,29 +83,6 @@ function Form({ authorEmail }) {
             });
         */
     }
-
-
-    const showSuccess = () => {
-        return (
-            <div className="alert alert-info" style={{ display: success ? '' : 'none' }}>
-                Message sent successfully!
-            </div>);
-    };
-
-    const showLoading = () => {
-        return (
-            <div className="alert alert-info" style={{ display: loading ? '' : 'none' }}>
-                Sending message...
-            </div>);
-    };
-
-    const showError = () => {
-        return (
-            <div className="alert alert-danger" style={{ display: error ? '' : 'none' }}>
-                {error}
-            </div>);
-    };
-
 
     function showContactForm() {
         return (
@@ -136,10 +130,11 @@ function Form({ authorEmail }) {
 
     return (
         <div>
-            {showError()}
-            {showSuccess()}
-            {showLoading()}
-            {showForm && showContactForm()}
+            <ToastContainer />
+
+            {loading && <FullPageLoader />}
+
+            {showForm ? showContactForm() : <h2>{success}</h2>}
         </div>
 
     )
