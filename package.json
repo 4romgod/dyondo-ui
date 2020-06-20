@@ -36,6 +36,7 @@
     "react-share": "^4.2.0",
     "react-toastify": "^6.0.5",
     "reactstrap": "^8.4.1",
+    "sitemap": "^6.1.5",
     "slugify": "^1.4.0"
   }
 }

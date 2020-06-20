@@ -80,7 +80,7 @@ function Header(props) {
     }
 
 
-    function showSigninAndUp(){
+    function showSigninAndUp() {
         return (
             !isAuth() && <React.Fragment>
                 <NavItem style={{ padding: '0', margin: '0 11px' }}>
@@ -103,22 +103,67 @@ function Header(props) {
         )
     }
 
+
+    function showWriteBlog() {
+        if (isAuth()) {
+            if (isAuth().role === 0) {
+                return (
+                    <NavItem style={{ padding: '0', margin: '0 11px' }}>
+                        <a href={`/user/crud/blog`}
+                            style={navLinkStyle}
+                        >
+                            <p className="btn btn-outline-success pl-3 pr-3 write-blog">
+                                <strong>Write a blog</strong>
+                            </p>
+                        </a>
+                    </NavItem>
+                )
+            }
+            else if (isAuth().role === 1) {
+                return (
+                    <NavItem style={{ padding: '0', margin: '0 11px' }}>
+                        <a href={`/admin/crud/blog`}
+                            style={navLinkStyle}
+                        >
+                            <p className="btn btn-outline-success pl-3 pr-3 write-blog" onClick={() => setIsOpen(false)}>
+                                <strong>Write a blog</strong>
+                            </p>
+                        </a>
+                    </NavItem>
+                )
+            }
+
+        }
+        else {
+            <NavItem style={{ padding: '0', margin: '0 11px' }}>
+                <a href={`/signup`}
+                    style={navLinkStyle}
+                >
+                    <p className="btn btn-outline-success pl-3 pr-3 write-blog">
+                        <strong>Write a blog</strong>
+                    </p>
+                </a>
+            </NavItem>
+        }
+
+    }
+
     return (
         <React.Fragment>
             <Navbar color="dark" dark expand="md" className="navbar fixed-top">
                 <Link href="/">
                     <NavLink className="font-weight-bold" id="container-logo" style={{ cursor: 'pointer', color: 'black', fontSize: '1.5rem' }}>
-                        <img src="/images/logo.png"/>
+                        <img src="/images/logo.png" />
                     </NavLink>
                 </Link>
 
                 <NavbarToggler className="collapsed position-relative" onClick={toggle} >
-                    {isOpen && <img src="/images/close.svg" style={{width: '20px'}} />}
+                    {isOpen && <img src="/images/close.svg" style={{ width: '20px' }} />}
                 </NavbarToggler>
 
                 <Collapse isOpen={isOpen} navbar>
-                
-                    <Nav className="ml-auto" navbar onClick={()=>setIsOpen(false)}>
+
+                    <Nav className="ml-auto" navbar onClick={() => setIsOpen(false)}>
                         <React.Fragment>
 
                             {/* write blog on phone screen size */}
@@ -188,41 +233,7 @@ function Header(props) {
                                 </React.Fragment>
                             )}
 
-                            {/* write blog on big screen size */}
-                            <React.Fragment>
-                                {isAuth() && isAuth().role === 0 &&
-                                    <NavItem style={{ padding: '0', margin: '0 11px' }}>
-                                        <a href={`/user/crud/blog`}
-                                            style={navLinkStyle}
-                                        >
-                                            <p className="btn btn-success pl-3 pr-3 write-blog">
-                                                <strong>Write a blog</strong>
-                                            </p>
-                                        </a>
-                                    </NavItem>}
-
-                                {isAuth() && isAuth().role === 1 &&
-                                    <NavItem style={{ padding: '0', margin: '0 11px' }}>
-                                        <a href={`/admin/crud/blog`}
-                                            style={navLinkStyle}
-                                        >
-                                            <p className="btn btn-outline-success pl-3 pr-3 write-blog" onClick={()=>setIsOpen(false)}>
-                                                <strong>Write a blog</strong>
-                                            </p>
-                                        </a>
-                                    </NavItem>}
-
-                                {!isAuth() &&
-                                    <NavItem style={{ padding: '0', margin: '0 11px' }}>
-                                        <a href={`/signup`}
-                                            style={navLinkStyle}
-                                        >
-                                            <p className="btn btn-outline-success pl-3 pr-3 write-blog">
-                                                <strong>Write a blog</strong>
-                                            </p>
-                                        </a>
-                                    </NavItem>}
-                            </React.Fragment>
+                            {showWriteBlog()}
 
                         </React.Fragment>
                     </Nav>
