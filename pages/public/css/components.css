@@ -1,0 +1,104 @@
+/*********************************** COLORS ***************************/
+:root {
+  --col-primary: #343a40;
+  --col-primary-dk: #1a1d20;
+  --col-primary-lt: #606b76;
+
+  --col-success: #29a48b;
+  --col-success-dk: #196556;
+  --col-success-lt: #29a48b;
+
+  --col-danger: #3f474e;
+
+  --col-warning: #3f474e;
+}
+
+
+.row{
+  margin: 0;
+}
+
+/*********************************** BUTTONS ***************************/
+.btn-sq {
+  border-radius: 0;
+}
+
+.btn-primary {
+  background-color: var(--col-primary-lt);
+  border-color: var(--col-primary-lt);
+}
+
+.btn-primary:hover {
+  background-color: var(--col-primary);
+  border-color: var(--col-primary);
+}
+
+.btn-outline-primary {
+  border-color: var(--col-primary-lt);
+  color: var(--col-primary-lt);
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--col-primary-dk);
+  border-color: var(--col-primary-dk);
+}
+
+.btn-success {
+  background-color: var(--col-success-lt);
+  border-color: var(--col-success-lt);
+}
+
+.btn-success:hover {
+  background-color: var(--col-success-dk) !important;
+  border-color: var(--col-success-dk);
+  color: white;
+}
+
+.btn-outline-success {
+  border-color: var(--col-success-lt);
+  color: var(--col-success-lt);
+}
+
+.btn-outline-success:hover {
+  background-color: var(--col-success-lt);
+  border-color: var(--col-success-lt);
+  color: white;
+}
+
+/*********************************** BACKGROUDS ***************************/
+.bg-pr {
+  background-color: var(--col-primary-lt);
+}
+
+
+.width-overflow{
+  width: 100%;
+  overflow-x: auto;
+}
+
+/*********************************** OTHERS ***************************/
+a:hover {
+  text-decoration: none;
+}
+
+.wb{
+  word-break: break-all;
+}
+
+.ww{
+  word-wrap: break-word;
+}
+
+.form-control:focus {
+  border-color: var(--col-success) !important;
+}
+
+#nprogress .bar {
+  background: var(--col-success) !important;
+  height: 3px !important;
+}
+
+#nprogress .spinner-icon {
+  border-top-color: var(--col-success) !important;
+  border-left-color: var(--col-success) !important;
+}

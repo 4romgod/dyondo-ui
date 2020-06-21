@@ -178,10 +178,9 @@ function Blogs({ blogs, categories, tags, totalBlogs, blogsLimit, blogsSkip, rou
                                                 border: 'none'
                                             }}
                                         >
-                                            Popular Categories
-                                    </h4>
+                                            Popular Articles
+                                        </h4>
 
-                                        {showAllCategories()}
                                     </div>
                                 </div>
                             </div>

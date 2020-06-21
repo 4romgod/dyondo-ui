@@ -1,0 +1,106 @@
+body{
+    overflow-wrap: break-word !important;
+}
+
+/*********************************** TAGS ***************************/
+.shadow-bottom {
+    box-shadow: 0px 5px 5px -5px rgb(136, 136, 136);
+}
+
+.shadow {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.shadow:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.ql-editor {
+    min-height: 300px;
+}
+
+.container {
+    max-width: 100% !important;
+}
+
+.privacy-policy-page {
+    margin: 0 auto;
+}
+
+
+/*************** LARGEST SCREENS ***************/
+@media (min-width: 992px) {
+    .container {
+        max-width: 80% !important;
+    }
+
+    .privacy-policy-page {
+        max-width: 68% !important;
+    }
+}
+
+
+/************ LARGE SCREENS ******************/
+@media (max-width: 992px) {
+    .container {
+        max-width: 970px !important;
+    }
+
+    .privacy-policy-page {
+        max-width: 70% !important;
+    }
+}
+
+
+/************* MEDIUM SCREENS ****************/
+@media only screen and (max-width: 768px) {
+    .container {
+        max-width: 750px !important;
+        padding: 0;
+    }
+
+    .heading-text {
+        top: 20%;
+        padding: 10px 20px;
+    }
+
+    /*********** ADMIN HOME *************/
+    .container-admin {
+        padding: 0;
+    }
+
+    .container-admin .left,
+    .right {
+        padding: 0 15px !important;
+    }
+
+    .container-cat {
+        padding: 0 !important;
+    }
+
+    .privacy-policy-page {
+        max-width: 80% !important;
+    }
+}
+
+
+/*************** SMALL SCREENS *****************/
+@media only screen and (max-width: 576px) {
+    .container {
+        max-width: 567px !important;
+        padding: 0;
+    }
+
+    .container-blog-component {
+        padding: 0 !important;
+    }
+
+    .privacy-policy-page {
+        max-width: 94% !important;
+    }
+}
+
+
+.navbar-toggler .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 0, 0)' stroke-width='4' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}

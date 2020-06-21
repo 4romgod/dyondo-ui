@@ -7,18 +7,7 @@ import { API } from "../../../config";
 import cardStyle from "./cardStyle.js";
 
 function Card({ blog }) {
-
-    function showBlogCategories() {
-        function showCat(cat, index) {
-            return (
-                <Link key={index} href={`/categories/[slug]`} as={`/categories/${cat.slug}`}>
-                    <a className="btn btn-outline-info btn-sm ml-1 mr-1 mt-3">{cat.name}</a>
-                </Link>
-            )
-        }
-        return blog.categories.map(showCat);
-    }
-
+    
     function showBlogTags() {
         function showTag(tag, index) {
             return (
@@ -73,7 +62,6 @@ function Card({ blog }) {
                     </section> */}
 
                     <div id="container-cat-tag">
-                        {showBlogCategories()}
                         {showBlogTags()}
                     </div>
                 </div>
