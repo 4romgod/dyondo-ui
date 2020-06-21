@@ -1,11 +1,15 @@
-/************************************* NAVIGATION ******************************/
+
 .navbar {
     background-color: white !important;
     padding: 0;
-    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.5);
+    /* box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.5); */
     font-family: "Poppins", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif !important;
     font-size: 14px !important;
     font-weight: 700 !important;
+}
+
+#navbar2{
+    background-color: #eee !important;
 }
 
 
@@ -22,11 +26,11 @@
     padding-right: 5px;
 }
 
-.navbar .navbar-collapse {
+#navbar1 .navbar .navbar-collapse {
     min-height: 65px;
 }
 
-.navbar .navbar-collapse .navbar-nav {
+#navbar1 .navbar .navbar-collapse .navbar-nav {
     min-height: 65px;
 }
 
@@ -34,6 +38,12 @@
     color: black;
     font-size: 0.96rem;
     font-weight: bold;
+}
+
+#navbar2 .navbar-nav .nav-link{
+    color: rgb(59, 59, 58);
+    font-size: 0.9rem;
+    font-weight: normal;
 }
 
 .navbar-dark .navbar-nav .nav-link:hover {
@@ -70,7 +80,7 @@
 
 @media only screen and (max-width: 767px) {
     .navbar .navbar-collapse{
-        border-top: 0.01rem solid black;
+        /* border-top: 0.01rem solid black; */
     }
     
     .navbar-dark .navbar-nav .nav-item {

@@ -4,6 +4,7 @@ import { create, getTags, removeTag } from '../../actions/tag';
 import { list } from "../../actions/topic";
 import { withRouter } from 'next/router';
 
+
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -11,6 +12,7 @@ import Checkbox from "../Checkbox/Checkbox";
 
 function Tag({ router }) {
     const [values, setValues] = useState({
+        tagData: new FormData(),
         name: '',
         photo: '',
         photoName: '',
@@ -21,21 +23,22 @@ function Tag({ router }) {
         error: false,
         success: false,
         removed: false,
-        reload: false
     });
 
     const [topics, setTopics] = useState([]);
     const [checkedTopics, setCheckedTopic] = useState([]);
 
-    const { name, photo, photoName, tags} = values;
-    const { error, success, removed, reload } = results;
+    const { name, photo, photoName, tags, tagData} = values;
+    const { error, success, removed } = results;
 
     const token = getCookie('token');
 
     useEffect(() => {
+        setValues({ ...values, formData: new FormData() });
+
         loadTags();
         initTopics();
-    }, [reload]);
+    }, []);
 
 
     function loadTags() {
@@ -121,7 +124,7 @@ function Tag({ router }) {
                 toast.dismiss();
                 toast.success(`${slug} successfully deleted!`);
                 setValues({ ...values, success: false, name: ''});
-                setResults({...results, error: false, removed: true, reload: !reload})
+                setResults({...results, error: false, removed: true})
             }
         });
     }
@@ -141,7 +144,8 @@ function Tag({ router }) {
                     toast.error("Image size should be less than 1MB");
                 }
                 else {
-                    setValues({ ...values, photoName: value ? value.name : '', [name]: value});
+                    tagData.set(name, value);
+                    setValues({ ...values, photoName: value ? value.name : '', [name]: value, tagData});
                     setResults({ ...results, error: false, success: false, removed: '' });
                 }
 
@@ -149,7 +153,8 @@ function Tag({ router }) {
             else {
                 value = event.target.value;
 
-                setValues({ ...values, [name]: event.target.value});
+                tagData.set(name, value);
+                setValues({ ...values, [name]: event.target.value, tagData});
                 setResults({ ...results, error: false, success: false, removed: '' });
             }
         }
@@ -172,6 +177,9 @@ function Tag({ router }) {
 
             console.log(all);
             setCheckedTopic(all);
+
+            tagData.set("topics", all)
+
         }
     }
 
@@ -190,9 +198,10 @@ function Tag({ router }) {
         event.preventDefault();
 
         console.log("submitting data");
-
-        create({name, topics: checkedTopics}, token).then(function(data) {
-            //console.log(data);
+        console.log(tagData);
+        
+        create(tagData, token).then(function(data) {
+            console.log(data);
             
             if (data.error) {
                 toast.dismiss();
@@ -202,11 +211,8 @@ function Tag({ router }) {
             else {
                 toast.dismiss();
                 toast.success(`${name} successfully created!`);
-
-                setValues({ ...values, name: "", photo: '', photoName: '', tags});
-
-                setResults({ ...results, error: false, success: true, removed: false, reload: !reload});
-
+                setValues({ ...values, name: "", photo: '', photoName: '', removed: false});
+                setResults({ ...results, error: false, success: true, removed: false});
                 setCheckedTopic([]);
             }
         });

@@ -150,7 +150,7 @@ function Header(props) {
 
     return (
         <React.Fragment>
-            <Navbar color="dark" dark expand="md" className="navbar fixed-top">
+            <Navbar color="dark" dark expand="md" className="navbar" id="navbar1">
                 <Link href="/">
                     <NavLink className="font-weight-bold" id="container-logo" style={{ cursor: 'pointer', color: 'black', fontSize: '1.5rem' }}>
                         <img src="/images/logo.png" />

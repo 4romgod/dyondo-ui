@@ -49,6 +49,7 @@ function CreateBlog({ router }) {
         sizeError: "",
         success: "",
         loading: false,
+
         formData: "",
         title: "",
         hidePublishButton: false,
@@ -93,7 +94,7 @@ function CreateBlog({ router }) {
         function createLi(cat, index) {
             return (
                 <li key={index} className="list-unstyled">
-                    <Checkbox 
+                    <Checkbox
                         entity={cat}
                         handleChange={handleToggleCat}
                     />
@@ -160,7 +161,8 @@ function CreateBlog({ router }) {
 
             console.log(all);
             setCheckedTag(all);
-            formData.set("tags", all)
+
+            formData.set("tags", all);
         }
     }
 
@@ -168,7 +170,7 @@ function CreateBlog({ router }) {
     function handleChange(name) {
         return (event) => {
             let value;
-            if(name === 'photo'){
+            if (name === 'photo') {
                 value = event.target.files[0];
                 const fileSize = value.size / 1024 / 1024;
 
@@ -176,13 +178,20 @@ function CreateBlog({ router }) {
                     toast.dismiss();
                     toast.error("Image size should be less than 1MB");
                 }
-                else{
+                else {
                     formData.set(name, value);
-                    setValues({ ...values, photoName: value?value.name:'', [name]: value, formData, error: ''});
+                    
+                    setValues({
+                        ...values,
+                        photoName: value ? value.name : '',
+                        [name]: value,
+                        formData,
+                        error: ''
+                    });
                 }
 
             }
-            else{
+            else {
                 value = event.target.value;
                 formData.set(name, value);
                 setValues({ ...values, [name]: value, formData, error: "" });
@@ -207,18 +216,13 @@ function CreateBlog({ router }) {
     function publishBlog(event) {
         event.preventDefault();
 
-        if(checkedCat.length > 4 ){
-            toast.dismiss();
-            toast.error("Maximum Categories exceeded!");
-            return;
-        }
-        else if(checkedTag.length > 4 ){
+        if (checkedTag.length > 5) {
             toast.dismiss();
             toast.error("Maximum Tags exceeded!");
             return;
         }
 
-        setValues({...values, loading: true, error: false, success: false});
+        setValues({ ...values, loading: true, error: false, success: false });
 
         createBlog(formData, token).then((data) => {
             if (data.error) {
@@ -236,8 +240,8 @@ function CreateBlog({ router }) {
 
                 localStorage.removeItem('blog');
                 let slug = slugify(title);
-                setTimeout(()=>Router.push(`/blogs/[slug]`, `/blogs/${slug}`), 2000);
-                
+                setTimeout(() => Router.push(`/blogs/[slug]`, `/blogs/${slug}`), 2000);
+
             }
         });
     }
@@ -280,7 +284,7 @@ function CreateBlog({ router }) {
                 <div className="row blog-create-page">
 
                     {/* show blog form */}
-                    <div className="col-md-8" style={{position: 'static'}}>
+                    <div className="col-md-8" style={{ position: 'static' }}>
                         {createBlogForm()}
                     </div>
 

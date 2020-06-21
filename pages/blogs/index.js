@@ -130,7 +130,7 @@ function Blogs({ blogs, categories, tags, totalBlogs, blogsLimit, blogsSkip, rou
 
                         <header className="bg-white">
 
-                            <div className="col-md-12 text-center width-overflow">
+                            <div className="col-md-12 pl-0 pr-0 text-center width-overflow">
                                 <div className="bg-white pt-5 pb-5">
                                     <h1>Coding Blogs and Tutorials</h1>
                                 </div>
@@ -162,10 +162,10 @@ function Blogs({ blogs, categories, tags, totalBlogs, blogsLimit, blogsSkip, rou
                                                 border: 'none'
                                             }}
                                         >
-                                            Popular Categories
+                                            Popular Tags
                                     </h4>
 
-                                        {showAllCategories()}
+                                        {showAllTags()}
                                     </div>
 
                                     <br />
@@ -178,10 +178,10 @@ function Blogs({ blogs, categories, tags, totalBlogs, blogsLimit, blogsSkip, rou
                                                 border: 'none'
                                             }}
                                         >
-                                            Popular Tags
+                                            Popular Categories
                                     </h4>
 
-                                        {showAllTags()}
+                                        {showAllCategories()}
                                     </div>
                                 </div>
                             </div>

@@ -3,16 +3,15 @@ import { API } from '../config';
 import {handleResponse} from "../actions/auth";
 
 
-export function create(field, token) {
-    return fetch(`${API}/field`,
+export function create(topic, token) {
+    return fetch(`${API}/topic`,
         {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
-                'Content-Type': 'application/json',
                 //Authorization: `Bearer ${token}`
             },               
-            body: JSON.stringify(field)      
+            body: JSON.stringify(topic)      
         })
         .then(response => {
             //handleResponse(response);
@@ -22,8 +21,8 @@ export function create(field, token) {
 };
 
 
-export function getFields() {
-    return fetch(`${API}/fields`,
+export function list() {
+    return fetch(`${API}/topics`,
         {
             method: 'GET',     
         })
@@ -34,8 +33,8 @@ export function getFields() {
 };
 
 
-export function singleField(slug) {
-    return fetch(`${API}/field/${slug}`,
+export function singleTopic(slug) {
+    return fetch(`${API}/topic/${slug}`,
         {
             method: 'GET',     
         })
@@ -45,8 +44,8 @@ export function singleField(slug) {
         .catch(err => console.log(err));
 };
 
-export function removeFieldy(slug, token) {
-    return fetch(`${API}/field/${slug}`,
+export function removeTopic(slug, token) {
+    return fetch(`${API}/topic/${slug}`,
         {
             method: 'DELETE',
             headers: {

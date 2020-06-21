@@ -39,6 +39,20 @@ export function getTags() {
 };
 
 
+export function getTagsByField(topic) {
+
+    // 1. go to the backend, call tags api
+    return fetch(`${API}/tags/${topic}`,
+        {
+            method: 'GET',
+        })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));
+};
+
+
 export function singleTag(slug) {
 
     // 1. go to the backend, call tag api
@@ -51,6 +65,7 @@ export function singleTag(slug) {
         })
         .catch(err => console.log(err));
 };
+
 
 export function removeTag(slug, token) {
 

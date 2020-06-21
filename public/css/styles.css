@@ -31,7 +31,7 @@ body{
 /*************** LARGEST SCREENS ***************/
 @media (min-width: 992px) {
     .container {
-        max-width: 100% !important;
+        max-width: 80% !important;
     }
 
     .privacy-policy-page {
@@ -43,7 +43,7 @@ body{
 /************ LARGE SCREENS ******************/
 @media (max-width: 992px) {
     .container {
-        max-width: 992px !important;
+        max-width: 970px !important;
     }
 
     .privacy-policy-page {
@@ -55,7 +55,7 @@ body{
 /************* MEDIUM SCREENS ****************/
 @media only screen and (max-width: 768px) {
     .container {
-        max-width: 768px !important;
+        max-width: 750px !important;
         padding: 0;
     }
 

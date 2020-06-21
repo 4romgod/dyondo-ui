@@ -1,4 +1,5 @@
 import Header from "./Header/Header";
+import HeaderTopics from "./HeaderTopics/HeaderTopics";
 
 import { useState } from "react";
 import Search from '../components/blog/Search';
@@ -19,8 +20,9 @@ const Layout = (props) => {
 
             <div className="bg-light" onClick={handleClick}>
 
-                <div className="shadow-bottom bg-white">
-                    <Search closeSearch={isClicked} />
+                <div className="bg-white">
+                    <HeaderTopics />
+                    {/* <Search closeSearch={isClicked} /> */}
                 </div>
 
                 {/**Main content of each page */}

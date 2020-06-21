@@ -57,13 +57,13 @@ function AdminIndex() {
 
                                     <div className="col-md-4 pl-0 left mb-5">
                                         <ul className="list-group">
-                                            <Link href="/admin/crud/category-tag">
+                                            {/* <Link href="/admin/crud/category-tag">
                                                 <li className="list-group-item btn btn-outline-success">
                                                     <a style={{ color: 'black', borderBottom: '0' }}>
                                                         Create Category
                                                     </a>
                                                 </li>
-                                            </Link>
+                                            </Link> */}
                                             <Link href="/admin/crud/category-tag">
                                                 <li className="list-group-item btn btn-outline-success">
                                                     <a style={{ color: 'black', borderBottom: '0' }}>

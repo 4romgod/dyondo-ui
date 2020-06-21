@@ -5,6 +5,8 @@ import { API } from "../../config";
 import { useState, useEffect } from 'react';
 import { listSearch } from '../../actions/blog';
 
+import FacebookIcon from "react-share";
+
 
 function Search(props) {
     const [values, setValues] = useState({
@@ -56,10 +58,10 @@ function Search(props) {
     
     function searchForm() {
         return (
-            <form onSubmit={searchSubmit} className="container">
-                <div className="row">
+            <form onSubmit={searchSubmit} className="">
+                <div className="row ml-0 mr-0">
 
-                    <div className="col-md-10 pb-2">
+                    <div className="col-md-10 pb-2 pl-0 pr-0">
                         <input
                             type="search"
                             className="form-control bg-light"
@@ -78,12 +80,12 @@ function Search(props) {
     }
 
     return (
-        <div className="container-fluid pb-2" style={{ marginTop: '80px' }}>
+        <div className="container-fluid">
             <div className="row">
 
-                <div className="col-md-12">{searchForm()}</div>
+                <div className="col-md-12 pl-0 pr-0">{searchForm()}</div>
 
-                <div className="container">
+                <div className="">
                     <div className="col-md-10">
                         {searched
                             &&
