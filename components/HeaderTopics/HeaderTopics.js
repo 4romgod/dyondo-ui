@@ -8,7 +8,6 @@ import { list } from "../../actions/topic";
 import {
     Collapse, Navbar, NavbarToggler, Nav, NavItem, NavLink
 } from 'reactstrap';
-import topic from '../../../backend/models/topic';
 
 function HeaderTopics(props) {
     const [isOpen, setIsOpen] = useState(false);
@@ -22,7 +21,6 @@ function HeaderTopics(props) {
     function loadTopics() {
         list().then(data => {
             //console.log(data);
-
             if (data.error) {
                 console.log(data.error);
             }
