@@ -7,6 +7,8 @@ import { listBlogCatTag } from "../../actions/blog";
 import Card from '../../components/blog/Card/Card';
 import { API, DOMAIN, APP_NAME, FB_APP_ID } from '../../config';
 
+import Search from "../../components/blog/Search";
+
 
 function Blogs({ blogs, categories, tags, totalBlogs, blogsLimit, blogsSkip, router }) {
 
@@ -33,22 +35,6 @@ function Blogs({ blogs, categories, tags, totalBlogs, blogsLimit, blogsSkip, rou
     const [skip, setSkip] = useState(0);
     const [size, setSize] = useState(totalBlogs);
     const [loadedBlogs, setLoadedBlogs] = useState([]);
-
-
-    function showAllCategories() {
-        function showCat(cat, index) {
-            return (
-                <Link href={`/categories/[slug]`} as={`/categories/${cat.slug}`} key={index}>
-                    <a className="btn btn-outline-info btn-sm mr-1 ml-1 mt-3"
-                        style={{ maxWidth: '100%', overflowX: 'auto' }}
-                    >
-                        {cat.name}
-                    </a>
-                </Link>
-            )
-        }
-        return categories.map(showCat);
-    }
 
     function showAllTags() {
         function showTag(tag, index) {
@@ -131,14 +117,20 @@ function Blogs({ blogs, categories, tags, totalBlogs, blogsLimit, blogsSkip, rou
                         <header className="bg-white">
 
                             <div className="col-md-12 pl-0 pr-0 text-center width-overflow">
-                                <div className="bg-white pt-5 pb-5">
+                                <div className="bg-white pt-5 pb-3">
                                     <h1>Coding Blogs and Tutorials</h1>
                                 </div>
                             </div>
 
                         </header>
 
-                        <div className="row ml-0 mr-0 mt-3">
+                        <div className="container text-center">
+                            <div className="row ml-0 mr-0">
+                                <Search />
+                            </div>
+                        </div>
+
+                        <div className="row ml-0 mr-0 mt-5">
 
                             {/** holds the blogs */}
                             <div className="col-md-8 pl-3 pr-3">
