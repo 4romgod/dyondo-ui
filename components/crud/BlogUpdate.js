@@ -4,7 +4,6 @@ import Router from "next/router";
 import dynamic from "next/dynamic";
 import { withRouter } from 'next/router';
 import { getCookie, isAuth } from "../../actions/auth";
-import { getCategories } from "../../actions/category";
 import { getTags } from "../../actions/tag";
 import { singleBlog, updateBlog } from "../../actions/blog";
 import { QuillFormats, QuillModules } from '../../helpers/quill';
@@ -21,12 +20,10 @@ import Checkbox from "../Checkbox/Checkbox";
 
 function BlogUpdate({ router }) {
 
-    // holds the list of cats and tags
-    const [categories, setCategories] = useState([]);
+    // holds the list of and tags
     const [tags, setTags] = useState([]);
 
-    // holds the list of checked cats and tags
-    const [checkedCat, setCheckedCat] = useState([]);
+    // holds the list of checked tags
     const [checkedTag, setCheckedTag] = useState([]);
 
     const [body, setBody] = useState('');
@@ -49,21 +46,8 @@ function BlogUpdate({ router }) {
     useEffect(() => {
         setValues({ ...values, formData: new FormData() })
         initBlog();
-        initCategories();
         initTags();
     }, [router]);
-
-
-    // sets all the categories that were checked before
-    function setOldCheckedCat(oldCats) {
-        let catList = [];
-
-        oldCats.map((cat, index) => {
-            catList.push(cat._id);
-        });
-        
-        setCheckedCat(catList);
-    }
 
     // sets all the tags that were checked before
     function setOldCheckedTag(oldTags) {
@@ -90,7 +74,6 @@ function BlogUpdate({ router }) {
                 else {
                     setValues({ ...values, title: data.title });
                     setBody(data.body);
-                    setOldCheckedCat(data.categories);
                     setOldCheckedTag(data.tags);
                 }
 
@@ -98,16 +81,6 @@ function BlogUpdate({ router }) {
         }
     }
 
-    function initCategories() {
-        getCategories().then((data) => {
-            if (data.error) {
-                setValues({ ...values, error: data.error });
-            }
-            else {
-                setCategories(data);
-            }
-        })
-    }
 
     function initTags() {
         getTags().then((data) => {
@@ -121,17 +94,6 @@ function BlogUpdate({ router }) {
     }
 
 
-    // finds out if a category is already checked
-    function findOutCheckedCat(cat) {
-        const result = checkedCat.indexOf(cat);
-        if (result !== -1) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-
     function findOutCheckedTag(tag) {
         const result = checkedTag.indexOf(tag);
         if (result !== -1) {
@@ -142,20 +104,6 @@ function BlogUpdate({ router }) {
         }
     }
 
-    function showCategories() {
-        function createLi(cat, index) {
-            return (
-                <li key={index} className="list-unstyled">
-                    <Checkbox 
-                        entity={cat}
-                        handleChange={handleToggleCat}
-                        handleChecked={findOutCheckedCat}
-                    />
-                </li>
-            )
-        }
-        return (categories && categories.map(createLi));
-    }
 
     function showTags() {
         function createLi(tag, index) {
@@ -170,32 +118,6 @@ function BlogUpdate({ router }) {
             )
         }
         return (tags && tags.map(createLi));
-    }
-
-
-    function handleToggleCat(catId) {
-        return () => {
-            setValues({ ...values, error: "" });
-
-            // 1. look for any cat that is being clicked
-            // 1.1. return -1 if value is not already checked
-            // 1.2. else get its index
-            const clickedCat = checkedCat.indexOf(catId);
-
-            // holds all the checked categories
-            const all = [...checkedCat];
-
-            // 2. if the clicked cat was not checked yet, save it
-            if (clickedCat === -1) {
-                all.push(catId);
-            }
-            else {
-                all.splice(clickedCat, 1);
-            }
-            //console.log(all);
-            setCheckedCat(all);
-            formData.set("categories", all)
-        }
     }
 
 
@@ -256,12 +178,7 @@ function BlogUpdate({ router }) {
     function editBlog(event) {
         event.preventDefault();
 
-        if(checkedCat.length > 4 ){
-            toast.dismiss();
-            toast.error("Maximum Categories exceeded!");
-            return;
-        }
-        else if(checkedTag.length > 4 ){
+        if(checkedTag.length > 5 ){
             toast.dismiss();
             toast.error("Maximum Tags exceeded!");
             return;
@@ -333,7 +250,7 @@ function BlogUpdate({ router }) {
                         {updateBlogForm()}
                     </div>
 
-                    {/* show upload image, tags and categories */}
+                    {/* show upload image, tags */}
                     <div className="col-md-4 pt-4">
 
                         {/* shows the featured image */}
@@ -351,19 +268,9 @@ function BlogUpdate({ router }) {
 
                         </div>
 
-                        {/* shows the categories */}
-                        <div>
-                            <h4 className="mt-3">Categories</h4>
-                            <hr />
-
-                            <ul style={{ maxHeight: '200px', overflowY: 'scroll' }}>
-                                {showCategories()}
-                            </ul>
-                        </div>
-
                         {/* shows the tags */}
                         <div>
-                            <h4 className="mt-5">Tags</h4>
+                            <h4 className="mt-2">Tags</h4>
                             <hr />
 
                             <ul style={{ maxHeight: '200px', overflowY: 'scroll' }}>

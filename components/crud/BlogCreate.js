@@ -3,7 +3,6 @@ import Router from "next/router";
 import dynamic from "next/dynamic";
 import { withRouter } from 'next/router';
 import { getCookie, isAuth } from "../../actions/auth";
-import { getCategories } from "../../actions/category";
 import { getTags } from "../../actions/tag";
 import { createBlog } from "../../actions/blog";
 import { QuillFormats, QuillModules } from '../../helpers/quill';
@@ -33,12 +32,10 @@ function CreateBlog({ router }) {
         } else { return false; }
     }
 
-    // holds the list of cats and tags
-    const [categories, setCategories] = useState([]);
+    // holds the list of tags
     const [tags, setTags] = useState([]);
 
-    // holds the list of checked cats and tags
-    const [checkedCat, setCheckedCat] = useState([]);
+    // holds the list of checked  and tags
     const [checkedTag, setCheckedTag] = useState([]);
 
     // holds the state of body content
@@ -62,21 +59,9 @@ function CreateBlog({ router }) {
 
     useEffect(() => {
         setValues({ ...values, formData: new FormData() });
-        initCategories();
         initTags();
     }, [router]);
 
-
-    function initCategories() {
-        getCategories().then((data) => {
-            if (data.error) {
-                setValues({ ...values, error: data.error });
-            }
-            else {
-                setCategories(data);
-            }
-        })
-    }
 
     function initTags() {
         getTags().then((data) => {
@@ -87,21 +72,6 @@ function CreateBlog({ router }) {
                 setTags(data);
             }
         })
-    }
-
-
-    function showCategories() {
-        function createLi(cat, index) {
-            return (
-                <li key={index} className="list-unstyled">
-                    <Checkbox
-                        entity={cat}
-                        handleChange={handleToggleCat}
-                    />
-                </li>
-            )
-        }
-        return (categories && categories.map(createLi));
     }
 
     function showTags() {
@@ -116,32 +86,6 @@ function CreateBlog({ router }) {
             )
         }
         return (tags && tags.map(createLi));
-    }
-
-
-    function handleToggleCat(catId) {
-        return () => {
-            setValues({ ...values, error: "" });
-
-            // 1. look for any cat that is being clicked
-            // 1.1. return -1 if value is not already checked
-            // 1.2. else get its index
-            const clickedCat = checkedCat.indexOf(catId);
-
-            // holds all the checked categories
-            const all = [...checkedCat];
-
-            // 2. if the clicked cat was not checked yet, save it
-            if (clickedCat === -1) {
-                all.push(catId);
-            }
-            else {
-                all.splice(clickedCat, 1);
-            }
-            //console.log(all);
-            setCheckedCat(all);
-            formData.set("categories", all)
-        }
     }
 
 
@@ -288,7 +232,7 @@ function CreateBlog({ router }) {
                         {createBlogForm()}
                     </div>
 
-                    {/* show upload image, tags and categories */}
+                    {/* show upload image, tags */}
                     <div className="col-md-4 pt-4">
 
                         {/* shows the featured image */}
@@ -305,19 +249,9 @@ function CreateBlog({ router }) {
                             <small className="text-muted ml-4">{photoName}</small>
                         </div>
 
-                        {/* shows the categories */}
-                        <div>
-                            <h4 className="mt-3">Categories <small>(4 Max)</small></h4>
-                            <hr />
-
-                            <ul style={{ maxHeight: '250px', overflowY: 'scroll' }}>
-                                {showCategories()}
-                            </ul>
-                        </div>
-
                         {/* shows the tags */}
                         <div>
-                            <h4 className="mt-5">Tags <small>(4 Max)</small></h4>
+                            <h4 className="mt-2">Tags <small>(5 Max)</small></h4>
                             <hr />
 
                             <ul style={{ maxHeight: '250px', overflowY: 'scroll', marginBottom: '100px' }}>
