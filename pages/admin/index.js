@@ -83,13 +83,11 @@ function AdminIndex() {
                                                     </a>
                                                 </li>
                                             </Link>
-                                            <Link href="/admin/crud/blogs">
-                                                <li className="list-group-item btn btn-outline-success">
-                                                    <a style={{ color: 'black', borderBottom: '0' }}>
-                                                        Update/Delete Blogs
-                                                    </a>
+                                            <a href="/admin/crud/blogs">
+                                                <li className="list-group-item btn btn-outline-success" style={{ color: 'black', borderBottom: '0' }}>
+                                                    Update/Delete Blogs
                                                 </li>
-                                            </Link>
+                                            </a>
                                             <Link href="/user/update">
                                                 <li className="list-group-item btn btn-outline-success">
                                                     <a style={{ color: 'black' }}>
