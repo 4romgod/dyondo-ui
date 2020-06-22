@@ -77,7 +77,7 @@ function BlogRead({ username }) {
         }
         else if (isAuth() && isAuth().role === 1) {     // user is admin
             return (
-                <Link href={`/admin/crud/[slug]`} href={`/admin/crud/${blog.slug}`}>
+                <Link href={`/admin/crud/[slug]`} as={`/admin/crud/${blog.slug}`}>
                     <a className="btn btn-sm btn-warning ml-2">update</a>
                 </Link>
             )
