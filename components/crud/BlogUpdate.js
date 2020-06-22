@@ -273,7 +273,7 @@ function BlogUpdate({ router }) {
                             <h4 className="mt-2">Tags</h4>
                             <hr />
 
-                            <ul style={{ maxHeight: '200px', overflowY: 'scroll' }}>
+                            <ul style={{ maxHeight: '80vh', overflowY: 'scroll' }}>
                                 {showTags()}
                             </ul>
                         </div>

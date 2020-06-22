@@ -1,4 +1,6 @@
 body{
+    position: relative;
+    min-height: 100vh;
     overflow-wrap: break-word !important;
 }
 

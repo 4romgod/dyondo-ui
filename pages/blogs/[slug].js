@@ -62,16 +62,6 @@ function SingleBlog({ blog, query }) {
         </Head>
     }
 
-    function showBlogCategories(blog) {
-        function showCat(cat, index) {
-            return (
-                <Link key={index} href={`/categories/[slug]`} as={`/categories/${cat.slug}`}>
-                    <a className="btn btn-outline-info btn-sm btn-sq ml-1 mr-1 mt-3">{cat.name}</a>
-                </Link>
-            )
-        }
-        return blog.categories.map(showCat);
-    }
 
     function showBlogTags(blog) {
         function showTag(tag, index) {
@@ -163,7 +153,6 @@ function SingleBlog({ blog, query }) {
                             </div>
 
                             <div className="pb-3 pl-3 pr-3">
-                                {showBlogCategories(blog)}
                                 {showBlogTags(blog)}
                             </div>
 
