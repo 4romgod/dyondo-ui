@@ -70,14 +70,14 @@ function BlogRead({ username }) {
     function showUpdateBtn(blog) {
         if (isAuth() && isAuth().role === 0) {      // user is not admin
             return (
-                <Link href={`/user/crud/${blog.slug}`}>
+                <Link href={`/user/crud/[slug]`} as={`/user/crud/${blog.slug}`}>
                     <a className="btn btn-sm btn-warning ml-2">update</a>
                 </Link>
             )
         }
         else if (isAuth() && isAuth().role === 1) {     // user is admin
             return (
-                <Link href={`/admin/crud/${blog.slug}`}>
+                <Link href={`/admin/crud/[slug]`} href={`/admin/crud/${blog.slug}`}>
                     <a className="btn btn-sm btn-warning ml-2">update</a>
                 </Link>
             )
