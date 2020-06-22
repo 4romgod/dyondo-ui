@@ -76,6 +76,13 @@ function AdminIndex() {
                                                     Create Blog
                                                 </li>
                                             </a>
+                                            <Link href="/admin/crud/tag/update">
+                                                <li className="list-group-item btn btn-outline-success">
+                                                    <a style={{ color: 'black', borderBottom: '0' }}>
+                                                        Update Tags
+                                                    </a>
+                                                </li>
+                                            </Link>
                                             <Link href="/admin/crud/blogs">
                                                 <li className="list-group-item btn btn-outline-success">
                                                     <a style={{ color: 'black', borderBottom: '0' }}>

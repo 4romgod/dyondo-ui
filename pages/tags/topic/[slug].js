@@ -42,7 +42,7 @@ function Tags({ tags, topic, query }) {
                                 <div className="row ml-0 mr-0">
                                     <div className="col-md-12 text-center">
                                         <div className="card border-0 bg-white pt-4 pb-3">
-                                            <h1>Best Tutorials on {topic}</h1>
+                                            <h1>Best Tutorials on {topic.charAt(0).toUpperCase() + topic.slice(1)}</h1>
                                         </div>
                                     </div>
                                 </div>

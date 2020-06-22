@@ -1,20 +1,21 @@
 import { useState, useEffect } from 'react';
-import { isAuth, getCookie } from '../../actions/auth';
-import { create, getTags, removeTag, updateTag } from '../../actions/tag';
-import { list } from "../../actions/topic";
+import { isAuth, getCookie } from '../../../actions/auth';
+import { create, getTags, removeTag, updateTag } from '../../../actions/tag';
+import { list } from "../../../actions/topic";
 import { withRouter } from 'next/router';
 
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
-import Checkbox from "../Checkbox/Checkbox";
+import Checkbox from "../../Checkbox/Checkbox";
 
 function Tag({ router }) {
     const [values, setValues] = useState({
         name: '',
         photo: '',
         photoName: '',
-        tags: [],
+        allTags: [],
+        tag: ''
     });
 
     const [results, setResults] = useState({
@@ -27,7 +28,7 @@ function Tag({ router }) {
     const [topics, setTopics] = useState([]);
     const [checkedTopics, setCheckedTopic] = useState([]);
 
-    const { name, photo, photoName, tags} = values;
+    const { name, photo, photoName, allTags, tag } = values;
     const { error, success, removed, reload } = results;
 
     const token = getCookie('token');
@@ -44,7 +45,7 @@ function Tag({ router }) {
                 console.log(data.error);
             }
             else {
-                setValues({ ...values, tags: data });
+                setValues({ ...values, allTags: data });
             }
         });
     }
@@ -77,11 +78,11 @@ function Tag({ router }) {
 
 
     function showTags() {
-        return tags.map(function (tag, index) {
+        return allTags.map(function (tag, index) {
             return (
                 <button
                     key={index}
-                    onDoubleClick={() => deleteConfirm(tag.slug)}
+                    onDoubleClick={() => populateTag(tag)}
                     title="Double click to delete"
                     className="btn btn-outline-info btn-sq mr-1 ml-1 mt-3"
                 >
@@ -91,43 +92,48 @@ function Tag({ router }) {
     }
 
 
-    function deleteConfirm(slug) {
-        console.log("You want to delete?");
-        let answer = window.confirm("Are you sure you want to delete this tag?");
-        console.log("Yes i want to delete");
+    function populateTag(tag) {
+        setValues({ ...values, name: tag.name, tag: tag });
+        setCheckedTopic(tag.topics);
+    }
+
+
+    function updateConfirm(tag) {
+        console.log("You want to updated?");
+        let answer = window.confirm("Are you sure you want to update this tag?");
+
+        console.log("Yes i want to update");
 
         if (answer) {
-            console.log("Deleting the tag...");
+            console.log("Updating the tag...");
 
-            deleteTag(slug);
+            update(tag.slug);
         }
     }
 
 
-    function deleteTag(slug) {
-        console.log(`Calling API for DeleteTag ${slug}`);
-        removeTag(slug, token).then(function (data) {
+    function update(slug) {
+        console.log(`Calling API for UpdateTag ${slug}`);
 
-            console.log("API response: ");
-            console.log(data);
+        updateTag(name, topics, token, slug)
+            .then(function (data) {
+                console.log("API response: ");
+                console.log(data);
 
-            if (data.error) {
-                console.log("ERROR");
-                console.log(data.error);
-
-                toast.dismiss();
-                toast.error("Something went wrong while deleting!");
-            }
-            else {
-                toast.dismiss();
-                toast.success(`${slug} successfully deleted!`);
-                setValues({ ...values, success: false, name: ''});
-                setResults({...results, error: false, removed: true, reload: !reload})
-            }
-        });
+                if (data.error) {
+                    toast.dismiss();
+                    toast.error(data.error);
+                }
+                else {
+                    toast.dismiss();
+                    toast.success(`${slug} successfully updated!`);
+                    setValues({ ...values, success: false, name: '' });
+                    setResults({ ...results, error: false, removed: true, reload: !reload })
+                }
+            });
     }
 
-    
+
     function handleChange(name) {
 
         return (event) => {
@@ -142,7 +148,7 @@ function Tag({ router }) {
                     toast.error("Image size should be less than 1MB");
                 }
                 else {
-                    setValues({ ...values, photoName: value ? value.name : '', [name]: value});
+                    setValues({ ...values, photoName: value ? value.name : '', [name]: value });
                     setResults({ ...results, error: false, success: false, removed: '' });
                 }
 
@@ -150,7 +156,7 @@ function Tag({ router }) {
             else {
                 value = event.target.value;
 
-                setValues({ ...values, [name]: event.target.value});
+                setValues({ ...values, [name]: event.target.value });
                 setResults({ ...results, error: false, success: false, removed: '' });
             }
         }
@@ -192,25 +198,7 @@ function Tag({ router }) {
 
         console.log("submitting data");
 
-        create({name, topics: checkedTopics}, token).then(function(data) {
-            //console.log(data);
-            
-            if (data.error) {
-                toast.dismiss();
-                toast.error(data.error);
-                setResults({ ...results, error: data.error, success: false });
-            }
-            else {
-                toast.dismiss();
-                toast.success(`${name} successfully created!`);
-
-                setValues({ ...values, name: "", photo: '', photoName: '', tags});
-
-                setResults({ ...results, error: false, success: true, removed: false, reload: !reload});
-
-                setCheckedTopic([]);
-            }
-        });
+        updateConfirm(tag);
 
     }
 
@@ -237,7 +225,7 @@ function Tag({ router }) {
                 </div>
 
                 <div>
-                    <button type="submit" className="btn btn-primary btn-block mb-4">Create Tag</button>
+                    <button type="submit" className="btn btn-primary btn-block mb-4">Update Tag</button>
                 </div>
 
             </form>

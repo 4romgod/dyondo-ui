@@ -85,3 +85,23 @@ export function removeTag(slug, token) {
         })
         .catch(err => console.log(err));
 };
+
+
+export function updateTag(name, topics, token, slug) {
+    let endpoint = `${API}/tag/${slug}`;
+
+    return fetch(`${endpoint}`, {
+        method: 'PUT',
+        headers: {
+            Accept: 'application/json',
+            Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify(name, topics)
+
+    })
+        .then(response => {
+            handleResponse(response);
+            return response.json();
+        })
+        .catch(err => console.log(err));
+};

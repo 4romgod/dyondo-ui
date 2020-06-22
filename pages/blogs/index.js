@@ -118,7 +118,7 @@ function Blogs({ blogs, categories, tags, totalBlogs, blogsLimit, blogsSkip, rou
 
                             <div className="col-md-12 pl-0 pr-0 text-center width-overflow">
                                 <div className="bg-white pt-5 pb-3">
-                                    <h1>Coding Blogs and Tutorials</h1>
+                                    <h1>Best Programming Blogs and Tutorials</h1>
                                 </div>
                             </div>
 
