@@ -3,6 +3,7 @@ import Layout from "../../components/Layout";
 import { singleTag } from "../../actions/tag";
 import SmallCard from "../../components/blog/SmallCard/SmallCard";
 import { API, DOMAIN, APP_NAME, FB_APP_ID } from '../../config';
+import Search from "../../components/blog/Search";
 
 
 function Tag({ tag, blogs, query }) {
@@ -37,13 +38,17 @@ function Tag({ tag, blogs, query }) {
                         <div className="container pt-3">
                             <header>
                                 <div className="row ml-0 mr-0">
-                                    <div className="col-md-12 pb-5 text-center">
+                                    <div className="col-md-12 pb-2 text-center">
                                         <div className="card border-0 bg-white pt-3 pb-3 pl-5 pr-5">
-                                            <h1>Available Tutorials on {tag.name}</h1>
+                                            <h1>Best Blogs and Tutorials on {tag.name}</h1>
                                         </div>
                                     </div>
                                 </div>
                             </header>
+
+                            <div className="row ml-0 mr-0 pb-5">
+                                <Search />
+                            </div>
 
                             {/* blogs to match tag */}
                             <div className="row ml-0 mr-0">
