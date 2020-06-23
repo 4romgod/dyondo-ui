@@ -9,7 +9,7 @@ import "./smallcard.css";
 function SmallCard({ blog }) {
 
     return (
-        <div className="card mb-5 shadow">
+        <div className="card mb-5 shadow animate__animated animate__fadeIn">
             <div className="row ml-0 mr-0">
 
                 <section className="col-sm-5 col-md-12 pl-0 pr-0">

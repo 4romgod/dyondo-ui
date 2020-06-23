@@ -24,7 +24,7 @@ class MyDocument extends Document {
         <Head >
           <meta charSet="UTF-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-          <link rel="icon" type="image/png" href="/images/favicon.ico"/>
+          <link rel="icon" type="image/png" href="/images/favicon.ico" />
 
           <link rel="stylesheet" href="/bootstrap/bootstrap.min.css" />
 
@@ -32,6 +32,11 @@ class MyDocument extends Document {
           <link rel="stylesheet" href="/css/styles.css" />
           <link rel="stylesheet" href="/css/components.css" />
           <link rel="stylesheet" href="/css/text.css" />
+          
+          <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"
+          />
 
           <script async src="https://www.googletagmanager.com/gtag/js?id=UA-168907858-1"></script>
           <script dangerouslySetInnerHTML={this.setGoogleTags()} />
@@ -40,7 +45,7 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
-          
+
           <script src="/bootstrap/jquery-3.2.1.slim.min.js"></script>
           <script src="/bootstrap/bootstrap.min.js"></script>
           <script src="/bootstrap/popper.min.js"></script>

@@ -1,5 +1,4 @@
 import Layout from "../components/Layout";
-import Link from "next/link";
 import SignupComponent from "../components/auth/SignupComponent";
 
 
