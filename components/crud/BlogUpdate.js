@@ -33,6 +33,7 @@ function BlogUpdate({ router }) {
         error: "",
         success: "",
         loading: false,
+        
         formData: "",
         title: "",
         body: '',
