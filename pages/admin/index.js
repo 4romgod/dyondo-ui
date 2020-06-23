@@ -57,20 +57,11 @@ function AdminIndex() {
 
                                     <div className="col-md-4 pl-0 left mb-5">
                                         <ul className="list-group">
-                                            {/* <Link href="/admin/crud/category-tag">
-                                                <li className="list-group-item btn btn-outline-success">
-                                                    <a style={{ color: 'black', borderBottom: '0' }}>
-                                                        Create Category
-                                                    </a>
+                                            <a href="/admin/crud/tag/create">
+                                                <li className="list-group-item btn btn-outline-success" style={{ color: 'black', borderBottom: '0' }}>
+                                                    Create Tag
                                                 </li>
-                                            </Link> */}
-                                            <Link href="/admin/crud/category-tag">
-                                                <li className="list-group-item btn btn-outline-success">
-                                                    <a style={{ color: 'black', borderBottom: '0' }}>
-                                                        Create Tag
-                                                    </a>
-                                                </li>
-                                            </Link>
+                                            </a>
 
                                             <a href="/admin/crud/blog">
                                                 <li className="list-group-item btn btn-outline-success" style={{ color: 'black', borderBottom: '0' }}>
@@ -86,11 +77,13 @@ function AdminIndex() {
                                                 </li>
                                             </Link>
 
-                                            <a href="/admin/crud/blogs">
-                                                <li className="list-group-item btn btn-outline-success" style={{ color: 'black', borderBottom: '0' }}>
-                                                    Update/Delete Blogs
+                                            <Link href="/admin/crud/blogs">
+                                                <li className="list-group-item btn btn-outline-success">
+                                                    <a style={{ color: 'black', borderBottom: '0' }}>
+                                                        Update/Delete Blogs
+                                                    </a>
                                                 </li>
-                                            </a>
+                                            </Link>
 
                                             <Link href="/user/update">
                                                 <li className="list-group-item btn btn-outline-success">
@@ -99,7 +92,7 @@ function AdminIndex() {
                                                     </a>
                                                 </li>
                                             </Link>
-                                            
+
                                         </ul>
                                     </div>
 

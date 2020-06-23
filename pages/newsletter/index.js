@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Header from "../../components/Header/Header";
 
 import newsletterStyle from "../../STYLES/newsletterStyle";
+import Layout from '../../components/Layout';
 
 
 toast.configure();
@@ -72,7 +73,7 @@ function Newsletter() {
                     toast.success(response.success);
                     setValues({ ...values, error: false, loading: false, success: response.success });
 
-                    setTimeout(()=>Router.push(`/`), 3000)
+                    setTimeout(() => Router.push(`/`), 3000)
                 }
             })
             .catch(err => {
@@ -85,79 +86,79 @@ function Newsletter() {
 
     return (
         <React.Fragment>
+            <Layout>
+                {head()}
 
-            <Header />
-            {head()}
+                <ToastContainer />
 
-            <ToastContainer />
+                <style jsx global>
+                    {newsletterStyle}
+                </style>
 
-            <style jsx global>
-                {newsletterStyle}
-            </style>
+                <div className="newsletter-page">
 
-            <div className="newsletter-page mt-5">
+                    <div className="container-newsletter">
+                        <div className="container-header text-center">
+                            <h4 style={{ color: 'rgb(77,77,77)', fontWeight: 'bold' }}>Azblogs Newsletter</h4>
+                            <p className="pt-2">Programming, Web Development, and Much more</p>
+                        </div>
 
-                <div className="container-newsletter">
-                    <div className="container-header text-center">
-                        <h4 style={{color: 'rgb(77,77,77)', fontWeight: 'bold'}}>Azblogs Newsletter</h4>
-                        <p className="pt-2">Programming, Web Development, and Much more</p>
-                    </div>
-
-                    <div className="container-form">
-                        <div className="text-center">
-                            <p style={{color: 'rgb(77,77,77)'}}>
-                            Join the community and receive monthly newsletters as well as exclusive content that will help improve your skills as a developer!
+                        <div className="container-form">
+                            <div className="text-center">
+                                <p style={{ color: 'rgb(77,77,77)' }}>
+                                    Join the community and receive monthly newsletters as well as exclusive content that will help improve your skills as a developer!
                             </p>
-                        </div>
+                            </div>
 
-                        <div>
-                            <form onSubmit={handleSubmit}>
-                                <div className="form-group">
-                                    <input
-                                        className="form-control"
-                                        onChange={handleChange('fullname')}
-                                        name="fullname"
-                                        value={fullname}
-                                        type="text"
-                                        placeholder="First Name"
-                                        required
-                                    />
-                                </div>
+                            <div>
+                                <form onSubmit={handleSubmit}>
+                                    <div className="form-group">
+                                        <input
+                                            className="form-control"
+                                            onChange={handleChange('fullname')}
+                                            name="fullname"
+                                            value={fullname}
+                                            type="text"
+                                            placeholder="First Name"
+                                            required
+                                        />
+                                    </div>
 
-                                <div className="form-group">
-                                    <input
-                                        className="form-control"
-                                        onChange={handleChange('email')}
-                                        name="email"
-                                        value={email}
-                                        type="email"
-                                        placeholder="First Name"
-                                        required
-                                    />
-                                </div>
-                                <div className="form-group">
-                                    <button
-                                        className="form-control btn btn-success"
-                                        type="submit"
-                                        placeholder="First Name"
-                                    >
-                                        Subscribe
+                                    <div className="form-group">
+                                        <input
+                                            className="form-control"
+                                            onChange={handleChange('email')}
+                                            name="email"
+                                            value={email}
+                                            type="email"
+                                            placeholder="First Name"
+                                            required
+                                        />
+                                    </div>
+                                    <div className="form-group">
+                                        <button
+                                            className="form-control btn btn-success"
+                                            type="submit"
+                                            placeholder="First Name"
+                                        >
+                                            Subscribe
                                     </button>
-                                </div>
-                            </form>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div className="text-center"
+                                style={{ fontSize: '0.8rem' }}
+                            >
+                                We respect your privacy. Unsubscribe at any time.
                         </div>
 
-                        <div className="text-center"
-                            style={{ fontSize: '0.8rem' }}
-                        >
-                            We respect your privacy. Unsubscribe at any time.
                         </div>
 
                     </div>
 
                 </div>
-
-            </div>
+            </Layout>
         </React.Fragment>
     )
 

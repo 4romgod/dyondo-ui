@@ -1,7 +1,6 @@
-import Layout from "../../../components/Layout";
-import Admin from "../../../components/auth/Admin";
-import Category from "../../../components/crud/Category";
-import Tag from "../../../components/crud/Tag";
+import Layout from "../../../../components/Layout";
+import Admin from "../../../../components/auth/Admin";
+import Tag from "../../../../components/crud/Tag";
 
 function CategoryTag() {
     return (
