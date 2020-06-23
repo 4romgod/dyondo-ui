@@ -18,27 +18,32 @@ function Search(props) {
 
     const { search, results, searched, message } = values;
 
-    useEffect(()=>{
-        if(searched){
-            setValues({...values, searched: props.closeSearch});
+    useEffect(() => {
+        if (searched) {
+            setValues({ ...values, searched: props.closeSearch });
         }
     }, [props.closeSearch]);
 
     function searchedBlog(results = []) {
         return (
-            <div className="jumbotron bg-light">
-                {message && <p className="text-muted font-italic">{message}</p>}
+            <div className="row ml-0 mr-0">
+                <div className="col-md-12 pl-0 pr-0">
 
-                {results.map((blog, index) => {
-                    return (
-                        <div key={index}>
-                            <Link href={`/blogs/${blog.slug}`}>
-                                <a className="text-primary">{blog.title}</a>
-                            </Link>
-                        </div>
-                    )
-                })}
+                    <div className="jumbotron bg-light">
+                        {message && <p className="text-muted font-italic">{message}</p>}
 
+                        {results.map((blog, index) => {
+                            return (
+                                <div key={index}>
+                                    <Link href={`/blogs/${blog.slug}`}>
+                                        <a className="text-primary">{blog.title}</a>
+                                    </Link>
+                                </div>
+                            )
+                        })}
+                    </div>
+
+                </div>
             </div>
         )
     }
@@ -55,7 +60,7 @@ function Search(props) {
             setValues({ ...values, results: data, searched: true, message: `${data.length} blogs found` });
         })
     }
-    
+
     function searchForm() {
         return (
             <form onSubmit={searchSubmit} className="">
@@ -85,17 +90,19 @@ function Search(props) {
 
                 <div className="col-md-12 pl-0 pr-0">{searchForm()}</div>
 
-                <div className="">
-                    <div className="col-md-10">
-                        {searched
-                            &&
-                            <div>
-                                {searchedBlog(results)}
-                            </div>
-                        }
-                    </div>
+                <div className="col-md-12">
+                    <div className="row">
+                        <div className="col-md-10">
+                            {searched
+                                &&
+                                <div>
+                                    {searchedBlog(results)}
+                                </div>
+                            }
+                        </div>
 
-                    <div className="col-md-2"></div>
+                        <div className="col-md-2"></div>
+                    </div>
                 </div>
 
             </div>

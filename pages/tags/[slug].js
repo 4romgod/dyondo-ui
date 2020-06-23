@@ -38,7 +38,7 @@ function Tag({ tag, blogs, query }) {
                         <div>
                             <div className="row ml-0 mr-0">
                                 <div className="col-md-12 pb-2 text-center">
-                                    <div className="card border-0 bg-white pt-3 pb-3 pl-5 pr-5">
+                                    <div className="card border-0 bg-white pt-3 pb-3 pl-5 pr-5 animate__animated animate__fadeIn">
                                         <h1>Best Blogs and Tutorials on {tag.name}</h1>
                                     </div>
                                 </div>

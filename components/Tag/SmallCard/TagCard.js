@@ -4,7 +4,7 @@ function SmallCard({ tag }) {
 
     return (
         <Link href={`/tags/[slug]`} as={`/tags/${tag.slug}`}>
-            <div className="card mb-3 shadow animate__animated animate__fadeIn">
+            <div className="card mb-3 shadow animate__animated animate__zoomIn">
                 <div className="row ml-0 mr-0">
 
                     <section className="col-sm-7 col-md-12 pl-0 pr-0">

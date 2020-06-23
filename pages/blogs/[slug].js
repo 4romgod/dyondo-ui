@@ -105,7 +105,7 @@ function SingleBlog({ blog, query }) {
                 {blogStyle}
             </style>
 
-            <div className="bg-white">
+            <div className="bg-white animate__animated animate__fadeIn">
                 <article>
 
                     <div className="row ml-0 mr-0 mb-4">

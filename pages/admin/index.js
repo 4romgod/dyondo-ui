@@ -96,7 +96,7 @@ function AdminIndex() {
                                         </ul>
                                     </div>
 
-                                    <div className="col-md-8">
+                                    <div className="col-md-8 animate__animated animate__fadeIn">
                                         <div className="shadow pt-4 pb-5">
                                             <div className="row ml-0 mr-0">
 

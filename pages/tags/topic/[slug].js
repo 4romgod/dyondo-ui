@@ -40,7 +40,7 @@ function Tags({ tags, topic, query }) {
                         <div className="container pt-3">
                             <div className="row ml-0 mr-0">
                                 <div className="col-md-12 text-center">
-                                    <div className="card border-0 bg-white pt-4 pb-3">
+                                    <div className="card border-0 bg-white pt-4 pb-3 animate__animated animate__fadeIn">
                                         <h1>Best Tutorials on {topic.charAt(0).toUpperCase() + topic.slice(1)}</h1>
                                     </div>
                                 </div>
