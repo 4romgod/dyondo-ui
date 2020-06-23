@@ -8,7 +8,8 @@ const Index = () => {
     function head() {
         return <Head>
             <title>Home | {APP_NAME}</title>
-            <meta name="description" />
+            <meta name="description" content="Best programming blogs and tutorials on React, Node, Java and
+                                    Much more" />
             <link rel="canonical" />
             <meta property="og:title" content={`Home | ${APP_NAME}`} />
             <meta
@@ -38,7 +39,7 @@ const Index = () => {
                     <div className="row ml-0 mr-0">
                         <div className="col-md-12 pl-0 pr-0 text-center">
 
-                            
+
                             <p className="home-featured-img"></p>
 
                             <div className="heading-text">

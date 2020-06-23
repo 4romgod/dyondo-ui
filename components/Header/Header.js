@@ -152,7 +152,7 @@ function Header(props) {
             <Navbar color="dark" dark expand="md" className="navbar" id="navbar1">
                 <Link href="/">
                     <NavLink className="font-weight-bold" id="container-logo" style={{ cursor: 'pointer', color: 'black', fontSize: '1.5rem' }}>
-                        <img src="/images/logo.png" />
+                        <img src="/images/logo.png" alt={`logo | ${APP_NAME}`}/>
                     </NavLink>
                 </Link>
 

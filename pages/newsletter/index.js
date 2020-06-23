@@ -26,7 +26,7 @@ function Newsletter() {
     function head() {
         return <Head>
             <title>Newletter | {APP_NAME}</title>
-            <meta name="description" />
+            <meta name="description" content={`Signup for our newsletter | ${APP_NAME}`} />
             <link rel="canonical" />
             <meta property="og:title" content={`Newsletter | ${APP_NAME}`} />
             <meta
