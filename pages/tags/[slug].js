@@ -5,8 +5,16 @@ import SmallCard from "../../components/blog/SmallCard/SmallCard";
 import { API, DOMAIN, APP_NAME, FB_APP_ID } from '../../config';
 import Search from "../../components/blog/Search";
 
+import {useState} from "react";
+
 
 function Tag({ tag, blogs, query }) {
+    const [isClicked, setIsClicked] = useState(false);
+
+    function handleClick() {
+        setIsClicked(true);
+        setTimeout(() => setIsClicked(false), 0);
+    }
 
     function head() {
         return <Head>
@@ -33,7 +41,7 @@ function Tag({ tag, blogs, query }) {
         <React.Fragment>
             {head()}
             <Layout>
-                <div className="bg-white">
+                <div className="bg-white" onClick={handleClick}>
                     <div className="container pt-3">
                         <div>
                             <div className="row ml-0 mr-0">
@@ -46,7 +54,7 @@ function Tag({ tag, blogs, query }) {
                         </div>
 
                         <div className="row ml-0 mr-0 pb-5">
-                            <Search />
+                            <Search closeSearch={isClicked} />
                         </div>
 
                         {/* blogs to match tag */}

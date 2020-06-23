@@ -3,12 +3,20 @@ import Layout from "../../../components/Layout";
 import { getTagsByField } from "../../../actions/tag";
 import { API, DOMAIN, APP_NAME, FB_APP_ID } from '../../../config';
 
+import {useState} from 'react';
+
 import TagCard from "../../../components/Tag/SmallCard/TagCard";
 
 import Search from "../../../components/blog/Search";
 
 
 function Tags({ tags, topic, query }) {
+    const [isClicked, setIsClicked] = useState(false);
+
+    function handleClick() {
+        setIsClicked(true);
+        setTimeout(() => setIsClicked(false), 0);
+    }
 
     function head() {
         return <Head>
@@ -31,11 +39,12 @@ function Tags({ tags, topic, query }) {
         </Head>
     }
 
+
     return (
         <React.Fragment>
             {head()}
             <Layout>
-                <div>
+                <div onClick={handleClick}>
                     <div className="bg-white pb-5 mb-5">
                         <div className="container pt-3">
                             <div className="row ml-0 mr-0">
@@ -47,7 +56,7 @@ function Tags({ tags, topic, query }) {
                             </div>
 
                             <div className="row ml-0 mr-0">
-                                <Search />
+                                <Search closeSearch={isClicked} />
                             </div>
 
 

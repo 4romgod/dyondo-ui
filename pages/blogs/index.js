@@ -12,6 +12,13 @@ import Search from "../../components/blog/Search";
 
 function Blogs({ blogs, categories, tags, totalBlogs, blogsLimit, blogsSkip, router }) {
 
+    const [isClicked, setIsClicked] = useState(false);
+
+    function handleClick() {
+        setIsClicked(true);
+        setTimeout(() => setIsClicked(false), 0);
+    }
+
     function head() {
         return <Head>
             <title>Programming blogs | {APP_NAME}</title>
@@ -111,7 +118,7 @@ function Blogs({ blogs, categories, tags, totalBlogs, blogsLimit, blogsSkip, rou
             {head()}
 
             <Layout>
-                <div className="bg-white">
+                <div className="bg-white" onClick={handleClick}>
                     <div className="pb-5">
 
                         <div className="bg-white">
@@ -124,9 +131,9 @@ function Blogs({ blogs, categories, tags, totalBlogs, blogsLimit, blogsSkip, rou
 
                         </div>
 
-                        <div className="container text-center">
+                        <div className="container">
                             <div className="row ml-0 mr-0">
-                                <Search />
+                                <Search closeSearch={isClicked} />
                             </div>
                         </div>
 

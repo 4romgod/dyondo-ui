@@ -2,7 +2,6 @@ import Header from "./Header/Header";
 import HeaderTopics from "./HeaderTopics/HeaderTopics";
 
 import { useState } from "react";
-import Search from '../components/blog/Search';
 import Footer from "./Footer/Footer";
 
 
@@ -15,10 +14,10 @@ const Layout = (props) => {
     }
 
     return (
-        <React.Fragment>
+        <div>
             <header>
                 <Header closeNav={isClicked} />
-                <HeaderTopics />
+                <HeaderTopics closeNav={isClicked} />
             </header>
 
             <main className="bg-light" onClick={handleClick}>
@@ -27,7 +26,7 @@ const Layout = (props) => {
 
             <Footer />
 
-        </React.Fragment>
+        </div>
     )
 }
 

@@ -17,6 +17,17 @@ function HeaderTopics(props) {
         setIsOpen(!isOpen);
     };
 
+    
+    useEffect(() => {
+        loadTopics();
+    }, []);
+
+    useEffect(() => {
+        if (isOpen) {
+            setIsOpen(props.closeNav);
+        }
+    }, [props.closeNav]);
+
 
     function loadTopics() {
         list().then(data => {
@@ -30,15 +41,6 @@ function HeaderTopics(props) {
         });
     }
 
-    useEffect(() => {
-        loadTopics();
-    }, []);
-
-    useEffect(() => {
-        if (isOpen) {
-            setIsOpen(props.closeNav);
-        }
-    }, [props.closeNav]);
 
     return (
         <React.Fragment>

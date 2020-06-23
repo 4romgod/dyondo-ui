@@ -5,9 +5,6 @@ import { API } from "../../config";
 import { useState, useEffect } from 'react';
 import { listSearch } from '../../actions/blog';
 
-import FacebookIcon from "react-share";
-
-
 function Search(props) {
     const [values, setValues] = useState({
         search: undefined,
@@ -29,14 +26,22 @@ function Search(props) {
             <div className="row ml-0 mr-0">
                 <div className="col-md-12 pl-0 pr-0">
 
-                    <div className="jumbotron bg-light">
-                        {message && <p className="text-muted font-italic">{message}</p>}
+                    <div className="jumbotron bg-light pl-0 pr-0 pt-3 pb-0">
+                        {message && <p className="text-muted font-italic text-center">{message}</p>}
 
                         {results.map((blog, index) => {
                             return (
-                                <div key={index} className="pt-2 pb-2">
+                                <div key={index}>
                                     <Link href={`/blogs/${blog.slug}`}>
-                                        <a className="text-primary">{blog.title}</a>
+                                        <a
+                                            id="search-item"
+                                            className="text-primary pl-4 pr-3 pt-2 pb-2"
+                                            style={{
+                                                display: 'block'
+                                            }}
+                                        >
+                                            {blog.title}
+                                        </a>
                                     </Link>
                                 </div>
                             )
@@ -58,7 +63,7 @@ function Search(props) {
 
         listSearch({ search }).then(data => {
             setValues({ ...values, results: data, searched: true, message: `${data.length} blogs found` });
-        })
+        });
     }
 
     function searchForm() {
@@ -92,7 +97,7 @@ function Search(props) {
 
                 <div className="col-md-12">
                     <div className="row">
-                        <div className="col-md-10">
+                        <div className="col-md-10 pl-0 pr-0">
                             {searched
                                 &&
                                 <div>

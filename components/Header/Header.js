@@ -30,24 +30,21 @@ function Header(props) {
     const [isOpen, setIsOpen] = useState(false);
 
     function toggle() {
-        //console.log(props.navOpen);
-
         setIsOpen(!isOpen);
     };
-
-
-    function handleSignout() {
-        signout(function () {
-            Router.replace(`/signin`)
-        });
-    }
-
 
     useEffect(() => {
         if (isOpen) {
             setIsOpen(props.closeNav);
         }
     }, [props.closeNav]);
+
+    
+    function handleSignout() {
+        signout(function () {
+            Router.replace(`/signin`)
+        });
+    }
 
 
     function showDashboard() {
