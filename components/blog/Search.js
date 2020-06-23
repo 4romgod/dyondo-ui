@@ -34,7 +34,7 @@ function Search(props) {
 
                         {results.map((blog, index) => {
                             return (
-                                <div key={index}>
+                                <div key={index} className="pt-2 pb-2">
                                     <Link href={`/blogs/${blog.slug}`}>
                                         <a className="text-primary">{blog.title}</a>
                                     </Link>
