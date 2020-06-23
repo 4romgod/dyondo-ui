@@ -25,7 +25,6 @@ function CreateBlog() {
                             </div>
 
                         </div>
-
                     </div>
                 </div>
             </Private>

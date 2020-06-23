@@ -7,9 +7,9 @@ function Signin() {
     
     return (
         <Layout>
-            <div className="container" style={{ height: '100vh' }}>
+            <div className="container pt-4" style={{ height: '100vh' }}>
 
-                <div className="bg-white shadow mt-3 pt-5 pb-5 pl-4 pr-4">
+                <div className="bg-white shadow pt-5 pb-5 pl-4 pr-4">
                     <h2 className="text-center">Signup Now</h2>
 
                     <div className="row">
