@@ -16,25 +16,16 @@ const Layout = (props) => {
 
     return (
         <React.Fragment>
-            <Header closeNav={isClicked} />
+            <header>
+                <Header closeNav={isClicked} />
+                <HeaderTopics />
+            </header>
 
-            <div className="bg-light" onClick={handleClick}>
+            <main className="bg-light" onClick={handleClick}>
+                {props.children}
+            </main>
 
-                <div className="bg-white">
-                    <HeaderTopics />
-                    {/* <Search closeSearch={isClicked} /> */}
-                </div>
-
-                {/**Main content of each page */}
-                <div className="">
-                    {props.children}
-                </div>
-
-            </div>
-
-            <div>
-                <Footer />
-            </div>
+            <Footer />
 
         </React.Fragment>
     )

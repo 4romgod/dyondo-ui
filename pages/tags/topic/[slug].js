@@ -35,18 +35,16 @@ function Tags({ tags, topic, query }) {
         <React.Fragment>
             {head()}
             <Layout>
-                <main>
+                <div>
                     <div className="bg-white pb-5 mb-5">
                         <div className="container pt-3">
-                            <header>
-                                <div className="row ml-0 mr-0">
-                                    <div className="col-md-12 text-center">
-                                        <div className="card border-0 bg-white pt-4 pb-3">
-                                            <h1>Best Tutorials on {topic.charAt(0).toUpperCase() + topic.slice(1)}</h1>
-                                        </div>
+                            <div className="row ml-0 mr-0">
+                                <div className="col-md-12 text-center">
+                                    <div className="card border-0 bg-white pt-4 pb-3">
+                                        <h1>Best Tutorials on {topic.charAt(0).toUpperCase() + topic.slice(1)}</h1>
                                     </div>
                                 </div>
-                            </header>
+                            </div>
 
                             <div className="row ml-0 mr-0">
                                 <Search />
@@ -58,7 +56,7 @@ function Tags({ tags, topic, query }) {
                                 <div className="row ml-0 mr-0">
                                     {tags.map((tag, index) => {
                                         return (
-                                            <div className="col-md-4" key={index} style={{cursor: 'pointer'}}>
+                                            <div className="col-md-4" key={index} style={{ cursor: 'pointer' }}>
                                                 <TagCard tag={tag} />
                                             </div>)
                                     })}
@@ -67,7 +65,7 @@ function Tags({ tags, topic, query }) {
 
                         </div>
                     </div>
-                </main>
+                </div>
             </Layout>
         </React.Fragment>
     )

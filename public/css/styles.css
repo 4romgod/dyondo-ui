@@ -1,7 +1,17 @@
-body{
-    position: relative;
+html {
+    height: 100%;
+}
+
+body {
     min-height: 100vh;
+    height: 100%;
     overflow-wrap: break-word !important;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
 }
 
 /*********************************** TAGS ***************************/

@@ -105,7 +105,7 @@ function SingleBlog({ blog, query }) {
                 {blogStyle}
             </style>
 
-            <main className="bg-white">
+            <div className="bg-white">
                 <article>
 
                     <div className="row ml-0 mr-0 mb-4">
@@ -202,7 +202,7 @@ function SingleBlog({ blog, query }) {
                     </div>
 
                 </article>
-            </main>
+            </div>
         </Layout>
     </React.Fragment>
 }

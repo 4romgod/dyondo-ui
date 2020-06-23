@@ -33,36 +33,35 @@ function Tag({ tag, blogs, query }) {
         <React.Fragment>
             {head()}
             <Layout>
-                <main>
-                    <div className="bg-white">
-                        <div className="container pt-3">
-                            <header>
-                                <div className="row ml-0 mr-0">
-                                    <div className="col-md-12 pb-2 text-center">
-                                        <div className="card border-0 bg-white pt-3 pb-3 pl-5 pr-5">
-                                            <h1>Best Blogs and Tutorials on {tag.name}</h1>
-                                        </div>
+                <div className="bg-white">
+                    <div className="container pt-3">
+                        <div>
+                            <div className="row ml-0 mr-0">
+                                <div className="col-md-12 pb-2 text-center">
+                                    <div className="card border-0 bg-white pt-3 pb-3 pl-5 pr-5">
+                                        <h1>Best Blogs and Tutorials on {tag.name}</h1>
                                     </div>
                                 </div>
-                            </header>
-
-                            <div className="row ml-0 mr-0 pb-5">
-                                <Search />
                             </div>
-
-                            {/* blogs to match tag */}
-                            <div className="row ml-0 mr-0">
-                                {blogs.map((blog, index) => {
-                                    return (
-                                        <div className="col-md-4" key={index}>
-                                            <SmallCard blog={blog} />
-                                        </div>)
-                                })}
-                            </div>
-
                         </div>
+
+                        <div className="row ml-0 mr-0 pb-5">
+                            <Search />
+                        </div>
+
+                        {/* blogs to match tag */}
+                        <div className="row ml-0 mr-0">
+                            {blogs.map((blog, index) => {
+                                return (
+                                    <div className="col-md-4" key={index}>
+                                        <SmallCard blog={blog} />
+                                    </div>)
+                            })}
+                        </div>
+
                     </div>
-                </main>
+                </div>
+
             </Layout>
         </React.Fragment>
     )

@@ -32,7 +32,7 @@ function Category({ category, blogs, query }) {
         <React.Fragment>
             {head()}
             <Layout>
-                <main>
+                <div>
                     <div className="bg-white">
                         <div className="container pt-3">
 
@@ -58,7 +58,7 @@ function Category({ category, blogs, query }) {
 
                         </div>
                     </div>
-                </main>
+                </div>
             </Layout>
         </React.Fragment>
     )

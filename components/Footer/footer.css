@@ -1,6 +1,11 @@
 footer{
-    /* position: absolute;
-    bottom: 0; */
+    height: 235px;
+}
+
+@media only screen and (max-width: 767px) {
+    footer{
+        height: 424px;
+    }
 }
 
 .footer-one{

@@ -111,10 +111,10 @@ function Blogs({ blogs, categories, tags, totalBlogs, blogsLimit, blogsSkip, rou
             {head()}
 
             <Layout>
-                <main className="bg-white">
+                <div className="bg-white">
                     <div className="pb-5">
 
-                        <header className="bg-white">
+                        <div className="bg-white">
 
                             <div className="col-md-12 pl-0 pr-0 text-center width-overflow">
                                 <div className="bg-white pt-5 pb-3">
@@ -122,7 +122,7 @@ function Blogs({ blogs, categories, tags, totalBlogs, blogsLimit, blogsSkip, rou
                                 </div>
                             </div>
 
-                        </header>
+                        </div>
 
                         <div className="container text-center">
                             <div className="row ml-0 mr-0">
@@ -180,7 +180,7 @@ function Blogs({ blogs, categories, tags, totalBlogs, blogsLimit, blogsSkip, rou
 
                     </div>
 
-                </main>
+                </div>
             </Layout>
         </React.Fragment>
     )
