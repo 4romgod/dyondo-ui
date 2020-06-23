@@ -135,15 +135,17 @@ function Header(props) {
 
         }
         else {
-            <NavItem style={{ padding: '0', margin: '0 11px' }}>
-                <a href={`/signup`}
-                    style={navLinkStyle}
-                >
-                    <p className="btn btn-outline-success pl-3 pr-3 write-blog">
-                        <strong>Write a blog</strong>
-                    </p>
-                </a>
-            </NavItem>
+            return (
+                <NavItem style={{ padding: '0', margin: '0 11px' }}>
+                    <a href={`/signup`}
+                        style={navLinkStyle}
+                    >
+                        <p className="btn btn-outline-success pl-3 pr-3 write-blog">
+                            <strong>Write a blog</strong>
+                        </p>
+                    </a>
+                </NavItem>
+            )
         }
 
     }
