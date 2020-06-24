@@ -30,7 +30,7 @@ class MyDocument extends Document {
 
           <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins&display=swap" rel="stylesheet" />
           <link rel="stylesheet" href="/css/styles.css" />
-          <link rel="stylesheet" href="/css/components.css" />
+          <link rel="stylesheet" href="/css/general.css" />
           <link rel="stylesheet" href="/css/text.css" />
           
           <link
