@@ -18,6 +18,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import FullPageLoader from "../Loader/FullPageLoader";
 import Checkbox from "../Checkbox/Checkbox";
 
+import quillStyle from "../../STYLES/quillStyle";
+
+
 
 function CreateBlog({ router }) {
 
@@ -219,6 +222,11 @@ function CreateBlog({ router }) {
 
     return (
         <React.Fragment>
+
+            <style jsx global>
+                {quillStyle}
+            </style>
+            
             <ToastContainer />
 
             {loading && <FullPageLoader />}
