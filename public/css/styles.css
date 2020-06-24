@@ -29,7 +29,6 @@ body {
 
 .ql-editor {
     height: 300px !important;
-    overflow-y: scroll;
 }
 
 .container {
