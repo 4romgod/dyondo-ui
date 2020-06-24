@@ -124,7 +124,7 @@ function CreateBlog({ router }) {
                 }
                 else {
                     formData.set(name, value);
-                    
+
                     setValues({
                         ...values,
                         photoName: value ? value.name : '',
@@ -207,6 +207,10 @@ function CreateBlog({ router }) {
                         value={body}
                         placeholder="Write blog content..."
                         onChange={handleBody}
+                        style={{
+                            height: '300px !important',
+                            overflowY: 'scroll'
+                        }}
                     />
                 </div>
 

@@ -33,7 +33,7 @@ function BlogUpdate({ router }) {
         error: "",
         success: "",
         loading: false,
-        
+
         formData: "",
         title: "",
         body: '',
@@ -110,7 +110,7 @@ function BlogUpdate({ router }) {
         function createLi(tag, index) {
             return (
                 <li key={index} className="list-unstyled">
-                    <Checkbox 
+                    <Checkbox
                         entity={tag}
                         handleChange={handleToggleTag}
                         handleChecked={findOutCheckedTag}
@@ -179,7 +179,7 @@ function BlogUpdate({ router }) {
     function editBlog(event) {
         event.preventDefault();
 
-        if(checkedTag.length > 5 ){
+        if (checkedTag.length > 5) {
             toast.dismiss();
             toast.error("Maximum Tags exceeded!");
             return;
@@ -223,6 +223,10 @@ function BlogUpdate({ router }) {
                         value={body}
                         placeholder="Write blog content..."
                         onChange={handleBody}
+                        style={{
+                            height: '300px !important',
+                            overflowY: 'scroll'
+                        }}
                     />
                 </div>
 
