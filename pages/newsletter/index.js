@@ -41,8 +41,6 @@ function Newsletter() {
             <meta property="og:image:secure_url" content={`/images/blog.png`} />
             <meta property="og:image:type" content="image/jpg" />
             <meta property="fb:app_id" content={`${FB_APP_ID}`} />
-
-            <link rel="stylesheet" href="/css/newsletter.css" />
         </Head>
     }
 
@@ -100,7 +98,7 @@ function Newsletter() {
                     <div className="container-newsletter">
                         <div className="container-header text-center">
                             <h4 style={{ color: 'rgb(77,77,77)', fontWeight: 'bold' }}>{`${APP_NAME}`} Newsletter</h4>
-                            <p className="pt-2">Programming, Web Development, and Much more</p>
+                            <p>Programming, Web Development, and Much more</p>
                         </div>
 
                         <div className="container-form">
@@ -119,7 +117,7 @@ function Newsletter() {
                                             name="fullname"
                                             value={fullname}
                                             type="text"
-                                            placeholder="First Name"
+                                            placeholder="Name"
                                             required
                                         />
                                     </div>
@@ -131,7 +129,7 @@ function Newsletter() {
                                             name="email"
                                             value={email}
                                             type="email"
-                                            placeholder="First Name"
+                                            placeholder="Email"
                                             required
                                         />
                                     </div>
@@ -139,7 +137,6 @@ function Newsletter() {
                                         <button
                                             className="form-control btn btn-success"
                                             type="submit"
-                                            placeholder="First Name"
                                         >
                                             Subscribe
                                     </button>

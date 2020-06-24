@@ -23,18 +23,23 @@ export default css.global`
 }
 
 .container-header{
-    padding: 30px;
+    padding: 20px;
 }
 
 .container-header p{
     color: #7d7d7d;
+    font-size: 0.9rem;
 }
 
 .container-form{
     background-color: rgb(235, 237, 240);
     border-bottom-left-radius: 7px;
     border-bottom-right-radius: 7px;
-    padding: 30px;
+    padding: 20px;
+}
+
+.container-form p{
+    font-size: 0.9rem;
 }
 
 
@@ -45,7 +50,7 @@ export default css.global`
 
     .container-newsletter{
         background-color: white;
-        width: 550px;
+        width: 450px;
     }
 }
 
@@ -56,7 +61,7 @@ export default css.global`
 
     .container-newsletter{
         background-color: white;
-        width: 550px;
+        width: 450px;
     }
 }
 
@@ -67,7 +72,7 @@ export default css.global`
 
     .container-newsletter{
         background-color: white;
-        width: 550px;
+        width: 450px;
     }
 }
 

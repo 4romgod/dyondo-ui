@@ -8,10 +8,6 @@ body {
     overflow-wrap: break-word !important;
 }
 
-main{
-    
-}
-
 /*********************************** Search ***************************/
 #search-item:hover{
     background-color: rgb(206, 204, 204);
@@ -32,7 +28,8 @@ main{
 }
 
 .ql-editor {
-    min-height: 300px;
+    height: 300px !important;
+    overflow-y: scroll;
 }
 
 .container {
