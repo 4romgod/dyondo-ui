@@ -42,8 +42,9 @@
 
 #navbar2 .navbar-nav .nav-link{
     color: rgb(59, 59, 58);
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     font-weight: normal;
+    padding: 3px 5px  !important;
 }
 
 .navbar-dark .navbar-nav .nav-link:hover {

@@ -52,14 +52,14 @@ function HeaderTopics(props) {
 
                 <Collapse isOpen={isOpen} navbar>
 
-                    <Nav className="mr-auto" navbar onClick={() => setIsOpen(false)}>
+                    <Nav className="mr-auto ml-auto" navbar onClick={() => setIsOpen(false)}>
                         <React.Fragment>
 
-                            <NavItem style={{ padding: '0', margin: '0 11px' }}>
+                            {/* <NavItem style={{ padding: '0', margin: '0 11px' }}>
                                     <NavLink>
                                         Topics : 
                                     </NavLink>
-                            </NavItem>
+                            </NavItem> */}
 
 
                             {topics && topics.map((topic, index) => {

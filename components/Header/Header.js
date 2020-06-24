@@ -83,7 +83,7 @@ function Header(props) {
                 <NavItem style={{ padding: '0', margin: '0 11px' }}>
                     <Link href="/signin">
                         <NavLink style={navLinkStyle}>
-                            Signin
+                            Sign in
                     </NavLink>
                     </Link>
                 </NavItem>
@@ -91,7 +91,7 @@ function Header(props) {
                 <NavItem style={{ padding: '0', margin: '0 11px' }}>
                     <Link href="/signup">
                         <NavLink style={navLinkStyle}>
-                            Signup
+                            Sign up
                     </NavLink>
                     </Link>
                 </NavItem>
@@ -149,7 +149,7 @@ function Header(props) {
 
     return (
         <React.Fragment>
-            <Navbar color="dark" dark expand="md" className="navbar" id="navbar1">
+            <Navbar color="dark" dark expand="md" className="navbar" id="navbar1" style={{borderBottom: '0.05px solid rgb(202, 199, 199)'}}>
                 <Link href="/">
                     <NavLink className="font-weight-bold" id="container-logo" style={{ cursor: 'pointer', color: 'black', fontSize: '1.5rem' }}>
                         <img src="/images/logo.png" alt={`logo | ${APP_NAME}`}/>

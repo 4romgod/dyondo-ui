@@ -1,6 +1,6 @@
 import Link from "next/link";
 import "./footer.css";
-import { DOMAIN } from "../../config";
+import { DOMAIN, APP_NAME } from "../../config";
 
 
 function Footer() {
@@ -69,15 +69,10 @@ function Footer() {
 
                                 <li>
                                     <Link href={`/contact`}>
-                                        <a>Contact Me</a>
+                                        <a>Contact </a>
                                     </Link>
                                 </li>
 
-                                <li>
-                                    <Link href={`/`}>
-                                        <a>Hire Me</a>
-                                    </Link>
-                                </li>
                             </ul>
                         </div>
 
@@ -97,7 +92,7 @@ function Footer() {
 
                 <div className="footer-two text-center">
                     <p>
-                        Copyright Azblogs {`${new Date().getFullYear()}`}
+                        Copyright &#169; {`${APP_NAME} ${new Date().getFullYear()}`}
                     </p>
                 </div>
             </footer>
