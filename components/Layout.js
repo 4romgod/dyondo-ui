@@ -24,11 +24,13 @@ const Layout = (props) => {
                 </div>
             </header>
 
-            <main className="bg-light" onClick={handleClick}>
+            <main className="bg-light" onClick={handleClick} >
                 {props.children}
             </main>
 
-            <Footer />
+            <div>
+                <Footer />
+            </div>
 
         </div>
     )

@@ -1,9 +1,18 @@
 import Layout from '../components/Layout';
 import Head from 'next/head';
 import { DOMAIN, APP_NAME, FB_APP_ID } from '../config';
+import Search from "../components/blog/Search";
+import {useState} from "react";
+
 
 
 const Index = () => {
+    const [isClicked, setIsClicked] = useState(false);
+
+    function handleClick() {
+        setIsClicked(true);
+        setTimeout(() => setIsClicked(false), 0);
+    }
 
     function head() {
         return <Head>
@@ -33,9 +42,9 @@ const Index = () => {
     return (
         <Layout>
             {head()}
-            <article className="overflow-hidden pt-4 pb-3 bg-white">
+            <article className="overflow-hidden bg-white" onClick={handleClick}>
 
-                <div className="container pl-0 pr-0 heading-container">
+                <div className="heading-container">
                     <div className="row ml-0 mr-0">
                         <div className="col-md-12 pl-0 pr-0 text-center">
 
@@ -50,6 +59,10 @@ const Index = () => {
                                     Best programming blogs and tutorials on React, Node, Java and
                                     Much more
                                 </p>
+                                <div className="container">
+
+                                <Search closeSearch={isClicked} />
+                                </div>
                             </div>
                         </div>
 
