@@ -27,8 +27,8 @@ body {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
-.ql-editor {
-    height: 300px !important;
+.ql-container .ql-editor {
+    height: 400px !important;
 }
 
 .container {
