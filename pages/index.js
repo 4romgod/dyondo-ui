@@ -33,7 +33,7 @@ const Index = () => {
     return (
         <Layout>
             {head()}
-            <article className="overflow-hidden pt-4 pb-0 bg-white">
+            <article className="overflow-hidden pt-4 pb-3 bg-white">
 
                 <div className="container pl-0 pr-0 heading-container">
                     <div className="row ml-0 mr-0">

@@ -1,5 +1,7 @@
 import Link from "next/link";
 import "./footer.css";
+import { DOMAIN } from "../../config";
+
 
 function Footer() {
 
@@ -19,7 +21,13 @@ function Footer() {
                                     />
                                 </div>
                                 <div>
-                                    <p className="pl-2"><a>Azblogs</a></p>
+                                    <Link href={`/`} as={`/`}>
+                                        <p className="pl-2">
+                                            <a style={{ cursor: 'pointer' }}>
+                                                {`${DOMAIN}`}
+                                            </a>
+                                        </p>
+                                    </Link>
                                 </div>
                             </div>
 

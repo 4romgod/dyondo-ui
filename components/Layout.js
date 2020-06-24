@@ -16,8 +16,12 @@ const Layout = (props) => {
     return (
         <div>
             <header>
-                <Header closeNav={isClicked} />
-                <HeaderTopics closeNav={isClicked} />
+                <div>
+                    <Header closeNav={isClicked} />
+                </div>
+                <div>
+                    <HeaderTopics closeNav={isClicked} />
+                </div>
             </header>
 
             <main className="bg-light" onClick={handleClick}>
