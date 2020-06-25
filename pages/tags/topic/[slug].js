@@ -65,7 +65,7 @@ function Tags({ tags, topic, query }) {
                                 <div className="row ml-0 mr-0">
                                     {tags.map((tag, index) => {
                                         return (
-                                            <div className="col-md-4" key={index} style={{ cursor: 'pointer' }}>
+                                            <div className="col-sm-6 col-md-4" key={index} style={{ cursor: 'pointer' }}>
                                                 <TagCard tag={tag} />
                                             </div>)
                                     })}

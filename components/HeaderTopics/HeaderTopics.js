@@ -25,7 +25,7 @@ function HeaderTopics({closeNav, topics}) {
 
     return (
         <React.Fragment>
-            <Navbar color="dark" dark expand="md" className="navbar" id="navbar2">
+            <Navbar color="dark" dark expand="md" className="navbar animate__animated animate__fadeIn" id="navbar2">
 
                 <NavbarToggler className="collapsed" onClick={toggle} >
                     {isOpen && <img src="/images/close.svg" style={{ width: '20px' }} />}
