@@ -11,13 +11,13 @@ import {
 
 function HeaderTopics(props) {
     const [isOpen, setIsOpen] = useState(false);
-    const [topics, setTopics] = useState(props.topics);
+    const [topics, setTopics] = useState([]);
 
     function toggle() {
         setIsOpen(!isOpen);
     };
 
-    
+
     useEffect(() => {
         loadTopics();
     }, []);
@@ -30,15 +30,47 @@ function HeaderTopics(props) {
 
 
     function loadTopics() {
-        list().then(data => {
-            //console.log(data);
-            if (data.error) {
-                console.log(data.error);
+        const topicsStatic = [
+            {
+                name: "Programming",
+                slug: "programming",
+                _id: "5eefbbe64f36c62f00c48ab4"
+            },
+            {
+                name: "Network",
+                slug: "network",
+                _id: "5eefbc943933c52080ec5d60"
+            },
+            {
+                name: "DBMS",
+                slug: "dbms",
+                _id: "5eefbca43933c52080ec5d61"
+            },
+            {
+                name: "Data Science",
+                slug: "data-science",
+                _id: "5eefbcbd3933c52080ec5d62"
+            },
+            {
+                name: "Design",
+                slug: "design",
+                _id: "5eefbcca3933c52080ec5d63"
             }
-            else {
-                setTopics(data);
-            }
-        });
+        ]
+
+        setTopics(topicsStatic);
+
+        // list().then(data => {
+        //     //console.log(data);
+        //     if (data.error) {
+        //         console.log(data.error);
+        //     }
+        //     else {
+        //         console.log(data);
+
+        //         setTopics(data);
+        //     }
+        // });
     }
 
 
@@ -86,3 +118,4 @@ function HeaderTopics(props) {
 }
 
 export default HeaderTopics;
+
