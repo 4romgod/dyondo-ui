@@ -8,7 +8,7 @@ function Blog() {
             <Admin>
                 <div className="bg-white">
 
-                    <div className="container">
+                    <div className="">
 
                         <div className="row ml-0 mr-0">
 
