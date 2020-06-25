@@ -189,23 +189,27 @@ function BlogUpdate({ router }) {
 
         setValues({ ...values, loading: true, error: false, success: false });
 
-        updateBlog(formData, token, router.query.slug).then(data => {
-            if (data.error) {
-                setValues({ ...values, error: data.error, loading: false });
-            }
-            else {
-                setValues({
-                    ...values,
-                    title: '',
-                    success: `Blog titled "${data.title}" is successfully updated`,
-                    loading: false,
-                    error: false
-                });
+        updateBlog(formData, token, router.query.slug)
+            .then(data => {
+                //console.log(data);
+                //console.log(...formData);
 
-                Router.push(`/blogs/[slug]`, `/blogs/${router.query.slug}`);
-            }
+                if (data.error) {
+                    setValues({ ...values, error: data.error, loading: false });
+                }
+                else {
+                    setValues({
+                        ...values,
+                        title: '',
+                        success: `Blog titled "${data.title}" is successfully updated`,
+                        loading: false,
+                        error: false
+                    });
 
-        });
+                    Router.push(`/blogs/[slug]`, `/blogs/${router.query.slug}`);
+                }
+
+            });
     }
 
 
@@ -240,7 +244,7 @@ function BlogUpdate({ router }) {
             <style jsx global>
                 {quillStyle}
             </style>
-            
+
             <ToastContainer />
 
             <div>

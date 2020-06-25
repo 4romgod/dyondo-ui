@@ -142,7 +142,6 @@ export function updateBlog(blog, token, slug) {
         endpoint = `${API}/user/blog/${slug}`;
     }
 
-
     return fetch(`${endpoint}`, {
         method: 'PUT',
         headers: {
