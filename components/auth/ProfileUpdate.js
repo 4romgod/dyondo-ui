@@ -182,7 +182,7 @@ function ProfileUpdate() {
                 {loading && <FullPageLoader />}
             </div>
 
-            <div className="container-fluid">
+            <div className="container-fluid animate__animated animate__fadeIn">
                 <div className="row">
                     <div className="col-md-4">
                         <img

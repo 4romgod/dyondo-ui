@@ -144,9 +144,11 @@ function SignUpComponent() {
         <React.Fragment>
             <ToastContainer />
 
-            <GoogleLogin btnText="Signup with Google" />
+            <div className="animate__animated animate__fadeIn">
+                <GoogleLogin btnText="Signup with Google" />
 
-            {showForm && signupForm()}
+                {showForm && signupForm()}
+            </div>
         </React.Fragment>
     )
 }

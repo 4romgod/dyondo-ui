@@ -44,7 +44,7 @@ const Index = () => {
             {head()}
             <article className="overflow-hidden bg-white" onClick={handleClick}>
 
-                <div className="heading-container">
+                <div className="heading-container animate__animated animate__fadeIn">
                     <div className="row ml-0 mr-0">
                         <div className="col-md-12 pl-0 pr-0 text-center">
 

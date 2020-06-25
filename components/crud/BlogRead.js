@@ -84,7 +84,7 @@ function BlogRead({ username }) {
     function showAllBlogs() {
         function showBlog(blog, index) {
             return (
-                <div key={index} className="pb-5">
+                <div key={index} className="pb-5 animate__animated animate__fadeIn">
                     <h3>{blog.title}</h3>
                     <p className="mark">
                         Written by {blog.author.name} | published on {moment(blog.updatedAt).fromNow()}

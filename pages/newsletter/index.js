@@ -95,7 +95,7 @@ function Newsletter() {
 
                 <div className="newsletter-page">
 
-                    <div className="container-newsletter">
+                    <div className="container-newsletter animate__animated animate__fadeIn">
                         <div className="container-header text-center">
                             <h4 style={{ color: 'rgb(77,77,77)', fontWeight: 'bold' }}>{`${APP_NAME}`} Newsletter</h4>
                             <p>Programming, Web Development, and Much more</p>

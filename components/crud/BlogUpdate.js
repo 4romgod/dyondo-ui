@@ -253,7 +253,7 @@ function BlogUpdate({ router }) {
                 {loading && <FullPageLoader />}
             </div>
 
-            <div className="container-fluid pb-5">
+            <div className="container-fluid pb-5 animate__animated animate__fadeIn">
                 <div className="row">
 
                     {/* show blog form */}

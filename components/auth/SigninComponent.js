@@ -61,18 +61,18 @@ function SigninComponent() {
                             toast.dismiss();
                             toast.success("Successfully signed in");
 
-                            setTimeout(()=>Router.push(`/admin`), 1000);
+                            setTimeout(() => Router.push(`/admin`), 1000);
                         }
                         else {
                             toast.dismiss();
                             toast.success("Successfully signed in");
 
-                            setTimeout(()=>Router.push(`/user`), 1000);
+                            setTimeout(() => Router.push(`/user`), 1000);
                         }
                     });
                 }
             });
-                        
+
     };
 
     const signinForm = () => {
@@ -114,17 +114,19 @@ function SigninComponent() {
         <React.Fragment>
             <ToastContainer />
 
-            <GoogleLogin btnText="Signin with Google" />
+            <div className="animate__animated animate__fadeIn">
+                <GoogleLogin btnText="Signin with Google" />
 
-            {showForm && signinForm()}
+                {showForm && signinForm()}
 
-            <br />
+                <br />
 
-            <Link href="/auth/password/forgot">
-                <a className="btn btn-outline-danger btn-sm">
-                    Reset Password
+                <Link href="/auth/password/forgot">
+                    <a className="btn btn-outline-danger btn-sm">
+                        Reset Password
                 </a>
-            </Link>
+                </Link>
+            </div>
         </React.Fragment>
     )
 }

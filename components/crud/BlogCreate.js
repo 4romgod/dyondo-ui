@@ -231,7 +231,7 @@ function CreateBlog({ router }) {
 
             {loading && <FullPageLoader />}
 
-            <div className="container-fluid pb-5">
+            <div className="container-fluid pb-5 animate__animated animate__fadeIn">
 
                 <div className="row blog-create-page">
 
