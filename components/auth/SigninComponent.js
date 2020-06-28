@@ -61,13 +61,13 @@ function SigninComponent() {
                             toast.dismiss();
                             toast.success("Successfully signed in");
 
-                            setTimeout(() => Router.push(`/admin`), 1000);
+                            Router.push(`/admin`);
                         }
                         else {
                             toast.dismiss();
                             toast.success("Successfully signed in");
 
-                            setTimeout(() => Router.push(`/user`), 1000);
+                            Router.push(`/user`);
                         }
                     });
                 }

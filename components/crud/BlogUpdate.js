@@ -31,18 +31,21 @@ function BlogUpdate({ router }) {
     const [body, setBody] = useState('');
 
     const [values, setValues] = useState({
-        title: '',
-        error: "",
-        success: "",
-        loading: false,
-
-        formData: "",
         title: "",
         body: '',
-        photoName: ''
+        photoName: '',
+        formData: ""
     });
 
-    const { error, success, loading, formData, title, blog, photoName } = values;
+    const [results, setResults] = useState({
+        error: false,
+        loading: false,
+        success: ""
+    });
+
+    const { formData, title, blog, photoName } = values;
+    const { error, success, loading } = results;
+
     const token = getCookie('token');
 
 
@@ -65,22 +68,25 @@ function BlogUpdate({ router }) {
     // initialize fields with content from old blog
     function initBlog() {
         if (router.query.slug) {
-
-            setValues({ ...values, loading: true });
+            setResults({ ...results, loading: true });
 
             // get the old blog
             singleBlog(router.query.slug).then((data) => {
                 if (data.error) {
-                    //console.log(data.error);
-                    setValues({ ...values, error: data.error, loading: false });
+                    setResults({ ...results, error: data.error, loading: false });
+
+                    toast.dismiss();
+                    toast.error(error);
                 }
                 else {
+                    setResults({ ...results, loading: false });
                     setValues({ ...values, title: data.title });
+
                     setBody(data.body);
                     setOldCheckedTag(data.tags);
                 }
 
-            })
+            });
         }
     }
 
@@ -88,7 +94,9 @@ function BlogUpdate({ router }) {
     function initTags() {
         getTags().then((data) => {
             if (data.error) {
-                setValues({ ...values, error: data.error });
+                setResults({ ...results, error: data.error });
+                toast.dismiss();
+                toast.error(error);
             }
             else {
                 setTags(data);
@@ -126,7 +134,7 @@ function BlogUpdate({ router }) {
 
     function handleToggleTag(tagId) {
         return () => {
-            setValues({ ...values, error: "" });
+            setResults({ ...results, error: false });
 
             const clickedTag = checkedTag.indexOf(tagId);  //return -1 if not in array, else index of array
 
@@ -159,14 +167,17 @@ function BlogUpdate({ router }) {
                 }
                 else {
                     formData.set(name, value);
-                    setValues({ ...values, photoName: value ? value.name : '', [name]: value, formData, error: '' });
+                    setResults({...results, error: false})
+                    setValues({ ...values, photoName: value ? value.name : '', [name]: value, formData});
                 }
 
             }
             else {
                 value = event.target.value;
                 formData.set(name, value);
-                setValues({ ...values, [name]: value, formData, error: "", loading: false, success: false });
+
+                setResults({...results, error: false, loading: false, success: false})
+                setValues({ ...values, [name]: value, formData });
             }
         }
     }
@@ -187,7 +198,7 @@ function BlogUpdate({ router }) {
             return;
         }
 
-        setValues({ ...values, loading: true, error: false, success: false });
+        setResults({ ...results, loading: true, error: false, success: false });
 
         updateBlog(formData, token, router.query.slug)
             .then(data => {
@@ -195,18 +206,21 @@ function BlogUpdate({ router }) {
                 //console.log(...formData);
 
                 if (data.error) {
-                    setValues({ ...values, error: data.error, loading: false });
+                    toast.dismiss();
+                    toast.error(data.error);
+                    setResults({ ...results, error: data.error, loading: false });
                 }
                 else {
-                    setValues({
-                        ...values,
-                        title: '',
+                    setResults({
+                        ...results,
                         success: `Blog titled "${data.title}" is successfully updated`,
                         loading: false,
                         error: false
                     });
 
-                    Router.push(`/blogs/[slug]`, `/blogs/${router.query.slug}`);
+                    setValues({...values, title: ''})
+
+                    Router.replace(`/blogs/[slug]`, `/blogs/${router.query.slug}`);
                 }
 
             });
@@ -248,8 +262,6 @@ function BlogUpdate({ router }) {
             <ToastContainer />
 
             <div>
-                {toast.dismiss()}
-                {error && toast.error(error)}
                 {loading && <FullPageLoader />}
             </div>
 

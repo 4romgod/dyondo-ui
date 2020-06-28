@@ -9,7 +9,7 @@ function Admin(props){
             Router.push(`/signin`);
         }
         else if(isAuth().role != 1 ){
-            Router.push(`/`);
+            Router.replace(`/`);
         }
 
     }, []);

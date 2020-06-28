@@ -121,10 +121,10 @@ function ProfileUpdate() {
                 });
 
                 if (isAuth().role === 0) {
-                    Router.push(`/user`);
+                    Router.replace(`/user`);
                 }
                 else if (isAuth().role === 1) {
-                    Router.push(`/admin`);
+                    Router.replace(`/admin`);
                 }
             }
 

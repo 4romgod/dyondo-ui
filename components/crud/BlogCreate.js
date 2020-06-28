@@ -45,19 +45,22 @@ function CreateBlog({ router }) {
     const [body, setBody] = useState(blogFromLS());
 
     const [values, setValues] = useState({
-        error: "",
-        sizeError: "",
-        success: "",
-        loading: false,
-
         formData: "",
         title: "",
         hidePublishButton: false,
         photoName: ''
     });
 
+    const [results, setResults] = useState({
+        error: "",
+        sizeError: "",
+        loading: false,
+        success: "",
+    })
 
-    const { error, sizeError, success, loading, formData, title, hidePublishButton, photoName } = values;
+
+    const { formData, title, hidePublishButton, photoName } = values;
+    const { error, sizeError, success, loading } = results;
     const token = getCookie('token');
 
     useEffect(() => {
@@ -69,7 +72,7 @@ function CreateBlog({ router }) {
     function initTags() {
         getTags().then((data) => {
             if (data.error) {
-                setValues({ ...values, error: data.error });
+                setResults({ ...results, error: data.error });
             }
             else {
                 setTags(data);
@@ -94,7 +97,7 @@ function CreateBlog({ router }) {
 
     function handleToggleTag(tagId) {
         return () => {
-            setValues({ ...values, error: "" });
+            setResults({ ...results, error: false });
 
             const clickedTag = checkedTag.indexOf(tagId);  //return -1 if not in array, else index of array
 
@@ -132,16 +135,19 @@ function CreateBlog({ router }) {
                         ...values,
                         photoName: value ? value.name : '',
                         [name]: value,
-                        formData,
-                        error: ''
+                        formData
                     });
+
+                    setResults({ ...results, error: false });
                 }
 
             }
             else {
                 value = event.target.value;
                 formData.set(name, value);
-                setValues({ ...values, [name]: value, formData, error: "" });
+
+                setResults({ ...results, error: false });
+                setValues({ ...values, [name]: value, formData });
             }
 
         }
@@ -154,7 +160,13 @@ function CreateBlog({ router }) {
         formData.set("body", event);
 
         if (typeof window != 'undefined') {
-            localStorage.setItem('blog', JSON.stringify(event));
+            try {
+                localStorage.setItem('blog', JSON.stringify(event));
+            }
+            catch (e) {
+                console.debug("Local Storage is full, Please empty data");
+            }
+
         }
 
     };
@@ -169,25 +181,27 @@ function CreateBlog({ router }) {
             return;
         }
 
-        setValues({ ...values, loading: true, error: false, success: false });
+        setResults({ ...results, loading: true, error: false, success: false });
 
         createBlog(formData, token).then((data) => {
             if (data.error) {
                 toast.dismiss();
                 toast.error(data.error);
 
-                setValues({ ...values, error: data.error, loading: false });
+                setResults({ ...results, error: data.error, loading: false });
             }
             else {
                 toast.dismiss();
                 toast.success(`A new blog titled "${data.title}" is created`);
 
-                setValues({ ...values, title: "", error: "", loading: false, success: `A new blog titled "${data.title}" is created` });
+                setResults({...results, error: false, loading: false, success: `A new blog titled "${data.title}" is created`})
+                setValues({ ...values, title: ""});
                 setBody("");
 
                 localStorage.removeItem('blog');
                 let slug = slugify(title);
-                setTimeout(() => Router.push(`/blogs/[slug]`, `/blogs/${slug}`), 2000);
+
+                Router.replace(`/blogs/[slug]`, `/blogs/${slug}`);
 
             }
         });
@@ -226,7 +240,7 @@ function CreateBlog({ router }) {
             <style jsx global>
                 {quillStyle}
             </style>
-            
+
             <ToastContainer />
 
             {loading && <FullPageLoader />}

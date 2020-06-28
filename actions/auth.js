@@ -9,7 +9,7 @@ export const handleResponse = (response) => {
         console.log("Time expired bitch");
         
         signout(() => {
-            Router.push({
+            Router.replace({
                 pathname: "/signin",
                 query: {
                     message: "Your session is expired. Please signin"
