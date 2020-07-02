@@ -29,7 +29,7 @@ function Card({ blog }) {
             <div className="row">
 
                 {/** holds the image */}
-                <div className="col-sm-3 mt-3" id="container-featured-img">
+                <div className="col-sm-4 mt-3" id="container-featured-img">
                     <Link href={`/blogs/[slug]`} as={`/blogs/${blog.slug}`}>
                         <a>
                             <p
@@ -42,7 +42,7 @@ function Card({ blog }) {
                     </Link>
                 </div>
 
-                <div className="col-sm-9" id="container-blog-meta">
+                <div className="col-sm-8" id="container-blog-meta">
                     {/** holds the title */}
                     <Link href={`/blogs/[slug]`} as={`/blogs/${blog.slug}`}>
                         <a style={{ cursor: 'pointer', color: 'rgb(41,41,41)' }}>
