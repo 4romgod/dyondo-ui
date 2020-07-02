@@ -16,28 +16,28 @@ const Layout = (props) => {
         setTimeout(() => setIsClicked(false), 0);
     }
 
-    
-    useEffect(()=>{
-        const localStorage = localStorage || window.localStorage;
 
+    useEffect(() => {
         let myTopics = localStorage.getItem("topics");
 
-        if(myTopics){
+        if (myTopics) {
             myTopics = JSON.parse(myTopics);
             setTopics(myTopics);
         }
-        else{
+        else {
             list().then(data => {
                 if (data.error) {
                     console.log(data.error);
                 }
                 else {
                     setTopics(data);
-                    localStorage.setItem("topics", JSON.stringify(topics));
+                    if (process.browser) {
+                        localStorage.setItem("topics", JSON.stringify(topics));
+                    }
                 }
             });
         }
-    }, [topics]);
+    }, []);
 
     return (
         <div>
