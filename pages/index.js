@@ -2,7 +2,7 @@ import Layout from '../components/Layout';
 import Head from 'next/head';
 import { DOMAIN, APP_NAME, FB_APP_ID } from '../config';
 import Search from "../components/blog/Search";
-import {useState} from "react";
+import { useState } from "react";
 
 
 
@@ -48,7 +48,6 @@ const Index = () => {
                     <div className="row ml-0 mr-0">
                         <div className="col-md-12 pl-0 pr-0 text-center">
 
-
                             <p className="home-featured-img"></p>
 
                             <div className="heading-text">
@@ -60,8 +59,7 @@ const Index = () => {
                                     Much more
                                 </p>
                                 <div className="container">
-
-                                <Search closeSearch={isClicked} />
+                                    <Search closeSearch={isClicked} />
                                 </div>
                             </div>
                         </div>

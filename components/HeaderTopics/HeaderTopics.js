@@ -44,7 +44,7 @@ function HeaderTopics({closeNav, topics}) {
                                     <NavItem key={index} style={{ padding: '0', margin: '0 11px', cursor: 'pointer' }}>
                                         <Link href={`/tags/topic/[slug]`} as={`/tags/topic/${topic.slug}`}>
                                             <NavLink>
-                                                {topic.name}
+                                                {topic.name.toUpperCase()}
                                             </NavLink>
                                         </Link>
                                     </NavItem>
