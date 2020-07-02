@@ -15,9 +15,18 @@ function Author({ blog }) {
             </style>
 
             <div id="container-featured-img">
-                <img
-                    src={`${API}/user/photo/${blog.author.username}`}
-                    alt={blog.title}
+                <p
+                    style={{
+                        backgroundColor: '#eee',
+                        backgroundImage: `url(${API}/user/photo/${blog.author.username})`,
+                        backgroundPosition: 'center',
+                        backgroundSize: 'cover',
+                        backgroundRepeat: 'no-repeat',
+                        height: '50px',
+                        width: '50px',
+                        margin: '0',
+                        borderRadius: '50%',
+                    }}
                 />
             </div>
 

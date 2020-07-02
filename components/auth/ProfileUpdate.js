@@ -22,14 +22,17 @@ function ProfileUpdate() {
         photo: '',
         photoName: '',
         userData: process.browser && new FormData(),
+    });
 
+    const [results, setResults] = useState({
         error: false,
         success: false,
         loading: false,
         btnDisable: false
     });
 
-    const { username, username_for_photo, name, email, about, password, photo, photoName, userData, error, success, loading, btnDisable } = values;
+    const { username, username_for_photo, name, email, about, password, photo, photoName, userData } = values;
+    const { error, success, loading, btnDisable } = results;
     const token = getCookie("token");
 
     function initUser() {
@@ -37,10 +40,11 @@ function ProfileUpdate() {
 
         getProfile(token).then(data => {
             if (data.error) {
-                setValues({ ...values, error: data.error, loading: false });
+                setResults({ ...results, error: data.error, loading: false });
             }
             else {
-                setValues({ ...values, username: data.username, username_for_photo: data.username, name: data.name, email: data.email, about: data.about, loading: false });
+                setResults({ ...results, loading: false, error: false });
+                setValues({ ...values, username: data.username, username_for_photo: data.username, name: data.name, email: data.email, about: data.about });
             }
         });
     }
@@ -65,7 +69,9 @@ function ProfileUpdate() {
                 }
                 else {
                     userData.set(name, value);
-                    setValues({ ...values, photoName: value ? value.name : '', [name]: value, userData, error: false, success: false });
+
+                    setResults({ ...results, error: false, success: false });
+                    setValues({ ...values, photoName: value ? value.name : '', [name]: value, userData });
                 }
             }
             else {
@@ -74,21 +80,29 @@ function ProfileUpdate() {
                     const textSize = value ? value.length : 0;
 
                     if (textSize > 32) {
-                        setValues({ ...values, error: `${name} should be less than 32 characters` })
+                        setResults({ ...results, error: `${name} should be less than 32 characters` })
                     }
                     else {
                         userData.set(name, value);
-                        setValues({ ...values, [name]: value, userData, error: false, success: false });
+
+                        setResults({ ...results, error: false, success: false });
+                        setValues({ ...values, [name]: value, userData });
                         console.log(username_for_photo);
                         console.log(username);
                     }
-
 
                 }
                 else if (name === 'about') {
                     value = event.target.value;
                     userData.set(name, value);
-                    setValues({ ...values, [name]: value, userData, error: false, success: false });
+
+                    setResults({ ...results, error: false, success: false });
+                    setValues({ ...values, [name]: value, userData });
+                }
+                else if (name === 'password') {
+                    value = event.target.value;
+                    userData.set(name, value);
+                    setValues({ ...values, [name]: value });
                 }
             }
 
@@ -113,11 +127,10 @@ function ProfileUpdate() {
                         name: data.name,
                         email: data.email,
                         about: data.about,
-                        password: '',
-                        success: true,
-                        loading: false,
-                        btnDisable: true
+                        password: ''
                     });
+
+                    setResults({ ...results, success: true, loading: false, btnDisable: true })
                 });
 
                 if (isAuth().role === 0) {
@@ -185,12 +198,14 @@ function ProfileUpdate() {
             <div className="container-fluid animate__animated animate__fadeIn">
                 <div className="row">
                     <div className="col-md-4">
-                        <img
-                            src={`${API}/user/photo/${username_for_photo}`}
-                            className="img img-fluid img-thumbnail mb-3"
-                            style={{ maxWidth: '100%', maxHeight: "auto" }}
-                            alt="user profile"
-                        />
+                        {username_for_photo &&
+                            <img
+                                src={`${API}/user/photo/${username_for_photo}`}
+                                className="img img-fluid img-thumbnail mb-3"
+                                style={{ maxWidth: '100%', maxHeight: "auto" }}
+                                alt="user profile"
+                            />
+                        }
                     </div>
                     <div className="col-md-8 mb-5">{profileUpdateForm()}</div>
                 </div>

@@ -12,22 +12,27 @@ function AdminIndex() {
     const [values, setValues] = useState({
         name: '',
         username: '',
-        about: '',
+        about: ''
+    });
 
+    const [results, setResults] = useState({
         error: '',
         loading: ''
     });
 
-    const { username, name, about, error, loading } = values;
+    const { username, name, about } = values;
+    const { error, loading } = results;
+
     const token = getCookie('token');
 
     function initUser() {
         getProfile(token).then(data => {
             if (data.error) {
-                setValues({ ...values, error: data.error, loading: false });
+                setResults({ ...results, error: data.error, loading: false });
             }
             else {
-                setValues({ ...values, username: data.username, name: data.name, about: data.about, loading: false });
+                setResults({ ...results, loading: false });
+                setValues({ ...values, username: data.username, name: data.name, about: data.about });
             }
         });
     }
@@ -101,20 +106,21 @@ function AdminIndex() {
                                             <div className="row ml-0 mr-0">
 
                                                 <div className="col-md-3">
-                                                    <p
-                                                        style={{
-                                                            backgroundColor: '#eee',
-                                                            backgroundImage: `url(${API}/user/photo/${username})`,
-                                                            backgroundPosition: 'center',
-                                                            backgroundSize: 'cover',
-                                                            backgroundRepeat: 'no-repeat',
-                                                            height: '100px',
-                                                            width: '100px',
-                                                            margin: '0',
-                                                            borderRadius: '50%',
-                                                            border: '0.03rem solid rgb(241, 241, 241)',
-                                                        }}
-                                                    />
+                                                    {username &&
+                                                        <p
+                                                            style={{
+                                                                backgroundImage: `url(${API}/user/photo/${username})`,
+                                                                backgroundColor: '#eee', backgroundPosition: 'center',
+                                                                backgroundSize: 'cover',
+                                                                backgroundRepeat: 'no-repeat',
+                                                                height: '100px',
+                                                                width: '100px',
+                                                                margin: '0',
+                                                                borderRadius: '4px',
+                                                                border: '0.03rem solid rgb(241, 241, 241)',
+                                                            }}
+                                                        />
+                                                    }
                                                 </div>
 
                                                 <div className="col-md-9">

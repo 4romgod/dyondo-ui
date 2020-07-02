@@ -1,5 +1,5 @@
 import Layout from "../../components/Layout";
-import Private from "../../components/auth/Private"; 
+import Private from "../../components/auth/Private";
 import Link from "next/link";
 import { getCookie } from "../../actions/auth";
 import { getProfile } from "../../actions/user";
@@ -87,12 +87,24 @@ function UserIndex() {
                             <div className="col-md-8 animate__animated animate__fadeIn">
                                 <div className="shadow pt-4 pb-5 pr-3">
                                     <div className="row ml-0 mr-0">
+
                                         <div className="col-md-3">
-                                            <img
-                                                src={`${API}/user/photo/${username}`}
-                                                alt="profile photo"
-                                                style={{ maxWidth: '100%', height: 'auto' }}
-                                            />
+                                            {username &&
+                                                <p
+                                                    style={{
+                                                        backgroundColor: '#eee',
+                                                        backgroundImage: `url(${API}/user/photo/${username})`,
+                                                        backgroundPosition: 'center',
+                                                        backgroundSize: 'cover',
+                                                        backgroundRepeat: 'no-repeat',
+                                                        height: '100px',
+                                                        width: '100px',
+                                                        margin: '0',
+                                                        borderRadius: '4px',
+                                                        border: '0.03rem solid rgb(241, 241, 241)',
+                                                    }}
+                                                />
+                                            }
                                         </div>
 
                                         <div className="col-md-9">
@@ -130,7 +142,7 @@ function UserIndex() {
                     </div>
                 </div>
             </Private>
-        </Layout>
+        </Layout >
     )
 };
 

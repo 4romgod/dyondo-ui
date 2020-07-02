@@ -116,13 +116,13 @@ export function removeBlog(slug, token) {
     }
 
     return fetch(`${endpoint}`, {
-            method: 'DELETE',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`
-            }
-        })
+        method: 'DELETE',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+        }
+    })
         .then(response => {
             handleResponse(response);
             return response.json();

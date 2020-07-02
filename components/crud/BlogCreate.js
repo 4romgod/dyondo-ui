@@ -175,11 +175,28 @@ function CreateBlog({ router }) {
     function publishBlog(event) {
         event.preventDefault();
 
+        // validate tag size
         if (checkedTag.length > 5) {
             toast.dismiss();
             toast.error("Maximum Tags exceeded!");
             return;
         }
+
+        // validate title length
+
+        // validate body size
+        // for(let item of formData.entries()){
+        //     console.log(item);
+        //     if(item[0]==="body"){
+
+        //         if(item[1].length > 15000000){
+        //             toast.dismiss();
+        //             toast.error("Your Content is Too Large, Max size is 15MB");
+        //             return;
+        //         }
+                
+        //     }
+        // }
 
         setResults({ ...results, loading: true, error: false, success: false });
 
@@ -202,7 +219,6 @@ function CreateBlog({ router }) {
                 let slug = slugify(title);
 
                 Router.replace(`/blogs/[slug]`, `/blogs/${slug}`);
-
             }
         });
     }
