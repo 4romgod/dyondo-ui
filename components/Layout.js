@@ -26,7 +26,7 @@ const Layout = (props) => {
         else{
             loadTopics();
         }
-    }, []);
+    }, [topics]);
 
     function loadTopics() {
         list().then(data => {
