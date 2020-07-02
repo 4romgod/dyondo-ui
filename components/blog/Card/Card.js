@@ -29,7 +29,7 @@ function Card({ blog }) {
             <div className="row">
 
                 {/** holds the image */}
-                <div className="col-sm-4 mt-3" id="container-featured-img">
+                <div className="col-sm-4 mt-3 pl-0 pr-0" id="container-featured-img">
                     <Link href={`/blogs/[slug]`} as={`/blogs/${blog.slug}`}>
                         <a>
                             <p

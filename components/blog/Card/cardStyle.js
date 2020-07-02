@@ -29,21 +29,21 @@ export default css.global`
 @media only screen and (max-width: 1200px) {
     #container-featured-img p{
         height: 150px;
-        max-width: 150px;
+        max-width: 200px;
     }
 }
 
 @media only screen and (max-width: 992px) {
     #container-featured-img p{
-        max-height: 100px;
-        max-width: 100px;
+        height: 150px;
+        max-width: 200px;
     }
 }
 
 @media only screen and (max-width: 768px) {
     #container-featured-img p{
-        max-height: 130px;
-        max-width: 130px;
+        height: 150px;
+        max-width: 200px;
     }
 }
 
