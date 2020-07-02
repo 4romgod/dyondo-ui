@@ -1,9 +1,5 @@
 import { useState, useEffect } from 'react';
 import Link from "next/link";
-import Router from "next/router";
-
-import { list } from "../../actions/topic";
-
 
 import {
     Collapse, Navbar, NavbarToggler, Nav, NavItem, NavLink

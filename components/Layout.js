@@ -16,30 +16,28 @@ const Layout = (props) => {
         setTimeout(() => setIsClicked(false), 0);
     }
 
-
+    
     useEffect(()=>{
+        const localStorage = localStorage || window.localStorage;
+
         let myTopics = localStorage.getItem("topics");
+
         if(myTopics){
             myTopics = JSON.parse(myTopics);
             setTopics(myTopics);
         }
         else{
-            loadTopics();
+            list().then(data => {
+                if (data.error) {
+                    console.log(data.error);
+                }
+                else {
+                    setTopics(data);
+                    localStorage.setItem("topics", JSON.stringify(topics));
+                }
+            });
         }
     }, [topics]);
-
-    function loadTopics() {
-        list().then(data => {
-            //console.log(data);
-            if (data.error) {
-                console.log(data.error);
-            }
-            else {
-                setTopics(data);
-                localStorage.setItem("topics", JSON.stringify(topics));
-            }
-        });
-    }
 
     return (
         <div>
