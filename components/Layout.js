@@ -9,7 +9,28 @@ import { list } from "../actions/topic";
 
 const Layout = (props) => {
     const [isClicked, setIsClicked] = useState(false);
-    const [topics, setTopics] = useState([]);
+    const [topics, setTopics] = useState([
+        {
+            "name": "Design",
+            "slug": "design"
+        },
+        {
+            "name": "Programming",
+            "slug": "programming",
+        },
+        {
+            "name": "Data Science",
+            "slug": "data-science"
+        },
+        {
+            "name": "Networking",
+            "slug": "networking"
+        },
+        {
+            "name": "DBMS",
+            "slug": "dbms"
+        }
+    ]);
 
     function handleClick() {
         setIsClicked(true);
@@ -17,27 +38,27 @@ const Layout = (props) => {
     }
 
 
-    useEffect(() => {
-        let myTopics = localStorage.getItem("topics");
+    // useEffect(() => {
+    //     let myTopics = localStorage.getItem("topics");
 
-        if (myTopics) {
-            myTopics = JSON.parse(myTopics);
-            setTopics(myTopics);
-        }
-        else {
-            list().then(data => {
-                if (data.error) {
-                    console.log(data.error);
-                }
-                else {
-                    setTopics(data);
-                    if (process.browser) {
-                        localStorage.setItem("topics", JSON.stringify(topics));
-                    }
-                }
-            });
-        }
-    }, []);
+    //     if (myTopics) {
+    //         myTopics = JSON.parse(myTopics);
+    //         setTopics(myTopics);
+    //     }
+    //     else {
+    //         list().then(data => {
+    //             if (data.error) {
+    //                 console.log(data.error);
+    //             }
+    //             else {
+    //                 setTopics(data);
+    //                 if (process.browser) {
+    //                     localStorage.setItem("topics", JSON.stringify(topics));
+    //                 }
+    //             }
+    //         });
+    //     }
+    // }, []);
 
     return (
         <div>
