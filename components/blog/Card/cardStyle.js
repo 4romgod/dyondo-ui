@@ -4,7 +4,7 @@ export default css.global`
 
 #container-featured-img p{
     background-position: center;
-    background-size: cover;
+    background-size: 100% 100%;
     background-repeat: no-repeat;
     height: 200px;
     width: 100%;
