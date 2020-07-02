@@ -18,7 +18,14 @@ const Layout = (props) => {
 
 
     useEffect(()=>{
-        loadTopics();
+        let myTopics = localStorage.getItem("topics");
+        if(myTopics){
+            myTopics = JSON.parse(myTopics);
+            setTopics(myTopics);
+        }
+        else{
+            loadTopics();
+        }
     }, []);
 
     function loadTopics() {
@@ -29,6 +36,7 @@ const Layout = (props) => {
             }
             else {
                 setTopics(data);
+                localStorage.setItem("topics", JSON.stringify(topics));
             }
         });
     }
