@@ -225,6 +225,8 @@ function CreateBlog({ router }) {
             else{
                 toast.dismiss();
                 toast.error("Something went wrong, Try again later");
+                
+                setResults({ ...results, error: data.error, loading: false });
             }
         });
     }
