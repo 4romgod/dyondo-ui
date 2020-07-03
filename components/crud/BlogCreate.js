@@ -194,31 +194,37 @@ function CreateBlog({ router }) {
         //             toast.error("Your Content is Too Large, Max size is 15MB");
         //             return;
         //         }
-                
+
         //     }
         // }
 
         setResults({ ...results, loading: true, error: false, success: false });
 
         createBlog(formData, token).then((data) => {
-            if (data.error) {
-                toast.dismiss();
-                toast.error(data.error);
+            if (data) {
+                if (data.error) {
+                    toast.dismiss();
+                    toast.error(data.error);
 
-                setResults({ ...results, error: data.error, loading: false });
+                    setResults({ ...results, error: data.error, loading: false });
+                }
+                else {
+                    toast.dismiss();
+                    toast.success(`A new blog titled "${data.title}" is created`);
+
+                    setResults({ ...results, error: false, loading: false, success: `A new blog titled "${data.title}" is created` })
+                    setValues({ ...values, title: "" });
+                    setBody("");
+
+                    localStorage.removeItem('blog');
+                    let slug = slugify(title);
+
+                    Router.replace(`/blogs/[slug]`, `/blogs/${slug}`);
+                }
             }
-            else {
+            else{
                 toast.dismiss();
-                toast.success(`A new blog titled "${data.title}" is created`);
-
-                setResults({...results, error: false, loading: false, success: `A new blog titled "${data.title}" is created`})
-                setValues({ ...values, title: ""});
-                setBody("");
-
-                localStorage.removeItem('blog');
-                let slug = slugify(title);
-
-                Router.replace(`/blogs/[slug]`, `/blogs/${slug}`);
+                toast.error("Something went wrong, Try again later");
             }
         });
     }
