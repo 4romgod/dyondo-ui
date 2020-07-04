@@ -29,8 +29,8 @@ const Index = () => {
             <meta property="og:url" content={`${DOMAIN}`} />
             <meta property="og:site_name" content={`${APP_NAME}`} />
 
-            <meta property="og:image" content={`/images/blog.png`} />
-            <meta property="og:image:secure_url" content={`/images/blog.png`} />
+            <meta property="og:image" content={`/images/logo.png`} />
+            <meta property="og:image:secure_url" content={`/images/logo.png`} />
             <meta property="og:image:type" content="image/jpg" />
             <meta property="fb:app_id" content={`${FB_APP_ID}`} />
 
