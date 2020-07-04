@@ -3,7 +3,11 @@ import renderHTML from 'react-render-html';
 import moment from 'moment';
 import { API } from "../../config";
 import { useState, useEffect } from 'react';
-import { listSearch } from '../../actions/blog';
+import { listSearch } from '../../actions/blog'
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
+
 
 function Search(props) {
     const [values, setValues] = useState({
@@ -24,8 +28,10 @@ function Search(props) {
     function searchedBlog(results = []) {
         return (
             <div className="row ml-0 mr-0">
-                <div className="col-md-12 pl-0 pr-0">
 
+                <div className="col-md-1"></div>
+
+                <div className="col-md-10 pl-0 pr-0">
                     <div className="jumbotron bg-light pl-0 pr-0 pt-3 pb-0">
                         {message && <p className="text-muted font-italic text-center">{message}</p>}
 
@@ -47,8 +53,10 @@ function Search(props) {
                             )
                         })}
                     </div>
-
                 </div>
+                
+                <div className="col-md-1"></div>
+
             </div>
         )
     }
@@ -71,18 +79,23 @@ function Search(props) {
             <form onSubmit={searchSubmit} className="">
                 <div className="row ml-0 mr-0">
 
-                    <div className="col-md-10 pb-2 pl-0 pr-0">
+                    <div className="col-md-1"></div>
+                    <div className="col-md-10 input-group md-form form-sm form-2 pb-2 pl-0 pr-0 ">
                         <input
                             type="search"
                             className="form-control bg-light"
                             placeholder="Search blogs"
                             onChange={handleChange}
                         />
-                    </div>
 
-                    <div className="col-md-2">
-                        <button className="btn btn-block btn-primary" type="submit">Search</button>
+                        <div class="input-group-append" onClick={searchSubmit}>
+                            <span class="input-group-text lime lighten-2" id="basic-text1" >
+                                <FontAwesomeIcon icon={faSearch} aria-hidden="true" />
+                            </span>
+                        </div>
+
                     </div>
+                    <div className="col-md-1"></div>
 
                 </div>
             </form>
@@ -96,18 +109,7 @@ function Search(props) {
                 <div className="col-md-12 pl-0 pr-0">{searchForm()}</div>
 
                 <div className="col-md-12">
-                    <div className="row">
-                        <div className="col-md-10 pl-0 pr-0">
-                            {searched
-                                &&
-                                <div>
-                                    {searchedBlog(results)}
-                                </div>
-                            }
-                        </div>
-
-                        <div className="col-md-2"></div>
-                    </div>
+                    {searched && <div>{searchedBlog(results)}</div>}
                 </div>
 
             </div>
