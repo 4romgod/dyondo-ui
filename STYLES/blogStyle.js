@@ -66,6 +66,7 @@ li {
     border-radius: 5px;
     padding: 10px;
     font-family: sans-serif !important;
+    font-size: 0.85rem !important;
 }
 
 #blog-body iframe {
