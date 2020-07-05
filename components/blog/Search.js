@@ -88,8 +88,8 @@ function Search(props) {
                             onChange={handleChange}
                         />
 
-                        <div class="input-group-append" onClick={searchSubmit}>
-                            <span class="input-group-text lime lighten-2" id="basic-text1" >
+                        <div className="input-group-append" onClick={searchSubmit}>
+                            <span className="input-group-text lime lighten-2" id="basic-text1" >
                                 <FontAwesomeIcon icon={faSearch} aria-hidden="true" />
                             </span>
                         </div>

@@ -5,7 +5,9 @@ import SmallCard from "../../components/blog/SmallCard/SmallCard";
 import { API, DOMAIN, APP_NAME, FB_APP_ID } from '../../config';
 import Search from "../../components/blog/Search";
 
-import {useState} from "react";
+import HeadTags from "../../components/HeadTags/HeadTags";
+
+import { useState } from "react";
 
 
 function Tag({ tag, blogs, query }) {
@@ -16,30 +18,17 @@ function Tag({ tag, blogs, query }) {
         setTimeout(() => setIsClicked(false), 0);
     }
 
-    function head() {
-        return <Head>
-            <title>{tag.name} | {APP_NAME}</title>
-            <meta name="description" content={`Best programming blogs and tutorials on ${tag.name}`} />
-            <link rel="canonical" href={`${DOMAIN}/tags/${query.slug}`} />
-            <meta property="og:title" content={`${tag.name} | ${APP_NAME}`} />
-            <meta
-                property="og:description"
-                content={`Best programming blogs and tutorials on ${tag.name}`} />
-
-            <meta property="og:type" content="website" />
-            <meta property="og:url" content={`${DOMAIN}/tags/${query.slug}`} />
-            <meta property="og:site_name" content={`${APP_NAME}`} />
-
-            <meta property="og:image" content={`${DOMAIN}/images/smile.jpg`} />
-            <meta property="og:image:secure_url" content={`${DOMAIN}/images/smile.jpg`} />
-            <meta property="og:image:type" content="image/jpg" />
-            <meta property="fb:app_id" content={`${FB_APP_ID}`} />
-        </Head>
-    }
-
     return (
         <React.Fragment>
-            {head()}
+
+            <HeadTags
+                title={tag.name}
+                ogTitle={`${tag.name}`}
+                description={`Best programming blogs and tutorials on ${tag.name}`}
+                path={`/tags/${query.slug}`}
+                pathImg={`/images/smile.jpg`}
+            />
+
             <Layout>
                 <div className="bg-white" onClick={handleClick}>
                     <div className="container pt-3">

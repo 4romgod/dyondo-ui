@@ -3,7 +3,9 @@ import Layout from "../../../components/Layout";
 import { getTagsByField } from "../../../actions/tag";
 import { API, DOMAIN, APP_NAME, FB_APP_ID } from '../../../config';
 
-import {useState} from 'react';
+import HeadTags from "../../../components/HeadTags/HeadTags";
+
+import { useState } from 'react';
 
 import TagCard from "../../../components/Tag/SmallCard/TagCard";
 
@@ -18,31 +20,18 @@ function Tags({ tags, topic, query }) {
         setTimeout(() => setIsClicked(false), 0);
     }
 
-    function head() {
-        return <Head>
-            <title>{topic} | {APP_NAME}</title>
-            <meta name="description" content={`Best programming blogs and tutorials on ${topic}`} />
-            <link rel="canonical" href={`${DOMAIN}/tags/topic/${topic}`} />
-            <meta property="og:title" content={`${topic} | ${APP_NAME}`} />
-            <meta
-                property="og:description"
-                content={`Best programming blogs and tutorials on ${topic}`} />
-
-            <meta property="og:type" content="website" />
-            <meta property="og:url" content={`${DOMAIN}/tags/topic/${topic}`} />
-            <meta property="og:site_name" content={`${APP_NAME}`} />
-
-            <meta property="og:image" content={`${DOMAIN}/images/smile.jpg`} />
-            <meta property="og:image:secure_url" content={`${DOMAIN}/images/smile.jpg`} />
-            <meta property="og:image:type" content="image/jpg" />
-            <meta property="fb:app_id" content={`${FB_APP_ID}`} />
-        </Head>
-    }
-
 
     return (
         <React.Fragment>
-            {head()}
+
+            <HeadTags
+                title={topic}
+                ogTitle={`${topic}`}
+                description={`Best ${topic} blogs and tutorials`}
+                path={`/tags/topic/${topic}`}
+                pathImg={`/images/smile.jpg`}
+            />
+
             <Layout>
                 <div onClick={handleClick}>
                     <div className="bg-white pb-5 mb-5">

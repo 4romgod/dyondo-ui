@@ -11,6 +11,9 @@ import SmallCard from "../../components/blog/SmallCard/SmallCard";
 import Author from "../../components/Author/Author";
 import DisqusThread from "../../components/DisqusThread";
 
+import HeadTags from "../../components/HeadTags/HeadTags";
+
+
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 // import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 // import { faTwitter, faFacebookSquare, faLinkedin } from '@fortawesome/free-brands-svg-icons'
@@ -39,28 +42,6 @@ function SingleBlog({ blog, query }) {
     useEffect(() => {
         loadRelated();
     }, []);
-
-
-    function head() {
-        return <Head>
-            <title>{blog.title} | {APP_NAME}</title>
-            <meta name="description" content={blog.mdesc} />
-            <link rel="canonical" href={`${DOMAIN}/blogs/${query.slug}`} />
-            <meta property="og:title" content={`${blog.title} | ${APP_NAME}`} />
-            <meta
-                property="og:description"
-                content={blog.mdesc} />
-
-            <meta property="og:type" content="website" />
-            <meta property="og:url" content={`${DOMAIN}/blog/${query.slug}`} />
-            <meta property="og:site_name" content={`${APP_NAME}`} />
-
-            <meta property="og:image" content={`${API}/blog/photo/${blog.slug}`} />
-            <meta property="og:image:secure_url" content={`${API}/blog/photo/${blog.slug}`} />
-            <meta property="og:image:type" content="image/jpg" />
-            <meta property="fb:app_id" content={`${FB_APP_ID}`} />
-        </Head>
-    }
 
 
     function showBlogTags(blog) {
@@ -98,7 +79,15 @@ function SingleBlog({ blog, query }) {
     }
 
     return <React.Fragment>
-        {head()}
+
+        <HeadTags
+            title={blog.title}
+            ogTitle={blog.title}
+            description={blog.mdesc}
+            path={`/blogs/${query.slug}`}
+            pathImg={`/blog/photo/${blog.slug}`}
+        />
+        
         <Layout>
 
             <style jsx global>

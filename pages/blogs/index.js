@@ -7,6 +7,8 @@ import { listBlogCatTag } from "../../actions/blog";
 import Card from '../../components/blog/Card/Card';
 import { API, DOMAIN, APP_NAME, FB_APP_ID } from '../../config';
 
+import HeadTags from "../../components/HeadTags/HeadTags";
+
 import Search from "../../components/blog/Search";
 
 
@@ -17,25 +19,6 @@ function Blogs({ blogs, categories, tags, totalBlogs, blogsLimit, blogsSkip, rou
     function handleClick() {
         setIsClicked(true);
         setTimeout(() => setIsClicked(false), 0);
-    }
-
-    function head() {
-        return <Head>
-            <title>Programming blogs | {APP_NAME}</title>
-            <meta name="description" content="Programming Blogs and tutorials on react node next android mobile development and web development" />
-            <link rel="canonical" href={`${DOMAIN}${router.pathname}`} />
-            <meta property="og:title" content={`Latest web development tutorials | ${APP_NAME}`} />
-            <meta property="og:description" content={`Programming blogs and tutorials on react node next android mobile development and web development | ${APP_NAME}`} />
-
-            <meta property="og:type" content="website" />
-            <meta property="og:url" content={`${DOMAIN}${router.pathname}`} />
-            <meta property="og:site_name" content={`${APP_NAME}`} />
-
-            <meta property="og:image" content={`${DOMAIN}/images/smile.jpg`} />
-            <meta property="og:image:secure_url" content={`${DOMAIN}/images/smile.jpg`} />
-            <meta property="og:image:type" content="image/jpg" />
-            <meta property="fb:app_id" content={`${FB_APP_ID}`} />
-        </Head>
     }
 
     const [limit, setLimit] = useState(blogsLimit);
@@ -115,7 +98,14 @@ function Blogs({ blogs, categories, tags, totalBlogs, blogsLimit, blogsSkip, rou
 
     return (
         <React.Fragment>
-            {head()}
+
+            <HeadTags
+                title={`Programming blogs`}
+                ogTitle={`Latest web development tutorials`}
+                description={`Programming blogs and tutorials on react node next android mobile development and web development`}
+                path={`${router.pathname}`}
+                pathImg={`/images/smile.jpg`}
+            />
 
             <Layout>
                 <div className="bg-white" onClick={handleClick}>
