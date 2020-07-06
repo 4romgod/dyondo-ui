@@ -1,5 +1,6 @@
 import hljs from "highlight.js";
-import "highlight.js/styles/dracula.css";
+import "highlight.js/styles/an-old-hope.css";
+// import "highlight.js/styles/dracula.css";
 
 hljs.configure({
     languages: ["javascript", "java", "python", "c++"]

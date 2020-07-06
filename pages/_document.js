@@ -40,12 +40,7 @@ class MyDocument extends Document {
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"
           />
-
-          {/* Quill highlight */}
-          <link rel="stylesheet"
-            href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/default.min.css" />
-
-
+ 
           <script async src="https://www.googletagmanager.com/gtag/js?id=UA-168907858-1"></script>
           <script dangerouslySetInnerHTML={this.setGoogleTags()} />
         </Head>
