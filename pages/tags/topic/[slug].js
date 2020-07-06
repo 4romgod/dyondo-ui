@@ -34,7 +34,7 @@ function Tags({ tags, topic, query }) {
 
             <Layout>
                 <div onClick={handleClick}>
-                    <div className="bg-white pb-5 mb-5">
+                    <div className="bg-white pb-5" style={{marginBottom: "100px"}}>
                         <div className="container pt-3">
                             <div className="row ml-0 mr-0">
                                 <div className="col-md-12 text-center">

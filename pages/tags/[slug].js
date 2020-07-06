@@ -30,7 +30,7 @@ function Tag({ tag, blogs, query }) {
             />
 
             <Layout>
-                <div className="bg-white" onClick={handleClick}>
+                <div className="bg-white pb-5" onClick={handleClick} style={{marginBottom: "100px"}}>
                     <div className="container pt-3">
                         <div>
                             <div className="row ml-0 mr-0">

@@ -20,7 +20,7 @@ function Signup({ router }) {
 
     return (
         <Layout>
-        <div className="bg-white">
+        <div className="bg-white" style={{marginBottom: "100px"}}>
             <div className="container pt-4" style={{ height: '100vh' }}>
 
                 <div className="bg-white shadow pt-5 pb-5 pl-4 pr-4">

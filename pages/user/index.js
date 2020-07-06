@@ -39,7 +39,7 @@ function UserIndex() {
     return (
         <Layout>
             <Private>
-                <div className="bg-white">
+                <div className="bg-white" style={{marginBottom: "100px"}}>
                     <div className="container pb-5">
                         <div className="row ml-0 mr-0">
 

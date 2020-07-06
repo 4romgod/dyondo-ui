@@ -1,4 +1,4 @@
-import Head from 'next/head';
+import HeadTags from "../../components/HeadTags/HeadTags";
 import Link from 'next/link';
 import Layout from "../../components/Layout";
 import Form from "../../components/Form";
@@ -9,24 +9,6 @@ import moment from 'moment';
 
 function UserProfile({ user, blogs, query }) {
 
-    function head() {
-        return <Head>
-            <title>{user.username} | {APP_NAME}</title>
-            <meta name="description" content={`Blogs by ${user.username}`} />
-            <link rel="canonical" href={`${DOMAIN}/profile/${query.username}`} />
-            <meta property="og:title" content={`${user.username} | ${APP_NAME}`} />
-            <meta property="og:description" content={`Blogs by ${user.username}`} />
-
-            <meta property="og:type" content="website" />
-            <meta property="og:url" content={`${DOMAIN}/profile/${query.username}`} />
-            <meta property="og:site_name" content={`${APP_NAME}`} />
-
-            <meta property="og:image" content={`${DOMAIN}/images/smile.jpg`} />
-            <meta property="og:image:secure_url" content={`${DOMAIN}/images/smile.jpg`} />
-            <meta property="og:image:type" content="image/jpg" />
-            <meta property="fb:app_id" content={`${FB_APP_ID}`} />
-        </Head>
-    }
 
     function showUserBlogs() {
 
@@ -77,9 +59,17 @@ function UserProfile({ user, blogs, query }) {
 
     return (
         <React.Fragment>
-            {head()}
+
+            <HeadTags
+                title={user.username}
+                ogTitle={user.username}
+                description={`Blogs by ${user.username}`}
+                path={`/profile/${query.username}`}
+                pathImg={`/user/photo/${query.username}`}
+            />
+
             <Layout>
-                <div className="bg-white">
+                <div className="bg-white" style={{ marginBottom: "100px" }}>
                     <div className="container pt-3 pb-5">
 
                         {/* holds the user information */}

@@ -95,6 +95,7 @@ function Footer() {
                         Copyright &#169; {`${APP_NAME} ${new Date().getFullYear()}`}
                     </p>
                 </div>
+                
             </footer>
         </React.Fragment>
     )

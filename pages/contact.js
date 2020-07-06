@@ -5,7 +5,7 @@ function Index() {
     
     return (
         <Layout>
-            <div className="bg-white pb-5">
+            <div className="bg-white pb-5" style={{marginBottom: "100px"}}>
 
                 <h2 className="text-center pb-3 pt-4">Contact Us</h2>
 

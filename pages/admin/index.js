@@ -45,7 +45,7 @@ function AdminIndex() {
     return (
         <Layout>
             <Admin>
-                <div className="bg-white">
+                <div className="bg-white" style={{marginBottom: "100px"}}>
 
                     <div className="container pb-5 mb-5">
 

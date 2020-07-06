@@ -108,7 +108,7 @@ function Blogs({ blogs, categories, tags, totalBlogs, blogsLimit, blogsSkip, rou
             />
 
             <Layout>
-                <div className="bg-white" onClick={handleClick}>
+                <div className="bg-white" onClick={handleClick} style={{marginBottom: "100px"}}>
                     <div className="pb-5">
 
                         <div className="bg-white">
