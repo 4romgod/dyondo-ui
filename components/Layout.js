@@ -11,12 +11,12 @@ const Layout = (props) => {
     const [isClicked, setIsClicked] = useState(false);
     const [topics, setTopics] = useState([
         {
-            "name": "Design",
-            "slug": "design"
-        },
-        {
             "name": "Programming",
             "slug": "programming",
+        },
+        {
+            "name": "Design",
+            "slug": "design"
         },
         {
             "name": "Data Science",
