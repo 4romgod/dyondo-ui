@@ -5,7 +5,7 @@ import {
     Collapse, Navbar, NavbarToggler, Nav, NavItem, NavLink
 } from 'reactstrap';
 
-function HeaderTopics({closeNav, topics}) {
+function HeaderTopics({ closeNav, topics }) {
     const [isOpen, setIsOpen] = useState(false);
 
     function toggle() {
@@ -20,44 +20,42 @@ function HeaderTopics({closeNav, topics}) {
 
 
     return (
-        <React.Fragment>
-            <Navbar color="dark" dark expand="md" className="navbar" id="navbar2">
+        <div>
+            <nav className="navbar navbar-expand-md bg-light navbar-light" id="navbar2">
 
-                <NavbarToggler className="collapsed" onClick={toggle} >
-                    {isOpen && <img src="/images/close.svg" style={{ width: '20px' }} />}
-                </NavbarToggler>
+                <button className="navbar-toggler"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#navbarTogglerDemo01"
+                    aria-controls="navbarTogglerDemo01"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <span id="myNavIcon" className="navbar-toggler-icon" />
+                    
+                </button>
 
-                <Collapse isOpen={isOpen} navbar>
+                <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
 
-                    <Nav className="mr-auto ml-auto" navbar onClick={() => setIsOpen(false)}>
-                        <React.Fragment>
+                    <ul className="navbar-nav ml-auto mr-auto">
+                        {topics && topics.map((topic, index) => {
+                            return (
+                                <li key={index} style={{ padding: '0', margin: '0 11px', cursor: 'pointer' }}>
+                                    <Link href={`/tags/topic/[slug]`} as={`/tags/topic/${topic.slug}`}>
+                                        <NavLink>
+                                            {topic.name.toUpperCase()}
+                                        </NavLink>
+                                    </Link>
+                                </li>
+                            )
+                        })}
+                    </ul>
 
-                            {/* <NavItem style={{ padding: '0', margin: '0 11px' }}>
-                                    <NavLink>
-                                        Topics : 
-                                    </NavLink>
-                            </NavItem> */}
+                </div>
 
+            </nav>
 
-                            {topics && topics.map((topic, index) => {
-                                return (
-                                    <NavItem key={index} style={{ padding: '0', margin: '0 11px', cursor: 'pointer' }}>
-                                        <Link href={`/tags/topic/[slug]`} as={`/tags/topic/${topic.slug}`}>
-                                            <NavLink>
-                                                {topic.name.toUpperCase()}
-                                            </NavLink>
-                                        </Link>
-                                    </NavItem>
-                                )
-                            })}
-
-
-                        </React.Fragment>
-                    </Nav>
-                </Collapse>
-            </Navbar>
-
-        </React.Fragment>
+        </div>
     );
 
 }
