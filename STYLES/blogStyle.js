@@ -31,7 +31,7 @@ li {
     text-decoration: underline;
 }
 
-#blog-body * {
+#blog-body *:not(span) {
     color: rgb(41, 41, 41);
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
@@ -65,8 +65,8 @@ li {
     border: 1px solid grey;
     border-radius: 5px;
     padding: 10px;
-    font-family: sans-serif !important;
     font-size: 0.85rem !important;
+    font-family: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
 }
 
 #blog-body iframe {
