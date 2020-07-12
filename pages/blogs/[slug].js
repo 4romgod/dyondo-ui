@@ -12,6 +12,8 @@ import Author from "../../components/Author/Author";
 import DisqusThread from "../../components/DisqusThread";
 
 import HeadTags from "../../components/HeadTags/HeadTags";
+import hljs from "highlight.js";
+import "highlight.js/styles/an-old-hope.css";
 
 
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
