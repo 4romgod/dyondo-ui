@@ -67,6 +67,7 @@ li {
     padding: 10px;
     font-size: 1rem !important;
     font-family: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+    overflow-x: scroll;
 }
 
 #blog-body iframe {
