@@ -8,27 +8,6 @@ footer{
     }
 }
 
-.footer-one{
-    background-color: #29a48b;
-    color: white;
-    padding: 50px 5% 30px 5%;
-    border-bottom: 0.01rem solid rgb(158, 157, 157);
-}
-
-.footer-contact-container{
-    padding: 15px 0;
-}
-
-.footer-contact-container a {
-    color: white !important;
-}
-
-.footer-contact-container .item {
-    padding: 7px 0;
-}
-
-
-
 .footer-contact-container p{
     margin: 0;
 }
@@ -54,6 +33,34 @@ footer{
 }
 
 
+
+.footer-one{
+    background-color: #29a48b;
+    color: white;
+    padding: 20px 5% 30px 5%;
+    border-bottom: 0.01rem solid rgb(158, 157, 157);
+}
+
+
+.footer-contact-container a {
+    color: white !important;
+}
+
+.footer-one .item {
+    padding: 7px 0;
+}
+
+.footer-one a{ font-size: 0.9rem !important;}
+
+.footer-two a{ font-size: 0.9rem !important;}
+
+footer a:hover{
+    color: rgb(196, 190, 190);
+}
+
+
+
+
 .footer-two{
     background-color: #29a48b;
     padding: 50px 5%;
@@ -64,13 +71,5 @@ footer{
     color: white;
     font-size: 0.9rem;
     padding: 0 15px;
-}
-
-.footer-one a{ font-size: 0.9rem !important;}
-
-.footer-two a{ font-size: 0.9rem !important;}
-
-footer a:hover{
-    color: rgb(196, 190, 190);
 }
 
