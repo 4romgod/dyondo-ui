@@ -60,7 +60,7 @@ li {
 }
 
 #blog-body .ql-syntax {
-    background-color: #1c1d21;
+    background-color: #2d2d2d;
     color: white;
     border: 1px solid grey;
     border-radius: 5px;
