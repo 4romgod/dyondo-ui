@@ -65,7 +65,7 @@ li {
     border: 1px solid grey;
     border-radius: 5px;
     padding: 10px;
-    font-size: 0.85rem !important;
+    font-size: 1rem !important;
     font-family: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
 }
 
