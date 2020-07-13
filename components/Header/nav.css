@@ -8,7 +8,7 @@
 }
 
 #navbar2{
-    background-color: #eee !important;
+    background-color: black !important;
 }
 
 
@@ -40,7 +40,7 @@
 }
 
 #navbar2 .navbar-nav .nav-link{
-    color: rgb(59, 59, 58);
+    color: white;
     font-size: 0.7rem;
     font-weight: bold;
     padding: 3px 5px  !important;
@@ -56,8 +56,12 @@
     border: none !important;
 }
 
-.navbar-toggler .navbar-toggler-icon {
+#navbar1 .navbar-toggler .navbar-toggler-icon {
     background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 0, 0)' stroke-width='4' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+#navbar2 .navbar-toggler .navbar-toggler-icon {
+    background-image: url("/images/open-menu2.svg");
 }
 
 /* ditch the ugle blue outline */

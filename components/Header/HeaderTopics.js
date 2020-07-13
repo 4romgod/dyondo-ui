@@ -23,9 +23,10 @@ function HeaderTopics({ closeNav, topics }) {
 
     return (
         <div>
-            <nav className="navbar navbar-expand-md bg-light navbar-light" id="navbar2">
+            <nav className="navbar navbar-expand-sm bg-light navbar-light" id="navbar2">
 
-                <button className="navbar-toggler"
+                <button 
+                    className="navbar-toggler"
                     type="button"
                     data-toggle="collapse"
                     data-target="#navbarTogglerDemo01"
