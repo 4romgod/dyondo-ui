@@ -19,7 +19,7 @@ function SmallCard({ blog }) {
                                 style={{
                                     backgroundImage: `url(${API}/blog/photo/${blog.slug})`,
                                     backgroundPosition: 'center',
-                                    backgroundSize: 'cover',
+                                    backgroundSize: '100% 100%',
                                     backgroundRepeat: 'no-repeat',
                                     height: '250px',
                                     width: '100%',
