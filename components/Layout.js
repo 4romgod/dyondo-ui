@@ -1,5 +1,5 @@
 import Header from "./Header/Header";
-import HeaderTopics from "./HeaderTopics/HeaderTopics";
+import HeaderTopics from "./Header/HeaderTopics";
 
 import { useState, useEffect } from "react";
 import Footer from "./Footer/Footer";

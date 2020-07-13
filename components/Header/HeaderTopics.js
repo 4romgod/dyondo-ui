@@ -5,6 +5,8 @@ import {
     Collapse, Navbar, NavbarToggler, Nav, NavItem, NavLink
 } from 'reactstrap';
 
+import "./nav.css";
+
 function HeaderTopics({ closeNav, topics }) {
     const [isOpen, setIsOpen] = useState(false);
 

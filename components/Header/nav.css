@@ -35,14 +35,14 @@
 
 .navbar-dark .navbar-nav .nav-link {
     color: black;
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     font-weight: bold;
 }
 
 #navbar2 .navbar-nav .nav-link{
     color: rgb(59, 59, 58);
     font-size: 0.7rem;
-    font-weight: normal;
+    font-weight: bold;
     padding: 3px 5px  !important;
 }
 
