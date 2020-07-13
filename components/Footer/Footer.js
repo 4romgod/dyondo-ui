@@ -39,17 +39,16 @@ function Footer() {
                                 <h4 className="pt-5"><u>Popular Topics</u></h4>
                             </div>
 
-                            <div>
-                                {topics.map((topic) => <div>
-                                    <Link href={`/tags/topic/[slug]`} as={`/tags/topic/${topic.slug}`}>
-                                        <p className="pl-2">
-                                            <a style={{ cursor: 'pointer' }}>
+                            <ul className="footer-links">
+                                {topics.map((topic) =>
+                                    <li className="">
+                                        <Link href={`/tags/topic/[slug]`} as={`/tags/topic/${topic.slug}`}>
+                                            <a>
                                                 {`${topic.name}`}
                                             </a>
-                                        </p>
-                                    </Link>
-                                </div>)}
-                            </div>
+                                        </Link>
+                                    </li>)}
+                            </ul>
 
                         </div>
 
@@ -58,6 +57,7 @@ function Footer() {
                             <div>
                                 <h4 className="pt-5"><u>Help</u></h4>
                             </div>
+
                             <ul className="footer-links">
                                 <li className="">
                                     <Link href={`/newsletter`}>
@@ -75,28 +75,28 @@ function Footer() {
                         </div>
 
                         {/* CONTACT DETAILS */}
-                        <div className="col-md-3 footer-contact-container">
+                        <div className="col-md-3">
 
                             <div>
                                 <h4 className="pt-5"><u>Contact Details</u></h4>
                             </div>
 
-                            <div>
-                                <Link href={`/`} as={`/`}>
-                                    <p className="pl-2">
+                            <div className="footer-links">
+                                <li>
+                                    <Link href={`/`} as={`/`}>
                                         <a style={{ cursor: 'pointer' }}>
                                             {`${APP_NAME}`}
                                         </a>
-                                    </p>
-                                </Link>
-                            </div>
+                                    </Link>
+                                </li>
 
-                            <div>
-                                <p className="pl-2"><a>dyondo.read@gmail.com</a></p>
-                            </div>
+                                <li>
+                                    <a>dyondo.read@gmail.com</a>
+                                </li>
 
-                            <div>
-                                <p className="pl-2"><a>+27(0) 63 289 9004</a></p>
+                                <li>
+                                    <a>+27(0) 63 289 9004</a>
+                                </li>
                             </div>
 
                         </div>
