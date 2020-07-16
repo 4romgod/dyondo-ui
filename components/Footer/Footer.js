@@ -40,8 +40,8 @@ function Footer() {
                             </div>
 
                             <ul className="footer-links">
-                                {topics.map((topic) =>
-                                    <li className="">
+                                {topics.map((topic, index) =>
+                                    <li className="" key={index}>
                                         <Link href={`/tags/topic/[slug]`} as={`/tags/topic/${topic.slug}`}>
                                             <a>
                                                 {`${topic.name}`}

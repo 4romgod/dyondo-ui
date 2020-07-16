@@ -81,6 +81,9 @@
     display: none
 }
 
+#topics {
+    display: none
+}
 
 @media only screen and (max-width: 767px) {
     /* .navbar .navbar-collapse{
@@ -117,9 +120,11 @@
 
     #write-blog-phone {
         display: block;
+        margin: 0 !important;
     }
 
-    #write-blog-phone{
+    #topics{
+        display: block;
         margin: 0 !important;
     }
 

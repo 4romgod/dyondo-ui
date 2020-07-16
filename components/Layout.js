@@ -4,61 +4,13 @@ import HeaderTopics from "./Header/HeaderTopics";
 import { useState, useEffect } from "react";
 import Footer from "./Footer/Footer";
 
-import { list } from "../actions/topic";
-
-
 const Layout = (props) => {
     const [isClicked, setIsClicked] = useState(false);
-    const [topics, setTopics] = useState([
-        {
-            "name": "Programming",
-            "slug": "programming",
-        },
-        {
-            "name": "Design",
-            "slug": "design"
-        },
-        {
-            "name": "Data Science",
-            "slug": "data-science"
-        },
-        {
-            "name": "Networking",
-            "slug": "networking"
-        },
-        {
-            "name": "DBMS",
-            "slug": "dbms"
-        }
-    ]);
 
     function handleClick() {
         setIsClicked(true);
         setTimeout(() => setIsClicked(false), 0);
     }
-
-
-    // useEffect(() => {
-    //     let myTopics = localStorage.getItem("topics");
-
-    //     if (myTopics) {
-    //         myTopics = JSON.parse(myTopics);
-    //         setTopics(myTopics);
-    //     }
-    //     else {
-    //         list().then(data => {
-    //             if (data.error) {
-    //                 console.log(data.error);
-    //             }
-    //             else {
-    //                 setTopics(data);
-    //                 if (process.browser) {
-    //                     localStorage.setItem("topics", JSON.stringify(topics));
-    //                 }
-    //             }
-    //         });
-    //     }
-    // }, []);
 
     return (
         <div>
@@ -67,7 +19,7 @@ const Layout = (props) => {
                     <Header closeNav={isClicked} />
                 </div>
                 <div>
-                    <HeaderTopics closeNav={isClicked} topics={topics} />
+                    <HeaderTopics closeNav={isClicked}/>
                 </div>
             </header>
 

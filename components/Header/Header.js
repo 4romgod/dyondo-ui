@@ -7,12 +7,23 @@ import Nprogress from "nprogress";
 import { signout, isAuth } from "../../actions/auth";
 
 import {
-    Collapse, Navbar, NavbarToggler, Nav, NavItem, NavLink
+    Collapse,
+    Navbar,
+    NavbarToggler,
+    Nav,
+    NavItem,
+    NavLink,
+    UncontrolledDropdown,
+    DropdownToggle,
+    DropdownMenu,
+    DropdownItem
 } from 'reactstrap';
 
 import "../.././node_modules/nprogress/nprogress.css";
 
 import "./nav.css";
+
+import allTopics from "./topics";
 
 Router.onRouteChangeStart = function (url) { Nprogress.start() }
 Router.onRouteChangeComplete = function (url) { Nprogress.done() }
@@ -28,6 +39,7 @@ const navLinkStyle = {
 
 function Header(props) {
     const [isOpen, setIsOpen] = useState(false);
+    const [topics, setTopics] = useState(allTopics);
 
     function toggle() {
         setIsOpen(!isOpen);
@@ -39,7 +51,7 @@ function Header(props) {
         }
     }, [props.closeNav]);
 
-    
+
     function handleSignout() {
         signout(function () {
             Router.replace(`/signin`)
@@ -149,10 +161,10 @@ function Header(props) {
 
     return (
         <React.Fragment>
-            <Navbar color="dark" dark expand="md" className="navbar" id="navbar1" style={{borderBottom: '0.05px solid rgb(202, 199, 199)'}}>
+            <Navbar color="dark" dark expand="md" className="navbar" id="navbar1" style={{ borderBottom: '0.05px solid rgb(202, 199, 199)' }}>
                 <Link href="/">
                     <NavLink className="font-weight-bold" id="container-logo" style={{ cursor: 'pointer', color: 'black', fontSize: '1.5rem' }}>
-                        <img src="/images/logo.png" alt={`logo | ${APP_NAME}`}/>
+                        <img src="/images/logo.png" alt={`logo | ${APP_NAME}`} />
                     </NavLink>
                 </Link>
 
@@ -197,6 +209,27 @@ function Header(props) {
                                     </NavLink>
                                 </Link>
                             </NavItem>
+
+                            <div id="topics">
+                                <UncontrolledDropdown nav inNavbar>
+                                    <DropdownToggle nav caret>
+                                        Topics
+                                    </DropdownToggle>
+                                    <DropdownMenu right>
+                                        {topics.map((topic, index) =>
+                                            <DropdownItem key={index}>
+                                                <NavItem style={{ padding: '0', margin: '0 11px' }}>
+                                                    <Link href={`/tags/topic/[slug]`} as={`/tags/topic/${topic.slug}`}>
+                                                        <NavLink style={navLinkStyle}>
+                                                            {topic.name}
+                                                        </NavLink>
+                                                    </Link>
+                                                </NavItem>
+                                            </DropdownItem>
+                                        )}
+                                    </DropdownMenu>
+                                </UncontrolledDropdown>
+                            </div>
 
                             {showDashboard()}
 

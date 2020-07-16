@@ -5,21 +5,12 @@ import {
     Collapse, Navbar, NavbarToggler, Nav, NavItem, NavLink
 } from 'reactstrap';
 
-import "./nav.css";
+import "./navtopics.css";
 
-function HeaderTopics({ closeNav, topics }) {
-    const [isOpen, setIsOpen] = useState(false);
+import allTopics from "./topics";
 
-    function toggle() {
-        setIsOpen(!isOpen);
-    };
-
-    useEffect(() => {
-        if (isOpen) {
-            setIsOpen(closeNav);
-        }
-    }, [closeNav]);
-
+function HeaderTopics() {
+    const [topics, setTopics] = useState(allTopics);
 
     return (
         <div>
