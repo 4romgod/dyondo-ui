@@ -174,7 +174,7 @@ function Header(props) {
 
                 <Collapse isOpen={isOpen} navbar>
 
-                    <Nav className="ml-auto" navbar onClick={() => setIsOpen(false)}>
+                    <Nav className="ml-auto" navbar >
                         <React.Fragment>
 
                             {/* write blog on phone screen size */}

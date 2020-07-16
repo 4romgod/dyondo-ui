@@ -19,7 +19,7 @@ const Layout = (props) => {
                     <Header closeNav={isClicked} />
                 </div>
                 <div>
-                    <HeaderTopics closeNav={isClicked}/>
+                    <HeaderTopics />
                 </div>
             </header>
 
