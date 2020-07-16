@@ -63,7 +63,7 @@ function Header(props) {
         if (isAuth()) {
             if (isAuth().role === 0) {
                 return (
-                    <NavItem style={{ padding: '0', margin: '0 13px' }}>
+                    <NavItem style={{ padding: '0', margin: '0 13px' }} onClick={() => setIsOpen(false)}>
                         <Link href="/user">
                             <NavLink style={navLinkStyle}>
                                 Dashboard
@@ -74,7 +74,7 @@ function Header(props) {
             }
             else if (isAuth().role === 1) {
                 return (
-                    <NavItem style={{ padding: '0', margin: '0 13px' }}>
+                    <NavItem style={{ padding: '0', margin: '0 13px' }} onClick={() => setIsOpen(false)}>
                         <Link href="/admin">
                             <NavLink style={navLinkStyle}>
                                 Dashboard
@@ -91,7 +91,7 @@ function Header(props) {
 
     function showSigninAndUp() {
         return (
-            !isAuth() && <React.Fragment>
+            !isAuth() && <React.Fragment onClick={() => setIsOpen(false)}>
                 <NavItem style={{ padding: '0', margin: '0 11px' }}>
                     <Link href="/signin">
                         <NavLink style={navLinkStyle}>
@@ -174,12 +174,12 @@ function Header(props) {
 
                 <Collapse isOpen={isOpen} navbar>
 
-                    <Nav className="ml-auto" navbar >
+                    <Nav className="ml-auto" navbar>
                         <React.Fragment>
 
                             {/* write blog on phone screen size */}
                             <React.Fragment>
-                                <div id="write-blog-phone">
+                                <div id="write-blog-phone" onClick={() => setIsOpen(false)}>
                                     {isAuth() &&
                                         (isAuth().role === 0) ?
                                         <NavItem style={{ padding: '0', margin: '0 11px' }}>
@@ -202,7 +202,7 @@ function Header(props) {
                             </React.Fragment>
 
 
-                            <NavItem style={{ padding: '0', margin: '0 11px' }}>
+                            <NavItem style={{ padding: '0', margin: '0 11px' }} onClick={() => setIsOpen(false)}>
                                 <Link href="/blogs">
                                     <NavLink style={navLinkStyle}>
                                         Tutorials
@@ -218,7 +218,7 @@ function Header(props) {
                                     <DropdownMenu right>
                                         {topics.map((topic, index) =>
                                             <DropdownItem key={index}>
-                                                <NavItem style={{ padding: '0', margin: '0 11px' }}>
+                                                <NavItem style={{ padding: '0', margin: '0 11px' }} onClick={() => setIsOpen(false)}>
                                                     <Link href={`/tags/topic/[slug]`} as={`/tags/topic/${topic.slug}`}>
                                                         <NavLink style={navLinkStyle}>
                                                             {topic.name}
@@ -233,7 +233,7 @@ function Header(props) {
 
                             {showDashboard()}
 
-                            <NavItem style={{ padding: '0', margin: '0 11px' }}>
+                            <NavItem style={{ padding: '0', margin: '0 11px' }} onClick={() => setIsOpen(false)}>
                                 <Link href="/newsletter">
                                     <NavLink style={navLinkStyle}>
                                         Newsletter
@@ -241,7 +241,7 @@ function Header(props) {
                                 </Link>
                             </NavItem>
 
-                            <NavItem style={{ padding: '0', margin: '0 11px' }}>
+                            <NavItem style={{ padding: '0', margin: '0 11px' }} onClick={() => setIsOpen(false)}>
                                 <Link href="/contact">
                                     <NavLink style={navLinkStyle}>
                                         Contact
@@ -254,7 +254,7 @@ function Header(props) {
 
                             {isAuth() && (
                                 <React.Fragment>
-                                    <NavItem style={{ padding: '0', margin: '0 11px' }}>
+                                    <NavItem style={{ padding: '0', margin: '0 11px' }} onClick={() => setIsOpen(false)}>
                                         <NavLink
                                             onClick={handleSignout}
                                             style={navLinkStyle}
