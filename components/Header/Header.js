@@ -91,8 +91,8 @@ function Header(props) {
 
     function showSigninAndUp() {
         return (
-            !isAuth() && <React.Fragment onClick={() => setIsOpen(false)}>
-                <NavItem style={{ padding: '0', margin: '0 11px' }}>
+            !isAuth() && <React.Fragment >
+                <NavItem style={{ padding: '0', margin: '0 11px' }} onClick={() => setIsOpen(false)}>
                     <Link href="/signin">
                         <NavLink style={navLinkStyle}>
                             Sign in
@@ -100,7 +100,7 @@ function Header(props) {
                     </Link>
                 </NavItem>
 
-                <NavItem style={{ padding: '0', margin: '0 11px' }}>
+                <NavItem style={{ padding: '0', margin: '0 11px' }} onClick={() => setIsOpen(false)}>
                     <Link href="/signup">
                         <NavLink style={navLinkStyle}>
                             Sign up
