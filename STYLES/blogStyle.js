@@ -100,6 +100,10 @@ li {
         font-size: 19px !important;
         line-height: 1.7rem !important;
     }
+
+    #blog-body .ql-syntax {
+        font-size: 0.8rem !important;
+    }
 }
 
 @media only screen and (max-width: 576px) {
