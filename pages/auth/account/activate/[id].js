@@ -67,7 +67,7 @@ function ActivateAccount({ query }) {
     return (
         <Layout>
             <div className="bg-white">
-                <div className="container pt-5">
+                <div className="container pt-5 pb-5 mb-5">
                     <h3 className="text-center pb-3">Hey {name}, Ready to activate your account</h3>
                     {showLoading()}
                     {error && showError()}
@@ -75,7 +75,7 @@ function ActivateAccount({ query }) {
 
                     <div className="container text-center">
                         {showButton &&
-                            <button className="btn btn-outline-info btn-lg" onClick={handleSubmit}>
+                            <button className="btn btn-outline-info btn-lg mb-5" onClick={handleSubmit}>
                                 Activate Account
                             </button>
                         }
