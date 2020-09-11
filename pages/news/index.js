@@ -21,12 +21,12 @@ function News({ TAGS }) {
         fetch(URL)
             .then(result => result.json())
             .then(data => data.hits)
-            .then(hits => hits.filter(function(item){       // filter out nulls
+            .then(hits => hits.filter(function (item) {       // filter out nulls
                 return item.title != null;
             }))
             .then(hits => {                                 // sort the array according to date
-                hits.sort(function(a,b){
-                    return (a.created_at <= b.created_at)? 1 : -1;
+                hits.sort(function (a, b) {
+                    return (a.created_at <= b.created_at) ? 1 : -1;
                 });
                 return hits;
             })
@@ -50,10 +50,10 @@ function News({ TAGS }) {
                     </a>
                 </Link>
             )
-
         }
         return TAGS.map(showTag);
     }
+
 
     return (
         <React.Fragment>
@@ -81,21 +81,26 @@ function News({ TAGS }) {
                         <div className="row ml-0 mr-0 mt-5">
 
                             {/** holds the news */}
-                            <div className="col-md-8 pl-3 pr-3">
-                                {NEWS.map((item, index) => {
-                                    return (
-                                        <div
-                                            key={index}
-                                            className="card pt-2 pb-2 pl-3"
-                                            style={{ 
-                                                cursor: 'pointer'                                            }}
-                                            onClick={()=>window.open(item.url)}
-                                        >
-                                            <div>{item.title}</div>  
-                                            <small className="text-muted">{moment(item.created_at).fromNow()}</small>
-                                        </div>
-                                    )
-                                })}
+                            <div className="col-md-8 pl-4 pr-3">
+                                <ul className="list-group">
+                                    {NEWS.map((item, index) => {
+                                        return (
+                                            <div
+                                                key={index}
+                                                className="list-group-item btn btn-outline-success pl-4"
+                                                style={{
+                                                    cursor: 'pointer',
+                                                    textAlign: "left",
+                                                    color: '#196556'
+                                                }}
+                                                onClick={() => window.open(item.url)}
+                                            >
+                                                <div>{item.title}</div>
+                                                <small className="text-muted">{moment(item.created_at).fromNow()}</small>
+                                            </div>
+                                        )
+                                    })}
+                                </ul>
                             </div>
 
                             {/** holds all tags */}
@@ -129,7 +134,6 @@ function News({ TAGS }) {
 
 //getInitialProps, enables ssr on first load
 News.getInitialProps = () => {
-
     return getTags().then(data => {
         if (data.error) {
             console.log(data.error);
