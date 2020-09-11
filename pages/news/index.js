@@ -6,7 +6,7 @@ import { withRouter } from 'next/router';
 import moment from 'moment';
 
 
-const baseURL = "http://hn.algolia.com/api/v1/search?query=";
+const baseURL = "https://hn.algolia.com/api/v1/search?query=";
 
 function News({ TAGS }) {
     const [QUERY, setQuery] = useState("");
