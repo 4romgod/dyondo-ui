@@ -210,6 +210,14 @@ function Header(props) {
                                 </Link>
                             </NavItem>
 
+                            <NavItem style={{ padding: '0', margin: '0 11px' }} onClick={() => setIsOpen(false)}>
+                                <Link href="/news">
+                                    <NavLink style={navLinkStyle}>
+                                        News
+                                    </NavLink>
+                                </Link>
+                            </NavItem>
+
                             <div id="topics">
                                 <UncontrolledDropdown nav inNavbar>
                                     <DropdownToggle nav caret>
