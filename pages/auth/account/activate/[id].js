@@ -3,7 +3,6 @@ import Layout from '../../../../components/Layout';
 import { signup } from "../../../../actions/auth";
 import jwt from 'jsonwebtoken';
 
-
 function ActivateAccount({ query }) {
     const [values, setValues] = useState({
         name: '',
@@ -18,14 +17,11 @@ function ActivateAccount({ query }) {
 
     useEffect(() => {
         let token = query.id;
-        //console.log("the token: "+token);
-
         if (token) {
             const { name } = jwt.decode(token);
             setValues({ ...values, name, token });
         }
     }, []);
-
 
     function handleSubmit(event) {
         event.preventDefault();
@@ -63,7 +59,6 @@ function ActivateAccount({ query }) {
             </div>);
     };
 
-
     return (
         <Layout>
             <div className="bg-white">
@@ -89,6 +84,7 @@ function ActivateAccount({ query }) {
 ActivateAccount.getInitialProps = ({ query }) => {
     return { query };
 }
+
 export default ActivateAccount;
 
 

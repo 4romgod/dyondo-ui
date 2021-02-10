@@ -3,11 +3,8 @@ import { API } from '../config';
 import Cookies from "js-cookie";
 import Router from 'next/router';
 
-
 export const handleResponse = (response) => {
-    if (response.status === 401) {    //unauthorized
-        console.log("Time expired bitch");
-        
+    if (response.status === 401) {
         signout(() => {
             Router.replace({
                 pathname: "/signin",
@@ -17,14 +14,12 @@ export const handleResponse = (response) => {
             });
         });
     }
-    else{
+    else {
         return;
     }
 }
 
 export const preSignup = (user) => {
-
-    // 1. go to the backend, call signup api
     return fetch(`${API}/pre-signup`,
         {
             method: 'POST',
@@ -32,7 +27,7 @@ export const preSignup = (user) => {
                 Accept: 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(user)      // 3. pass the new user in the body
+            body: JSON.stringify(user),
         })
         .then(response => {
             return response.json();
@@ -40,10 +35,7 @@ export const preSignup = (user) => {
         .catch(err => console.log("ERROR: " + err));
 };
 
-
 export const signup = (user) => {
-
-    // 1. go to the backend, call signup api
     return fetch(`${API}/signup`,
         {
             method: 'POST',
@@ -51,7 +43,7 @@ export const signup = (user) => {
                 Accept: 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(user)      // 3. pass the new user in the body
+            body: JSON.stringify(user),
         })
         .then(response => {
             return response.json();
@@ -59,44 +51,36 @@ export const signup = (user) => {
         .catch(err => console.log("ERROR: " + err));
 };
 
-
 export const signin = (user) => {
-
-    // 1. go to the backend, call signin api
-    return fetch(`${API}/signin`, {
+    return fetch(`${API}/signin`,
+        {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(user)
+            body: JSON.stringify(user),
         })
         .then(response => {
             return response.json();
         })
-        .catch(err => console.log(err));
+        .catch(err => console.log("ERROR: " + err));
 };
 
-
 export const signout = (next) => {
-
-    // 1. remove cookie and local storage
     removeCookie('token');
     removeLocalStorage('user');
     next();
 
-    // 2. request to backend to signin
-    // 2.1. redirect the user
-    return fetch(`${API}/signout`, {
-        method: "GET"
-    })
-        .then(response => {
-            console.log("signout sucess!");
+    return fetch(`${API}/signout`,
+        {
+            method: "GET",
         })
-        .catch(err => console.log(err));
-
+        .then(response => {
+            console.log("signout sucessfull!");
+        })
+        .catch(err => console.log("ERROR: " + err));
 }
-
 
 export const setCookie = (key, value) => {
     if (process.browser) {
@@ -104,13 +88,11 @@ export const setCookie = (key, value) => {
     }
 };
 
-
 export const removeCookie = (key) => {
     if (process.browser) {
         Cookies.remove(key, { expires: 1 });
     }
 };
-
 
 export const getCookie = (key) => {
     if (process.browser) {
@@ -118,13 +100,11 @@ export const getCookie = (key) => {
     }
 };
 
-
 export const setLocalStorage = (key, value) => {
     if (process.browser) {
         localStorage.setItem(key, JSON.stringify(value));
     }
 };
-
 
 export const removeLocalStorage = (key) => {
     if (process.browser) {
@@ -132,19 +112,15 @@ export const removeLocalStorage = (key) => {
     }
 };
 
-
 export const authenticate = (data, next) => {
     setCookie('token', data.token);
     setLocalStorage('user', data.user);
-
     next();
 };
-
 
 export const isAuth = () => {
     if (process.browser) {
         const cookieChecked = getCookie('token');
-
         if (cookieChecked) {
             if (localStorage.getItem('user')) {
                 return JSON.parse(localStorage.getItem('user'));
@@ -156,23 +132,18 @@ export const isAuth = () => {
     }
 };
 
-
 export function updateUser(user, next) {
     if (process.browser) {
         if (localStorage.getItem('user')) {
             let auth = JSON.parse(localStorage.getItem('user'));
-
             auth = user;
-
             localStorage.setItem('user', JSON.stringify(auth));
             next();
         }
     }
 }
 
-
 export const forgotPassword = (email) => {
-
     return fetch(`${API}/forgot-password`,
         {
             method: 'PUT',
@@ -180,14 +151,13 @@ export const forgotPassword = (email) => {
                 Accept: 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(email)
+            body: JSON.stringify(email),
         })
         .then(response => {
             return response.json();
         })
-        .catch(err => console.log(err));
+        .catch(err => console.log("ERROR: " + err));
 };
-
 
 export const resetPassword = (resetInfo) => {
     return fetch(`${API}/reset-password`,
@@ -197,7 +167,7 @@ export const resetPassword = (resetInfo) => {
                 Accept: 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(resetInfo)
+            body: JSON.stringify(resetInfo),
         })
         .then(response => {
             return response.json();
@@ -205,18 +175,18 @@ export const resetPassword = (resetInfo) => {
         .catch(err => console.log(err));
 };
 
-
 export const loginWithGoogle = (user) => {
-    return fetch(`${API}/google-login`,{
+    return fetch(`${API}/google-login`,
+        {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(user)
+            body: JSON.stringify(user),
         })
         .then(response => {
             return response.json();
         })
-        .catch(err => console.log(err));
+        .catch(err => console.log("ERROR: " + err));
 };
