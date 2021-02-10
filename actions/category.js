@@ -1,11 +1,8 @@
 import fetch from 'isomorphic-fetch';
 import { API } from '../config';
-import {handleResponse} from "../actions/auth";
-
+import { handleResponse } from "../actions/auth";
 
 export function create(category, token) {
-
-    // 1. go to the backend, call category api
     return fetch(`${API}/category`,
         {
             method: 'POST',
@@ -13,7 +10,6 @@ export function create(category, token) {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${token}`
-
             },               
             body: JSON.stringify(category)      
         })
@@ -21,13 +17,10 @@ export function create(category, token) {
             handleResponse(response);
             return response.json();
         })
-        .catch(err => console.log(err));
+        .catch(err => console.log("ERROR: " + err));
 };
 
-
 export function getCategories() {
-
-    // 1. go to the backend, call category api
     return fetch(`${API}/categories`,
         {
             method: 'GET',     
@@ -35,13 +28,10 @@ export function getCategories() {
         .then(response => {
             return response.json();
         })
-        .catch(err => console.log(err));
+        .catch(err => console.log("ERROR: " + err));
 };
 
-
 export function singleCategory(slug) {
-
-    // 1. go to the backend, call category api
     return fetch(`${API}/category/${slug}`,
         {
             method: 'GET',     
@@ -49,12 +39,10 @@ export function singleCategory(slug) {
         .then(response => {
             return response.json();
         })
-        .catch(err => console.log(err));
+        .catch(err => console.log("ERROR: " + err));
 };
 
 export function removeCategory(slug, token) {
-
-    // 1. go to the backend, call category api
     return fetch(`${API}/category/${slug}`,
         {
             method: 'DELETE',
@@ -68,5 +56,5 @@ export function removeCategory(slug, token) {
             handleResponse(response);
             return response.json();
         })
-        .catch(err => console.log(err));
+        .catch(err => console.log("ERROR: " + err));
 };

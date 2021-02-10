@@ -4,7 +4,6 @@ import { singleCategory } from "../../actions/category";
 import SmallCard from "../../components/blog/SmallCard/SmallCard";
 import { API, DOMAIN, APP_NAME, FB_APP_ID } from '../../config';
 
-
 function Category({ category, blogs, query }) {
 
     function head() {
@@ -36,23 +35,21 @@ function Category({ category, blogs, query }) {
                     <div className="bg-white">
                         <div className="container pt-3">
 
-                            {/* category name of page */}
                             <header>
                                 <div className="col-md-12 pb-5 text-center">
                                     <div className="card border-0 bg-white pt-3 pb-3 pl-5 pr-5">
-                                        <h1>Available Tutorials on {category.name}</h1>
+                                        <h1>Available Content on {category.name}</h1>
                                     </div>
                                 </div>
-
                             </header>
 
-                            {/* blogs to match category */}
                             <div className="row ml-0 mr-0">
                                 {blogs.map((blog, index) => {
                                     return (
                                         <div className="col-md-4" key={index}>
                                             <SmallCard blog={blog} />
-                                        </div>)
+                                        </div>
+                                    )
                                 })}
                             </div>
 
