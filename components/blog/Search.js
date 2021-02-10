@@ -4,10 +4,8 @@ import moment from 'moment';
 import { API } from "../../config";
 import { useState, useEffect } from 'react';
 import { listSearch } from '../../actions/blog'
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
-
 
 function Search(props) {
     const [values, setValues] = useState({
@@ -62,7 +60,6 @@ function Search(props) {
     }
 
     function handleChange(event) {
-        //console.log(event.target.value);
         setValues({ ...values, search: event.target.value, searched: false, results: [] });
     }
 

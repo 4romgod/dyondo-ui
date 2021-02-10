@@ -2,12 +2,9 @@ import Link from 'next/link';
 import moment from 'moment';
 import { API } from "../../../config";
 import Author from "../../Author/Author";
-
 import "./smallcard.css";
 
-
 function SmallCard({ blog }) {
-
     return (
         <div className="card mb-5 shadow animate__animated animate__fadeIn">
             <div className="row ml-0 mr-0">

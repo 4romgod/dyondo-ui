@@ -1,15 +1,11 @@
 import { API } from '../../config';
 import Link from "next/link";
 import moment from 'moment';
-
 import authorStyle from './authorStyle.js';
 
-
 function Author({ blog }) {
-
     return (
         <div style={{ display: 'flex', alignItems: 'center' }}>
-
             <style jsx global>
                 {authorStyle}
             </style>

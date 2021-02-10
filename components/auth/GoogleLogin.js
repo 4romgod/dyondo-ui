@@ -6,8 +6,6 @@ import GoogleLogin from "react-google-login";
 function LoginGoogle(props) {
 
     function responseGoogle(response) {
-        console.log(response);
-
         const tokenId = response.tokenId;
         const user = { tokenId };
 

@@ -3,10 +3,8 @@ import { isAuth, getCookie } from '../../actions/auth';
 import { create, getTags, removeTag, updateTag } from '../../actions/tag';
 import { list } from "../../actions/topic";
 import { withRouter } from 'next/router';
-
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-
 import Checkbox from "../Checkbox/Checkbox";
 
 function Tag({ router }) {
@@ -36,7 +34,6 @@ function Tag({ router }) {
         loadTags();
         initTopics();
     }, [reload]);
-
 
     function loadTags() {
         getTags().then(function (data) {
@@ -75,7 +72,6 @@ function Tag({ router }) {
         return (topics && topics.map(createLi));
     }
 
-
     function showTags() {
         return tags.map(function (tag, index) {
             return (
@@ -90,7 +86,6 @@ function Tag({ router }) {
         });
     }
 
-
     function deleteConfirm(slug) {
         console.log("You want to delete?");
         let answer = window.confirm("Are you sure you want to delete this tag?");
@@ -103,18 +98,13 @@ function Tag({ router }) {
         }
     }
 
-
     function deleteTag(slug) {
         console.log(`Calling API for DeleteTag ${slug}`);
         removeTag(slug, token).then(function (data) {
-
             console.log("API response: ");
             console.log(data);
 
             if (data.error) {
-                console.log("ERROR");
-                console.log(data.error);
-
                 toast.dismiss();
                 toast.error("Something went wrong while deleting!");
             }
@@ -127,16 +117,12 @@ function Tag({ router }) {
         });
     }
 
-    
     function handleChange(name) {
-
         return (event) => {
             let value;
-
             if (name === 'photo') {
                 value = event.target.files[0];
                 const fileSize = value.size / 1024 / 1024;
-
                 if (fileSize > 1) {
                     toast.dismiss();
                     toast.error("Image size should be less than 1MB");
@@ -145,7 +131,6 @@ function Tag({ router }) {
                     setValues({ ...values, photoName: value ? value.name : '', [name]: value});
                     setResults({ ...results, error: false, success: false, removed: '' });
                 }
-
             }
             else {
                 value = event.target.value;
@@ -155,7 +140,6 @@ function Tag({ router }) {
             }
         }
     }
-
 
     function handleToggleTopic(topicId) {
         return () => {
@@ -171,7 +155,6 @@ function Tag({ router }) {
                 all.splice(clickedTopic, 1);
             }
 
-            console.log(all);
             setCheckedTopic(all);
         }
     }
@@ -186,15 +169,12 @@ function Tag({ router }) {
         }
     }
 
-
     function clickSubmit(event) {
         event.preventDefault();
 
         console.log("submitting data");
 
-        create({name, topics: checkedTopics}, token).then(function(data) {
-            //console.log(data);
-            
+        create({name, topics: checkedTopics}, token).then(function(data) {            
             if (data.error) {
                 toast.dismiss();
                 toast.error(data.error);
@@ -211,9 +191,7 @@ function Tag({ router }) {
                 setCheckedTopic([]);
             }
         });
-
     }
-
 
     const mouseMoveHandler = e => {
         setResults({ ...results, error: false, success: false, removed: '' });
@@ -244,12 +222,9 @@ function Tag({ router }) {
         )
     };
 
-
     return (
         <React.Fragment>
-
             <ToastContainer />
-
 
             <div className="row ml-0 mr-0">
 
@@ -281,7 +256,6 @@ function Tag({ router }) {
             </div>
 
         </React.Fragment>)
-
 }
 
 export default withRouter(Tag);

@@ -3,7 +3,6 @@ import renderHTML from 'react-render-html';
 import moment from 'moment';
 import Author from "../../Author/Author";
 import { API } from "../../../config";
-
 import cardStyle from "./cardStyle.js";
 
 function Card({ blog }) {
@@ -25,10 +24,7 @@ function Card({ blog }) {
                 {cardStyle}
             </style>
 
-            {/** holds all the content */}
             <div className="row">
-
-                {/** holds the image */}
                 <div className="col-sm-4 mt-3 pl-0 pr-0" id="container-featured-img">
                     <Link href={`/blogs/[slug]`} as={`/blogs/${blog.slug}`}>
                         <a>
@@ -43,7 +39,6 @@ function Card({ blog }) {
                 </div>
 
                 <div className="col-sm-8" id="container-blog-meta">
-                    {/** holds the title */}
                     <Link href={`/blogs/[slug]`} as={`/blogs/${blog.slug}`}>
                         <a style={{ cursor: 'pointer', color: 'rgb(41,41,41)' }}>
                             <h3 className="pt-3 font-weight-bold">
@@ -52,7 +47,6 @@ function Card({ blog }) {
                         </a>
                     </Link>
 
-                    {/** holds the author and date */}
                     <section className="mt-3 mb-3">
                         <Author blog={blog} />
                     </section>
@@ -67,7 +61,6 @@ function Card({ blog }) {
                 </div>
 
             </div>
-
         </div>
     )
 }

@@ -12,5 +12,4 @@ export default css.global`
     cursor: pointer;
     text-decoration: underline;
 }
-
 `

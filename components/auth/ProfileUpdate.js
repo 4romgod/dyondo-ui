@@ -74,7 +74,6 @@ function ProfileUpdate() {
                 if ((name === 'username') || (name === 'name')) {
                     value = event.target.value;
                     const textSize = value ? value.length : 0;
-
                     if (textSize > 32) {
                         setResults({ ...results, error: `${name} should be less than 32 characters` })
                     }
@@ -101,10 +100,8 @@ function ProfileUpdate() {
                     setValues({ ...values, [name]: value });
                 }
             }
-
         }
     }
-
 
     function handleSubmit(event) {
         event.preventDefault();
@@ -136,10 +133,8 @@ function ProfileUpdate() {
                     Router.replace(`/admin`);
                 }
             }
-
         });
     }
-
 
     const profileUpdateForm = () => (
         <form onSubmit={handleSubmit}>
