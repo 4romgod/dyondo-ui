@@ -3,25 +3,22 @@ import Private from "../../components/auth/Private";
 import Link from "next/link";
 import { getCookie } from "../../actions/auth";
 import { getProfile } from "../../actions/user";
-
 import { API } from "../../config";
-
 import { useEffect, useState } from "react";
 
 function UserIndex() {
     const [values, setValues] = useState({
-        name: '',
-        username: '',
-        about: '',
-
-        error: '',
-        loading: ''
+        name: "",
+        username: "",
+        about: "",
+        error: "",
+        loading: ""
     });
 
     const { username, name, about, error, loading } = values;
     const token = getCookie('token');
 
-    function initUser() {
+    useEffect(() => {
         getProfile(token).then(data => {
             if (data.error) {
                 setValues({ ...values, error: data.error, loading: false });
@@ -29,17 +26,13 @@ function UserIndex() {
             else {
                 setValues({ ...values, username: data.username, name: data.name, about: data.about, loading: false });
             }
-        });
-    }
-
-    useEffect(() => {
-        initUser();
+        })
     }, []);
 
     return (
         <Layout>
             <Private>
-                <div className="bg-white" style={{marginBottom: "100px"}}>
+                <div className="bg-white" style={{ marginBottom: "100px" }}>
                     <div className="container pb-5">
                         <div className="row ml-0 mr-0">
 
@@ -51,7 +44,6 @@ function UserIndex() {
 
                             <div className="col-md-4">
                                 <ul className="list-group">
-
                                     <a href="/user/crud/blog">
                                         <li className="list-group-item btn btn-outline-success"
                                             style={{
@@ -80,7 +72,6 @@ function UserIndex() {
                                             Update Profile
                                         </li>
                                     </a>
-
                                 </ul>
                             </div>
 
@@ -111,6 +102,7 @@ function UserIndex() {
                                             <div className="pt-2">
                                                 <h4>{name}</h4>
                                             </div>
+
                                             <div className="mb-4">
                                                 {about ?
                                                     <p>{about}</p>
@@ -125,20 +117,18 @@ function UserIndex() {
                                                     </Link>
                                                 }
                                             </div>
+            
                                             <div>
                                                 <Link href={`/user/update`}>
                                                     <a className="btn btn-outline-success btn-sm">update profile</a>
                                                 </Link>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
 
-
                         </div>
-
                     </div>
                 </div>
             </Private>

@@ -2,15 +2,10 @@ import Head from 'next/head';
 import Layout from "../../../components/Layout";
 import { getTagsByField } from "../../../actions/tag";
 import { API, DOMAIN, APP_NAME, FB_APP_ID } from '../../../config';
-
 import HeadTags from "../../../components/HeadTags/HeadTags";
-
 import { useState } from 'react';
-
 import TagCard from "../../../components/Tag/SmallCard/TagCard";
-
 import Search from "../../../components/blog/Search";
-
 
 function Tags({ tags, topic, query }) {
     const [isClicked, setIsClicked] = useState(false);
@@ -20,10 +15,8 @@ function Tags({ tags, topic, query }) {
         setTimeout(() => setIsClicked(false), 0);
     }
 
-
     return (
         <React.Fragment>
-
             <HeadTags
                 title={topic}
                 ogTitle={`${topic}`}
@@ -48,7 +41,6 @@ function Tags({ tags, topic, query }) {
                                 <Search closeSearch={isClicked} />
                             </div>
 
-
                             {/* blogs to match tag */}
                             <div className="pt-4">
                                 <div className="row ml-0 mr-0">
@@ -56,7 +48,8 @@ function Tags({ tags, topic, query }) {
                                         return (
                                             <div className="col-sm-6 col-md-4" key={index} style={{ cursor: 'pointer' }}>
                                                 <TagCard tag={tag} />
-                                            </div>)
+                                            </div>
+                                        )
                                     })}
                                 </div>
                             </div>
@@ -70,10 +63,7 @@ function Tags({ tags, topic, query }) {
 }
 
 Tags.getInitialProps = ({ query }) => {
-
     return getTagsByField(query.slug).then(data => {
-        //console.log(data);
-
         if (data.error) {
             console.log(data.error);
         }

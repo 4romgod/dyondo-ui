@@ -1,12 +1,7 @@
 import { useState, useEffect } from 'react';
 import Link from "next/link";
-
-import {
-    Collapse, Navbar, NavbarToggler, Nav, NavItem, NavLink
-} from 'reactstrap';
-
+import { Collapse, Navbar, NavbarToggler, Nav, NavItem, NavLink } from 'reactstrap';
 import "./navtopics.css";
-
 import allTopics from "./topics";
 
 function HeaderTopics() {
@@ -26,11 +21,9 @@ function HeaderTopics() {
                     aria-label="Toggle navigation"
                 >
                     <span id="myNavIcon" className="navbar-toggler-icon" />
-                    
                 </button>
 
                 <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-
                     <ul className="navbar-nav ml-auto mr-auto">
                         {topics && topics.map((topic, index) => {
                             return (
@@ -44,15 +37,12 @@ function HeaderTopics() {
                             )
                         })}
                     </ul>
-
                 </div>
 
             </nav>
 
         </div>
     );
-
 }
 
 export default HeaderTopics;
-

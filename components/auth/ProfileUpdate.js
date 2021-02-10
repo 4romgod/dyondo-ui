@@ -4,12 +4,9 @@ import Router from 'next/router';
 import { getCookie, isAuth, updateUser } from "../../actions/auth";
 import { getProfile, updateProfile } from "../../actions/user";
 import { API } from "../../config";
-
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-
 import FullPageLoader from "../Loader/FullPageLoader";
-
 
 function ProfileUpdate() {
     const [values, setValues] = useState({
@@ -53,7 +50,6 @@ function ProfileUpdate() {
         initUser();
         setValues({ ...values, userData: new FormData() });
     }, []);
-
 
     function handleChange(name) {
         return (event) => {

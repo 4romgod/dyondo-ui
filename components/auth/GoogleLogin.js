@@ -27,7 +27,6 @@ function LoginGoogle(props) {
                     })
                 }
             });
-
     }
 
     return (
