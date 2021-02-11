@@ -6,43 +6,19 @@ import { getCookie, isAuth } from "../../actions/auth";
 import { getTags } from "../../actions/tag";
 import { createBlog } from "../../actions/blog";
 import { QuillFormats, QuillModules } from '../../helpers/quill';
-
 import slugify from "slugify";
-
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 import '../../node_modules/react-quill/dist/quill.snow.css';
-
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-
 import FullPageLoader from "../Loader/FullPageLoader";
 import Checkbox from "../Checkbox/Checkbox";
-
 import quillStyle from "../../STYLES/quillStyle";
 
-
-
 function CreateBlog({ router }) {
-
-    // gets the blog from the LocalStorage
-    function blogFromLS() {
-        if (typeof window === 'undefined') {
-            return false;
-        }
-
-        if (localStorage.getItem("blog")) {
-            return JSON.parse(localStorage.getItem("blog"))
-        } else { return false; }
-    }
-
-    // holds the list of tags
     const [tags, setTags] = useState([]);
-
-    // holds the list of checked  and tags
     const [checkedTag, setCheckedTag] = useState([]);
-
-    // holds the state of body content
-    const [body, setBody] = useState(blogFromLS());
+    const [body, setBody] = useState(getBlogFromLocalStorage());
 
     const [values, setValues] = useState({
         formData: "",
@@ -56,8 +32,20 @@ function CreateBlog({ router }) {
         sizeError: "",
         loading: false,
         success: "",
-    })
+    });
 
+    function getBlogFromLocalStorage() {
+        if (typeof window === 'undefined') {
+            return false;
+        }
+
+        if (localStorage.getItem("blog")) {
+            return JSON.parse(localStorage.getItem("blog"));
+        }
+        else {
+            return false;
+        }
+    }
 
     const { formData, title, hidePublishButton, photoName } = values;
     const { error, sizeError, success, loading } = results;
@@ -65,11 +53,7 @@ function CreateBlog({ router }) {
 
     useEffect(() => {
         setValues({ ...values, formData: new FormData() });
-        initTags();
-    }, [router]);
-
-
-    function initTags() {
+        
         getTags().then((data) => {
             if (data.error) {
                 setResults({ ...results, error: data.error });
@@ -77,8 +61,9 @@ function CreateBlog({ router }) {
             else {
                 setTags(data);
             }
-        })
-    }
+        });
+
+    }, [router]);
 
     function showTags() {
         function createLi(tag, index) {
@@ -93,7 +78,6 @@ function CreateBlog({ router }) {
         }
         return (tags && tags.map(createLi));
     }
-
 
     function handleToggleTag(tagId) {
         return () => {
@@ -116,21 +100,18 @@ function CreateBlog({ router }) {
         }
     }
 
-
     function handleChange(name) {
         return (event) => {
             let value;
             if (name === 'photo') {
                 value = event.target.files[0];
                 const fileSize = value.size / 1024 / 1024;
-
                 if (fileSize > 1) {
                     toast.dismiss();
                     toast.error("Image size should be less than 1MB");
                 }
                 else {
                     formData.set(name, value);
-
                     setValues({
                         ...values,
                         photoName: value ? value.name : '',
@@ -140,21 +121,16 @@ function CreateBlog({ router }) {
 
                     setResults({ ...results, error: false });
                 }
-
             }
             else {
                 value = event.target.value;
                 formData.set(name, value);
-
                 setResults({ ...results, error: false });
                 setValues({ ...values, [name]: value, formData });
             }
-
         }
     }
 
-
-    // body content resides inside the quill text editor
     function handleBody(event) {
         setBody(event);
         formData.set("body", event);
@@ -166,16 +142,12 @@ function CreateBlog({ router }) {
             catch (e) {
                 console.debug("Local Storage is full, Please empty data");
             }
-
         }
-
     };
-
 
     function publishBlog(event) {
         event.preventDefault();
 
-        // validate tag size
         if (checkedTag.length > 5) {
             toast.dismiss();
             toast.error("Maximum Tags exceeded!");
@@ -205,7 +177,6 @@ function CreateBlog({ router }) {
                 if (data.error) {
                     toast.dismiss();
                     toast.error(data.error);
-
                     setResults({ ...results, error: data.error, loading: false });
                 }
                 else {
@@ -222,15 +193,13 @@ function CreateBlog({ router }) {
                     Router.replace(`/blogs/[slug]`, `/blogs/${slug}`);
                 }
             }
-            else{
+            else {
                 toast.dismiss();
                 toast.error("Something went wrong, Try again later");
-                
                 setResults({ ...results, error: data.error, loading: false });
             }
         });
     }
-
 
     function createBlogForm() {
         return (
@@ -251,12 +220,10 @@ function CreateBlog({ router }) {
                     />
                 </div>
 
-                {/* show publish button */}
                 <button type="submit" className="btn btn-success btn-lg" id='submit-btn'>Publish</button>
             </form>
         )
     }
-
 
     return (
         <React.Fragment>
@@ -311,10 +278,7 @@ function CreateBlog({ router }) {
 
             </div>
         </React.Fragment>
-
     )
-
 }
-
 
 export default withRouter(CreateBlog);

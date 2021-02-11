@@ -2,10 +2,7 @@ import fetch from 'isomorphic-fetch';
 import { API } from '../config';
 import { handleResponse } from "../actions/auth";
 
-
 export function create(tag, token) {
-
-    // 1. go to the backend, call tag api
     return fetch(`${API}/tag`,
         {
             method: 'POST',
@@ -21,13 +18,10 @@ export function create(tag, token) {
             handleResponse(response);
             return response.json();
         })
-        .catch(err => console.log("There is an error"));
+        .catch(err => console.log(`ERROR: could not create the tag: ${tag}`));
 };
 
-
 export function getTags() {
-
-    // 1. go to the backend, call tags api
     return fetch(`${API}/tags`,
         {
             method: 'GET',
@@ -35,13 +29,10 @@ export function getTags() {
         .then(response => {
             return response.json();
         })
-        .catch(err => console.log(err));
+        .catch(err => console.log("ERROR: " + err));
 };
 
-
 export function getTagsByField(topic) {
-
-    // 1. go to the backend, call tags api
     return fetch(`${API}/tags/${topic}`,
         {
             method: 'GET',
@@ -49,13 +40,10 @@ export function getTagsByField(topic) {
         .then(response => {
             return response.json();
         })
-        .catch(err => console.log(err));
+        .catch(err => console.log("ERROR: " + err));
 };
 
-
 export function singleTag(slug) {
-
-    // 1. go to the backend, call tag api
     return fetch(`${API}/tag/${slug}`,
         {
             method: 'GET',
@@ -63,13 +51,10 @@ export function singleTag(slug) {
         .then(response => {
             return response.json();
         })
-        .catch(err => console.log(err));
+        .catch(err => console.log("ERROR: " + err));
 };
 
-
 export function removeTag(slug, token) {
-
-    // 1. go to the backend, call category api
     return fetch(`${API}/tag/${slug}`,
         {
             method: 'DELETE',
@@ -77,31 +62,28 @@ export function removeTag(slug, token) {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
                 Authorization: `Bearer ${token}`
-            }     
+            }
         })
         .then(response => {
             handleResponse(response);
             return response.json();
         })
-        .catch(err => console.log(err));
+        .catch(err => console.log("ERROR: " + err));
 };
 
-
 export function updateTag(name, topics, token, slug) {
-    let endpoint = `${API}/tag/${slug}`;
-
-    return fetch(`${endpoint}`, {
-        method: 'PUT',
-        headers: {
-            Accept: 'application/json',
-            Authorization: `Bearer ${token}`
-        },
-        body: JSON.stringify(name, topics)
-
-    })
+    return fetch(`${API}/tag/${slug}`,
+        {
+            method: 'PUT',
+            headers: {
+                Accept: 'application/json',
+                Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify(name, topics)
+        })
         .then(response => {
             handleResponse(response);
             return response.json();
         })
-        .catch(err => console.log(err));
+        .catch(err => console.log("ERROR: " + err));
 };
