@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { APP_NAME } from "../../config";
 import Link from "next/link";
 import Router from "next/router";
@@ -20,8 +20,6 @@ import {
 } from 'reactstrap';
 
 import "../.././node_modules/nprogress/nprogress.css";
-
-import "./nav.css";
 
 import allTopics from "./topics";
 

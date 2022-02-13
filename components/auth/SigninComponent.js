@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Router from 'next/router';
 import Link from "next/link";
 import { signin, authenticate, isAuth } from "../../actions/auth";
@@ -43,15 +43,13 @@ function SigninComponent() {
                 setValues({ ...values, error: data.error, loading: false, message: '' });
                 toast.dismiss();
                 toast.error(data.error);
-            }
-            else {
+            } else {
                 authenticate(data, () => {
                     if (isAuth() && (isAuth().role === 1)) {
                         toast.dismiss();
                         toast.success("Successfully signed in");
                         Router.push(`/admin`);
-                    }
-                    else {
+                    } else {
                         toast.dismiss();
                         toast.success("Successfully signed in");
                         Router.push(`/user`);

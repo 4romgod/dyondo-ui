@@ -36,7 +36,7 @@ function ForgotPassword() {
 
     const showMessage = () => {
         return (
-            <div className="alert alert-info" style={{ display: message ? '' : 'none' }}>
+            <div className="alert alert-info mb-5 mt-5" style={{ display: message ? '' : 'none' }}>
                 {message}
             </div>);
     };
@@ -71,7 +71,7 @@ function ForgotPassword() {
                         />
                     </div>
 
-                    <div>
+                    <div className='pb-5'>
                         <button type="submit" className="btn btn-danger">Send Password reset link</button>
                     </div>
 

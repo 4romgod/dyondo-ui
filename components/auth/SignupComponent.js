@@ -1,15 +1,15 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Router from 'next/router';
 import { preSignup, signup, isAuth } from "../../actions/auth";
-import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import GoogleLogin from "./GoogleLogin";
-
+import { ToastContainer, toast } from "react-toastify";
 toast.configure();
 
 function SignUpComponent() {
     const [values, setValues] = useState({
         name: '',
+        surname: '',
         email: '',
         password: '',
         confirmPassword: '',
@@ -19,7 +19,7 @@ function SignUpComponent() {
         showForm: true
     });
 
-    const { name, email, password, confirmPassword, error, loading, message, showForm } = values;
+    const { name, surname, email, password, confirmPassword, error, loading, message, showForm } = values;
 
     useEffect(() => {
         isAuth() && Router.push(`/`);
@@ -39,15 +39,16 @@ function SignUpComponent() {
         setValues({ ...values, loading: true, error: false });
 
         if (password === confirmPassword) {
-            const user = { name, email, password };
+            const user = { name, surname, email, password };
             preSignup(user).then(response => {
+                console.dir(user, {depth:null})
                 if (response.error) {
                     setValues({ ...values, error: response.error, loading: false, message: '' });
                     toast.dismiss();
                     toast.error(response.error);
                 }
                 else {
-                    setValues({ ...values, name: '', email: '', password: '', error: '', loading: false, message: response.message, showForm: false });
+                    setValues({ ...values, name: '', surname: '', email: '', password: '', error: '', loading: false, message: response.message, showForm: false });
                     toast.dismiss();
                     toast.success(response.message);
                 }
@@ -71,6 +72,18 @@ function SignUpComponent() {
                         type="text"
                         className="form-control"
                         placeholder="Type your name"
+                        required
+                    />
+                </div>
+
+                <div className="form-group">
+                    <input
+                        value={surname}
+                        name="surname"
+                        onChange={handleChange}
+                        type="text"
+                        className="form-control"
+                        placeholder="Type your surname"
                         required
                     />
                 </div>

@@ -3,6 +3,11 @@ import { API } from '../config';
 import Cookies from "js-cookie";
 import Router from 'next/router';
 
+/**
+ * Takes a response from the API, and looks for errors
+ * @param {*} response 
+ * @returns 
+ */
 export const handleResponse = (response) => {
     if (response.status === 401) {
         signout(() => {
@@ -13,58 +18,49 @@ export const handleResponse = (response) => {
                 }
             });
         });
-    }
-    else {
+    } else {
         return;
     }
 }
 
 export const preSignup = (user) => {
-    return fetch(`${API}/pre-signup`,
-        {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(user),
-        })
-        .then(response => {
-            return response.json();
-        })
-        .catch(err => console.log("ERROR: " + err));
+    return fetch(`${API}/pre-signup`, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(user),
+    }).then(response => {
+        return response.json();
+    }).catch(err => console.log("ERROR: " + err));
 };
 
 export const signup = (user) => {
-    return fetch(`${API}/signup`,
-        {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(user),
-        })
+    return fetch(`${API}/signup`, {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(user),
+    })
         .then(response => {
             return response.json();
-        })
-        .catch(err => console.log("ERROR: " + err));
+        }).catch(err => console.log("ERROR: " + err));
 };
 
 export const signin = (user) => {
-    return fetch(`${API}/signin`,
-        {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(user),
-        })
-        .then(response => {
-            return response.json();
-        })
-        .catch(err => console.log("ERROR: " + err));
+    return fetch(`${API}/signin`, {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(user),
+    }).then(response => {
+        return response.json();
+    }).catch(err => console.log("ERROR: " + err));
 };
 
 export const signout = (next) => {
@@ -72,14 +68,11 @@ export const signout = (next) => {
     removeLocalStorage('user');
     next();
 
-    return fetch(`${API}/signout`,
-        {
-            method: "GET",
-        })
-        .then(response => {
-            console.log("signout sucessfull!");
-        })
-        .catch(err => console.log("ERROR: " + err));
+    return fetch(`${API}/signout`, {
+        method: "GET",
+    }).then(response => {
+        console.log("signout sucessfull!");
+    }).catch(err => console.log("ERROR: " + err));
 }
 
 export const setCookie = (key, value) => {
@@ -124,8 +117,7 @@ export const isAuth = () => {
         if (cookieChecked) {
             if (localStorage.getItem('user')) {
                 return JSON.parse(localStorage.getItem('user'));
-            }
-            else {
+            } else {
                 return false;
             }
         }
@@ -144,35 +136,29 @@ export function updateUser(user, next) {
 }
 
 export const forgotPassword = (email) => {
-    return fetch(`${API}/forgot-password`,
-        {
-            method: 'PUT',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(email),
-        })
-        .then(response => {
-            return response.json();
-        })
-        .catch(err => console.log("ERROR: " + err));
+    return fetch(`${API}/forgot-password`, {
+        method: 'PUT',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(email),
+    }).then(response => {
+        return response.json();
+    }).catch(err => console.log("ERROR: " + err));
 };
 
 export const resetPassword = (resetInfo) => {
-    return fetch(`${API}/reset-password`,
-        {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(resetInfo),
-        })
-        .then(response => {
-            return response.json();
-        })
-        .catch(err => console.log(err));
+    return fetch(`${API}/reset-password`, {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(resetInfo),
+    }).then(response => {
+        return response.json();
+    }).catch(err => console.log(err));
 };
 
 export const loginWithGoogle = (user) => {

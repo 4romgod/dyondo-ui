@@ -67,7 +67,7 @@ function ResetPassword({ router }) {
                         />
                     </div>
 
-                    <div>
+                    <div className='pb-5'>
                         <button type="submit" className="btn btn-danger">Change Password</button>
                     </div>
 
@@ -79,7 +79,7 @@ function ResetPassword({ router }) {
 
     return (
         <Layout>
-            <div className="container pt-5">
+            <div className="container pt-5 pb-5">
                 <h2>Forgot password</h2>
                 <hr />
                 {showError()}

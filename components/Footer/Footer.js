@@ -1,11 +1,8 @@
+import React from 'react';
 import Link from "next/link";
-import "./footer.css";
 import { DOMAIN, APP_NAME } from "../../config";
 
-
-
 function Footer() {
-
     const topics = [{
         "name": "Programming",
         "slug": "programming",
@@ -25,7 +22,7 @@ function Footer() {
     {
         "name": "DBMS",
         "slug": "dbms"
-    }]
+    }];
 
     return (
         <React.Fragment>

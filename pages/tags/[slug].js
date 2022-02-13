@@ -1,14 +1,11 @@
+import React, { useState } from "react";
 import Head from 'next/head';
 import Layout from "../../components/Layout";
 import { singleTag } from "../../actions/tag";
 import SmallCard from "../../components/blog/SmallCard/SmallCard";
 import { API, DOMAIN, APP_NAME, FB_APP_ID } from '../../config';
 import Search from "../../components/blog/Search";
-
 import HeadTags from "../../components/HeadTags/HeadTags";
-
-import { useState } from "react";
-
 
 function Tag({ tag, blogs, query }) {
     const [isClicked, setIsClicked] = useState(false);

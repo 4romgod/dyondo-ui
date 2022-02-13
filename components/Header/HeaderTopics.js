@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import Link from "next/link";
 import { Collapse, Navbar, NavbarToggler, Nav, NavItem, NavLink } from 'reactstrap';
-import "./navtopics.css";
 import allTopics from "./topics";
 
 function HeaderTopics() {

@@ -30,6 +30,7 @@ function LoginGoogle(props) {
     return (
         <div className="pb-3">
             <GoogleLogin
+                disabled={false}
                 clientId={`${GOOGLE_CLIENT_ID}`}
                 buttonText={props.btnText}
                 onSuccess={responseGoogle}

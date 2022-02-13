@@ -1,10 +1,8 @@
+import React, { useState } from "react";
 import Layout from '../components/Layout';
 import Head from 'next/head';
 import { DOMAIN, APP_NAME, FB_APP_ID } from '../config';
 import Search from "../components/blog/Search";
-import { useState } from "react";
-
-
 
 const Index = () => {
     const [isClicked, setIsClicked] = useState(false);

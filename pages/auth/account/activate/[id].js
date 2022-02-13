@@ -18,7 +18,7 @@ function ActivateAccount({ query }) {
     useEffect(() => {
         let token = query.id;
         if (token) {
-            const { name } = jwt.decode(token);
+            const { name } = decode(token);
             setValues({ ...values, name, token });
         }
     }, []);

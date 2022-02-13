@@ -1,7 +1,6 @@
+import React, { useState, useEffect } from "react";
 import Header from "./Header/Header";
 import HeaderTopics from "./Header/HeaderTopics";
-
-import { useState, useEffect } from "react";
 import Footer from "./Footer/Footer";
 
 const Layout = (props) => {

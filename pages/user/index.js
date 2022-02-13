@@ -22,8 +22,7 @@ function UserIndex() {
         getProfile(token).then(data => {
             if (data.error) {
                 setValues({ ...values, error: data.error, loading: false });
-            }
-            else {
+            } else {
                 setValues({ ...values, username: data.username, name: data.name, about: data.about, loading: false });
             }
         })
