@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { isAuth, getCookie } from '../../actions/auth';
 import { create, getTags, removeTag, updateTag } from '../../actions/tag';
 import { list } from "../../actions/topic";
@@ -247,6 +247,7 @@ function Tag({ router }) {
                         <div className="col-md-1"></div>
 
                         <div className="col-md-4 pl-0 pr-0">
+                            <h4 className='mb-3'>Select some Topics</h4>
                             {showTopics()}
                         </div>
 

@@ -2,7 +2,6 @@ import Layout from "../components/Layout";
 import { withRouter } from 'next/router';
 import SigninComponent from "../components/auth/SigninComponent";
 
-
 function Signup({ router }) {
 
     function showRedirectMessage() {

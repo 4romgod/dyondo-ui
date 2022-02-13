@@ -1,9 +1,7 @@
 import Layout from "../components/Layout";
 import SignupComponent from "../components/auth/SignupComponent";
 
-
 function Signin() {
-
     return (
         <Layout>
             <div className="bg-white" style={{marginBottom: "100px"}}>

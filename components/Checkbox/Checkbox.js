@@ -1,4 +1,4 @@
-import "./checkbox.css";
+import React from 'react';
 
 function Checkbox({ entity, handleChange, handleChecked }) {
     return (

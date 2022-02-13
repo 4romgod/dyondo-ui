@@ -1,10 +1,9 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Layout from "../../components/Layout";
 import { getTags } from "../../actions/tag";
 import Link from 'next/link';
 import { withRouter } from 'next/router';
 import moment from 'moment';
-
 
 const baseURL = "https://hn.algolia.com/api/v1/search?query=";
 
@@ -16,8 +15,6 @@ function News({ TAGS }) {
     useEffect(() => { fetchNews() }, [URL]);
 
     function fetchNews() {
-        //setLoading(true);
-
         fetch(URL)
             .then(result => result.json())
             .then(data => data.hits)
@@ -43,13 +40,11 @@ function News({ TAGS }) {
         const showTag = (tag, index) => {
             return (
                 <Link href={`/tags/[slug]`} as={`/tags/${tag.slug}`} key={index}>
-                    <a className="btn btn-outline-info btn-sm mr-1 ml-1 mt-3"
-                        style={{ maxWidth: '100%', overflowX: 'auto' }}
-                    >
+                    <a className="btn btn-outline-info btn-sm mr-1 ml-1 mt-3" style={{ maxWidth: '100%', overflowX: 'auto' }}>
                         {`#${tag.name}`}
                     </a>
                 </Link>
-            )
+            );
         }
         return TAGS.map(showTag);
     }

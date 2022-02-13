@@ -57,8 +57,7 @@ function CreateBlog({ router }) {
         getTags().then((data) => {
             if (data.error) {
                 setResults({ ...results, error: data.error });
-            }
-            else {
+            } else {
                 setTags(data);
             }
         });
@@ -192,8 +191,7 @@ function CreateBlog({ router }) {
 
                     Router.replace(`/blogs/[slug]`, `/blogs/${slug}`);
                 }
-            }
-            else {
+            } else {
                 toast.dismiss();
                 toast.error("Something went wrong, Try again later");
                 setResults({ ...results, error: data.error, loading: false });

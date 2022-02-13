@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { isAuth, getCookie } from '../../actions/auth';
 import { create, getTags, removeTag } from '../../actions/tag';
 import { list } from "../../actions/topic";

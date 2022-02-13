@@ -1,17 +1,14 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { newsletter } from "../../actions/contact";
 import Head from 'next/head';
 import Router from 'next/router';
 import { DOMAIN, APP_NAME, FB_APP_ID } from '../../config';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import Header from "../../components/Header/Header";
-
 import newsletterStyle from "../../STYLES/newsletterStyle";
 import Layout from '../../components/Layout';
-
-
+import 'react-toastify/dist/ReactToastify.css';
+import { toast, ToastContainer } from 'react-toastify';
 toast.configure();
+
 function Newsletter() {
     const [values, setValues] = useState({
         fullname: '',
@@ -58,24 +55,19 @@ function Newsletter() {
         setValues({ ...values, loading: true, success: false, error: false });
 
         newsletter({ fullname, email })
-            .then(function (response) {
-                //console.log(response);
-
+            .then( (response) => {
                 if (response.error) {
                     toast.dismiss();
                     toast.error(response.error);
                     setValues({ ...values, error: response.error, loading: false, success: false });
-                }
-                else {
+                } else {
                     toast.dismiss();
                     toast.success(response.success);
                     setValues({ ...values, error: false, loading: false, success: response.success });
 
                     setTimeout(() => Router.push(`/`), 3000)
                 }
-            })
-            .catch(err => {
-                //console.log(err);
+            }).catch(err => {
                 toast.dismiss();
                 toast.error(err);
             });
@@ -105,7 +97,7 @@ function Newsletter() {
                             <div className="text-center">
                                 <p style={{ color: 'rgb(77,77,77)' }}>
                                     Join the community and receive monthly newsletters as well as exclusive content that will help improve your skills as a developer!
-                            </p>
+                                </p>
                             </div>
 
                             <div>
@@ -134,31 +126,22 @@ function Newsletter() {
                                         />
                                     </div>
                                     <div className="form-group">
-                                        <button
-                                            className="form-control btn btn-success"
-                                            type="submit"
-                                        >
+                                        <button className="form-control btn btn-success" type="submit">
                                             Subscribe
-                                    </button>
+                                        </button>
                                     </div>
                                 </form>
                             </div>
 
-                            <div className="text-center"
-                                style={{ fontSize: '0.8rem' }}
-                            >
+                            <div className="text-center" style={{ fontSize: '0.8rem' }}>
                                 We respect your privacy. Unsubscribe at any time.
+                            </div>
                         </div>
-
-                        </div>
-
                     </div>
-
                 </div>
             </Layout>
         </React.Fragment>
     )
-
 }
 
 export default Newsletter;

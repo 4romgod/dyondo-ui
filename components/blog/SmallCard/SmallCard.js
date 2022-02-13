@@ -2,7 +2,6 @@ import Link from 'next/link';
 import moment from 'moment';
 import { API } from "../../../config";
 import Author from "../../Author/Author";
-import "./smallcard.css";
 
 function SmallCard({ blog }) {
     return (

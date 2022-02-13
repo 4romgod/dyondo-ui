@@ -1,12 +1,10 @@
+import React, { useEffect, useState } from "react";
 import Layout from "../../components/Layout";
 import Admin from "../../components/auth/Admin";
 import Link from "next/link";
 import { getCookie } from "../../actions/auth";
 import { getProfile } from "../../actions/user";
-
 import { API } from "../../config";
-
-import { useEffect, useState } from "react";
 
 function AdminIndex() {
     const [values, setValues] = useState({
@@ -29,8 +27,7 @@ function AdminIndex() {
         getProfile(token).then(data => {
             if (data.error) {
                 setResults({ ...results, error: data.error, loading: false });
-            }
-            else {
+            } else {
                 setResults({ ...results, loading: false });
                 setValues({ ...values, username: data.username, name: data.name, about: data.about });
             }
@@ -40,7 +37,6 @@ function AdminIndex() {
     useEffect(() => {
         initUser();
     }, []);
-
 
     return (
         <Layout>

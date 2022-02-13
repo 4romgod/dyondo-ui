@@ -1,13 +1,9 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { sendNodemailer } from '../actions/contact';
-
 import {isAuth} from "../actions/auth";
-
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-
 import FullPageLoader from "../components/Loader/FullPageLoader";
-
 
 function Form({ authorEmail }) {
     const [values, setValues] = useState({

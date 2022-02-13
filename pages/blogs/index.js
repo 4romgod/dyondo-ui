@@ -1,19 +1,13 @@
-import Head from 'next/head';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { withRouter } from 'next/router';
 import Layout from "../../components/Layout";
-import { useState } from 'react';
 import { listBlogCatTag } from "../../actions/blog";
 import Card from '../../components/blog/Card/Card';
-import { API, DOMAIN, APP_NAME, FB_APP_ID } from '../../config';
-
 import HeadTags from "../../components/HeadTags/HeadTags";
-
 import Search from "../../components/blog/Search";
 
-
 function Blogs({ blogs, categories, tags, totalBlogs, blogsLimit, blogsSkip, router }) {
-
     const [isClicked, setIsClicked] = useState(false);
 
     function handleClick() {
@@ -191,8 +185,7 @@ Blogs.getInitialProps = () => {
     return listBlogCatTag(skip, limit).then(data => {
         if (data.error) {
             console.log(data.error);
-        }
-        else {
+        } else {
             return {
                 blogs: data.blogs,
                 categories: data.categories,

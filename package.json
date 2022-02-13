@@ -1,7 +1,7 @@
 {
   "name": "dyondo-frontend",
   "version": "1.0.0",
-  "description": "",
+  "description": "NextJS/ReactJS UI for Dyondo muliti-user blogging platform",
   "main": "index.js",
   "scripts": {
     "dev": "next",

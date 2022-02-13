@@ -1,7 +1,7 @@
 import Router from 'next/router';
 import { loginWithGoogle, authenticate, isAuth } from "../../actions/auth";
 import { GOOGLE_CLIENT_ID } from '../../config';
-import GoogleLogin from "react-google-login";
+import { GoogleLogin } from "react-google-login";
 
 function LoginGoogle(props) {
 
@@ -13,16 +13,14 @@ function LoginGoogle(props) {
             .then(data => {
                 if (data.error) {
                     console.log(data.error);
-                }
-                else {
+                } else {
                     authenticate(data, () => {
                         if (isAuth() && (isAuth().role === 1)) {
                             Router.push(`/admin`);
-                        }
-                        else {
+                        } else {
                             Router.push(`/user`);
                         }
-                    })
+                    });
                 }
             });
     }
@@ -38,7 +36,7 @@ function LoginGoogle(props) {
                 theme={'dark'}
             />
         </div>
-    )
+    );
 }
 
 export default LoginGoogle;

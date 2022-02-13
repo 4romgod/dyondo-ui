@@ -1,10 +1,7 @@
-import Head from 'next/head';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Layout from "../../components/Layout";
-import { useState, useEffect } from 'react';
-
 import { singleBlog, listRelated } from "../../actions/blog";
-
 import { API, DOMAIN, APP_NAME, FB_APP_ID } from '../../config';
 import renderHTML from 'react-render-html';
 import SmallCard from "../../components/blog/SmallCard/SmallCard";
@@ -71,7 +68,6 @@ function SingleBlog({ blog, query }) {
         return related.map(createRelated);
     }
 
-
     function showComments() {
         return (
             <div>
@@ -81,7 +77,6 @@ function SingleBlog({ blog, query }) {
     }
 
     return <React.Fragment>
-
         <HeadTags
             title={blog.title}
             ogTitle={blog.title}
@@ -91,7 +86,6 @@ function SingleBlog({ blog, query }) {
         />
         
         <Layout>
-
             <style jsx global>
                 {blogStyle}
             </style>
@@ -205,8 +199,7 @@ SingleBlog.getInitialProps = ({ query }) => {
     return singleBlog(query.slug).then(data => {
         if (data.error) {
             console.log(data.error);
-        }
-        else {
+        } else {
             return { blog: data, query }
         }
     });

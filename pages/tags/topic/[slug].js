@@ -1,9 +1,8 @@
-import Head from 'next/head';
+import React, { useState } from 'react';
 import Layout from "../../../components/Layout";
 import { getTagsByField } from "../../../actions/tag";
 import { API, DOMAIN, APP_NAME, FB_APP_ID } from '../../../config';
 import HeadTags from "../../../components/HeadTags/HeadTags";
-import { useState } from 'react';
 import TagCard from "../../../components/Tag/SmallCard/TagCard";
 import Search from "../../../components/blog/Search";
 
