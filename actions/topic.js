@@ -4,7 +4,7 @@ import {handleResponse} from "../actions/auth";
 
 
 export function create(topic, token) {
-    return fetch(`${API}/topic`,
+    return fetch(`${API}/topics`,
         {
             method: 'POST',
             headers: {

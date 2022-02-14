@@ -6,6 +6,5 @@ import "../components/Checkbox/checkbox.css";
 import "../components/blog/SmallCard/smallCard.css";
 
 export default function App({ Component, pageProps }) {
-    return <Component {...pageProps} />
-  }
-  
+  return <Component {...pageProps} />
+}
