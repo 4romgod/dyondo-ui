@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { isAuth, getCookie } from '../../actions/auth';
 import { create, getTags, removeTag, updateTag } from '../../actions/tag';
-import { list } from "../../actions/topic";
 import { withRouter } from 'next/router';
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import Checkbox from "../Checkbox/Checkbox";
+import { dyondoClient } from "../../helpers/utils";
 
-function Tag({ router }) {
+function Tag() {
     const [values, setValues] = useState({
         name: '',
         photo: '',
@@ -25,7 +25,7 @@ function Tag({ router }) {
     const [topics, setTopics] = useState([]);
     const [checkedTopics, setCheckedTopic] = useState([]);
 
-    const { name, photo, photoName, tags} = values;
+    const { name, photo, photoName, tags } = values;
     const { error, success, removed, reload } = results;
 
     const token = getCookie('token');
@@ -47,14 +47,14 @@ function Tag({ router }) {
     }
 
     function initTopics() {
-        list().then((data) => {
-            if (data.error) {
-                setResults({ ...results, error: data.error });
-            }
-            else {
-                setTopics(data);
-            }
-        })
+        dyondoClient.getRetrieveTopics()
+            .then((response) => {
+                if (response.error) {
+                    setResults({ ...results, error: response.error });
+                } else {
+                    setTopics(response.data);
+                }
+            });
     }
 
     function showTopics() {
@@ -111,8 +111,8 @@ function Tag({ router }) {
             else {
                 toast.dismiss();
                 toast.success(`${slug} successfully deleted!`);
-                setValues({ ...values, success: false, name: ''});
-                setResults({...results, error: false, removed: true, reload: !reload})
+                setValues({ ...values, success: false, name: '' });
+                setResults({ ...results, error: false, removed: true, reload: !reload })
             }
         });
     }
@@ -128,14 +128,14 @@ function Tag({ router }) {
                     toast.error("Image size should be less than 1MB");
                 }
                 else {
-                    setValues({ ...values, photoName: value ? value.name : '', [name]: value});
+                    setValues({ ...values, photoName: value ? value.name : '', [name]: value });
                     setResults({ ...results, error: false, success: false, removed: '' });
                 }
             }
             else {
                 value = event.target.value;
 
-                setValues({ ...values, [name]: event.target.value});
+                setValues({ ...values, [name]: event.target.value });
                 setResults({ ...results, error: false, success: false, removed: '' });
             }
         }
@@ -174,7 +174,7 @@ function Tag({ router }) {
 
         console.log("submitting data");
 
-        create({name, topics: checkedTopics}, token).then(function(data) {            
+        create({ name, topics: checkedTopics }, token).then(function (data) {
             if (data.error) {
                 toast.dismiss();
                 toast.error(data.error);
@@ -184,9 +184,9 @@ function Tag({ router }) {
                 toast.dismiss();
                 toast.success(`${name} successfully created!`);
 
-                setValues({ ...values, name: "", photo: '', photoName: '', tags});
+                setValues({ ...values, name: "", photo: '', photoName: '', tags });
 
-                setResults({ ...results, error: false, success: true, removed: false, reload: !reload});
+                setResults({ ...results, error: false, success: true, removed: false, reload: !reload });
 
                 setCheckedTopic([]);
             }

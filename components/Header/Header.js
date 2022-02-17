@@ -3,25 +3,11 @@ import { APP_NAME } from "../../config";
 import Link from "next/link";
 import Router from "next/router";
 import Nprogress from "nprogress";
-
 import { signout, isAuth } from "../../actions/auth";
-
-import {
-    Collapse,
-    Navbar,
-    NavbarToggler,
-    Nav,
-    NavItem,
-    NavLink,
-    UncontrolledDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem
-} from 'reactstrap';
-
+import { Collapse, Navbar, NavbarToggler, Nav, NavItem, NavLink, 
+    UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { dyondoClient } from "../../helpers/utils";
 import "../.././node_modules/nprogress/nprogress.css";
-
-import allTopics from "./topics";
 
 Router.onRouteChangeStart = function (url) { Nprogress.start() }
 Router.onRouteChangeComplete = function (url) { Nprogress.done() }
@@ -37,7 +23,7 @@ const navLinkStyle = {
 
 function Header(props) {
     const [isOpen, setIsOpen] = useState(false);
-    const [topics, setTopics] = useState(allTopics);
+    const [topics, setTopics] = useState([]);
 
     function toggle() {
         setIsOpen(!isOpen);
@@ -47,6 +33,12 @@ function Header(props) {
         if (isOpen) {
             setIsOpen(props.closeNav);
         }
+
+        const fetchTopics = async () => {
+            let someTopics = await dyondoClient.getRetrieveTopics();
+            setTopics(someTopics.data);
+        }
+        fetchTopics();
     }, [props.closeNav]);
 
 

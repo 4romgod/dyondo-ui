@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "export": "next build && next export",
-    "gen-client": "openapi-generator-cli generate -i http://localhost:8000/api/dyondo-api -g typescript-axios -o openapi-client --additional-properties=ngVersion=6.1.7,npmName=restClient,supportsES6=true,npmVersion=6.9.0,useSingleRequestParameter=true"
+    "gen-client": "openapi-generator-cli generate -i http://localhost:8000/api/dyondo-api -g typescript-axios -o openapi-client --additional-properties=ngVersion=6.1.7,npmName=restClient,supportsES6=true,npmVersion=6.9.0,useSingleRequestParameter=true && tsc"
   },
   "keywords": [],
   "author": "",
@@ -45,6 +45,8 @@
     "reactstrap": "^8.4.1",
     "sass": "^1.49.7",
     "sitemap": "^6.1.5",
-    "slugify": "^1.4.0"
+    "slugify": "^1.4.0",
+    "ts-node": "^10.5.0",
+    "typescript": "^4.5.5"
   }
 }

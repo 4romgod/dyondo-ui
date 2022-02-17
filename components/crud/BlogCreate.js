@@ -17,7 +17,7 @@ import quillStyle from "../../STYLES/quillStyle";
 
 function CreateBlog({ router }) {
     const [tags, setTags] = useState([]);
-    const [checkedTag, setCheckedTag] = useState([]);
+    const [checkedTags, setCheckedTags] = useState([]);
     const [body, setBody] = useState(getBlogFromLocalStorage());
 
     const [values, setValues] = useState({
@@ -82,20 +82,19 @@ function CreateBlog({ router }) {
         return () => {
             setResults({ ...results, error: false });
 
-            const clickedTag = checkedTag.indexOf(tagId);  //return -1 if not in array, else index of array
+            const clickedTagIndex = checkedTags.indexOf(tagId);
 
-            const all = [...checkedTag];
-            if (clickedTag === -1) {
-                all.push(tagId);
+            const currCheckedTags = [...checkedTags];
+            if (clickedTagIndex === -1) {
+                currCheckedTags.push(tagId);
+            } else {
+                currCheckedTags.splice(clickedTagIndex, 1);
             }
-            else {
-                all.splice(clickedTag, 1);
-            }
 
-            console.log(all);
-            setCheckedTag(all);
+            console.log(currCheckedTags);
+            setCheckedTags(currCheckedTags);
 
-            formData.set("tags", all);
+            formData.set("tags", currCheckedTags);
         }
     }
 
@@ -147,7 +146,7 @@ function CreateBlog({ router }) {
     function publishBlog(event) {
         event.preventDefault();
 
-        if (checkedTag.length > 5) {
+        if (checkedTags.length > 5) {
             toast.dismiss();
             toast.error("Maximum Tags exceeded!");
             return;

@@ -1,16 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import Link from "next/link";
-import { Collapse, Navbar, NavbarToggler, Nav, NavItem, NavLink } from 'reactstrap';
-import allTopics from "./topics";
+import { NavLink } from 'reactstrap';
+import { dyondoClient } from "../../helpers/utils";
 
 function HeaderTopics() {
-    const [topics, setTopics] = useState(allTopics);
+    const [topics, setTopics] = useState([]);
+    
+    useEffect(()=>{
+        const fetchTopics = async () => {
+            let someTopics = await dyondoClient.getRetrieveTopics();
+            setTopics(someTopics.data);
+        }
+        fetchTopics();
+    }, []);
+
 
     return (
         <div>
             <nav className="navbar navbar-expand-sm bg-light navbar-light" id="navbar2">
 
-                <button 
+                <button
                     className="navbar-toggler"
                     type="button"
                     data-toggle="collapse"

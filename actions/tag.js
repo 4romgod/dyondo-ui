@@ -3,7 +3,7 @@ import { API } from '../config';
 import { handleResponse } from "../actions/auth";
 
 export function create(tag, token) {
-    return fetch(`${API}/tag`, {
+    return fetch(`${API}/tags`, {
         method: 'POST',
         headers: {
             Accept: 'application/json',
@@ -27,7 +27,7 @@ export function getTags() {
 };
 
 export function getTagsByField(topic) {
-    return fetch(`${API}/tags/${topic}`, {
+    return fetch(`${API}/tags?topic=${topic}`, {
         method: 'GET',
     }).then(response => {
         return response.json();
@@ -35,7 +35,7 @@ export function getTagsByField(topic) {
 };
 
 export function singleTag(slug) {
-    return fetch(`${API}/tag/${slug}`, {
+    return fetch(`${API}/tags/${slug}`, {
         method: 'GET',
     }).then(response => {
         return response.json();
@@ -43,7 +43,7 @@ export function singleTag(slug) {
 };
 
 export function removeTag(slug, token) {
-    return fetch(`${API}/tag/${slug}`, {
+    return fetch(`${API}/tags/${slug}`, {
         method: 'DELETE',
         headers: {
             Accept: 'application/json',
@@ -57,7 +57,7 @@ export function removeTag(slug, token) {
 };
 
 export function updateTag(name, topics, token, slug) {
-    return fetch(`${API}/tag/${slug}`, {
+    return fetch(`${API}/tags/${slug}`, {
         method: 'PUT',
         headers: {
             Accept: 'application/json',
