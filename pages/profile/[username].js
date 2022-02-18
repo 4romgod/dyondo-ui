@@ -1,14 +1,13 @@
+import React from "react";
 import HeadTags from "../../components/HeadTags/HeadTags";
 import Link from 'next/link';
 import Layout from "../../components/Layout";
 import Form from "../../components/Form";
 import { userPublicProfile } from "../../actions/user";
-import { API, DOMAIN, APP_NAME, FB_APP_ID } from '../../config';
+import { API } from '../../config';
 import moment from 'moment';
 
-
 function UserProfile({ user, blogs, query }) {
-
 
     function showUserBlogs() {
 

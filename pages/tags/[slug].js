@@ -1,23 +1,20 @@
 import React, { useState } from "react";
-import Head from 'next/head';
 import Layout from "../../components/Layout";
-import { singleTag } from "../../actions/tag";
 import SmallCard from "../../components/blog/SmallCard/SmallCard";
-import { API, DOMAIN, APP_NAME, FB_APP_ID } from '../../config';
 import Search from "../../components/blog/Search";
 import HeadTags from "../../components/HeadTags/HeadTags";
+import { dyondoClient } from "../../helpers/utils";
 
-function Tag({ tag, blogs, query }) {
+const Tag = ({ tag, blogs, query }) => {
     const [isClicked, setIsClicked] = useState(false);
 
-    function handleClick() {
+    const handleClick = () => {
         setIsClicked(true);
         setTimeout(() => setIsClicked(false), 0);
     }
 
     return (
         <React.Fragment>
-
             <HeadTags
                 title={tag.name}
                 ogTitle={`${tag.name}`}
@@ -43,7 +40,6 @@ function Tag({ tag, blogs, query }) {
                             <Search closeSearch={isClicked} />
                         </div>
 
-                        {/* blogs to match tag */}
                         <div className="row ml-0 mr-0">
                             {blogs.map((blog, index) => {
                                 return (
@@ -61,14 +57,14 @@ function Tag({ tag, blogs, query }) {
     )
 }
 
-Tag.getInitialProps = ({ query }) => {
-    return singleTag(query.slug).then(data => {
-        if (data.error) {
-            console.log(data.error);
-        } else {
-            return { tag: data.tag, blogs: data.blogs, query }
-        }
-    });
+Tag.getInitialProps = async ({ query }) => {
+    try {
+        const tagData =  await dyondoClient.getRetrieveTag({slug: query.slug});
+        const blogData = await dyondoClient.getRetrieveBlogs({tag: query.slug});
+        return { tag: tagData.data, blogs: blogData.data, query };
+    } catch (err) {
+        console.log(err);
+    }
 }
 
 export default Tag;

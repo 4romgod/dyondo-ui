@@ -1,13 +1,11 @@
 import Link from 'next/link';
-import renderHTML from 'react-render-html';
-import moment from 'moment';
-import { API } from "../../config";
 import { useState, useEffect } from 'react';
 import { listSearch } from '../../actions/blog'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { dyondoClient } from "../../helpers/utils";
 
-function Search(props) {
+const Search = (props) => {
     const [values, setValues] = useState({
         search: undefined,
         results: [],
@@ -23,7 +21,7 @@ function Search(props) {
         }
     }, [props.closeSearch]);
 
-    function searchedBlog(results = []) {
+    const searchedBlog = (results = []) => {
         return (
             <div className="row ml-0 mr-0">
 
@@ -59,21 +57,24 @@ function Search(props) {
         )
     }
 
-    function handleChange(event) {
+    const handleChange = (event) => {
         setValues({ ...values, search: event.target.value, searched: false, results: [] });
     }
 
-    function searchSubmit(event) {
+    const searchSubmit = async (event) => {
         event.preventDefault();
 
-        listSearch({ search }).then(data => {
-            setValues({ ...values, results: data, searched: true, message: `${data.length} blogs found` });
-        });
+        try {
+            const searchedData = await dyondoClient.getRetrieveBlogs({search});
+            setValues({ ...values, results: searchedData.data, searched: true, message: `${searchedData.data.length} blogs found` });
+        } catch(err) {
+            setValues({ ...values, searched: true, message: `Could not perform search` });
+        }
     }
 
-    function searchForm() {
+    const searchForm = () => {
         return (
-            <form onSubmit={searchSubmit} className="">
+            <form onSubmit={async (event) => await searchSubmit(event)} className="">
                 <div className="row ml-0 mr-0">
 
                     <div className="col-md-1"></div>
@@ -85,7 +86,7 @@ function Search(props) {
                             onChange={handleChange}
                         />
 
-                        <div className="input-group-append" onClick={searchSubmit}>
+                        <div className="input-group-append" onClick={async (event) => await searchSubmit(event)}>
                             <span className="input-group-text lime lighten-2" id="basic-text1" >
                                 <FontAwesomeIcon icon={faSearch} aria-hidden="true" />
                             </span>

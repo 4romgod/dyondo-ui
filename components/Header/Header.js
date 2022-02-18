@@ -21,11 +21,11 @@ const navLinkStyle = {
     alignItems: 'center'
 };
 
-function Header(props) {
+const Header = (props) => {
     const [isOpen, setIsOpen] = useState(false);
     const [topics, setTopics] = useState([]);
 
-    function toggle() {
+    const toggle = () => {
         setIsOpen(!isOpen);
     };
 
@@ -41,15 +41,13 @@ function Header(props) {
         fetchTopics();
     }, [props.closeNav]);
 
-
-    function handleSignout() {
-        signout(function () {
+    const handleSignout = () => {
+        signout(() => {
             Router.replace(`/signin`)
         });
     }
 
-
-    function showDashboard() {
+    const showDashboard = () =>{
         if (isAuth()) {
             if (isAuth().role === 0) {
                 return (
@@ -61,8 +59,7 @@ function Header(props) {
                         </Link>
                     </NavItem>
                 )
-            }
-            else if (isAuth().role === 1) {
+            } else if (isAuth().role === 1) {
                 return (
                     <NavItem style={{ padding: '0', margin: '0 13px' }} onClick={() => setIsOpen(false)}>
                         <Link href="/admin">
@@ -74,12 +71,10 @@ function Header(props) {
                 )
             }
         }
-
         return;
     }
 
-
-    function showSigninAndUp() {
+    const showSigninAndUp = () => {
         return (
             !isAuth() && <React.Fragment >
                 <NavItem style={{ padding: '0', margin: '0 11px' }} onClick={() => setIsOpen(false)}>
@@ -102,8 +97,7 @@ function Header(props) {
         )
     }
 
-
-    function showWriteBlog() {
+    const showWriteBlog = () => {
         if (isAuth()) {
             if (isAuth().role === 0) {
                 return (
@@ -117,8 +111,7 @@ function Header(props) {
                         </a>
                     </NavItem>
                 )
-            }
-            else if (isAuth().role === 1) {
+            } else if (isAuth().role === 1) {
                 return (
                     <NavItem style={{ padding: '0', margin: '0 11px' }}>
                         <a href={`/admin/crud/blog`}
@@ -131,9 +124,7 @@ function Header(props) {
                     </NavItem>
                 )
             }
-
-        }
-        else {
+        } else {
             return (
                 <NavItem style={{ padding: '0', margin: '0 11px' }}>
                     <a href={`/signup`}
@@ -146,7 +137,6 @@ function Header(props) {
                 </NavItem>
             )
         }
-
     }
 
     return (
@@ -166,8 +156,6 @@ function Header(props) {
 
                     <Nav className="ml-auto" navbar>
                         <React.Fragment>
-
-                            {/* write blog on phone screen size */}
                             <React.Fragment>
                                 <div id="write-blog-phone" onClick={() => setIsOpen(false)}>
                                     {isAuth() &&
@@ -190,7 +178,6 @@ function Header(props) {
                                     }
                                 </div>
                             </React.Fragment>
-
 
                             <NavItem style={{ padding: '0', margin: '0 11px' }} onClick={() => setIsOpen(false)}>
                                 <Link href="/blogs">
@@ -249,7 +236,6 @@ function Header(props) {
 
                             {showSigninAndUp()}
 
-
                             {isAuth() && (
                                 <React.Fragment>
                                     <NavItem style={{ padding: '0', margin: '0 11px' }} onClick={() => setIsOpen(false)}>
@@ -262,9 +248,7 @@ function Header(props) {
                                     </NavItem>
                                 </React.Fragment>
                             )}
-
                             {showWriteBlog()}
-
                         </React.Fragment>
                     </Nav>
                 </Collapse>
@@ -272,7 +256,6 @@ function Header(props) {
 
         </React.Fragment>
     );
-
 }
 
 export default Header;

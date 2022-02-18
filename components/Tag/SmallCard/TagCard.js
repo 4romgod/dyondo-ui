@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-function SmallCard({ tag }) {
+const SmallCard = ({ tag }) => {
 
     return (
         <Link href={`/tags/[slug]`} as={`/tags/${tag.slug}`}>

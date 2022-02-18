@@ -1,14 +1,13 @@
 import Link from 'next/link';
-import renderHTML from 'react-render-html';
-import moment from 'moment';
 import Author from "../../Author/Author";
 import { API } from "../../../config";
 import cardStyle from "./cardStyle.js";
+import renderHTML from 'react-render-html';
 
-function Card({ blog }) {
+const Card = ({ blog }) => {
     
-    function showBlogTags() {
-        function showTag(tag, index) {
+    const showBlogTags = () => {
+        const showTag = (tag, index) => {
             return (
                 <Link key={index} href={`/tags/[slug]`} as={`/tags/${tag.slug}`}>
                     <a className="btn btn-outline-info btn-sm ml-1 mr-1 mt-3">#{tag.name}</a>
@@ -51,9 +50,9 @@ function Card({ blog }) {
                         <Author blog={blog} />
                     </section>
 
-                    {/* <section className="width-overflow container-excerpt">
+                    <section className="width-overflow container-excerpt">
                         {renderHTML(blog.excerpt)}
-                    </section> */}
+                    </section>
 
                     <div id="container-cat-tag">
                         {showBlogTags()}

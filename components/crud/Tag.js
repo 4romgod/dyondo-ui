@@ -7,7 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Checkbox from "../Checkbox/Checkbox";
 import { dyondoClient } from "../../helpers/utils";
 
-function Tag() {
+const Tag = () => {
     const [values, setValues] = useState({
         name: '',
         photo: '',
@@ -35,8 +35,8 @@ function Tag() {
         initTopics();
     }, [reload]);
 
-    function loadTags() {
-        getTags().then(function (data) {
+    const loadTags = () => {
+        getTags().then((data) => {
             if (data.error) {
                 console.log(data.error);
             }
@@ -46,7 +46,7 @@ function Tag() {
         });
     }
 
-    function initTopics() {
+    const initTopics = () => {
         dyondoClient.getRetrieveTopics()
             .then((response) => {
                 if (response.error) {
@@ -57,8 +57,8 @@ function Tag() {
             });
     }
 
-    function showTopics() {
-        function createLi(topic, index) {
+    const showTopics = () => {
+        const createLi = (topic, index) => {
             return (
                 <li key={index} className="list-unstyled">
                     <Checkbox
@@ -72,8 +72,8 @@ function Tag() {
         return (topics && topics.map(createLi));
     }
 
-    function showTags() {
-        return tags.map(function (tag, index) {
+    const showTags = () => {
+        return tags.map((tag, index) => {
             return (
                 <button
                     key={index}
@@ -86,7 +86,7 @@ function Tag() {
         });
     }
 
-    function deleteConfirm(slug) {
+    const deleteConfirm = (slug) => {
         console.log("You want to delete?");
         let answer = window.confirm("Are you sure you want to delete this tag?");
         console.log("Yes i want to delete");
@@ -98,17 +98,16 @@ function Tag() {
         }
     }
 
-    function deleteTag(slug) {
+    const deleteTag = (slug) => {
         console.log(`Calling API for DeleteTag ${slug}`);
-        removeTag(slug, token).then(function (data) {
+        removeTag(slug, token).then((data) => {
             console.log("API response: ");
             console.log(data);
 
             if (data.error) {
                 toast.dismiss();
                 toast.error("Something went wrong while deleting!");
-            }
-            else {
+            } else {
                 toast.dismiss();
                 toast.success(`${slug} successfully deleted!`);
                 setValues({ ...values, success: false, name: '' });
@@ -117,7 +116,7 @@ function Tag() {
         });
     }
 
-    function handleChange(name) {
+    const handleChange = (name) => {
         return (event) => {
             let value;
             if (name === 'photo') {
@@ -126,53 +125,59 @@ function Tag() {
                 if (fileSize > 1) {
                     toast.dismiss();
                     toast.error("Image size should be less than 1MB");
-                }
-                else {
+                } else {
                     setValues({ ...values, photoName: value ? value.name : '', [name]: value });
                     setResults({ ...results, error: false, success: false, removed: '' });
                 }
-            }
-            else {
+            } else {
                 value = event.target.value;
-
                 setValues({ ...values, [name]: event.target.value });
                 setResults({ ...results, error: false, success: false, removed: '' });
             }
         }
     }
 
-    function handleToggleTopic(topicId) {
+    const handleToggleTopic = (topicId) => {
         return () => {
             setResults({ ...results, error: "" });
 
             const clickedTopic = checkedTopics.indexOf(topicId);
-
-            const all = [...checkedTopics];
+            const currChecked = [...checkedTopics];
             if (clickedTopic === -1) {
-                all.push(topicId);
+                currChecked.push(topicId);
+            } else {
+                currChecked.splice(clickedTopic, 1);
             }
-            else {
-                all.splice(clickedTopic, 1);
-            }
-
-            setCheckedTopic(all);
+            setCheckedTopic(currChecked);
         }
     }
 
-    function findOutCheckedTopic(topic) {
+    const findOutCheckedTopic = (topic) => {
         const result = checkedTopics.indexOf(topic);
         if (result !== -1) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
 
-    function clickSubmit(event) {
+    const clickSubmit = async (event) => {
         event.preventDefault();
 
-        console.log("submitting data");
+        // try {
+        //     await dyondoClient.postCreateTag({body: { name, topics: checkedTopics }});
+
+        //     toast.dismiss();
+        //     toast.success(`${name} successfully created!`);
+
+        //     setValues({ ...values, name: "", photo: '', photoName: '', tags });
+        //     setResults({ ...results, error: false, success: true, removed: false, reload: !reload });
+        //     setCheckedTopic([]);
+        // } catch(err) {
+        //     toast.dismiss();
+        //     toast.error(err);
+        //     setResults({ ...results, error: err, success: false });
+        // }
 
         create({ name, topics: checkedTopics }, token).then(function (data) {
             if (data.error) {
@@ -197,9 +202,9 @@ function Tag() {
         setResults({ ...results, error: false, success: false, removed: '' });
     };
 
-    function newTagForm() {
+    const newTagForm = () => {
         return (
-            <form onSubmit={clickSubmit}>
+            <form onSubmit={async (event) => clickSubmit(event)}>
                 <div>
                     <small className="text-muted">Max size: 1MB</small><br />
                     <label className="btn btn-outline-info">
@@ -217,7 +222,6 @@ function Tag() {
                 <div>
                     <button type="submit" className="btn btn-primary btn-block mb-4">Create Tag</button>
                 </div>
-
             </form>
         )
     };
