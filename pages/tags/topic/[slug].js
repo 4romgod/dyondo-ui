@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 import Layout from "../../../components/Layout";
 import { getTagsByField } from "../../../actions/tag";
-import { API, DOMAIN, APP_NAME, FB_APP_ID } from '../../../config';
 import HeadTags from "../../../components/HeadTags/HeadTags";
 import TagCard from "../../../components/Tag/SmallCard/TagCard";
 import Search from "../../../components/blog/Search";
 
-function Tags({ tags, topic, query }) {
+const Tags = ({ tags, topic, query }) => {
     const [isClicked, setIsClicked] = useState(false);
 
-    function handleClick() {
+    const handleClick = () => {
         setIsClicked(true);
         setTimeout(() => setIsClicked(false), 0);
     }
@@ -40,7 +39,6 @@ function Tags({ tags, topic, query }) {
                                 <Search closeSearch={isClicked} />
                             </div>
 
-                            {/* blogs to match tag */}
                             <div className="pt-4">
                                 <div className="row ml-0 mr-0">
                                     {tags.map((tag, index) => {
@@ -52,7 +50,6 @@ function Tags({ tags, topic, query }) {
                                     })}
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -65,8 +62,7 @@ Tags.getInitialProps = ({ query }) => {
     return getTagsByField(query.slug).then(data => {
         if (data.error) {
             console.log(data.error);
-        }
-        else {
+        } else {
             return { tags: data, topic: query.slug };
         }
     });

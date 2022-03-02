@@ -1,8 +1,7 @@
-import Link from 'next/link';
-import { useState, useEffect } from 'react';
-import { listSearch } from '../../actions/blog'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import Link from "next/link";
+import { useState, useEffect } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { dyondoClient } from "../../helpers/utils";
 
 const Search = (props) => {
@@ -10,7 +9,7 @@ const Search = (props) => {
         search: undefined,
         results: [],
         searched: false,
-        message: ''
+        message: ""
     });
 
     const { search, results, searched, message } = values;
@@ -24,23 +23,17 @@ const Search = (props) => {
     const searchedBlog = (results = []) => {
         return (
             <div className="row ml-0 mr-0">
-
                 <div className="col-md-1"></div>
-
                 <div className="col-md-10 pl-0 pr-0">
                     <div className="jumbotron bg-light pl-0 pr-0 pt-3 pb-0">
                         {message && <p className="text-muted font-italic text-center">{message}</p>}
-
                         {results.map((blog, index) => {
                             return (
                                 <div key={index}>
                                     <Link href={`/blogs/${blog.slug}`}>
-                                        <a
-                                            id="search-item"
+                                        <a  id="search-item"
                                             className="text-primary pl-4 pr-3 pt-2 pb-2"
-                                            style={{
-                                                display: 'block'
-                                            }}
+                                            style={{display: "block"}}
                                         >
                                             {blog.title}
                                         </a>
@@ -50,9 +43,7 @@ const Search = (props) => {
                         })}
                     </div>
                 </div>
-                
                 <div className="col-md-1"></div>
-
             </div>
         )
     }
@@ -63,7 +54,6 @@ const Search = (props) => {
 
     const searchSubmit = async (event) => {
         event.preventDefault();
-
         try {
             const searchedData = await dyondoClient.getRetrieveBlogs({search});
             setValues({ ...values, results: searchedData.data, searched: true, message: `${searchedData.data.length} blogs found` });
@@ -76,7 +66,6 @@ const Search = (props) => {
         return (
             <form onSubmit={async (event) => await searchSubmit(event)} className="">
                 <div className="row ml-0 mr-0">
-
                     <div className="col-md-1"></div>
                     <div className="col-md-10 input-group md-form form-sm form-2 pb-2 pl-0 pr-0 ">
                         <input
@@ -91,10 +80,8 @@ const Search = (props) => {
                                 <FontAwesomeIcon icon={faSearch} aria-hidden="true" />
                             </span>
                         </div>
-
                     </div>
                     <div className="col-md-1"></div>
-
                 </div>
             </form>
         )
@@ -103,13 +90,10 @@ const Search = (props) => {
     return (
         <div className="container-fluid">
             <div className="row">
-
                 <div className="col-md-12 pl-0 pr-0">{searchForm()}</div>
-
                 <div className="col-md-12">
                     {searched && <div>{searchedBlog(results)}</div>}
                 </div>
-
             </div>
         </div>
     )

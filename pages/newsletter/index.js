@@ -1,39 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { newsletter } from "../../actions/contact";
-import Head from 'next/head';
-import Router from 'next/router';
-import { DOMAIN, APP_NAME, FB_APP_ID } from '../../config';
+import Head from "next/head";
+import Router from "next/router";
+import { DOMAIN, APP_NAME, FB_APP_ID } from "../../config";
 import newsletterStyle from "../../STYLES/newsletterStyle";
-import Layout from '../../components/Layout';
-import 'react-toastify/dist/ReactToastify.css';
-import { toast, ToastContainer } from 'react-toastify';
+import Layout from "../../components/Layout";
+import "react-toastify/dist/ReactToastify.css";
+import { toast, ToastContainer } from "react-toastify";
+
 toast.configure();
 
-function Newsletter() {
+const Newsletter = () => {
     const [values, setValues] = useState({
-        fullname: '',
-        email: '',
-        success: '',
-        error: '',
-        loading: ''
+        fullname: "",
+        email: "",
+        success: "",
+        error: "",
+        loading: ""
     });
 
-    const { fullname, email, success, error, loading } = values;
+    const { fullname, email } = values;
 
-    function head() {
+    const head = () => {
         return <Head>
             <title>Newletter | {APP_NAME}</title>
             <meta name="description" content={`Signup for our newsletter | ${APP_NAME}`} />
             <link rel="canonical" />
             <meta property="og:title" content={`Newsletter | ${APP_NAME}`} />
-            <meta
-                property="og:description"
-                content="Newsletter" />
-
+            <meta property="og:description" content="Newsletter" />
             <meta property="og:type" content="website" />
             <meta property="og:url" content={`${DOMAIN}/newsletter`} />
             <meta property="og:site_name" content={`${APP_NAME}`} />
-
             <meta property="og:image" content={`/images/logo.png`} />
             <meta property="og:image:secure_url" content={`/images/logo.png`} />
             <meta property="og:image:type" content="image/jpg" />
@@ -41,16 +38,16 @@ function Newsletter() {
         </Head>
     }
 
-    function handleChange(name) {
+    const handleChange = (name) => {
         return (event) => {
             setValues({ ...values, [name]: event.target.value });
         }
     }
 
-    function handleSubmit(event) {
+    const handleSubmit = (event) => {
         event.preventDefault();
-
-        { toast.dismiss() }
+        
+        {toast.dismiss()}
 
         setValues({ ...values, loading: true, success: false, error: false });
 
@@ -86,7 +83,6 @@ function Newsletter() {
                 </style>
 
                 <div className="newsletter-page">
-
                     <div className="container-newsletter animate__animated animate__fadeIn">
                         <div className="container-header text-center">
                             <h4 style={{ color: 'rgb(77,77,77)', fontWeight: 'bold' }}>{`${APP_NAME}`} Newsletter</h4>

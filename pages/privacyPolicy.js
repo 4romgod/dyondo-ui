@@ -1,16 +1,12 @@
 import Layout from "../components/Layout";
 
-function PrivacyPolicy() {
-
+const PrivacyPolicy = () => {
     return (
         <React.Fragment>
             <Layout>
                 <div className="bg-white pt-5 pb-5">
-
                     <div className="privacy-policy-page mb-5">
-
                         <h2 style={{ textAlign: "center" }}><b>PRIVACY POLICY</b></h2>
-                        {/* <p>Effective date: 2020-06-30</p> */}
                         <div className="pt-3">
                             <h4>1. Introduction</h4>
                             <p>Welcome to <b> Dyondo</b>.</p>
@@ -196,7 +192,6 @@ function PrivacyPolicy() {
                             <p style={{ marginTop: "5em", fontSize: "0.7em" }}>This <a href="https://policymaker.io/privacy-policy/">Privacy Policy</a> was created for <b>Dyondo.com</b> by <a href="https://policymaker.io">PolicyMaker.io</a> on 2020-06-30.</p>
                         </div>
                     </div>
-
                 </div>
             </Layout>
         </React.Fragment>

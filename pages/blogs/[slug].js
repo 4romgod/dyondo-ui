@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import Layout from "../../components/Layout";
 import { singleBlog, listRelated } from "../../actions/blog";
-import { API, DOMAIN } from '../../config';
-import renderHTML from 'react-render-html';
+import { API, DOMAIN } from "../../config";
+import renderHTML from "react-render-html";
 import SmallCard from "../../components/blog/SmallCard/SmallCard";
 import Author from "../../components/Author/Author";
 import DisqusThread from "../../components/DisqusThread";
 import HeadTags from "../../components/HeadTags/HeadTags";
 import "highlight.js/styles/an-old-hope.css";
-import { FacebookIcon, TwitterIcon, FacebookShareButton, TwitterShareButton } from 'react-share';
+import { FacebookIcon, TwitterIcon, FacebookShareButton, TwitterShareButton } from "react-share";
 import blogStyle from "../../STYLES/blogStyle";
 import { dyondoClient } from "../../helpers/utils";
 
@@ -29,7 +29,6 @@ const SingleBlog = ({ blog, query }) => {
     useEffect(() => {
         loadRelated();
     }, []);
-
 
     const showBlogTags = (blog) => {
         const showTag = (tag, index) => {
@@ -79,24 +78,18 @@ const SingleBlog = ({ blog, query }) => {
 
             <div className="bg-white animate__animated animate__fadeIn">
                 <article>
-
                     <div className="row ml-0 mr-0 mb-4">
                         <div className="col-md-2"></div>
-
                         <div className="col-md-8 pl-0 pr-0 mt-3">
                             <div className="bg-white pb-3 pl-3 pr-3">
-
                                 <div style={{ width: '100%', overflow: 'auto' }}>
                                     <h1 className="pb-3 pt-3">
                                         {blog.title}
                                     </h1>
                                 </div>
-
                                 <Author blog={blog} />
-
                             </div>
                         </div>
-
                         <div className="col-md-2"></div>
                     </div>
 
@@ -104,9 +97,7 @@ const SingleBlog = ({ blog, query }) => {
                         <div className="col-md-1"></div>
                         <div className="col-md-10 pl-0 pr-0">
                             <p className="blog-featured-img"
-                                style={{
-                                    backgroundImage: `url(${API}/blog/photo/${blog.slug})`
-                                }}
+                                style={{backgroundImage: `url(${API}/blog/photo/${blog.slug})`}}
                             />
                         </div>
                         <div className="col-md-1"></div>
@@ -114,9 +105,7 @@ const SingleBlog = ({ blog, query }) => {
 
                     <div className="row ml-0 mr-0">
                         <div className="col-md-2"></div>
-
                         <div className="col-md-8 pl-0 pr-0">
-
                             <div className=" bg-white mt-5 pt-3 pb-3 pl-3 pr-3">
                                 <div className="lead" id="blog-body" style={{ width: '100%', overflow: 'auto' }}>
                                     {renderHTML(blog.body)}
@@ -144,11 +133,8 @@ const SingleBlog = ({ blog, query }) => {
                                     <TwitterIcon size={32} />
                                 </TwitterShareButton>
                             </div>
-
                             <hr />
-
                         </div>
-
                         <div className="col-md-2"></div>
                     </div>
 

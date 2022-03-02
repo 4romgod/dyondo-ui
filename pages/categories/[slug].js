@@ -2,24 +2,19 @@ import Head from 'next/head';
 import Layout from "../../components/Layout";
 import { singleCategory } from "../../actions/category";
 import SmallCard from "../../components/blog/SmallCard/SmallCard";
-import { API, DOMAIN, APP_NAME, FB_APP_ID } from '../../config';
+import { DOMAIN, APP_NAME, FB_APP_ID } from '../../config';
 
-function Category({ category, blogs, query }) {
-
-    function head() {
+const Category = ({ category, blogs, query }) => {
+    const head = () => {
         return <Head>
             <title>{category.name} | {APP_NAME}</title>
             <meta name="description" content={`Best programming blogs and tutorials on ${category.name}`} />
             <link rel="canonical" href={`${DOMAIN}/categories/${query.slug}`} />
             <meta property="og:title" content={`${category.name} | ${APP_NAME}`} />
-            <meta
-                property="og:description"
-                content={`Best programming blogs and tutorials on ${category.name}`} />
-
+            <meta property="og:description" content={`Best programming blogs and tutorials on ${category.name}`} />
             <meta property="og:type" content="website" />
             <meta property="og:url" content={`${DOMAIN}/tags/${query.slug}`} />
             <meta property="og:site_name" content={`${APP_NAME}`} />
-
             <meta property="og:image" content={`${DOMAIN}/images/smile.jpg`} />
             <meta property="og:image:secure_url" content={`${DOMAIN}/images/smile.jpg`} />
             <meta property="og:image:type" content="image/jpg" />
@@ -34,7 +29,6 @@ function Category({ category, blogs, query }) {
                 <div>
                     <div className="bg-white">
                         <div className="container pt-3">
-
                             <header>
                                 <div className="col-md-12 pb-5 text-center">
                                     <div className="card border-0 bg-white pt-3 pb-3 pl-5 pr-5">
@@ -42,7 +36,6 @@ function Category({ category, blogs, query }) {
                                     </div>
                                 </div>
                             </header>
-
                             <div className="row ml-0 mr-0">
                                 {blogs.map((blog, index) => {
                                     return (
@@ -52,7 +45,6 @@ function Category({ category, blogs, query }) {
                                     )
                                 })}
                             </div>
-
                         </div>
                     </div>
                 </div>
