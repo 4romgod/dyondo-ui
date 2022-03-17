@@ -12,7 +12,7 @@ function SmallCard({ blog }) {
                         <a>
                             <p
                                 style={{
-                                    backgroundImage: `url(${API}/blog/photo/${blog.slug})`,
+                                    backgroundImage: `url(${API}/blogs/photo/${blog.slug})`,
                                     backgroundPosition: 'center',
                                     backgroundSize: '100% 100%',
                                     backgroundRepeat: 'no-repeat',

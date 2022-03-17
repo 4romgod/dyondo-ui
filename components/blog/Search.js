@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faSdCard } from "@fortawesome/free-solid-svg-icons";
 import { dyondoClient } from "../../helpers/utils";
 
 const Search = (props) => {
@@ -31,9 +31,9 @@ const Search = (props) => {
                             return (
                                 <div key={index}>
                                     <Link href={`/blogs/${blog.slug}`}>
-                                        <a  id="search-item"
+                                        <a id="search-item"
                                             className="text-primary pl-4 pr-3 pt-2 pb-2"
-                                            style={{display: "block"}}
+                                            style={{ display: "block" }}
                                         >
                                             {blog.title}
                                         </a>
@@ -55,9 +55,9 @@ const Search = (props) => {
     const searchSubmit = async (event) => {
         event.preventDefault();
         try {
-            const searchedData = await dyondoClient.getRetrieveBlogs({search});
+            const searchedData = await dyondoClient.getRetrieveBlogs({ search });
             setValues({ ...values, results: searchedData.data, searched: true, message: `${searchedData.data.length} blogs found` });
-        } catch(err) {
+        } catch (err) {
             setValues({ ...values, searched: true, message: `Could not perform search` });
         }
     }
@@ -74,10 +74,9 @@ const Search = (props) => {
                             placeholder="Search blogs"
                             onChange={handleChange}
                         />
-
                         <div className="input-group-append" onClick={async (event) => await searchSubmit(event)}>
                             <span className="input-group-text lime lighten-2" id="basic-text1" >
-                                <FontAwesomeIcon icon={faSearch} aria-hidden="true" />
+                                {/* <FontAwesomeIcon aria-hidden="true" />                                 */}
                             </span>
                         </div>
                     </div>

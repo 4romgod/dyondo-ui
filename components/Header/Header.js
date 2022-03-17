@@ -4,14 +4,23 @@ import Link from "next/link";
 import Router from "next/router";
 import Nprogress from "nprogress";
 import { signout, isAuth } from "../../actions/auth";
-import { Collapse, Navbar, NavbarToggler, Nav, NavItem, NavLink, 
-    UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import { dyondoClient } from "../../helpers/utils";
-import "../.././node_modules/nprogress/nprogress.css";
+import {
+    Collapse,
+    Navbar,
+    NavbarToggler,
+    Nav,
+    NavItem,
+    NavLink,
+    UncontrolledDropdown,
+    DropdownToggle,
+    DropdownMenu,
+    DropdownItem
+} from 'reactstrap';
 
-Router.onRouteChangeStart = function (url) { Nprogress.start() }
-Router.onRouteChangeComplete = function (url) { Nprogress.done() }
-Router.onRouteChangeError = function (url) { Nprogress.done() }
+Router.onRouteChangeStart = (url) => { Nprogress.start() }
+Router.onRouteChangeComplete = (url) => { Nprogress.done() }
+Router.onRouteChangeError = (url) => { Nprogress.done() }
 
 const navLinkStyle = {
     cursor: 'pointer',
@@ -30,12 +39,10 @@ const Header = (props) => {
     };
 
     useEffect(() => {
-        if (isOpen) {
-            setIsOpen(props.closeNav);
-        }
+        isOpen && setIsOpen(props.closeNav);
 
         const fetchTopics = async () => {
-            let someTopics = await dyondoClient.getRetrieveTopics();
+            const someTopics = await dyondoClient.getRetrieveTopics();
             setTopics(someTopics.data);
         }
         fetchTopics();
@@ -47,7 +54,7 @@ const Header = (props) => {
         });
     }
 
-    const showDashboard = () =>{
+    const showDashboard = () => {
         if (isAuth()) {
             if (isAuth().role === 0) {
                 return (
@@ -81,7 +88,7 @@ const Header = (props) => {
                     <Link href="/signin">
                         <NavLink style={navLinkStyle}>
                             Sign in
-                    </NavLink>
+                        </NavLink>
                     </Link>
                 </NavItem>
 
@@ -89,12 +96,12 @@ const Header = (props) => {
                     <Link href="/signup">
                         <NavLink style={navLinkStyle}>
                             Sign up
-                    </NavLink>
+                        </NavLink>
                     </Link>
                 </NavItem>
 
             </React.Fragment>
-        )
+        );
     }
 
     const showWriteBlog = () => {
@@ -137,6 +144,7 @@ const Header = (props) => {
                 </NavItem>
             )
         }
+        return;
     }
 
     return (
@@ -165,7 +173,7 @@ const Header = (props) => {
                                                 style={navLinkStyle}
                                             >
                                                 Write a blog
-                                        </a>
+                                            </a>
                                         </NavItem>
                                         :
                                         <NavItem style={{ padding: '0', margin: '0 11px' }}>
@@ -173,7 +181,7 @@ const Header = (props) => {
                                                 style={navLinkStyle}
                                             >
                                                 Write a blog
-                                        </a>
+                                            </a>
                                         </NavItem>
                                     }
                                 </div>

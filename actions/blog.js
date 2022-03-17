@@ -6,10 +6,10 @@ import queryString from 'querystring';
 export function createBlog(blog, token) {
     let endpoint;
     if (isAuth() && isAuth().role === 1) {
-        endpoint = `${API}/blog`;
+        endpoint = `${API}/blogs`;
     }
     else if (isAuth() && isAuth().role === 0) {
-        endpoint = `${API}/user/blog`;
+        endpoint = `${API}/user/blogs`;
     }
 
     return fetch(`${endpoint}`,
@@ -29,7 +29,7 @@ export function createBlog(blog, token) {
 };
 
 export function singleBlog(slug) {
-    return fetch(`${API}/blog/${slug}`, {
+    return fetch(`${API}/blogs/${slug}`, {
         method: 'GET'
     }).then(response => {
         console.log(response)
@@ -82,9 +82,9 @@ export function listRelated(blog) {
 export function removeBlog(slug, token) {
     let endpoint;
     if (isAuth() && isAuth().role === 1) {
-        endpoint = `${API}/blog/${slug}`;
+        endpoint = `${API}/blogs/${slug}`;
     } else if (isAuth() && isAuth().role === 0) {
-        endpoint = `${API}/user/blog/${slug}`;
+        endpoint = `${API}/user/blogs/${slug}`;
     }
 
     return fetch(`${endpoint}`, {
@@ -103,9 +103,9 @@ export function removeBlog(slug, token) {
 export function updateBlog(blog, token, slug) {
     let endpoint;
     if (isAuth() && isAuth().role === 1) {
-        endpoint = `${API}/blog/${slug}`;
+        endpoint = `${API}/blogs/${slug}`;
     } else if (isAuth() && isAuth().role === 0) {
-        endpoint = `${API}/user/blog/${slug}`;
+        endpoint = `${API}/user/blogs/${slug}`;
     }
 
     return fetch(`${endpoint}`, {

@@ -1,39 +1,26 @@
-import Link from "next/link"
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Router from "next/router";
 import dynamic from "next/dynamic";
 import { withRouter } from 'next/router';
-import { getCookie, isAuth } from "../../actions/auth";
-import { getTags } from "../../actions/tag";
-import { singleBlog, updateBlog } from "../../actions/blog";
+import { getCookie } from "../../actions/auth";
+import { updateBlog } from "../../actions/blog";
 import { QuillFormats, QuillModules } from '../../helpers/quill';
-
-const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
-import '../../node_modules/react-quill/dist/quill.snow.css';
-
 import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
-
 import FullPageLoader from "../Loader/FullPageLoader";
 import Checkbox from "../Checkbox/Checkbox";
-
 import quillStyle from "../../STYLES/quillStyle";
+import { dyondoClient } from "../../helpers/utils";
+const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
-
-function BlogUpdate({ router }) {
-
-    // holds the list of and tags
+const BlogUpdate = ({ router }) => {
     const [tags, setTags] = useState([]);
-
-    // holds the list of checked tags
     const [checkedTag, setCheckedTag] = useState([]);
-
-    const [body, setBody] = useState('');
+    const [body, setBody] = useState("");
 
     const [values, setValues] = useState({
         title: "",
-        body: '',
-        photoName: '',
+        body: "",
+        photoName: "",
         formData: ""
     });
 
@@ -48,76 +35,60 @@ function BlogUpdate({ router }) {
 
     const token = getCookie('token');
 
-
     useEffect(() => {
-        setValues({ ...values, formData: new FormData() })
+        setValues({ ...values, formData: new FormData() });
         initBlog();
         initTags();
     }, [router]);
 
-    // sets all the tags that were checked before
-    function setOldCheckedTag(oldTags) {
-        let tagList = [];
-        oldTags.map((tag, index) => {
+    const initBlog = async () => {
+        if (router.query.slug) {
+            setResults({ ...results, loading: true });
+
+            try {
+                const response = await dyondoClient.getRetrieveBlog({ slug: router.query.slug });
+                setResults({ ...results, loading: false });
+                setValues({ ...values, title: response.data.title });
+                setBody(response.data.body);
+                setOldCheckedTag(response.data.tags);
+            } catch (error) {
+                setResults({ ...results, error: error.message, loading: false });
+                toast.dismiss();
+                toast.error("Something went wrong. Try again later");
+            }
+        }
+    }
+
+    const setOldCheckedTag = (oldTags) => {
+        const tagList = [];
+        oldTags.map((tag) => {
             tagList.push(tag._id);
         });
         setCheckedTag(tagList);
     }
 
-
-    // initialize fields with content from old blog
-    function initBlog() {
-        if (router.query.slug) {
-            setResults({ ...results, loading: true });
-
-            // get the old blog
-            singleBlog(router.query.slug).then((data) => {
-                if (data.error) {
-                    setResults({ ...results, error: data.error, loading: false });
-
-                    toast.dismiss();
-                    toast.error(error);
-                }
-                else {
-                    setResults({ ...results, loading: false });
-                    setValues({ ...values, title: data.title });
-
-                    setBody(data.body);
-                    setOldCheckedTag(data.tags);
-                }
-
-            });
+    const initTags = async () => {
+        try {
+            const response = await dyondoClient.getRetrieveTags({});
+            setTags(response.data);
+        } catch (error) {
+            setResults({ ...results, error: error.message });
+            toast.dismiss();
+            toast.error("Something went wrong");
         }
     }
 
-
-    function initTags() {
-        getTags().then((data) => {
-            if (data.error) {
-                setResults({ ...results, error: data.error });
-                toast.dismiss();
-                toast.error(error);
-            }
-            else {
-                setTags(data);
-            }
-        })
-    }
-
-
-    function findOutCheckedTag(tag) {
+    const findOutCheckedTag = (tag) => {
         const result = checkedTag.indexOf(tag);
         if (result !== -1) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
 
-
-    function showTags() {
-        function createLi(tag, index) {
+    const showTags = () => {
+        const createLi = (tag, index) => {
             return (
                 <li key={index} className="list-unstyled">
                     <Checkbox
@@ -131,65 +102,53 @@ function BlogUpdate({ router }) {
         return (tags && tags.map(createLi));
     }
 
-
-    function handleToggleTag(tagId) {
+    const handleToggleTag = (tagId) => {
         return () => {
             setResults({ ...results, error: false });
-
-            const clickedTag = checkedTag.indexOf(tagId);  //return -1 if not in array, else index of array
-
+            const clickedTag = checkedTag.indexOf(tagId);
             const all = [...checkedTag];
             if (clickedTag === -1) {
                 all.push(tagId);
-            }
-            else {
+            } else {
                 all.splice(clickedTag, 1);
             }
 
-            //console.log(all);
             setCheckedTag(all);
             formData.set("tags", all)
         }
     }
 
-
-    function handleChange(name) {
+    const handleChange = (name) => {
         return (event) => {
             let value;
             if (name === 'photo') {
                 value = event.target.files[0];
-
                 const fileSize = value.size / 1024 / 1024;
 
                 if (fileSize > 1) {
                     toast.dismiss();
                     toast.error("Image size should be less than 1MB");
-                }
-                else {
+                } else {
                     formData.set(name, value);
-                    setResults({...results, error: false})
-                    setValues({ ...values, photoName: value ? value.name : '', [name]: value, formData});
+                    setResults({ ...results, error: false })
+                    setValues({ ...values, photoName: value ? value.name : '', [name]: value, formData });
                 }
-
-            }
-            else {
+            } else {
                 value = event.target.value;
                 formData.set(name, value);
 
-                setResults({...results, error: false, loading: false, success: false})
+                setResults({ ...results, error: false, loading: false, success: false })
                 setValues({ ...values, [name]: value, formData });
             }
         }
     }
 
-
-    function handleBody(event) {
+    const handleBody = (event) => {
         setBody(event);
         formData.set('body', event);
     }
 
-
-    function editBlog(event) {
+    const editBlog = async (event) => {
         event.preventDefault();
 
         if (checkedTag.length > 5) {
@@ -202,15 +161,11 @@ function BlogUpdate({ router }) {
 
         updateBlog(formData, token, router.query.slug)
             .then(data => {
-                //console.log(data);
-                //console.log(...formData);
-
                 if (data.error) {
                     toast.dismiss();
                     toast.error(data.error);
                     setResults({ ...results, error: data.error, loading: false });
-                }
-                else {
+                } else {
                     setResults({
                         ...results,
                         success: `Blog titled "${data.title}" is successfully updated`,
@@ -218,40 +173,34 @@ function BlogUpdate({ router }) {
                         error: false
                     });
 
-                    setValues({...values, title: ''})
-
+                    setValues({ ...values, title: '' })
                     Router.replace(`/blogs/[slug]`, `/blogs/${router.query.slug}`);
                 }
-
             });
     }
 
-
-    function updateBlogForm() {
+    const updateBlogForm = () => {
         return (
             <form onSubmit={editBlog}>
-
                 <div className="form-group">
                     <label className="text-muted">Title</label>
-                    <input type="text" className="form-control" value={title} onChange={handleChange("title")} />
+                    <input type="text" className="form-control" value={title || ''} onChange={handleChange("title")} />
                 </div>
 
                 <div className="form-group">
                     <ReactQuill
                         modules={QuillModules}
                         formats={QuillFormats}
-                        value={body}
+                        value={body || ''}
                         placeholder="Write blog content..."
                         onChange={handleBody}
                     />
                 </div>
 
-                {/* show publish button */}
                 <button type="submit" className="btn btn-success btn-lg" disabled={success || loading}>Update</button>
             </form>
         )
     }
-
 
     return (
         <React.Fragment>
@@ -267,31 +216,23 @@ function BlogUpdate({ router }) {
 
             <div className="container-fluid pb-5 animate__animated animate__fadeIn">
                 <div className="row">
-
-                    {/* show blog form */}
                     <div className="col-md-8">
                         {updateBlogForm()}
                     </div>
 
-                    {/* show upload image, tags */}
                     <div className="col-md-4 pt-4">
-
-                        {/* shows the featured image */}
                         <div className="form-group pb-2">
                             <h4>Featured Image</h4>
                             <hr />
-
                             <small className="text-muted ml-4">Max size: 1MB</small><br />
                             <label className="btn btn-outline-info ml-4">
                                 Upload featured image
-                            <input type="file" accept="image/*" onChange={handleChange('photo')} hidden />
+                                <input type="file" accept="image/*" onChange={handleChange('photo')} hidden />
                             </label>
                             <br />
                             <small className="text-muted ml-4">{photoName}</small>
-
                         </div>
 
-                        {/* shows the tags */}
                         <div>
                             <h4 className="mt-2">Tags</h4>
                             <hr />
@@ -300,12 +241,8 @@ function BlogUpdate({ router }) {
                                 {showTags()}
                             </ul>
                         </div>
-
                     </div>
-
-
                 </div>
-
             </div>
         </React.Fragment>
     )

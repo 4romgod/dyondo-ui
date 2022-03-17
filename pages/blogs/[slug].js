@@ -68,7 +68,7 @@ const SingleBlog = ({ blog, query }) => {
             ogTitle={blog.title}
             description={blog.mdesc}
             path={`/blogs/${query.slug}`}
-            pathImg={`/blog/photo/${blog.slug}`}
+            pathImg={`/blogs/photo/${blog.slug}`}
         />
         
         <Layout>
@@ -97,7 +97,7 @@ const SingleBlog = ({ blog, query }) => {
                         <div className="col-md-1"></div>
                         <div className="col-md-10 pl-0 pr-0">
                             <p className="blog-featured-img"
-                                style={{backgroundImage: `url(${API}/blog/photo/${blog.slug})`}}
+                                style={{backgroundImage: `url(${API}/blogs/photo/${blog.slug})`}}
                             />
                         </div>
                         <div className="col-md-1"></div>

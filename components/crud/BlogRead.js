@@ -1,16 +1,11 @@
 import React, { useState, useEffect } from "react";
-import Link from "next/link"
 import { getCookie, isAuth } from "../../actions/auth";
 import { list, removeBlog } from "../../actions/blog";
 import moment from "moment";
-
 import FullPageLoader from "../Loader/FullPageLoader";
-
 import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
 
-
-function BlogRead({ username }) {
+const BlogRead = ({ username }) => {
     const [blogs, setBlogs] = useState([]);
     const [message, setMessage] = useState('');
     const [loading, setLoading] = useState(false);

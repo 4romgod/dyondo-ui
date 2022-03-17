@@ -4,14 +4,13 @@ import { getTags } from "../../actions/tag";
 import Link from "next/link";
 import { withRouter } from "next/router";
 import moment from "moment";
-
 const baseURL = "https://hn.algolia.com/api/v1/search?query=";
 
 const News = ({ tags }) => {
     const [QUERY, setQuery] = useState("");
     const [URL, setUrl] = useState(`${baseURL}${QUERY}`);
     const [NEWS, setNews] = useState([]);
-    
+
     useEffect(() => { fetchNews() }, [URL]);
 
     const fetchNews = () => {
@@ -27,7 +26,6 @@ const News = ({ tags }) => {
             })
             .then(hits => {
                 setNews(hits);
-                console.log(hits);
             })
             .catch(err => console.log(err));
     }

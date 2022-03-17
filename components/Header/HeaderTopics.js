@@ -3,12 +3,12 @@ import Link from "next/link";
 import { NavLink } from 'reactstrap';
 import { dyondoClient } from "../../helpers/utils";
 
-function HeaderTopics() {
+const HeaderTopics = () => {
     const [topics, setTopics] = useState([]);
     
     useEffect(()=>{
         const fetchTopics = async () => {
-            let someTopics = await dyondoClient.getRetrieveTopics();
+            const someTopics = await dyondoClient.getRetrieveTopics();
             setTopics(someTopics.data);
         }
         fetchTopics();

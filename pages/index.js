@@ -26,7 +26,6 @@ const Index = () => {
             <meta property="og:image:secure_url" content={`/images/logo.png`} />
             <meta property="og:image:type" content="image/jpg" />
             <meta property="fb:app_id" content={`${FB_APP_ID}`} />
-            <link rel="stylesheet" href="/css/home.css" />
         </Head>
     }
 

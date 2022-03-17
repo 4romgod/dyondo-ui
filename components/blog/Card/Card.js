@@ -29,7 +29,7 @@ const Card = ({ blog }) => {
                         <a>
                             <p
                                 style={{
-                                    backgroundImage: `url(${API}/blog/photo/${blog.slug})`
+                                    backgroundImage: `url(${API}/blogs/photo/${blog.slug})`
                                 }}
                             >
                             </p>
