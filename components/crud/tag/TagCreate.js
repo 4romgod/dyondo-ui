@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { getCookie } from '../../actions/auth';
+import { getCookie } from '../../../actions/auth';
 import { withRouter } from 'next/router';
 import { ToastContainer, toast } from "react-toastify";
-import Checkbox from "../Checkbox/Checkbox";
-import { dyondoClient } from "../../helpers/utils";
+import FullPageLoader from "../../Loader/FullPageLoader";
+import Checkbox from "../../Checkbox/Checkbox";
+import { dyondoClient } from "../../../helpers/utils";
 
-const Tag = () => {
+const TagCreate = () => {
     const [values, setValues] = useState({
         name: '',
         photo: '',
@@ -13,13 +14,16 @@ const Tag = () => {
         tags: [],
     });
 
-    const [results, setResults] = useState({ reload: false });
+    const [results, setResults] = useState({
+        loading: false,
+        reload: false
+    });
 
     const [topics, setTopics] = useState([]);
     const [checkedTopics, setCheckedTopic] = useState([]);
 
     const { name, photoName, tags } = values;
-    const { reload } = results;
+    const { reload, loading } = results;
 
     const token = getCookie('token');
 
@@ -30,20 +34,24 @@ const Tag = () => {
 
     const initTags = async () => {
         try {
-        const result = await dyondoClient.getRetrieveTags();
-        setValues({ ...values, tags: result.data });
+            setResults({ ...results, loading: true })
+            const result = await dyondoClient.getRetrieveTags();
+            setValues({ ...values, tags: result.data });
+            setResults({ ...results, loading: false })
         } catch (error) {
             console.log(error);
             toast.dismiss();
-            toast.error("Something went wrong while loading Topics");
+            toast.error("Something went wrong while loading Tags");
         }
     }
 
     const initTopics = async () => {
         try {
+            setResults({...results, loading: true})
             const result = await dyondoClient.getRetrieveTopics();
             setTopics(result.data);
-        } catch(error) {
+            setResults({...results, loading: false})
+        } catch (error) {
             console.log(error);
             toast.dismiss();
             toast.error("Something went wrong while loading Topics");
@@ -83,12 +91,13 @@ const Tag = () => {
         let answer = window.confirm("Are you sure you want to delete this tag?");
         if (answer) {
             try {
-                await dyondoClient.deleteRemoveTag({slug}, {headers: {Authorization: `Bearer ${token}`}});
+                setResults({...results, loading: true})
+                await dyondoClient.deleteRemoveTag({ slug }, { headers: { Authorization: `Bearer ${token}` } });
                 toast.dismiss();
                 toast.success(`${slug} successfully deleted!`);
                 setValues({ ...values, success: false, name: '' });
-                setResults({ ...results, error: false, removed: true, reload: !reload })
-            } catch(error) {
+                setResults({ ...results, error: false, loading: false, reload: !reload })
+            } catch (error) {
                 console.log(error)
                 toast.dismiss();
                 toast.error("Something went wrong while deleting Tag");
@@ -120,7 +129,6 @@ const Tag = () => {
     const handleToggleTopic = (topicId) => {
         return () => {
             setResults({ ...results, error: "" });
-
             const clickedTopic = checkedTopics.indexOf(topicId);
             const currChecked = [...checkedTopics];
             if (clickedTopic === -1) {
@@ -145,13 +153,14 @@ const Tag = () => {
         event.preventDefault();
 
         try {
-            await dyondoClient.postCreateTag({body: { name, topics: checkedTopics }}, {headers: {Authorization: `Bearer ${token}`}});
+            setResults({...results, loading: true})
+            await dyondoClient.postCreateTag({ body: { name, topics: checkedTopics } }, { headers: { Authorization: `Bearer ${token}` } });
             toast.dismiss();
             toast.success(`${name} successfully created!`);
             setValues({ ...values, name: "", photo: '', photoName: '', tags });
-            setResults({ ...results, error: false, success: true, removed: false, reload: !reload });
+            setResults({ ...results, error: false, success: true, loading: false, reload: !reload });
             setCheckedTopic([]);
-        } catch(error) {
+        } catch (error) {
             console.log(error)
             toast.dismiss();
             toast.error("Something went wrong while creating Tag, Try Again");
@@ -190,6 +199,11 @@ const Tag = () => {
     return (
         <React.Fragment>
             <ToastContainer />
+
+            <div>
+                {loading && <FullPageLoader />}
+            </div>
+
             <div className="row ml-0 mr-0">
                 <div className="col-md-12 text-center">
                     {showTags()}
@@ -215,4 +229,4 @@ const Tag = () => {
         </React.Fragment>)
 }
 
-export default withRouter(Tag);
+export default withRouter(TagCreate);
