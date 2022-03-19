@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { withRouter } from "next/router";
 import Layout from "../../components/Layout";
-import { listBlogCatTag } from "../../actions/blog";
+import { listBlogsAndTags } from "../../actions/blog";
 import Card from "../../components/blog/Card/Card";
 import HeadTags from "../../components/HeadTags/HeadTags";
 import Search from "../../components/blog/Search";
@@ -48,7 +48,7 @@ const Blogs = ({ blogs, tags, totalBlogs, blogsLimit, router }) => {
 
     const loadMore = () => {
         const toSkip = skip + limit;  //skip already loaded blogs
-        listBlogCatTag(toSkip, limit).then(data => {
+        listBlogsAndTags(toSkip, limit).then(data => {
             if (data.error) {
                 console.log(data.error);
             } else {
@@ -155,13 +155,12 @@ Blogs.getInitialProps = () => {
     const skip = 0;
     const limit = 4;
 
-    return listBlogCatTag(skip, limit).then(data => {
+    return listBlogsAndTags(skip, limit).then(data => {
         if (data.error) {
             console.log(data.error);
         } else {
             return {
                 blogs: data.blogs,
-                categories: data.categories,
                 tags: data.tags,
                 totalBlogs: data.size,
                 blogsLimit: limit,

@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Layout from "../../components/Layout";
-import { singleBlog, listRelated } from "../../actions/blog";
+import { listRelated } from "../../actions/blog";
 import { API, DOMAIN } from "../../config";
 import renderHTML from "react-render-html";
 import SmallCard from "../../components/blog/SmallCard/SmallCard";
 import Author from "../../components/Author/Author";
 import DisqusThread from "../../components/DisqusThread";
 import HeadTags from "../../components/HeadTags/HeadTags";
-import "highlight.js/styles/an-old-hope.css";
 import { FacebookIcon, TwitterIcon, FacebookShareButton, TwitterShareButton } from "react-share";
 import blogStyle from "../../STYLES/blogStyle";
 import { dyondoClient } from "../../helpers/utils";

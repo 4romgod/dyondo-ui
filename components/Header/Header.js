@@ -161,13 +161,11 @@ const Header = (props) => {
                 </NavbarToggler>
 
                 <Collapse isOpen={isOpen} navbar>
-
                     <Nav className="ml-auto" navbar>
                         <React.Fragment>
                             <React.Fragment>
                                 <div id="write-blog-phone" onClick={() => setIsOpen(false)}>
-                                    {isAuth() &&
-                                        (isAuth().role === 0) ?
+                                    {isAuth() && (isAuth().role === 0) ?
                                         <NavItem style={{ padding: '0', margin: '0 11px' }}>
                                             <a href={`/user/crud/blog`}
                                                 style={navLinkStyle}

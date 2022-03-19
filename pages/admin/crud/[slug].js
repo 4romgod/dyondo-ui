@@ -2,16 +2,13 @@ import Layout from "../../../components/Layout";
 import Admin from "../../../components/auth/Admin";
 import BlogUpdate from "../../../components/crud/BlogUpdate";
 
-function Blog() {
+const Blog = () => {
     return (
         <Layout>
             <Admin>
                 <div className="bg-white">
-
                     <div className="">
-
                         <div className="row ml-0 mr-0">
-
                             <div className="col-md-12 mt-2 text-center">
                                 <div className="card border-0 bg-white pt-3 pb-3 pl-5 pr-5">
                                     <h1>Update Blog</h1>
@@ -23,7 +20,6 @@ function Blog() {
                                     <BlogUpdate />
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>

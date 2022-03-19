@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { isAuth, getCookie } from '../../actions/auth';
-import { create, getTags, removeTag, updateTag } from '../../actions/tag';
+import { getCookie } from '../../actions/auth';
 import { withRouter } from 'next/router';
 import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
 import Checkbox from "../Checkbox/Checkbox";
 import { dyondoClient } from "../../helpers/utils";
 
@@ -15,46 +13,41 @@ const Tag = () => {
         tags: [],
     });
 
-    const [results, setResults] = useState({
-        error: false,
-        success: false,
-        removed: false,
-        reload: false
-    });
+    const [results, setResults] = useState({ reload: false });
 
     const [topics, setTopics] = useState([]);
     const [checkedTopics, setCheckedTopic] = useState([]);
 
-    const { name, photo, photoName, tags } = values;
-    const { error, success, removed, reload } = results;
+    const { name, photoName, tags } = values;
+    const { reload } = results;
 
     const token = getCookie('token');
 
     useEffect(() => {
-        loadTags();
+        initTags();
         initTopics();
     }, [reload]);
 
-    const loadTags = () => {
-        getTags().then((data) => {
-            if (data.error) {
-                console.log(data.error);
-            }
-            else {
-                setValues({ ...values, tags: data });
-            }
-        });
+    const initTags = async () => {
+        try {
+        const result = await dyondoClient.getRetrieveTags();
+        setValues({ ...values, tags: result.data });
+        } catch (error) {
+            console.log(error);
+            toast.dismiss();
+            toast.error("Something went wrong while loading Topics");
+        }
     }
 
-    const initTopics = () => {
-        dyondoClient.getRetrieveTopics()
-            .then((response) => {
-                if (response.error) {
-                    setResults({ ...results, error: response.error });
-                } else {
-                    setTopics(response.data);
-                }
-            });
+    const initTopics = async () => {
+        try {
+            const result = await dyondoClient.getRetrieveTopics();
+            setTopics(result.data);
+        } catch(error) {
+            console.log(error);
+            toast.dismiss();
+            toast.error("Something went wrong while loading Topics");
+        }
     }
 
     const showTopics = () => {
@@ -77,7 +70,7 @@ const Tag = () => {
             return (
                 <button
                     key={index}
-                    onDoubleClick={() => deleteConfirm(tag.slug)}
+                    onDoubleClick={() => deleteTag(tag.slug)}
                     title="Double click to delete"
                     className="btn btn-outline-info btn-sq mr-1 ml-1 mt-3"
                 >
@@ -86,34 +79,21 @@ const Tag = () => {
         });
     }
 
-    const deleteConfirm = (slug) => {
-        console.log("You want to delete?");
+    const deleteTag = async (slug) => {
         let answer = window.confirm("Are you sure you want to delete this tag?");
-        console.log("Yes i want to delete");
-
         if (answer) {
-            console.log("Deleting the tag...");
-
-            deleteTag(slug);
-        }
-    }
-
-    const deleteTag = (slug) => {
-        console.log(`Calling API for DeleteTag ${slug}`);
-        removeTag(slug, token).then((data) => {
-            console.log("API response: ");
-            console.log(data);
-
-            if (data.error) {
-                toast.dismiss();
-                toast.error("Something went wrong while deleting!");
-            } else {
+            try {
+                await dyondoClient.deleteRemoveTag({slug}, {headers: {Authorization: `Bearer ${token}`}});
                 toast.dismiss();
                 toast.success(`${slug} successfully deleted!`);
                 setValues({ ...values, success: false, name: '' });
                 setResults({ ...results, error: false, removed: true, reload: !reload })
+            } catch(error) {
+                console.log(error)
+                toast.dismiss();
+                toast.error("Something went wrong while deleting Tag");
             }
-        });
+        }
     }
 
     const handleChange = (name) => {
@@ -164,38 +144,19 @@ const Tag = () => {
     const clickSubmit = async (event) => {
         event.preventDefault();
 
-        // try {
-        //     await dyondoClient.postCreateTag({body: { name, topics: checkedTopics }});
-
-        //     toast.dismiss();
-        //     toast.success(`${name} successfully created!`);
-
-        //     setValues({ ...values, name: "", photo: '', photoName: '', tags });
-        //     setResults({ ...results, error: false, success: true, removed: false, reload: !reload });
-        //     setCheckedTopic([]);
-        // } catch(err) {
-        //     toast.dismiss();
-        //     toast.error(err);
-        //     setResults({ ...results, error: err, success: false });
-        // }
-
-        create({ name, topics: checkedTopics }, token).then(function (data) {
-            if (data.error) {
-                toast.dismiss();
-                toast.error(data.error);
-                setResults({ ...results, error: data.error, success: false });
-            }
-            else {
-                toast.dismiss();
-                toast.success(`${name} successfully created!`);
-
-                setValues({ ...values, name: "", photo: '', photoName: '', tags });
-
-                setResults({ ...results, error: false, success: true, removed: false, reload: !reload });
-
-                setCheckedTopic([]);
-            }
-        });
+        try {
+            await dyondoClient.postCreateTag({body: { name, topics: checkedTopics }}, {headers: {Authorization: `Bearer ${token}`}});
+            toast.dismiss();
+            toast.success(`${name} successfully created!`);
+            setValues({ ...values, name: "", photo: '', photoName: '', tags });
+            setResults({ ...results, error: false, success: true, removed: false, reload: !reload });
+            setCheckedTopic([]);
+        } catch(error) {
+            console.log(error)
+            toast.dismiss();
+            toast.error("Something went wrong while creating Tag, Try Again");
+            setResults({ ...results, error: error, success: false });
+        }
     }
 
     const mouseMoveHandler = e => {
@@ -229,37 +190,28 @@ const Tag = () => {
     return (
         <React.Fragment>
             <ToastContainer />
-
             <div className="row ml-0 mr-0">
-
                 <div className="col-md-12 text-center">
                     {showTags()}
                 </div>
 
                 <div className="col-md-12 shadow mt-5">
                     <div className="row ml-0 mr-0 pt-5 pb-5">
-
                         <div className="col-md-1"></div>
-
                         <div className="col-md-6 pl-0 pr-0">
                             <div onMouseMove={mouseMoveHandler}>
                                 {newTagForm()}
                             </div>
                         </div>
 
-
                         <div className="col-md-1"></div>
-
                         <div className="col-md-4 pl-0 pr-0">
                             <h4 className='mb-3'>Select some Topics</h4>
                             {showTopics()}
                         </div>
-
                     </div>
                 </div>
-
             </div>
-
         </React.Fragment>)
 }
 

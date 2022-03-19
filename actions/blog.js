@@ -3,7 +3,7 @@ import { API } from '../config';
 import { isAuth, handleResponse } from './auth';
 import queryString from 'querystring';
 
-export function createBlog(blog, token) {
+const createBlog = (blog, token) => {
     let endpoint;
     if (isAuth() && isAuth().role === 1) {
         endpoint = `${API}/blogs`;
@@ -28,7 +28,7 @@ export function createBlog(blog, token) {
         .catch(err => console.log(err));
 };
 
-export function singleBlog(slug) {
+const singleBlog = (slug) => {
     return fetch(`${API}/blogs/${slug}`, {
         method: 'GET'
     }).then(response => {
@@ -37,9 +37,9 @@ export function singleBlog(slug) {
     }).catch(err => console.log("ERROR: " + err));
 }
 
-export function listBlogCatTag(skip, limit) {
+const listBlogsAndTags = (skip, limit) => {
     const data = { limit, skip }
-    return fetch(`${API}/blogs-categories-tags`, {
+    return fetch(`${API}/blogs-and-tags`, {
         method: 'POST',
         headers: {
             Accept: 'application/json',
@@ -51,7 +51,7 @@ export function listBlogCatTag(skip, limit) {
     }).catch(err => console.log("ERROR: " + err));
 };
 
-export function list(username) {
+const list = (username) => {
     let endpoint;
     if (username) {
         endpoint = `${API}/${username}/blogs`;
@@ -66,7 +66,7 @@ export function list(username) {
     }).catch(err => console.log("ERROR: " + err));
 }
 
-export function listRelated(blog) {
+const listRelated = (blog) => {
     return fetch(`${API}/blogs/related`, {
         method: 'POST',
         headers: {
@@ -79,7 +79,7 @@ export function listRelated(blog) {
     }).catch(err => console.log("ERROR: " + err));
 };
 
-export function removeBlog(slug, token) {
+const removeBlog = (slug, token) => {
     let endpoint;
     if (isAuth() && isAuth().role === 1) {
         endpoint = `${API}/blogs/${slug}`;
@@ -100,7 +100,7 @@ export function removeBlog(slug, token) {
     }).catch(err => console.log("ERROR: " + err));
 };
 
-export function updateBlog(blog, token, slug) {
+const updateBlog = (blog, token, slug) => {
     let endpoint;
     if (isAuth() && isAuth().role === 1) {
         endpoint = `${API}/blogs/${slug}`;
@@ -121,11 +121,22 @@ export function updateBlog(blog, token, slug) {
     }).catch(err => console.log("ERROR: " + err));
 };
 
-export function listSearch(params) {
+const listSearch = (params) => {
     let query = queryString.stringify(params);
     return fetch(`${API}/blogs/search?${query}`, {
         method: 'GET'
     }).then(response => {
         return response.json();
     }).catch(err => console.log(err));
+}
+
+export {
+    createBlog,
+    singleBlog,
+    listBlogsAndTags,
+    list,
+    listRelated,
+    removeBlog,
+    updateBlog,
+    listSearch
 }

@@ -246,7 +246,6 @@ const BlogUpdate = ({ router }) => {
             </div>
         </React.Fragment>
     )
-
 }
 
 export default withRouter(BlogUpdate);
