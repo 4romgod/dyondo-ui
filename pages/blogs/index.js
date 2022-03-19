@@ -6,6 +6,7 @@ import { listBlogsAndTags } from "../../actions/blog";
 import Card from "../../components/blog/Card/Card";
 import HeadTags from "../../components/HeadTags/HeadTags";
 import Search from "../../components/blog/Search";
+import { dyondoClient } from "../../helpers/utils";
 
 const Blogs = ({ blogs, tags, totalBlogs, blogsLimit, router }) => {
     const [isClicked, setIsClicked] = useState(false);
@@ -46,8 +47,18 @@ const Blogs = ({ blogs, tags, totalBlogs, blogsLimit, router }) => {
         return blogs.map(showBlog);
     }
 
-    const loadMore = () => {
+    const loadBlogs = async () => {
         const toSkip = skip + limit;  //skip already loaded blogs
+
+        // try {
+        //     await dyondoClient.getRe
+        //     setLoadedBlogs([...loadedBlogs, ...data.blogs]);
+        //     setSize(data.size);
+        //     setSkip(toSkip);
+        // } catch (error) {
+        //     console.log(error);
+        // }
+
         listBlogsAndTags(toSkip, limit).then(data => {
             if (data.error) {
                 console.log(data.error);
@@ -59,11 +70,11 @@ const Blogs = ({ blogs, tags, totalBlogs, blogsLimit, router }) => {
         });
     }
 
-    const loadMoreButton = () => {
+    const loadBlogsButton = () => {
         return (
             (size > 0) && (size >= limit) && (
                 <div className="text-center pt-5 pb-5">
-                    <button className="btn btn-success btn-lg" onClick={loadMore}>
+                    <button className="btn btn-success btn-lg" onClick={loadBlogs}>
                         Load more
                     </button>
                 </div>
@@ -116,7 +127,7 @@ const Blogs = ({ blogs, tags, totalBlogs, blogsLimit, router }) => {
 
                                     <div className="container-fluid pl-0 pr-0">{showLoadedBlogs()}</div>
 
-                                    {loadMoreButton()}
+                                    {loadBlogsButton()}
                                 </div>
                             </div>
 

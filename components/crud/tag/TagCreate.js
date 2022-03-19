@@ -8,9 +8,9 @@ import { dyondoClient } from "../../../helpers/utils";
 
 const TagCreate = () => {
     const [values, setValues] = useState({
-        name: '',
-        photo: '',
-        photoName: '',
+        name: "",
+        photo: "",
+        photoName: "",
         tags: [],
     });
 

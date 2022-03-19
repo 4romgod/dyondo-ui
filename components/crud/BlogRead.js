@@ -1,23 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { getCookie, isAuth } from "../../actions/auth";
-import { removeBlog } from "../../actions/blog";
 import { ToastContainer, toast } from "react-toastify";
-import { dyondoClient } from "../../helpers/utils";
 import FullPageLoader from "../Loader/FullPageLoader";
 import moment from "moment";
+import { dyondoClient } from "../../helpers/utils";
 
 const BlogRead = ({ username }) => {
     const [blogs, setBlogs] = useState([]);
-    const [message, setMessage] = useState("");
     const [loading, setLoading] = useState(false);
     const token = getCookie("token");
 
     useEffect(() => {
-        loadBlogs();
+        initBlogs();
     }, []);
 
-
-    const loadBlogs = async () => {
+    const initBlogs = async () => {
         setLoading(true);
         try {
             const requestParams = username ? { author: username } : {};
@@ -29,26 +26,22 @@ const BlogRead = ({ username }) => {
         }
     }
 
-    const deleteConfirm = (slug) => {
+    const deleteConfirm = async (slug) => {
         const answer = window.confirm("Are you sure you want to delete your blog?");
         if (answer) {
             setLoading(true);
 
-            removeBlog(slug, token).then((data) => {
-                if (data.error) {
-                    console.log(data.error);
-                    setLoading(false);
-
-                    toast.dismiss();
-                    toast.error("Something went wrong. Try again later");
-                } else {
-                    setMessage(data.message);
-                    loadBlogs();
-                    setLoading(false);
-                    toast.dismiss();
-                    toast.success("Successfully deleted!");
-                }
-            })
+            try {
+                await dyondoClient.deleteRemoveBlog({ slug }, { headers: { Authorization: `Bearer ${token}` } });
+                toast.dismiss();
+                toast.success(`${slug} successfully deleted!`);
+                initBlogs();
+            } catch (error) {
+                console.log(error)
+                toast.dismiss();
+                toast.error("Something went wrong while deleting Blog");
+                setLoading(false);
+            }
         }
     }
 

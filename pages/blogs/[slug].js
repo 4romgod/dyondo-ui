@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Layout from "../../components/Layout";
-import { listRelated } from "../../actions/blog";
+import {  listRelated } from "../../actions/blog";
 import { API, DOMAIN } from "../../config";
 import renderHTML from "react-render-html";
 import SmallCard from "../../components/blog/SmallCard/SmallCard";
