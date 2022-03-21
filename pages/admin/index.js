@@ -1,35 +1,46 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import Link from "next/link";
 import Layout from "../../components/Layout";
 import Admin from "../../components/auth/Admin";
-import Link from "next/link";
 import { getCookie } from "../../actions/auth";
 import { getProfile } from "../../actions/user";
 import { API } from "../../config";
+import FullPageLoader from "../../components/Loader/FullPageLoader";
 
-function AdminIndex() {
+const AdminIndex = () => {
+    const componentMounted = useRef(true);
+
     const [values, setValues] = useState({
-        name: '',
-        username: '',
-        about: ''
+        name: "",
+        username: "",
+        about: ""
     });
 
     const [results, setResults] = useState({
-        error: '',
-        loading: ''
+        error: false,
+        loading: false
     });
 
     const { username, name, about } = values;
-    const { error, loading } = results;
+    const { loading } = results;
 
-    const token = getCookie('token');
+    const token = getCookie("token");
 
-    function initUser() {
+    const initUser = () => {
+        setResults({ ...results, loading: true });
+
         getProfile(token).then(data => {
             if (data.error) {
                 setResults({ ...results, error: data.error, loading: false });
             } else {
-                setResults({ ...results, loading: false });
-                setValues({ ...values, username: data.username, name: data.name, about: data.about });
+                if (componentMounted.current) {
+                    setResults({ ...results, loading: false });
+                    setValues({ ...values, username: data.username, name: data.name, about: data.about });
+                }
+                
+                return () => {
+                    componentMounted.current = false;
+                }
             }
         });
     }
@@ -41,12 +52,14 @@ function AdminIndex() {
     return (
         <Layout>
             <Admin>
-                <div className="bg-white" style={{marginBottom: "100px"}}>
 
+                <div>
+                    {loading && <FullPageLoader />}
+                </div>
+
+                <div className="bg-white" style={{ marginBottom: "100px" }}>
                     <div className="container pb-5 mb-5">
-
                         <div className="row ml-0 mr-0">
-
                             <div className="col-md-12 text-center mt-2 mb-3">
                                 <div className="card border-0 bg-white pt-5 pb-5 pl-5 pr-5">
                                     <h2>Admin DashBoard</h2>
@@ -55,7 +68,6 @@ function AdminIndex() {
 
                             <div className="col-md-12 container-admin">
                                 <div className="row ml-0 mr-0">
-
                                     <div className="col-md-4 pl-0 left mb-5">
                                         <ul className="list-group">
                                             <a href="/admin/crud/tag/create">
@@ -143,16 +155,12 @@ function AdminIndex() {
                                                         </Link>
                                                     </div>
                                                 </div>
-
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
-
                         </div>
-
                     </div>
                 </div>
             </Admin>

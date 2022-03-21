@@ -4,6 +4,7 @@ import SmallCard from "../../components/blog/SmallCard/SmallCard";
 import Search from "../../components/blog/Search";
 import HeadTags from "../../components/HeadTags/HeadTags";
 import { dyondoClient } from "../../helpers/utils";
+import { singleTag } from "../../actions/tag";
 
 const Tag = ({ tag, blogs, query }) => {
     const [isClicked, setIsClicked] = useState(false);
@@ -59,11 +60,11 @@ const Tag = ({ tag, blogs, query }) => {
 
 Tag.getInitialProps = async ({ query }) => {
     try {
-        const tagData =  await dyondoClient.getRetrieveTag({slug: query.slug});
+        const tagData =  await singleTag(query.slug);
         const blogData = await dyondoClient.getRetrieveBlogs({tag: query.slug});
-        return { tag: tagData.data, blogs: blogData.data, query };
-    } catch (err) {
-        console.log(err);
+        return { tag: tagData, blogs: blogData.data, query };
+    } catch (error) {
+        console.log(error);
     }
 }
 

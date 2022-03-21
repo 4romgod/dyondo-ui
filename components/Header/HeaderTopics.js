@@ -1,19 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { NavLink } from 'reactstrap';
 import { dyondoClient } from "../../helpers/utils";
 
 const HeaderTopics = () => {
     const [topics, setTopics] = useState([]);
-    
-    useEffect(()=>{
-        const fetchTopics = async () => {
-            const someTopics = await dyondoClient.getRetrieveTopics();
-            setTopics(someTopics.data);
-        }
-        fetchTopics();
+
+    useEffect(() => {
+        initTopics();
     }, []);
 
+    const initTopics = async () => {
+        try {
+            const someTopics = await dyondoClient.getRetrieveTopics({ headers: { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': 'true' } });
+            setTopics(someTopics.data);
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     return (
         <div>
@@ -36,7 +40,7 @@ const HeaderTopics = () => {
                         {topics && topics.map((topic, index) => {
                             return (
                                 <li key={index} style={{ padding: '0', margin: '0 11px', cursor: 'pointer' }}>
-                                    <Link href={`/tags/topic/[slug]`} as={`/tags/topic/${topic.slug}`}>
+                                    <Link href={`/topics/[slug]`} as={`/topics/${topic.slug}`}>
                                         <NavLink>
                                             {topic.name.toUpperCase()}
                                         </NavLink>

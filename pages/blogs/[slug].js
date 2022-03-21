@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Layout from "../../components/Layout";
-import {  listRelated } from "../../actions/blog";
 import { API, DOMAIN } from "../../config";
 import renderHTML from "react-render-html";
 import SmallCard from "../../components/blog/SmallCard/SmallCard";
@@ -15,19 +14,18 @@ import { dyondoClient } from "../../helpers/utils";
 const SingleBlog = ({ blog, query }) => {
     const [related, setRelated] = useState([]);
 
-    const loadRelated = () => {
-        listRelated({ blog }).then((data) => {
-            if (data.error) {
-                console.log(data.error);
-            } else {
-                setRelated(data);
-            }
-        });
-    }
-
     useEffect(() => {
-        loadRelated();
+        initRelated();
     }, []);
+
+    const initRelated = async () => {
+        try {
+            const related = await dyondoClient.getRetrieveRelatedBlogs({slug: blog.slug});
+            setRelated(related.data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     const showBlogTags = (blog) => {
         const showTag = (tag, index) => {
@@ -67,7 +65,7 @@ const SingleBlog = ({ blog, query }) => {
             ogTitle={blog.title}
             description={blog.mdesc}
             path={`/blogs/${query.slug}`}
-            pathImg={`/blogs/photo/${blog.slug}`}
+            pathImg={`/blogs/${blog.slug}/photo`}
         />
         
         <Layout>
@@ -96,7 +94,7 @@ const SingleBlog = ({ blog, query }) => {
                         <div className="col-md-1"></div>
                         <div className="col-md-10 pl-0 pr-0">
                             <p className="blog-featured-img"
-                                style={{backgroundImage: `url(${API}/blogs/photo/${blog.slug})`}}
+                                style={{backgroundImage: `url(${API}/blogs/${blog.slug}/photo)`}}
                             />
                         </div>
                         <div className="col-md-1"></div>
@@ -163,8 +161,8 @@ SingleBlog.getInitialProps = async ({ query }) => {
     try {
         const blogData = await dyondoClient.getRetrieveBlog({slug: query.slug});
         return { blog: blogData.data, query };
-    } catch (err) {
-        console.log(err);
+    } catch (error) {
+        console.log(error);
     }
 }
 

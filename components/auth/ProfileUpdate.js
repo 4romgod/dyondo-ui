@@ -1,23 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
-import Router from 'next/router';
+import React, { useState, useEffect } from "react";
+import Router from "next/router";
 import { getCookie, isAuth, updateUser } from "../../actions/auth";
 import { getProfile, updateProfile } from "../../actions/user";
 import { API } from "../../config";
 import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
 import FullPageLoader from "../Loader/FullPageLoader";
 
-function ProfileUpdate() {
+const ProfileUpdate = () => {
     const [values, setValues] = useState({
-        username: '',
-        username_for_photo: '',
-        name: '',
-        email: '',
-        about: '',
-        password: '',
-        photo: '',
-        photoName: '',
+        username: "",
+        username_for_photo: "",
+        name: "",
+        email: "",
+        about: "",
+        password: "",
+        photo: "",
+        photoName: "",
         userData: process.browser && new FormData(),
     });
 
@@ -30,16 +28,16 @@ function ProfileUpdate() {
 
     const { username, username_for_photo, name, email, about, password, photo, photoName, userData } = values;
     const { error, success, loading, btnDisable } = results;
+
     const token = getCookie("token");
 
-    function initUser() {
-        setValues({ ...values, loading: true });
+    const initUser = () => {
+        setResults({ ...results, loading: true });
 
         getProfile(token).then(data => {
             if (data.error) {
                 setResults({ ...results, error: data.error, loading: false });
-            }
-            else {
+            } else {
                 setResults({ ...results, loading: false, error: false });
                 setValues({ ...values, username: data.username, username_for_photo: data.username, name: data.name, email: data.email, about: data.about });
             }
@@ -51,7 +49,7 @@ function ProfileUpdate() {
         setValues({ ...values, userData: new FormData() });
     }, []);
 
-    function handleChange(name) {
+    const handleChange = (name) => {
         return (event) => {
             let value;
 
@@ -62,22 +60,18 @@ function ProfileUpdate() {
                 if (fileSize > 1) {
                     toast.dismiss();
                     toast.error("Image size should be less than 1MB");
-                }
-                else {
+                } else {
                     userData.set(name, value);
-
                     setResults({ ...results, error: false, success: false });
                     setValues({ ...values, photoName: value ? value.name : '', [name]: value, userData });
                 }
-            }
-            else {
+            } else {
                 if ((name === 'username') || (name === 'name')) {
                     value = event.target.value;
                     const textSize = value ? value.length : 0;
                     if (textSize > 32) {
                         setResults({ ...results, error: `${name} should be less than 32 characters` })
-                    }
-                    else {
+                    } else {
                         userData.set(name, value);
 
                         setResults({ ...results, error: false, success: false });
@@ -85,9 +79,7 @@ function ProfileUpdate() {
                         console.log(username_for_photo);
                         console.log(username);
                     }
-
-                }
-                else if (name === 'about') {
+                } else if (name === 'about') {
                     value = event.target.value;
                     userData.set(name, value);
 
@@ -103,7 +95,7 @@ function ProfileUpdate() {
         }
     }
 
-    function handleSubmit(event) {
+    const handleSubmit = (event) => {
         event.preventDefault();
 
         setValues({ ...values, loading: true });
@@ -111,8 +103,7 @@ function ProfileUpdate() {
         updateProfile(token, userData).then((data) => {
             if (data.error) {
                 setValues({ ...values, error: data.error, success: false, loading: false });
-            }
-            else {
+            } else {
                 updateUser(data, () => {
                     setValues({
                         ...values,
@@ -128,8 +119,7 @@ function ProfileUpdate() {
 
                 if (isAuth().role === 0) {
                     Router.replace(`/user`);
-                }
-                else if (isAuth().role === 1) {
+                } else if (isAuth().role === 1) {
                     Router.replace(`/admin`);
                 }
             }
@@ -138,7 +128,6 @@ function ProfileUpdate() {
 
     const profileUpdateForm = () => (
         <form onSubmit={handleSubmit}>
-
             <div className="form-group">
                 <small className="text-muted">Max size: 1MB</small><br />
                 <label className="btn btn-outline-info">
@@ -173,7 +162,6 @@ function ProfileUpdate() {
                     Update
                 </button>
             </div>
-
         </form>
     );
 

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import Layout from "../../../components/Layout";
-import { getTagsByField } from "../../../actions/tag";
-import HeadTags from "../../../components/HeadTags/HeadTags";
-import TagCard from "../../../components/Tag/SmallCard/TagCard";
-import Search from "../../../components/blog/Search";
+import Layout from "../../components/Layout";
+import HeadTags from "../../components/HeadTags/HeadTags";
+import TagCard from "../../components/Tag/SmallCard/TagCard";
+import Search from "../../components/blog/Search";
+import { dyondoClient } from "../../helpers/utils";
 
 const Tags = ({ tags, topic, query }) => {
     const [isClicked, setIsClicked] = useState(false);
@@ -19,7 +19,7 @@ const Tags = ({ tags, topic, query }) => {
                 title={topic}
                 ogTitle={`${topic}`}
                 description={`Best ${topic} blogs and tutorials`}
-                path={`/tags/topic/${topic}`}
+                path={`/topics/${topic}`}
                 pathImg={`/images/smile.jpg`}
             />
 
@@ -58,14 +58,13 @@ const Tags = ({ tags, topic, query }) => {
     )
 }
 
-Tags.getInitialProps = ({ query }) => {
-    return getTagsByField(query.slug).then(data => {
-        if (data.error) {
-            console.log(data.error);
-        } else {
-            return { tags: data, topic: query.slug };
-        }
-    });
+Tags.getInitialProps = async ({ query }) => {
+    try {
+        const tags = await dyondoClient.getRetrieveTags({slug: query.slug});
+        return { tags: tags.data, topic: query.slug };
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 export default Tags;
